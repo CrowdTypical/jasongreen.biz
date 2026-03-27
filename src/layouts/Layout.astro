@@ -16,6 +16,15 @@ const { title = 'Jason Green — Product & Operations Leader' } = Astro.props;
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<script is:inline>
+			// Apply entry animation direction before first paint
+			(function() {
+				var dir = sessionStorage.getItem('page-transition-dir');
+				sessionStorage.removeItem('page-transition-dir');
+				if (dir === 'left') document.documentElement.classList.add('enter-from-left');
+				else if (dir === 'right') document.documentElement.classList.add('enter-from-right');
+			})();
+		</script>
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500&display=swap" rel="stylesheet" />
@@ -45,5 +54,42 @@ const { title = 'Jason Green — Product & Operations Leader' } = Astro.props;
 	body {
 		scrollbar-width: thin;
 		scrollbar-color: #d1d5db transparent;
+	}
+
+	/* Page transitions — entry direction set by inline script on <html> */
+	html.enter-from-right body {
+		animation: page-enter-from-right 0.4s ease-out;
+	}
+
+	html.enter-from-left body {
+		animation: page-enter-from-left 0.4s ease-out;
+	}
+
+	body.page-exit-left {
+		animation: page-exit-left 0.35s ease-in forwards;
+	}
+
+	body.page-exit-right {
+		animation: page-exit-right 0.35s ease-in forwards;
+	}
+
+	@keyframes page-enter-from-right {
+		from { opacity: 0; transform: translateX(60px); }
+		to { opacity: 1; transform: translateX(0); }
+	}
+
+	@keyframes page-enter-from-left {
+		from { opacity: 0; transform: translateX(-60px); }
+		to { opacity: 1; transform: translateX(0); }
+	}
+
+	@keyframes page-exit-left {
+		from { opacity: 1; transform: translateX(0); }
+		to { opacity: 0; transform: translateX(-60px); }
+	}
+
+	@keyframes page-exit-right {
+		from { opacity: 1; transform: translateX(0); }
+		to { opacity: 0; transform: translateX(60px); }
 	}
 </style>

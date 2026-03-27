@@ -48,7 +48,7 @@ import Layout from '../../layouts/Layout.astro';
 				<a href="#features" class="hidden sm:inline text-xs font-bold uppercase tracking-[2px] stf-nav-link transition-colors">FEATURES</a>
 				<a href="#how-it-works" class="hidden sm:inline text-xs font-bold uppercase tracking-[2px] stf-nav-link transition-colors">HOW IT WORKS</a>
 				<a href="#legal" class="hidden sm:inline text-xs font-bold uppercase tracking-[2px] stf-nav-link transition-colors">LEGAL</a>
-				<a href="/preview" class="text-xs font-bold uppercase tracking-[2px] transition-colors" style="color: var(--stf-text-dim);">
+				<a href="/preview" class="page-transition-left text-xs font-bold uppercase tracking-[2px] transition-colors" style="color: var(--stf-text-dim);">
 					&larr; PORTFOLIO
 				</a>
 			</div>
@@ -398,9 +398,32 @@ import Layout from '../../layouts/Layout.astro';
 				<a href="/spread-the-fund/terms" class="stf-footer-link transition-colors uppercase tracking-[1px]">TERMS</a>
 				<a href="/spread-the-fund/copyright" class="stf-footer-link transition-colors uppercase tracking-[1px]">COPYRIGHT</a>
 				<a href="mailto:spreadthefund@gmail.com" class="stf-footer-link transition-colors uppercase tracking-[1px]">CONTACT</a>
-				<a href="/preview" class="stf-footer-link transition-colors uppercase tracking-[1px]">PORTFOLIO</a>
+				<a href="/preview" class="page-transition-left stf-footer-link transition-colors uppercase tracking-[1px]">PORTFOLIO</a>
 			</div>
 		</div>
 	</footer>
 	</div>
+
+	<script>
+		// Page transition handling for STF page
+		document.querySelectorAll('.page-transition-left').forEach(link => {
+			link.addEventListener('click', (e) => {
+				e.preventDefault();
+				const href = (link as HTMLAnchorElement).href;
+				sessionStorage.setItem('page-transition-dir', 'left');
+				document.body.classList.add('page-exit-right');
+				setTimeout(() => { window.location.href = href; }, 350);
+			});
+		});
+
+		document.querySelectorAll('.page-transition-right').forEach(link => {
+			link.addEventListener('click', (e) => {
+				e.preventDefault();
+				const href = (link as HTMLAnchorElement).href;
+				sessionStorage.setItem('page-transition-dir', 'right');
+				document.body.classList.add('page-exit-left');
+				setTimeout(() => { window.location.href = href; }, 350);
+			});
+		});
+	</script>
 </Layout>
