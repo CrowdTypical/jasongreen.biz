@@ -1,5 +1,5 @@
 ---
-
+import '../styles/global.css';
 ---
 
 <html lang="en">
@@ -9,9 +9,108 @@
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>Jason Green — Coming Soon</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&family=Dancing+Script:wght@400;500&display=swap" rel="stylesheet" />
 	</head>
-	<body>
-		<h1>Astro</h1>
+	<body class="bg-white min-h-screen overflow-hidden relative flex items-center justify-center">
+		<!-- Soft pastel gradient blobs -->
+		<div class="blob blob-pink"></div>
+		<div class="blob blob-green"></div>
+		<div class="blob blob-blue"></div>
+		<div class="blob blob-yellow"></div>
+
+		<!-- Content -->
+		<main class="relative z-10 text-center px-6 max-w-3xl mx-auto">
+			<p class="font-script text-lg md:text-xl text-gray-500 mb-4 tracking-wide">
+				Something new is on the way
+			</p>
+
+			<h1 class="font-serif text-6xl md:text-8xl lg:text-9xl font-normal text-gray-900 leading-[0.95] mb-8">
+				coming<br />soon
+			</h1>
+
+			<p class="font-sans text-base md:text-lg text-gray-500 max-w-md mx-auto leading-relaxed mb-12">
+				A personal brand website by Jason Green — currently under construction. Check back soon.
+			</p>
+
+			<div class="flex items-center justify-center gap-6 text-gray-400">
+				<a href="https://github.com/CrowdTypical" aria-label="GitHub" class="hover:text-gray-900 transition-colors">
+					<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+				</a>
+				<a href="mailto:jason@jasongreen.biz" aria-label="Email" class="hover:text-gray-900 transition-colors">
+					<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" /></svg>
+				</a>
+			</div>
+		</main>
+
+		<!-- Scroll hint -->
+		<div class="absolute bottom-8 right-8 z-10">
+			<p class="font-sans text-xs text-gray-300 tracking-widest uppercase writing-vertical">Scroll</p>
+		</div>
 	</body>
 </html>
+
+<style>
+	.font-serif {
+		font-family: 'Playfair Display', Georgia, serif;
+	}
+	.font-sans {
+		font-family: 'Inter', system-ui, sans-serif;
+	}
+	.font-script {
+		font-family: 'Dancing Script', cursive;
+	}
+	.writing-vertical {
+		writing-mode: vertical-rl;
+	}
+
+	/* Soft pastel gradient blobs — inspired by Nua Creativos */
+	.blob {
+		position: absolute;
+		border-radius: 50%;
+		filter: blur(80px);
+		opacity: 0.5;
+		animation: float 20s ease-in-out infinite;
+	}
+	.blob-pink {
+		width: 340px;
+		height: 340px;
+		background: radial-gradient(circle, #f0b4f0, #f5d0f5);
+		top: -5%;
+		right: 25%;
+		animation-delay: 0s;
+	}
+	.blob-green {
+		width: 280px;
+		height: 280px;
+		background: radial-gradient(circle, #b8e6c8, #d4f0dc);
+		top: 20%;
+		left: 8%;
+		animation-delay: -5s;
+	}
+	.blob-blue {
+		width: 240px;
+		height: 240px;
+		background: radial-gradient(circle, #b8dff0, #d0ecf8);
+		top: 5%;
+		right: 5%;
+		animation-delay: -10s;
+	}
+	.blob-yellow {
+		width: 320px;
+		height: 320px;
+		background: radial-gradient(circle, #f5e6a0, #faf0c8);
+		bottom: -5%;
+		right: 15%;
+		animation-delay: -15s;
+	}
+
+	@keyframes float {
+		0%, 100% { transform: translate(0, 0) scale(1); }
+		25% { transform: translate(30px, -20px) scale(1.05); }
+		50% { transform: translate(-20px, 15px) scale(0.95); }
+		75% { transform: translate(15px, 25px) scale(1.02); }
+	}
+</style>
