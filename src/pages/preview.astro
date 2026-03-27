@@ -9,6 +9,16 @@ import ContactSection from '../components/ContactSection.astro';
 ---
 
 <Layout title="Jason Green — Product & Operations Leader">
+	<!-- Dynamic floating background blobs -->
+	<div id="blob-bg" class="fixed inset-0 z-0 pointer-events-none overflow-hidden" aria-hidden="true">
+		<div class="floating-blob blob-1"></div>
+		<div class="floating-blob blob-2"></div>
+		<div class="floating-blob blob-3"></div>
+		<div class="floating-blob blob-4"></div>
+		<div class="floating-blob blob-5"></div>
+		<div class="floating-blob blob-6"></div>
+	</div>
+
 	<Nav />
 
 	<!-- Hero: vertical scroll -->
@@ -28,4 +38,123 @@ import ContactSection from '../components/ContactSection.astro';
 
 	<!-- Contact + Footer -->
 	<ContactSection />
+
+	<style>
+		.floating-blob {
+			position: absolute;
+			border-radius: 50%;
+			filter: blur(100px);
+			opacity: 0.4;
+			will-change: transform;
+			mix-blend-mode: normal;
+		}
+
+		.blob-1 {
+			width: 500px;
+			height: 500px;
+			background: radial-gradient(circle, rgba(240, 180, 240, 0.7), rgba(240, 180, 240, 0));
+			top: -10%;
+			left: 20%;
+			animation: drift-1 25s ease-in-out infinite;
+		}
+
+		.blob-2 {
+			width: 450px;
+			height: 450px;
+			background: radial-gradient(circle, rgba(160, 210, 240, 0.7), rgba(160, 210, 240, 0));
+			top: 5%;
+			right: -5%;
+			animation: drift-2 30s ease-in-out infinite;
+		}
+
+		.blob-3 {
+			width: 400px;
+			height: 400px;
+			background: radial-gradient(circle, rgba(180, 230, 200, 0.7), rgba(180, 230, 200, 0));
+			top: 30%;
+			left: -8%;
+			animation: drift-3 28s ease-in-out infinite;
+		}
+
+		.blob-4 {
+			width: 550px;
+			height: 550px;
+			background: radial-gradient(circle, rgba(245, 220, 160, 0.6), rgba(245, 220, 160, 0));
+			top: 50%;
+			right: 15%;
+			animation: drift-4 32s ease-in-out infinite;
+		}
+
+		.blob-5 {
+			width: 380px;
+			height: 380px;
+			background: radial-gradient(circle, rgba(200, 170, 240, 0.6), rgba(200, 170, 240, 0));
+			top: 70%;
+			left: 30%;
+			animation: drift-5 26s ease-in-out infinite;
+		}
+
+		.blob-6 {
+			width: 420px;
+			height: 420px;
+			background: radial-gradient(circle, rgba(240, 180, 180, 0.5), rgba(240, 180, 180, 0));
+			top: 15%;
+			left: 55%;
+			animation: drift-6 35s ease-in-out infinite;
+		}
+
+		/* Each blob follows a unique orbital path so they overlap and merge */
+		@keyframes drift-1 {
+			0%, 100% { transform: translate(0, 0) scale(1); }
+			20% { transform: translate(120px, 80px) scale(1.1); }
+			40% { transform: translate(30px, 160px) scale(0.9); }
+			60% { transform: translate(-80px, 100px) scale(1.05); }
+			80% { transform: translate(-40px, -30px) scale(0.95); }
+		}
+
+		@keyframes drift-2 {
+			0%, 100% { transform: translate(0, 0) scale(1); }
+			20% { transform: translate(-100px, 60px) scale(0.95); }
+			40% { transform: translate(-160px, 140px) scale(1.08); }
+			60% { transform: translate(-60px, 200px) scale(0.92); }
+			80% { transform: translate(40px, 80px) scale(1.03); }
+		}
+
+		@keyframes drift-3 {
+			0%, 100% { transform: translate(0, 0) scale(1); }
+			25% { transform: translate(140px, -50px) scale(1.06); }
+			50% { transform: translate(200px, 70px) scale(0.94); }
+			75% { transform: translate(60px, 120px) scale(1.02); }
+		}
+
+		@keyframes drift-4 {
+			0%, 100% { transform: translate(0, 0) scale(1); }
+			20% { transform: translate(-80px, -100px) scale(1.08); }
+			40% { transform: translate(-180px, -40px) scale(0.93); }
+			60% { transform: translate(-100px, 80px) scale(1.05); }
+			80% { transform: translate(30px, 40px) scale(0.97); }
+		}
+
+		@keyframes drift-5 {
+			0%, 100% { transform: translate(0, 0) scale(1); }
+			20% { transform: translate(60px, -120px) scale(0.96); }
+			40% { transform: translate(150px, -60px) scale(1.07); }
+			60% { transform: translate(100px, 50px) scale(0.93); }
+			80% { transform: translate(-30px, -40px) scale(1.04); }
+		}
+
+		@keyframes drift-6 {
+			0%, 100% { transform: translate(0, 0) scale(1); }
+			25% { transform: translate(-120px, 90px) scale(1.05); }
+			50% { transform: translate(-60px, 180px) scale(0.92); }
+			75% { transform: translate(80px, 100px) scale(1.08); }
+		}
+
+		/* Reduce motion for accessibility */
+		@media (prefers-reduced-motion: reduce) {
+			.floating-blob {
+				animation: none !important;
+			}
+		}
+	</style>
 </Layout>

@@ -412,7 +412,7 @@ import Layout from '../../layouts/Layout.astro';
 				const href = (link as HTMLAnchorElement).href;
 				sessionStorage.setItem('page-transition-dir', 'left');
 				document.body.classList.add('page-exit-right');
-				setTimeout(() => { window.location.href = href; }, 350);
+				setTimeout(() => { window.location.href = href; }, 200);
 			});
 		});
 
@@ -422,7 +422,7 @@ import Layout from '../../layouts/Layout.astro';
 				const href = (link as HTMLAnchorElement).href;
 				sessionStorage.setItem('page-transition-dir', 'right');
 				document.body.classList.add('page-exit-left');
-				setTimeout(() => { window.location.href = href; }, 350);
+				setTimeout(() => { window.location.href = href; }, 200);
 			});
 		});
 	</script>

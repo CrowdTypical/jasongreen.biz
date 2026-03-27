@@ -1,12 +1,7 @@
 ---
 ---
 
-<section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
-	<!-- Soft pastel gradient blobs -->
-	<div class="blob blob-pink"></div>
-	<div class="blob blob-green"></div>
-	<div class="blob blob-blue"></div>
-	<div class="blob blob-yellow"></div>
+<section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-transparent">
 
 	<!-- Content -->
 	<div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
@@ -77,53 +72,7 @@
 		font-family: 'Inter', system-ui, sans-serif;
 	}
 
-	/* Blob styles */
-	.blob {
-		position: absolute;
-		border-radius: 50%;
-		filter: blur(80px);
-		opacity: 0.45;
-		animation: float 20s ease-in-out infinite;
-	}
-	.blob-pink {
-		width: 340px;
-		height: 340px;
-		background: radial-gradient(circle, #f0b4f0, #f5d0f5);
-		top: -5%;
-		right: 25%;
-		animation-delay: 0s;
-	}
-	.blob-green {
-		width: 280px;
-		height: 280px;
-		background: radial-gradient(circle, #b8e6c8, #d4f0dc);
-		top: 20%;
-		left: 8%;
-		animation-delay: -5s;
-	}
-	.blob-blue {
-		width: 240px;
-		height: 240px;
-		background: radial-gradient(circle, #b8dff0, #d0ecf8);
-		top: 5%;
-		right: 5%;
-		animation-delay: -10s;
-	}
-	.blob-yellow {
-		width: 320px;
-		height: 320px;
-		background: radial-gradient(circle, #f5e6a0, #faf0c8);
-		bottom: -5%;
-		right: 15%;
-		animation-delay: -15s;
-	}
-
-	@keyframes float {
-		0%, 100% { transform: translate(0, 0) scale(1); }
-		25% { transform: translate(30px, -20px) scale(1.05); }
-		50% { transform: translate(-20px, 15px) scale(0.95); }
-		75% { transform: translate(15px, 25px) scale(1.02); }
-	}
+	/* Blob styles — removed, now handled globally */
 
 	/* Entry animations */
 	.animate-fade-in {

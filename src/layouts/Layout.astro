@@ -58,38 +58,38 @@ const { title = 'Jason Green — Product & Operations Leader' } = Astro.props;
 
 	/* Page transitions — entry direction set by inline script on <html> */
 	html.enter-from-right body {
-		animation: page-enter-from-right 0.4s ease-out;
+		animation: page-enter-from-right 0.25s ease-out;
 	}
 
 	html.enter-from-left body {
-		animation: page-enter-from-left 0.4s ease-out;
+		animation: page-enter-from-left 0.25s ease-out;
 	}
 
 	body.page-exit-left {
-		animation: page-exit-left 0.35s ease-in forwards;
+		animation: page-exit-left 0.2s ease-in forwards;
 	}
 
 	body.page-exit-right {
-		animation: page-exit-right 0.35s ease-in forwards;
+		animation: page-exit-right 0.2s ease-in forwards;
 	}
 
 	@keyframes page-enter-from-right {
-		from { opacity: 0; transform: translateX(60px); }
+		from { opacity: 0; transform: translateX(40px); }
 		to { opacity: 1; transform: translateX(0); }
 	}
 
 	@keyframes page-enter-from-left {
-		from { opacity: 0; transform: translateX(-60px); }
+		from { opacity: 0; transform: translateX(-40px); }
 		to { opacity: 1; transform: translateX(0); }
 	}
 
 	@keyframes page-exit-left {
 		from { opacity: 1; transform: translateX(0); }
-		to { opacity: 0; transform: translateX(-60px); }
+		to { opacity: 0; transform: translateX(-40px); }
 	}
 
 	@keyframes page-exit-right {
 		from { opacity: 1; transform: translateX(0); }
-		to { opacity: 0; transform: translateX(60px); }
+		to { opacity: 0; transform: translateX(40px); }
 	}
 </style>
