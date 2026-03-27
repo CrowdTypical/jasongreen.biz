@@ -113,32 +113,71 @@ import Layout from '../../layouts/Layout.astro';
 
 				<h2>11. Delete My Data</h2>
 				<p>
-					You have the right to request deletion of all your personal data from Spread the Fund at any time. Enter the email address you used to sign in to the app (Google or email login) and we will process your deletion request.
+					You have the right to request deletion of all your personal data from Spread the Fund at any time. For security, we will send a verification code to your email to confirm your identity before deleting any data.
 				</p>
 				<div class="delete-data-section" style="margin-top: 1.5rem; padding: 1.5rem; border: 1px solid var(--stf-border); background: var(--stf-surface);">
-					<label for="delete-email" class="block text-xs font-bold uppercase tracking-[2px] mb-3" style="color: var(--stf-text-secondary); font-family: var(--stf-font);">
-						YOUR ACCOUNT EMAIL
-					</label>
-					<div class="flex flex-col sm:flex-row gap-3">
-						<input
-							type="email"
-							id="delete-email"
-							placeholder="you@example.com"
-							required
-							class="flex-1 px-4 py-3 text-sm outline-none"
-							style="background: var(--stf-bg); border: 1px solid var(--stf-border); color: var(--stf-text); font-family: var(--stf-font); border-radius: 0;"
-						/>
+					<!-- Step 1: Email -->
+					<div id="step-email">
+						<label for="delete-email" class="block text-xs font-bold uppercase tracking-[2px] mb-3" style="color: var(--stf-text-secondary); font-family: var(--stf-font);">
+							STEP 1 — ENTER YOUR ACCOUNT EMAIL
+						</label>
+						<div class="flex flex-col sm:flex-row gap-3">
+							<input
+								type="email"
+								id="delete-email"
+								placeholder="you@example.com"
+								required
+								class="flex-1 px-4 py-3 text-sm outline-none"
+								style="background: var(--stf-bg); border: 1px solid var(--stf-border); color: var(--stf-text); font-family: var(--stf-font); border-radius: 0;"
+							/>
+							<button
+								id="send-code-btn"
+								type="button"
+								class="px-6 py-3 text-xs font-bold uppercase tracking-[2px] transition-all cursor-pointer"
+								style="background: transparent; border: 1px solid var(--stf-primary); color: var(--stf-primary); font-family: var(--stf-font); border-radius: 0;"
+							>
+								SEND CODE
+							</button>
+						</div>
+					</div>
+
+					<!-- Step 2: Code verification (hidden initially) -->
+					<div id="step-code" style="display: none; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--stf-border);">
+						<label for="delete-code" class="block text-xs font-bold uppercase tracking-[2px] mb-3" style="color: var(--stf-text-secondary); font-family: var(--stf-font);">
+							STEP 2 — ENTER VERIFICATION CODE
+						</label>
+						<p class="text-xs mb-3" style="color: var(--stf-text-dim); font-family: var(--stf-font); line-height: 1.6;">
+							A 6-digit code has been sent to <span id="code-email-display" style="color: var(--stf-primary);"></span>. Check your inbox (and spam folder).
+						</p>
+						<div class="flex flex-col sm:flex-row gap-3">
+							<input
+								type="text"
+								id="delete-code"
+								placeholder="000000"
+								maxlength="6"
+								pattern="\d{6}"
+								class="flex-1 px-4 py-3 text-sm outline-none text-center"
+								style="background: var(--stf-bg); border: 1px solid var(--stf-border); color: var(--stf-text); font-family: var(--stf-font); border-radius: 0; letter-spacing: 8px; font-size: 1.25rem;"
+							/>
+							<button
+								id="confirm-delete-btn"
+								type="button"
+								class="px-6 py-3 text-xs font-bold uppercase tracking-[2px] transition-all cursor-pointer"
+								style="background: transparent; border: 1px solid #EF5350; color: #EF5350; font-family: var(--stf-font); border-radius: 0;"
+							>
+								DELETE MY DATA
+							</button>
+						</div>
 						<button
-							id="delete-btn"
+							id="resend-code-btn"
 							type="button"
-							class="px-6 py-3 text-xs font-bold uppercase tracking-[2px] transition-all cursor-pointer"
-							style="background: transparent; border: 1px solid #EF5350; color: #EF5350; font-family: var(--stf-font); border-radius: 0;"
-							onmouseover="this.style.background='#EF5350'; this.style.color='#0A0E14';"
-							onmouseout="this.style.background='transparent'; this.style.color='#EF5350';"
+							class="mt-3 text-xs uppercase tracking-[1px] cursor-pointer"
+							style="background: none; border: none; color: var(--stf-text-dim); font-family: var(--stf-font); text-decoration: underline;"
 						>
-							REQUEST DELETION
+							RESEND CODE
 						</button>
 					</div>
+
 					<div id="delete-status" class="mt-4 text-sm" style="font-family: var(--stf-font); display: none;"></div>
 				</div>
 			</div>
@@ -147,63 +186,118 @@ import Layout from '../../layouts/Layout.astro';
 	</div>
 
 	<script is:inline>
-		document.getElementById('delete-btn').addEventListener('click', function() {
+		(function() {
 			var emailInput = document.getElementById('delete-email');
+			var codeInput = document.getElementById('delete-code');
+			var sendCodeBtn = document.getElementById('send-code-btn');
+			var confirmBtn = document.getElementById('confirm-delete-btn');
+			var resendBtn = document.getElementById('resend-code-btn');
+			var stepEmail = document.getElementById('step-email');
+			var stepCode = document.getElementById('step-code');
+			var codeEmailDisplay = document.getElementById('code-email-display');
 			var statusEl = document.getElementById('delete-status');
-			var btn = document.getElementById('delete-btn');
-			var email = emailInput.value.trim();
+			var currentEmail = '';
 
-			if (!email || !emailInput.checkValidity()) {
+			function setStatus(msg, color) {
 				statusEl.style.display = 'block';
-				statusEl.style.color = '#EF5350';
-				statusEl.textContent = '> PLEASE ENTER A VALID EMAIL ADDRESS';
-				return;
+				statusEl.style.color = color;
+				statusEl.textContent = '> ' + msg;
 			}
 
-			// Confirmation dialog
-			if (!confirm('Are you sure you want to delete all data associated with ' + email + '? This action cannot be undone.')) {
-				return;
+			function setButtonLoading(btn, loading, originalText) {
+				btn.disabled = loading;
+				btn.textContent = loading ? 'PROCESSING...' : originalText;
+				btn.style.opacity = loading ? '0.5' : '1';
+				btn.style.cursor = loading ? 'not-allowed' : 'pointer';
 			}
 
-			// Disable button during request
-			btn.disabled = true;
-			btn.textContent = 'PROCESSING...';
-			btn.style.opacity = '0.5';
-			btn.style.cursor = 'not-allowed';
-			statusEl.style.display = 'block';
-			statusEl.style.color = 'var(--stf-text-dim)';
-			statusEl.textContent = '> PROCESSING DELETION REQUEST...';
-
-			fetch('/api/delete-data', {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ email: email })
-			})
-			.then(function(res) { return res.json().then(function(data) { return { status: res.status, data: data }; }); })
-			.then(function(result) {
-				if (result.status === 429) {
-					statusEl.style.color = '#FFA726';
-					statusEl.textContent = '> TOO MANY REQUESTS — PLEASE TRY AGAIN LATER';
-				} else if (result.data.success) {
-					statusEl.style.color = '#00E5CC';
-					statusEl.textContent = '> DELETION REQUEST PROCESSED SUCCESSFULLY';
-					emailInput.value = '';
-				} else {
-					statusEl.style.color = '#EF5350';
-					statusEl.textContent = '> ERROR: ' + (result.data.error || 'UNKNOWN ERROR');
+			function sendCode() {
+				var email = emailInput.value.trim();
+				if (!email || !emailInput.checkValidity()) {
+					setStatus('PLEASE ENTER A VALID EMAIL ADDRESS', '#EF5350');
+					return;
 				}
-			})
-			.catch(function() {
-				statusEl.style.color = '#EF5350';
-				statusEl.textContent = '> CONNECTION ERROR — PLEASE TRY AGAIN LATER';
-			})
-			.finally(function() {
-				btn.disabled = false;
-				btn.textContent = 'REQUEST DELETION';
-				btn.style.opacity = '1';
-				btn.style.cursor = 'pointer';
-			});
-		});
+
+				currentEmail = email;
+				setButtonLoading(sendCodeBtn, true, 'SEND CODE');
+				setStatus('SENDING VERIFICATION CODE...', 'var(--stf-text-dim)');
+
+				fetch('/api/send-code', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({ email: email })
+				})
+				.then(function(res) { return res.json().then(function(data) { return { status: res.status, data: data }; }); })
+				.then(function(result) {
+					if (result.status === 429) {
+						setStatus('TOO MANY REQUESTS — PLEASE TRY AGAIN LATER', '#FFA726');
+					} else if (result.data.success) {
+						setStatus('VERIFICATION CODE SENT — CHECK YOUR EMAIL', '#00E5CC');
+						codeEmailDisplay.textContent = currentEmail;
+						stepCode.style.display = 'block';
+						emailInput.disabled = true;
+						codeInput.focus();
+					} else {
+						setStatus('ERROR: ' + (result.data.error || 'UNKNOWN ERROR'), '#EF5350');
+					}
+				})
+				.catch(function() {
+					setStatus('CONNECTION ERROR — PLEASE TRY AGAIN LATER', '#EF5350');
+				})
+				.finally(function() {
+					setButtonLoading(sendCodeBtn, false, 'SEND CODE');
+				});
+			}
+
+			function confirmDeletion() {
+				var code = codeInput.value.trim();
+				if (!code || !/^\d{6}$/.test(code)) {
+					setStatus('PLEASE ENTER THE 6-DIGIT CODE FROM YOUR EMAIL', '#EF5350');
+					return;
+				}
+
+				if (!confirm('This will permanently delete ALL your data from Spread the Fund. This cannot be undone. Proceed?')) {
+					return;
+				}
+
+				setButtonLoading(confirmBtn, true, 'DELETE MY DATA');
+				setStatus('DELETING YOUR DATA...', 'var(--stf-text-dim)');
+
+				fetch('/api/delete-data', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({ email: currentEmail, code: code })
+				})
+				.then(function(res) { return res.json().then(function(data) { return { status: res.status, data: data }; }); })
+				.then(function(result) {
+					if (result.status === 429) {
+						setStatus('TOO MANY REQUESTS — PLEASE TRY AGAIN LATER', '#FFA726');
+					} else if (result.data.success) {
+						setStatus('YOUR DATA HAS BEEN PERMANENTLY DELETED — A CONFIRMATION EMAIL HAS BEEN SENT', '#4CAF50');
+						stepCode.style.display = 'none';
+						emailInput.value = '';
+						emailInput.disabled = false;
+						codeInput.value = '';
+					} else {
+						setStatus('ERROR: ' + (result.data.error || 'UNKNOWN ERROR').toUpperCase(), '#EF5350');
+					}
+				})
+				.catch(function() {
+					setStatus('CONNECTION ERROR — PLEASE TRY AGAIN LATER', '#EF5350');
+				})
+				.finally(function() {
+					setButtonLoading(confirmBtn, false, 'DELETE MY DATA');
+				});
+			}
+
+			sendCodeBtn.addEventListener('click', sendCode);
+			resendBtn.addEventListener('click', sendCode);
+			confirmBtn.addEventListener('click', confirmDeletion);
+
+			// Allow Enter key in inputs
+			emailInput.addEventListener('keydown', function(e) { if (e.key === 'Enter') sendCode(); });
+			codeInput.addEventListener('keydown', function(e) { if (e.key === 'Enter') confirmDeletion(); });
+		})();
 	</script>
 
 <style>
