@@ -82,12 +82,12 @@ export const POST: APIRoute = async ({ request }) => {
       request.headers.get('x-real-ip') ||
       'unknown';
 
-    if (isRateLimited(ip)) {
-      return new Response(
-        JSON.stringify({ error: 'Too many requests. Please try again later.' }),
-        { status: 429, headers }
-      );
-    }
+    // if (isRateLimited(ip)) {
+    //   return new Response(
+    //     JSON.stringify({ error: 'Too many requests. Please try again later.' }),
+    //     { status: 429, headers }
+    //   );
+    // }
 
     const body = await request.json();
     const email = typeof body.email === 'string' ? body.email.trim().toLowerCase() : '';
