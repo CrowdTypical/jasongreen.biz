@@ -110,11 +110,101 @@ import Layout from '../../layouts/Layout.astro';
 					If you have questions about this Privacy Policy, please contact us at
 					<a href="mailto:spreadthefund@gmail.com" style="color: var(--stf-primary);">spreadthefund@gmail.com</a>.
 				</p>
+
+				<h2>11. Delete My Data</h2>
+				<p>
+					You have the right to request deletion of all your personal data from Spread the Fund at any time. Enter the email address you used to sign in to the app (Google or email login) and we will process your deletion request.
+				</p>
+				<div class="delete-data-section" style="margin-top: 1.5rem; padding: 1.5rem; border: 1px solid var(--stf-border); background: var(--stf-surface);">
+					<label for="delete-email" class="block text-xs font-bold uppercase tracking-[2px] mb-3" style="color: var(--stf-text-secondary); font-family: var(--stf-font);">
+						YOUR ACCOUNT EMAIL
+					</label>
+					<div class="flex flex-col sm:flex-row gap-3">
+						<input
+							type="email"
+							id="delete-email"
+							placeholder="you@example.com"
+							required
+							class="flex-1 px-4 py-3 text-sm outline-none"
+							style="background: var(--stf-bg); border: 1px solid var(--stf-border); color: var(--stf-text); font-family: var(--stf-font); border-radius: 0;"
+						/>
+						<button
+							id="delete-btn"
+							type="button"
+							class="px-6 py-3 text-xs font-bold uppercase tracking-[2px] transition-all cursor-pointer"
+							style="background: transparent; border: 1px solid #EF5350; color: #EF5350; font-family: var(--stf-font); border-radius: 0;"
+							onmouseover="this.style.background='#EF5350'; this.style.color='#0A0E14';"
+							onmouseout="this.style.background='transparent'; this.style.color='#EF5350';"
+						>
+							REQUEST DELETION
+						</button>
+					</div>
+					<div id="delete-status" class="mt-4 text-sm" style="font-family: var(--stf-font); display: none;"></div>
+				</div>
 			</div>
 		</div>
 	</main>
 	</div>
-</Layout>
+
+	<script is:inline>
+		document.getElementById('delete-btn').addEventListener('click', function() {
+			var emailInput = document.getElementById('delete-email');
+			var statusEl = document.getElementById('delete-status');
+			var btn = document.getElementById('delete-btn');
+			var email = emailInput.value.trim();
+
+			if (!email || !emailInput.checkValidity()) {
+				statusEl.style.display = 'block';
+				statusEl.style.color = '#EF5350';
+				statusEl.textContent = '> PLEASE ENTER A VALID EMAIL ADDRESS';
+				return;
+			}
+
+			// Confirmation dialog
+			if (!confirm('Are you sure you want to delete all data associated with ' + email + '? This action cannot be undone.')) {
+				return;
+			}
+
+			// Disable button during request
+			btn.disabled = true;
+			btn.textContent = 'PROCESSING...';
+			btn.style.opacity = '0.5';
+			btn.style.cursor = 'not-allowed';
+			statusEl.style.display = 'block';
+			statusEl.style.color = 'var(--stf-text-dim)';
+			statusEl.textContent = '> PROCESSING DELETION REQUEST...';
+
+			fetch('/api/delete-data', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ email: email })
+			})
+			.then(function(res) { return res.json().then(function(data) { return { status: res.status, data: data }; }); })
+			.then(function(result) {
+				if (result.status === 429) {
+					statusEl.style.color = '#FFA726';
+					statusEl.textContent = '> TOO MANY REQUESTS — PLEASE TRY AGAIN LATER';
+				} else if (result.data.success) {
+					statusEl.style.color = '#00E5CC';
+					statusEl.textContent = '> DELETION REQUEST PROCESSED SUCCESSFULLY';
+					emailInput.value = '';
+				} else {
+					statusEl.style.color = '#EF5350';
+					statusEl.textContent = '> ERROR: ' + (result.data.error || 'UNKNOWN ERROR');
+				}
+			})
+			.catch(function() {
+				statusEl.style.color = '#EF5350';
+				statusEl.textContent = '> CONNECTION ERROR — PLEASE TRY AGAIN LATER';
+			})
+			.finally(function() {
+				btn.disabled = false;
+				btn.textContent = 'REQUEST DELETION';
+				btn.style.opacity = '1';
+				btn.style.cursor = 'pointer';
+			});
+		});
+	</script>
 
 <style>
 	.prose h2 {
