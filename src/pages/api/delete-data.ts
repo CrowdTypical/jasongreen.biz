@@ -185,9 +185,13 @@ export const POST: APIRoute = async ({ request }) => {
       }
     }
 
-    // 2. Delete feedback by userId or userEmail
-    const feedbackByEmail = await db.collection('feedback').where('userEmail', '==', email).get();
+    // 2. Delete feedback by userId, userEmail, or email field
     const feedbackBatch = db.batch();
+    const feedbackByUserEmail = await db.collection('feedback').where('userEmail', '==', email).get();
+    for (const doc of feedbackByUserEmail.docs) {
+      feedbackBatch.delete(doc.ref);
+    }
+    const feedbackByEmail = await db.collection('feedback').where('email', '==', email).get();
     for (const doc of feedbackByEmail.docs) {
       feedbackBatch.delete(doc.ref);
     }
