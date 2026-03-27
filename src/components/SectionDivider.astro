@@ -8,49 +8,59 @@ interface Props {
 const { flip = false, fromColor = '#ffffff', toColor = '#0f172a' } = Astro.props;
 ---
 
-<div class={`section-divider w-full overflow-hidden leading-none ${flip ? 'rotate-180' : ''}`} style={`background: transparent;`}>
+<div class={`section-divider w-full overflow-hidden leading-none ${flip ? 'rotate-180' : ''}`} style="background: transparent;">
 	<svg
-		viewBox="0 0 1440 200"
+		viewBox="0 0 1440 120"
 		preserveAspectRatio="none"
-		class="w-full h-[80px] md:h-[120px] lg:h-[160px] block"
+		class="w-full h-[50px] md:h-[80px] lg:h-[100px] block"
 		xmlns="http://www.w3.org/2000/svg"
 	>
-		<!-- Back layer — starts from top, full coverage -->
+		<defs>
+			<linearGradient id={`wave-grad-back-${flip ? 'f' : 'n'}`} x1="0%" y1="0%" x2="100%" y2="0%">
+				<stop offset="0%" stop-color="#a78bfa" stop-opacity="0.4" />
+				<stop offset="50%" stop-color="#60a5fa" stop-opacity="0.35" />
+				<stop offset="100%" stop-color="#34d399" stop-opacity="0.4" />
+			</linearGradient>
+			<linearGradient id={`wave-grad-mid-${flip ? 'f' : 'n'}`} x1="0%" y1="0%" x2="100%" y2="0%">
+				<stop offset="0%" stop-color="#f472b6" stop-opacity="0.45" />
+				<stop offset="50%" stop-color="#a78bfa" stop-opacity="0.4" />
+				<stop offset="100%" stop-color="#38bdf8" stop-opacity="0.45" />
+			</linearGradient>
+		</defs>
+		<!-- Back layer — colorful gradient wave -->
 		<path
-			d="M0,0 C360,60 720,0 1080,30 C1260,50 1380,10 1440,0 L1440,200 L0,200 Z"
-			fill={toColor}
-			opacity="0.25"
+			d="M0,0 C360,35 720,0 1080,20 C1260,30 1380,5 1440,0 L1440,120 L0,120 Z"
+			fill={`url(#wave-grad-back-${flip ? 'f' : 'n'})`}
 		>
 			<animate attributeName="d" dur="8s" repeatCount="indefinite" values="
-				M0,0 C360,60 720,0 1080,30 C1260,50 1380,10 1440,0 L1440,200 L0,200 Z;
-				M0,10 C300,0 600,50 900,15 C1200,0 1350,40 1440,5 L1440,200 L0,200 Z;
-				M0,0 C400,45 700,0 1000,35 C1280,55 1400,5 1440,0 L1440,200 L0,200 Z;
-				M0,0 C360,60 720,0 1080,30 C1260,50 1380,10 1440,0 L1440,200 L0,200 Z
+				M0,0 C360,35 720,0 1080,20 C1260,30 1380,5 1440,0 L1440,120 L0,120 Z;
+				M0,8 C300,0 600,30 900,10 C1200,0 1350,25 1440,4 L1440,120 L0,120 Z;
+				M0,0 C400,28 700,0 1000,22 C1280,35 1400,3 1440,0 L1440,120 L0,120 Z;
+				M0,0 C360,35 720,0 1080,20 C1260,30 1380,5 1440,0 L1440,120 L0,120 Z
 			" />
 		</path>
-		<!-- Middle layer — offset wave -->
+		<!-- Middle layer — pink-purple gradient wave -->
 		<path
-			d="M0,50 C200,20 400,90 720,55 C1040,15 1240,80 1440,40 L1440,200 L0,200 Z"
-			fill={toColor}
-			opacity="0.5"
+			d="M0,30 C200,12 400,55 720,32 C1040,8 1240,50 1440,25 L1440,120 L0,120 Z"
+			fill={`url(#wave-grad-mid-${flip ? 'f' : 'n'})`}
 		>
 			<animate attributeName="d" dur="10s" repeatCount="indefinite" values="
-				M0,50 C200,20 400,90 720,55 C1040,15 1240,80 1440,40 L1440,200 L0,200 Z;
-				M0,40 C240,80 500,15 750,60 C1000,100 1280,25 1440,50 L1440,200 L0,200 Z;
-				M0,60 C180,10 450,80 700,40 C1050,5 1200,90 1440,35 L1440,200 L0,200 Z;
-				M0,50 C200,20 400,90 720,55 C1040,15 1240,80 1440,40 L1440,200 L0,200 Z
+				M0,30 C200,12 400,55 720,32 C1040,8 1240,50 1440,25 L1440,120 L0,120 Z;
+				M0,24 C240,50 500,10 750,38 C1000,62 1280,15 1440,30 L1440,120 L0,120 Z;
+				M0,36 C180,6 450,50 700,25 C1050,3 1200,55 1440,22 L1440,120 L0,120 Z;
+				M0,30 C200,12 400,55 720,32 C1040,8 1240,50 1440,25 L1440,120 L0,120 Z
 			" />
 		</path>
-		<!-- Front layer — primary wave -->
+		<!-- Front layer — solid toColor for clean transition -->
 		<path
-			d="M0,100 C240,135 480,70 720,100 C960,135 1200,70 1440,90 L1440,200 L0,200 Z"
+			d="M0,60 C240,80 480,45 720,60 C960,80 1200,45 1440,55 L1440,120 L0,120 Z"
 			fill={toColor}
 		>
 			<animate attributeName="d" dur="12s" repeatCount="indefinite" values="
-				M0,100 C240,135 480,70 720,100 C960,135 1200,70 1440,90 L1440,200 L0,200 Z;
-				M0,110 C300,75 520,130 740,95 C980,55 1180,120 1440,100 L1440,200 L0,200 Z;
-				M0,95 C280,125 500,70 730,105 C940,135 1220,60 1440,85 L1440,200 L0,200 Z;
-				M0,100 C240,135 480,70 720,100 C960,135 1200,70 1440,90 L1440,200 L0,200 Z
+				M0,60 C240,80 480,45 720,60 C960,80 1200,45 1440,55 L1440,120 L0,120 Z;
+				M0,66 C300,46 520,78 740,58 C980,34 1180,72 1440,62 L1440,120 L0,120 Z;
+				M0,56 C280,75 500,42 730,64 C940,80 1220,38 1440,52 L1440,120 L0,120 Z;
+				M0,60 C240,80 480,45 720,60 C960,80 1200,45 1440,55 L1440,120 L0,120 Z
 			" />
 		</path>
 	</svg>
