@@ -176,7 +176,7 @@ export const POST: APIRoute = async ({ request }) => {
       if (snapshot.docs.length > 0) await batch.commit();
     }
 
-    // 1. Delete user doc (users/{uid})
+    // 1. Delete user doc (users/{uid}) and any user docs with matching email field
     if (uid) {
       const userDoc = db.collection('users').doc(uid);
       const userSnapshot = await userDoc.get();
@@ -184,6 +184,12 @@ export const POST: APIRoute = async ({ request }) => {
         await userDoc.delete();
       }
     }
+    const usersByEmail = await db.collection('users').where('email', '==', email).get();
+    const usersBatch = db.batch();
+    for (const doc of usersByEmail.docs) {
+      usersBatch.delete(doc.ref);
+    }
+    if (usersByEmail.docs.length > 0) await usersBatch.commit();
 
     // 2. Delete feedback by userId, userEmail, or email field
     const feedbackBatch = db.batch();
