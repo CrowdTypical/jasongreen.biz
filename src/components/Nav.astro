@@ -1,0 +1,100 @@
+---
+---
+
+<nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+	<div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+		<!-- Logo / Name -->
+		<a href="#hero" class="font-serif text-xl font-bold text-gray-900 hover:text-gray-700 transition-colors">
+			JG
+		</a>
+
+		<!-- Desktop Nav -->
+		<div class="hidden md:flex items-center gap-8">
+			<a href="#hero" class="nav-link text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Home</a>
+			<a href="#work" class="nav-link text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Work</a>
+			<a href="#resume" class="nav-link text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Resume</a>
+			<a href="#contact" class="nav-link text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors border border-gray-900 px-4 py-2 rounded-full hover:bg-gray-900 hover:text-white">
+				Let's Talk
+			</a>
+		</div>
+
+		<!-- Mobile Hamburger -->
+		<button
+			id="menu-toggle"
+			class="md:hidden flex flex-col gap-1.5 p-2 -mr-2"
+			aria-label="Toggle navigation menu"
+			aria-expanded="false"
+		>
+			<span class="hamburger-line block w-6 h-0.5 bg-gray-900 transition-all duration-300 origin-center"></span>
+			<span class="hamburger-line block w-6 h-0.5 bg-gray-900 transition-all duration-300 origin-center"></span>
+			<span class="hamburger-line block w-6 h-0.5 bg-gray-900 transition-all duration-300 origin-center"></span>
+		</button>
+	</div>
+
+	<!-- Mobile Menu Overlay -->
+	<div id="mobile-menu" class="md:hidden fixed inset-0 top-0 bg-white z-40 flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-opacity duration-300">
+		<a href="#hero" class="mobile-nav-link font-serif text-3xl text-gray-900 hover:text-gray-600 transition-colors">Home</a>
+		<a href="#work" class="mobile-nav-link font-serif text-3xl text-gray-900 hover:text-gray-600 transition-colors">Work</a>
+		<a href="#resume" class="mobile-nav-link font-serif text-3xl text-gray-900 hover:text-gray-600 transition-colors">Resume</a>
+		<a href="#contact" class="mobile-nav-link font-serif text-3xl text-gray-900 hover:text-gray-600 transition-colors">Contact</a>
+	</div>
+</nav>
+
+<script>
+	const toggle = document.getElementById('menu-toggle');
+	const menu = document.getElementById('mobile-menu');
+	const mobileLinks = menu?.querySelectorAll('.mobile-nav-link');
+	const nav = document.getElementById('main-nav');
+	let isOpen = false;
+
+	function openMenu() {
+		isOpen = true;
+		toggle?.setAttribute('aria-expanded', 'true');
+		menu?.classList.remove('opacity-0', 'pointer-events-none');
+		menu?.classList.add('opacity-100', 'pointer-events-auto');
+		document.body.style.overflow = 'hidden';
+		// Animate hamburger to X
+		const lines = toggle?.querySelectorAll('.hamburger-line');
+		if (lines) {
+			(lines[0] as HTMLElement).style.transform = 'rotate(45deg) translate(3px, 3px)';
+			(lines[1] as HTMLElement).style.opacity = '0';
+			(lines[2] as HTMLElement).style.transform = 'rotate(-45deg) translate(3px, -3px)';
+		}
+	}
+
+	function closeMenu() {
+		isOpen = false;
+		toggle?.setAttribute('aria-expanded', 'false');
+		menu?.classList.add('opacity-0', 'pointer-events-none');
+		menu?.classList.remove('opacity-100', 'pointer-events-auto');
+		document.body.style.overflow = '';
+		// Animate X back to hamburger
+		const lines = toggle?.querySelectorAll('.hamburger-line');
+		if (lines) {
+			(lines[0] as HTMLElement).style.transform = '';
+			(lines[1] as HTMLElement).style.opacity = '1';
+			(lines[2] as HTMLElement).style.transform = '';
+		}
+	}
+
+	toggle?.addEventListener('click', () => {
+		if (isOpen) closeMenu();
+		else openMenu();
+	});
+
+	mobileLinks?.forEach(link => {
+		link.addEventListener('click', closeMenu);
+	});
+
+	// Nav background on scroll
+	let lastScrollY = 0;
+	window.addEventListener('scroll', () => {
+		const scrollY = window.scrollY;
+		if (scrollY > 50) {
+			nav?.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-sm');
+		} else {
+			nav?.classList.remove('bg-white/90', 'backdrop-blur-md', 'shadow-sm');
+		}
+		lastScrollY = scrollY;
+	}, { passive: true });
+</script>

@@ -1,0 +1,31 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import HeroSection from '../components/HeroSection.astro';
+import SectionDivider from '../components/SectionDivider.astro';
+import HorizontalWorkSection from '../components/HorizontalWorkSection.astro';
+import ResumeSection from '../components/ResumeSection.astro';
+import ContactSection from '../components/ContactSection.astro';
+---
+
+<Layout title="Jason Green — Product & Operations Leader">
+	<Nav />
+
+	<!-- Hero: vertical scroll -->
+	<HeroSection />
+
+	<!-- Divider: white → dark -->
+	<SectionDivider fromColor="#ffffff" toColor="#0f172a" />
+
+	<!-- Work: horizontal scroll triggered by vertical scrolling -->
+	<HorizontalWorkSection />
+
+	<!-- Divider: dark → white -->
+	<SectionDivider fromColor="#0f172a" toColor="#ffffff" flip />
+
+	<!-- Resume: back to vertical -->
+	<ResumeSection />
+
+	<!-- Contact + Footer -->
+	<ContactSection />
+</Layout>

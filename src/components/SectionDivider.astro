@@ -1,0 +1,31 @@
+---
+interface Props {
+	flip?: boolean;
+	fromColor?: string;
+	toColor?: string;
+}
+
+const { flip = false, fromColor = '#ffffff', toColor = '#0f172a' } = Astro.props;
+---
+
+<div class={`section-divider w-full overflow-hidden leading-none ${flip ? 'rotate-180' : ''}`}>
+	<svg
+		viewBox="0 0 1440 120"
+		preserveAspectRatio="none"
+		class="w-full h-[60px] md:h-[80px] lg:h-[120px] block"
+		xmlns="http://www.w3.org/2000/svg"
+	>
+		<path
+			d="M0,60 C240,120 480,0 720,60 C960,120 1200,0 1440,60 L1440,120 L0,120 Z"
+			fill={toColor}
+		/>
+	</svg>
+</div>
+
+<style>
+	.section-divider {
+		line-height: 0;
+		margin-top: -1px;
+		margin-bottom: -1px;
+	}
+</style>

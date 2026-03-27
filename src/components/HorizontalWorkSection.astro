@@ -1,0 +1,246 @@
+---
+---
+
+<!--
+  Horizontal scroll section: a tall outer container creates scroll runway.
+  The inner sticky wrapper stays on-screen and translates its content
+  horizontally based on the user's vertical scroll progress through the outer container.
+-->
+<section id="work" class="relative bg-slate-900">
+	<!-- Section header (always visible at top of sticky frame) -->
+	<div class="sticky-header absolute top-0 left-0 right-0 z-20 pt-8 pb-4 px-8 md:px-16 pointer-events-none">
+		<p class="font-script text-sm md:text-base text-slate-400 mb-1">What I've been working on</p>
+		<h2 class="font-serif text-3xl md:text-4xl font-bold text-white">My Work</h2>
+	</div>
+
+	<!-- Scroll runway — height = (number of panels) * 100vh -->
+	<div id="horizontal-scroll-outer" class="relative" style="height: 500vh;">
+		<!-- Sticky viewport -->
+		<div class="sticky top-0 h-screen overflow-hidden flex items-center">
+			<!-- Horizontal track -->
+			<div id="horizontal-track" class="flex items-stretch h-full will-change-transform transition-none">
+
+				<!-- Panel 1: App — Project Under Development -->
+				<div class="work-panel flex-shrink-0 w-screen h-full flex items-center justify-center px-8 md:px-20">
+					<div class="max-w-5xl w-full grid md:grid-cols-2 gap-12 items-center">
+						<div>
+							<span class="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wider text-emerald-400 bg-emerald-400/10 rounded-full mb-4">
+								In Development
+							</span>
+							<h3 class="font-serif text-3xl md:text-4xl font-bold text-white mb-4">
+								Building an App
+							</h3>
+							<p class="text-slate-300 text-base md:text-lg leading-relaxed mb-6">
+								Currently developing a full-stack application that solves a real operational
+								problem. More details coming soon as the project takes shape.
+							</p>
+							<div class="flex flex-wrap gap-2">
+								<span class="tag">Full-Stack</span>
+								<span class="tag">In Progress</span>
+								<span class="tag">Product Design</span>
+							</div>
+						</div>
+						<div class="hidden md:flex items-center justify-center">
+							<div class="w-full aspect-[4/3] rounded-2xl bg-slate-800 border border-slate-700 flex items-center justify-center">
+								<div class="text-center">
+									<svg class="w-16 h-16 text-slate-600 mx-auto mb-3" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" /></svg>
+									<p class="text-slate-500 text-sm">Preview coming soon</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Panel 2: Latest Role — Shopify Experimentation -->
+				<div class="work-panel flex-shrink-0 w-screen h-full flex items-center justify-center px-8 md:px-20">
+					<div class="max-w-5xl w-full grid md:grid-cols-2 gap-12 items-center">
+						<div>
+							<span class="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-400 bg-blue-400/10 rounded-full mb-4">
+								Shopify · 2020–2025
+							</span>
+							<h3 class="font-serif text-3xl md:text-4xl font-bold text-white mb-4">
+								Experimentation & Product Operations
+							</h3>
+							<p class="text-slate-300 text-base md:text-lg leading-relaxed mb-4">
+								Led end-to-end experimentation operations — from ideation and design to
+								data analysis and stakeholder enablement. Built analytics dashboards,
+								automated workflows, and established data-driven processes across teams.
+							</p>
+							<p class="text-slate-400 text-sm leading-relaxed mb-6">
+								Progressed from Support Advisor to Sr. Experimentation Solutions Manager,
+								consistently moving from execution to strategy while building systems that
+								scaled.
+							</p>
+							<div class="flex flex-wrap gap-2">
+								<span class="tag">SQL & BigQuery</span>
+								<span class="tag">Looker Studio</span>
+								<span class="tag">Experimentation</span>
+								<span class="tag">Cross-Functional Leadership</span>
+							</div>
+						</div>
+						<div class="hidden md:flex items-center justify-center">
+							<div class="w-full aspect-[4/3] rounded-2xl bg-gradient-to-br from-blue-900/50 to-slate-800 border border-slate-700 p-8 flex flex-col justify-center">
+								<div class="space-y-4">
+									<div class="flex items-center gap-3">
+										<div class="w-2 h-2 rounded-full bg-blue-400"></div>
+										<span class="text-slate-300 text-sm">Managed experimentation pipelines</span>
+									</div>
+									<div class="flex items-center gap-3">
+										<div class="w-2 h-2 rounded-full bg-blue-400"></div>
+										<span class="text-slate-300 text-sm">Built real-time analytics dashboards</span>
+									</div>
+									<div class="flex items-center gap-3">
+										<div class="w-2 h-2 rounded-full bg-blue-400"></div>
+										<span class="text-slate-300 text-sm">Cross-team enablement & process design</span>
+									</div>
+									<div class="flex items-center gap-3">
+										<div class="w-2 h-2 rounded-full bg-blue-400"></div>
+										<span class="text-slate-300 text-sm">Qualitative & quantitative data integration</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Panel 3: Second App -->
+				<div class="work-panel flex-shrink-0 w-screen h-full flex items-center justify-center px-8 md:px-20">
+					<div class="max-w-5xl w-full grid md:grid-cols-2 gap-12 items-center">
+						<div>
+							<span class="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wider text-purple-400 bg-purple-400/10 rounded-full mb-4">
+								In Development
+							</span>
+							<h3 class="font-serif text-3xl md:text-4xl font-bold text-white mb-4">
+								Another App in the Works
+							</h3>
+							<p class="text-slate-300 text-base md:text-lg leading-relaxed mb-6">
+								A second project currently under development — focused on solving
+								a different problem space. Details will be shared as the project matures.
+							</p>
+							<div class="flex flex-wrap gap-2">
+								<span class="tag">App Development</span>
+								<span class="tag">In Progress</span>
+								<span class="tag">Problem Solving</span>
+							</div>
+						</div>
+						<div class="hidden md:flex items-center justify-center">
+							<div class="w-full aspect-[4/3] rounded-2xl bg-slate-800 border border-slate-700 flex items-center justify-center">
+								<div class="text-center">
+									<svg class="w-16 h-16 text-slate-600 mx-auto mb-3" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v16.5a2.25 2.25 0 0 0 2.25 2.25h7.5A2.25 2.25 0 0 0 18 20.25V3.75a2.25 2.25 0 0 0-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" /></svg>
+									<p class="text-slate-500 text-sm">Preview coming soon</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Panel 4: Community & Digital Work -->
+				<div class="work-panel flex-shrink-0 w-screen h-full flex items-center justify-center px-8 md:px-20">
+					<div class="max-w-5xl w-full grid md:grid-cols-2 gap-12 items-center">
+						<div>
+							<span class="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wider text-amber-400 bg-amber-400/10 rounded-full mb-4">
+								Community
+							</span>
+							<h3 class="font-serif text-3xl md:text-4xl font-bold text-white mb-4">
+								Digital Community Work
+							</h3>
+							<p class="text-slate-300 text-base md:text-lg leading-relaxed mb-6">
+								Building and contributing to digital communities — including a website
+								hosted on GitHub Pages. Bringing together people around shared interests
+								through web technology and community engagement.
+							</p>
+							<div class="flex flex-wrap gap-2">
+								<span class="tag">GitHub Pages</span>
+								<span class="tag">Community Building</span>
+								<span class="tag">Web Development</span>
+							</div>
+						</div>
+						<div class="hidden md:flex items-center justify-center">
+							<div class="w-full aspect-[4/3] rounded-2xl bg-gradient-to-br from-amber-900/30 to-slate-800 border border-slate-700 flex items-center justify-center">
+								<div class="text-center">
+									<svg class="w-16 h-16 text-amber-500/50 mx-auto mb-3" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" /></svg>
+									<p class="text-slate-500 text-sm">Community project</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<!-- Horizontal scroll progress indicator -->
+	<div class="sticky bottom-0 left-0 right-0 z-20 pointer-events-none" style="position: sticky;">
+		<div class="h-1 bg-slate-800">
+			<div id="scroll-progress" class="h-full bg-gradient-to-r from-blue-500 to-purple-500 transition-none will-change-transform" style="width: 0%; transform-origin: left;"></div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.tag {
+		display: inline-block;
+		padding: 0.25rem 0.75rem;
+		border-radius: 9999px;
+		font-size: 0.75rem;
+		font-weight: 500;
+		color: #94a3b8;
+		background: rgba(148, 163, 184, 0.1);
+		border: 1px solid rgba(148, 163, 184, 0.2);
+		font-family: 'Inter', system-ui, sans-serif;
+	}
+
+	.sticky-header {
+		position: sticky;
+		top: 0;
+		z-index: 20;
+	}
+</style>
+
+<script>
+	function initHorizontalScroll() {
+		const outer = document.getElementById('horizontal-scroll-outer');
+		const track = document.getElementById('horizontal-track');
+		const progress = document.getElementById('scroll-progress');
+
+		if (!outer || !track || !progress) return;
+
+		const panels = track.querySelectorAll('.work-panel');
+		const panelCount = panels.length;
+
+		function onScroll() {
+			const outerRect = outer.getBoundingClientRect();
+			const outerTop = outer.offsetTop;
+			const scrollY = window.scrollY;
+
+			// How far we've scrolled into the outer container
+			const scrolled = scrollY - outerTop;
+			// Total scrollable distance (outer height minus one viewport)
+			const maxScroll = outer.offsetHeight - window.innerHeight;
+
+			if (maxScroll <= 0) return;
+
+			// Progress from 0 to 1
+			const rawProgress = Math.max(0, Math.min(1, scrolled / maxScroll));
+
+			// Translate the track: move from 0 to -(panelCount - 1) * 100vw
+			const maxTranslate = (panelCount - 1) * window.innerWidth;
+			const translateX = rawProgress * maxTranslate;
+
+			track.style.transform = `translateX(-${translateX}px)`;
+			progress.style.width = `${rawProgress * 100}%`;
+		}
+
+		window.addEventListener('scroll', onScroll, { passive: true });
+		window.addEventListener('resize', onScroll, { passive: true });
+		onScroll();
+	}
+
+	// Run on load
+	document.addEventListener('DOMContentLoaded', initHorizontalScroll);
+	// Also run immediately in case DOMContentLoaded already fired (Astro client nav)
+	if (document.readyState !== 'loading') {
+		initHorizontalScroll();
+	}
+</script>
