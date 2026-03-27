@@ -20,25 +20,48 @@ const { flip = false, fromColor = '#ffffff', toColor = '#0f172a' } = Astro.props
 			d="M0,100 C360,160 720,40 1080,100 C1260,130 1380,80 1440,90 L1440,200 L0,200 Z"
 			fill={toColor}
 			opacity="0.3"
-		/>
+		>
+			<animate attributeName="d" dur="8s" repeatCount="indefinite" values="
+				M0,100 C360,160 720,40 1080,100 C1260,130 1380,80 1440,90 L1440,200 L0,200 Z;
+				M0,110 C300,50 600,150 900,90 C1200,40 1350,120 1440,100 L1440,200 L0,200 Z;
+				M0,90 C400,140 700,60 1000,110 C1280,150 1400,70 1440,85 L1440,200 L0,200 Z;
+				M0,100 C360,160 720,40 1080,100 C1260,130 1380,80 1440,90 L1440,200 L0,200 Z
+			" />
+		</path>
 		<!-- Middle layer — offset wave -->
 		<path
 			d="M0,120 C200,80 400,160 720,110 C1040,60 1240,140 1440,100 L1440,200 L0,200 Z"
 			fill={toColor}
 			opacity="0.5"
-		/>
+		>
+			<animate attributeName="d" dur="10s" repeatCount="indefinite" values="
+				M0,120 C200,80 400,160 720,110 C1040,60 1240,140 1440,100 L1440,200 L0,200 Z;
+				M0,110 C240,150 500,70 750,130 C1000,170 1280,80 1440,110 L1440,200 L0,200 Z;
+				M0,130 C180,60 450,150 700,100 C1050,50 1200,160 1440,95 L1440,200 L0,200 Z;
+				M0,120 C200,80 400,160 720,110 C1040,60 1240,140 1440,100 L1440,200 L0,200 Z
+			" />
+		</path>
 		<!-- Front layer — primary wave -->
 		<path
 			d="M0,140 C240,180 480,100 720,140 C960,180 1200,100 1440,130 L1440,200 L0,200 Z"
 			fill={toColor}
-		/>
+		>
+			<animate attributeName="d" dur="12s" repeatCount="indefinite" values="
+				M0,140 C240,180 480,100 720,140 C960,180 1200,100 1440,130 L1440,200 L0,200 Z;
+				M0,150 C300,110 520,170 740,130 C980,90 1180,160 1440,140 L1440,200 L0,200 Z;
+				M0,135 C280,170 500,110 730,150 C940,180 1220,90 1440,125 L1440,200 L0,200 Z;
+				M0,140 C240,180 480,100 720,140 C960,180 1200,100 1440,130 L1440,200 L0,200 Z
+			" />
+		</path>
 	</svg>
 </div>
 
 <style>
 	.section-divider {
 		line-height: 0;
-		margin-top: -1px;
-		margin-bottom: -1px;
+		margin-top: -3px;
+		margin-bottom: -3px;
+		position: relative;
+		z-index: 1;
 	}
 </style>
