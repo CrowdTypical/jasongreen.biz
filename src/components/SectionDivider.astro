@@ -8,49 +8,51 @@ interface Props {
 const { flip = false, fromColor = '#ffffff', toColor = '#0f172a' } = Astro.props;
 ---
 
-<div class={`section-divider w-full overflow-hidden leading-none ${flip ? 'rotate-180' : ''}`} style={`background: ${fromColor};`}>
+<div class={`section-divider w-full overflow-hidden leading-none ${flip ? 'rotate-180' : ''}`} style={`background: linear-gradient(to bottom, ${fromColor}, ${fromColor});`}>
 	<svg
 		viewBox="0 0 1440 200"
 		preserveAspectRatio="none"
 		class="w-full h-[80px] md:h-[120px] lg:h-[160px] block"
 		xmlns="http://www.w3.org/2000/svg"
 	>
-		<!-- Back layer — gentle wave -->
+		<!-- Fill background with fromColor -->
+		<rect width="1440" height="200" fill={fromColor} />
+		<!-- Back layer — gentle wave, starts high -->
 		<path
-			d="M0,100 C360,160 720,40 1080,100 C1260,130 1380,80 1440,90 L1440,200 L0,200 Z"
+			d="M0,60 C360,120 720,20 1080,70 C1260,100 1380,50 1440,60 L1440,200 L0,200 Z"
 			fill={toColor}
-			opacity="0.3"
+			opacity="0.25"
 		>
 			<animate attributeName="d" dur="8s" repeatCount="indefinite" values="
-				M0,100 C360,160 720,40 1080,100 C1260,130 1380,80 1440,90 L1440,200 L0,200 Z;
-				M0,110 C300,50 600,150 900,90 C1200,40 1350,120 1440,100 L1440,200 L0,200 Z;
-				M0,90 C400,140 700,60 1000,110 C1280,150 1400,70 1440,85 L1440,200 L0,200 Z;
-				M0,100 C360,160 720,40 1080,100 C1260,130 1380,80 1440,90 L1440,200 L0,200 Z
+				M0,60 C360,120 720,20 1080,70 C1260,100 1380,50 1440,60 L1440,200 L0,200 Z;
+				M0,70 C300,30 600,110 900,55 C1200,20 1350,90 1440,65 L1440,200 L0,200 Z;
+				M0,50 C400,100 700,30 1000,75 C1280,110 1400,40 1440,55 L1440,200 L0,200 Z;
+				M0,60 C360,120 720,20 1080,70 C1260,100 1380,50 1440,60 L1440,200 L0,200 Z
 			" />
 		</path>
 		<!-- Middle layer — offset wave -->
 		<path
-			d="M0,120 C200,80 400,160 720,110 C1040,60 1240,140 1440,100 L1440,200 L0,200 Z"
+			d="M0,90 C200,55 400,130 720,85 C1040,40 1240,115 1440,75 L1440,200 L0,200 Z"
 			fill={toColor}
 			opacity="0.5"
 		>
 			<animate attributeName="d" dur="10s" repeatCount="indefinite" values="
-				M0,120 C200,80 400,160 720,110 C1040,60 1240,140 1440,100 L1440,200 L0,200 Z;
-				M0,110 C240,150 500,70 750,130 C1000,170 1280,80 1440,110 L1440,200 L0,200 Z;
-				M0,130 C180,60 450,150 700,100 C1050,50 1200,160 1440,95 L1440,200 L0,200 Z;
-				M0,120 C200,80 400,160 720,110 C1040,60 1240,140 1440,100 L1440,200 L0,200 Z
+				M0,90 C200,55 400,130 720,85 C1040,40 1240,115 1440,75 L1440,200 L0,200 Z;
+				M0,80 C240,120 500,45 750,100 C1000,140 1280,55 1440,85 L1440,200 L0,200 Z;
+				M0,100 C180,40 450,120 700,75 C1050,30 1200,130 1440,70 L1440,200 L0,200 Z;
+				M0,90 C200,55 400,130 720,85 C1040,40 1240,115 1440,75 L1440,200 L0,200 Z
 			" />
 		</path>
 		<!-- Front layer — primary wave -->
 		<path
-			d="M0,140 C240,180 480,100 720,140 C960,180 1200,100 1440,130 L1440,200 L0,200 Z"
+			d="M0,120 C240,155 480,85 720,120 C960,155 1200,85 1440,110 L1440,200 L0,200 Z"
 			fill={toColor}
 		>
 			<animate attributeName="d" dur="12s" repeatCount="indefinite" values="
-				M0,140 C240,180 480,100 720,140 C960,180 1200,100 1440,130 L1440,200 L0,200 Z;
-				M0,150 C300,110 520,170 740,130 C980,90 1180,160 1440,140 L1440,200 L0,200 Z;
-				M0,135 C280,170 500,110 730,150 C940,180 1220,90 1440,125 L1440,200 L0,200 Z;
-				M0,140 C240,180 480,100 720,140 C960,180 1200,100 1440,130 L1440,200 L0,200 Z
+				M0,120 C240,155 480,85 720,120 C960,155 1200,85 1440,110 L1440,200 L0,200 Z;
+				M0,130 C300,90 520,145 740,110 C980,70 1180,140 1440,120 L1440,200 L0,200 Z;
+				M0,115 C280,145 500,90 730,125 C940,155 1220,70 1440,105 L1440,200 L0,200 Z;
+				M0,120 C240,155 480,85 720,120 C960,155 1200,85 1440,110 L1440,200 L0,200 Z
 			" />
 		</path>
 	</svg>
@@ -59,7 +61,7 @@ const { flip = false, fromColor = '#ffffff', toColor = '#0f172a' } = Astro.props
 <style>
 	.section-divider {
 		line-height: 0;
-		margin-top: -3px;
+		margin-top: -10px;
 		margin-bottom: -3px;
 		position: relative;
 		z-index: 1;
