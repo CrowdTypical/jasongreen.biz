@@ -8,15 +8,28 @@ interface Props {
 const { flip = false, fromColor = '#ffffff', toColor = '#0f172a' } = Astro.props;
 ---
 
-<div class={`section-divider w-full overflow-hidden leading-none ${flip ? 'rotate-180' : ''}`}>
+<div class={`section-divider w-full overflow-hidden leading-none ${flip ? 'rotate-180' : ''}`} style={`background: ${fromColor};`}>
 	<svg
-		viewBox="0 0 1440 120"
+		viewBox="0 0 1440 200"
 		preserveAspectRatio="none"
-		class="w-full h-[60px] md:h-[80px] lg:h-[120px] block"
+		class="w-full h-[80px] md:h-[120px] lg:h-[160px] block"
 		xmlns="http://www.w3.org/2000/svg"
 	>
+		<!-- Back layer — gentle wave -->
 		<path
-			d="M0,60 C240,120 480,0 720,60 C960,120 1200,0 1440,60 L1440,120 L0,120 Z"
+			d="M0,100 C360,160 720,40 1080,100 C1260,130 1380,80 1440,90 L1440,200 L0,200 Z"
+			fill={toColor}
+			opacity="0.3"
+		/>
+		<!-- Middle layer — offset wave -->
+		<path
+			d="M0,120 C200,80 400,160 720,110 C1040,60 1240,140 1440,100 L1440,200 L0,200 Z"
+			fill={toColor}
+			opacity="0.5"
+		/>
+		<!-- Front layer — primary wave -->
+		<path
+			d="M0,140 C240,180 480,100 720,140 C960,180 1200,100 1440,130 L1440,200 L0,200 Z"
 			fill={toColor}
 		/>
 	</svg>
