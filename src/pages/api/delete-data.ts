@@ -45,7 +45,7 @@ async function sendConfirmationEmail(to: string) {
     from: '"Spread the Fund" <spreadthefund@gmail.com>',
     to,
     subject: 'SPREAD THE FUND — Your Data Has Been Deleted',
-    text: `Your data has been successfully deleted from Spread the Fund.\n\nAll account information, group memberships, bill history, and authentication data associated with this email have been permanently removed.\n\nIf you did not request this, please contact us immediately at spreadthefund@gmail.com.\n\n— Spread the Fund`,
+    text: `Your data has been successfully deleted from Spread the Fund.\n\nAll account information, group memberships, bill and settlement history, feedback, invitations, and authentication data associated with this email have been permanently removed.\n\nIf you did not request this, please contact us immediately at spreadthefund@gmail.com.\n\n— Spread the Fund`,
     html: `
       <div style="font-family: 'Courier New', monospace; background: #0A0E14; color: #E0E0E0; padding: 40px; max-width: 500px;">
         <h1 style="color: #00E5CC; font-size: 14px; letter-spacing: 4px; margin-bottom: 24px; border-bottom: 1px solid #1E2A35; padding-bottom: 12px;">
@@ -59,7 +59,9 @@ async function sendConfirmationEmail(to: string) {
           The following data has been removed:<br/>
           › Account information<br/>
           › Group memberships<br/>
-          › Bill history<br/>
+          › Bill &amp; settlement history<br/>
+          › Feedback &amp; feature requests<br/>
+          › Invitations<br/>
           › Authentication data
         </p>
         <p style="color: #556677; font-size: 12px; line-height: 1.8; margin-top: 16px;">
@@ -156,50 +158,109 @@ export const POST: APIRoute = async ({ request }) => {
     await db.collection('deletion_codes').doc(email).delete();
 
     // Look up the user
-    let userRecord;
+    let uid: string | null = null;
     try {
-      userRecord = await auth.getUserByEmail(email);
+      const userRecord = await auth.getUserByEmail(email);
+      uid = userRecord.uid;
     } catch {
-      return new Response(
-        JSON.stringify({ success: true, message: 'Data deletion complete.' }),
-        { status: 200, headers }
-      );
+      // User may not exist in Auth but could still have Firestore data
     }
 
-    const uid = userRecord.uid;
-
-    // Delete user data from Firestore
-    const batch = db.batch();
-
-    const userDoc = db.collection('users').doc(uid);
-    const userSnapshot = await userDoc.get();
-    if (userSnapshot.exists) {
-      batch.delete(userDoc);
+    // Helper to delete all docs in a subcollection
+    async function deleteSubcollection(docRef: FirebaseFirestore.DocumentReference, subcollection: string) {
+      const snapshot = await docRef.collection(subcollection).get();
+      const batch = db.batch();
+      for (const doc of snapshot.docs) {
+        batch.delete(doc.ref);
+      }
+      if (snapshot.docs.length > 0) await batch.commit();
     }
 
+    // 1. Delete user doc (users/{uid})
+    if (uid) {
+      const userDoc = db.collection('users').doc(uid);
+      const userSnapshot = await userDoc.get();
+      if (userSnapshot.exists) {
+        await userDoc.delete();
+      }
+    }
+
+    // 2. Delete feedback by userId or userEmail
+    const feedbackByEmail = await db.collection('feedback').where('userEmail', '==', email).get();
+    const feedbackBatch = db.batch();
+    for (const doc of feedbackByEmail.docs) {
+      feedbackBatch.delete(doc.ref);
+    }
+    if (uid) {
+      const feedbackByUid = await db.collection('feedback').where('userId', '==', uid).get();
+      for (const doc of feedbackByUid.docs) {
+        feedbackBatch.delete(doc.ref);
+      }
+    }
+    await feedbackBatch.commit();
+
+    // 3. Delete invites where user is inviter or invitee
+    const invitesBatch = db.batch();
+    const invitesByEmail = await db.collection('invites').where('inviteeEmail', '==', email).get();
+    for (const doc of invitesByEmail.docs) {
+      invitesBatch.delete(doc.ref);
+    }
+    if (uid) {
+      const invitesByUid = await db.collection('invites').where('inviterUid', '==', uid).get();
+      for (const doc of invitesByUid.docs) {
+        invitesBatch.delete(doc.ref);
+      }
+    }
+    await invitesBatch.commit();
+
+    // 4. Handle groups (members array contains emails, createdBy is email)
     const groupsSnapshot = await db
       .collection('groups')
-      .where('memberIds', 'array-contains', uid)
+      .where('members', 'array-contains', email)
       .get();
 
     for (const groupDoc of groupsSnapshot.docs) {
       const groupData = groupDoc.data();
-      const memberIds: string[] = groupData.memberIds || [];
-      const updatedMembers = memberIds.filter((id: string) => id !== uid);
+      const members: string[] = groupData.members || [];
+      const updatedMembers = members.filter((m: string) => m !== email);
 
       if (updatedMembers.length === 0) {
-        batch.delete(groupDoc.ref);
-        const billsSnapshot = await groupDoc.ref.collection('bills').get();
-        for (const bill of billsSnapshot.docs) {
-          batch.delete(bill.ref);
-        }
+        // Last member — delete the entire group and all subcollections
+        await deleteSubcollection(groupDoc.ref, 'bills');
+        await deleteSubcollection(groupDoc.ref, 'categories');
+        await deleteSubcollection(groupDoc.ref, 'settlements');
+        await groupDoc.ref.delete();
       } else {
-        batch.update(groupDoc.ref, { memberIds: updatedMembers });
+        // Remove user from members array
+        await groupDoc.ref.update({ members: updatedMembers });
       }
     }
 
-    await batch.commit();
-    await auth.deleteUser(uid);
+    // Also check groups created by this email (in case they're not in members array)
+    const groupsByCreator = await db.collection('groups').where('createdBy', '==', email).get();
+    for (const groupDoc of groupsByCreator.docs) {
+      const groupData = groupDoc.data();
+      const members: string[] = groupData.members || [];
+      const updatedMembers = members.filter((m: string) => m !== email);
+
+      if (updatedMembers.length === 0) {
+        await deleteSubcollection(groupDoc.ref, 'bills');
+        await deleteSubcollection(groupDoc.ref, 'categories');
+        await deleteSubcollection(groupDoc.ref, 'settlements');
+        await groupDoc.ref.delete();
+      } else {
+        // Transfer ownership and remove from members
+        await groupDoc.ref.update({
+          members: updatedMembers,
+          createdBy: updatedMembers[0],
+        });
+      }
+    }
+
+    // 5. Delete Firebase Auth account
+    if (uid) {
+      await auth.deleteUser(uid);
+    }
 
     // Send confirmation email
     try {
