@@ -1,175 +1,205 @@
----
+﻿---
 import Layout from '../../layouts/Layout.astro';
 ---
 
-<Layout title="Spread the Fund — Collaborative Fund Management">
-	<!-- Simple nav for this standalone page -->
-	<nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
+<Layout title="SPREAD THE FUND â€” Split Bills in Real-Time">
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+		:root {
+			--stf-primary: #00E5CC;
+			--stf-bg: #0A0E14;
+			--stf-surface: #141A22;
+			--stf-surface-alt: #0F1419;
+			--stf-surface-deep: #0D1117;
+			--stf-border: #1E2A35;
+			--stf-text: #E0E0E0;
+			--stf-text-secondary: #8899AA;
+			--stf-text-dim: #556677;
+			--stf-text-hint: #455566;
+			--stf-negative: #FF4C5E;
+			--stf-success: #4CAF50;
+			--stf-amber: #FFA726;
+			--stf-danger: #EF5350;
+			--stf-font: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+		}
+		.stf-page { font-family: var(--stf-font); background: var(--stf-bg); color: var(--stf-text); }
+		.stf-gradient-text { background: linear-gradient(90deg, #00E5CC, #42A5F5); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+		.stf-nav-link { color: #8899AA; }
+		.stf-nav-link:hover { color: #00E5CC; }
+		.stf-btn-primary { background: #00E5CC; color: #0A0E14; }
+		.stf-btn-primary:hover { opacity: 0.85; }
+		.stf-btn-outline { color: #8899AA; border-color: #1E2A35; }
+		.stf-btn-outline:hover { border-color: #00E5CC; color: #00E5CC; }
+		.stf-card { background: #141A22; border-color: #1E2A35; }
+		.stf-card:hover { border-color: #00E5CC; }
+		.stf-footer-link { color: #556677; }
+		.stf-footer-link:hover { color: #00E5CC; }
+	</style>
+
+	<div class="stf-page min-h-screen">
+	<!-- Nav -->
+	<nav class="fixed top-0 left-0 right-0 z-50 border-b" style="background: var(--stf-surface-alt); border-color: var(--stf-border);">
 		<div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
-			<a href="/spread-the-fund" class="font-serif text-xl font-bold text-gray-900 hover:text-gray-700 transition-colors">
-				Spread the Fund
+			<a href="/" class="flex items-center gap-3">
+				<img src="/spread-the-fund/spreadthefund.svg" alt="Spread the Fund" class="w-7 h-7" />
+				<span class="text-sm font-bold uppercase tracking-[4px]" style="color: var(--stf-text);">SPREAD THE FUND</span>
 			</a>
 			<div class="flex items-center gap-6">
-				<a href="#features" class="hidden sm:inline text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Features</a>
-				<a href="#how-it-works" class="hidden sm:inline text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">How It Works</a>
-				<a href="#legal" class="hidden sm:inline text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Legal</a>
-				<a href="/preview" class="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors">
-					&larr; Portfolio
+				<a href="#features" class="hidden sm:inline text-xs font-bold uppercase tracking-[2px] stf-nav-link transition-colors">FEATURES</a>
+				<a href="#how-it-works" class="hidden sm:inline text-xs font-bold uppercase tracking-[2px] stf-nav-link transition-colors">HOW IT WORKS</a>
+				<a href="#legal" class="hidden sm:inline text-xs font-bold uppercase tracking-[2px] stf-nav-link transition-colors">LEGAL</a>
+				<a href="https://www.jasongreen.biz" class="text-xs font-bold uppercase tracking-[2px] transition-colors" style="color: var(--stf-text-dim);">
+					&larr; PORTFOLIO
 				</a>
 			</div>
 		</div>
 	</nav>
 
 	<!-- Hero -->
-	<section class="relative min-h-[80vh] flex items-center justify-center bg-gradient-to-br from-emerald-50 via-white to-teal-50 pt-20">
+	<section class="relative min-h-[80vh] flex items-center justify-center pt-16" style="background: var(--stf-bg);">
 		<div class="relative z-10 text-center px-6 max-w-3xl mx-auto">
-			<span class="inline-block px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-700 bg-emerald-100 rounded-full mb-6">
-				Coming Soon
-			</span>
-			<h1 class="font-serif text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight mb-6">
-				Fund Together.<br />Grow Together.
+			<div class="flex justify-center mb-8">
+				<img src="/spread-the-fund/app_icon_transparent.png" alt="Spread the Fund icon" class="w-20 h-20 md:w-24 md:h-24" />
+			</div>
+			<div class="inline-block px-4 py-1.5 text-xs font-bold uppercase tracking-[3px] border mb-8" style="color: var(--stf-primary); border-color: var(--stf-primary); background: rgba(0, 229, 204, 0.08);">
+				ANDROID APP
+			</div>
+			<h1 class="text-3xl md:text-5xl lg:text-6xl font-bold uppercase tracking-[4px] leading-tight mb-6">
+				<span class="stf-gradient-text">SPREAD THE FUND</span>
 			</h1>
-			<p class="font-sans text-lg md:text-xl text-gray-500 max-w-xl mx-auto leading-relaxed mb-10">
-				Spread the Fund makes it easy to create, manage, and contribute to shared funds with the people who matter most.
+			<p class="text-base md:text-lg uppercase tracking-[3px] font-bold mb-4" style="color: var(--stf-text-secondary);">
+				SPLIT BILLS IN REAL-TIME
+			</p>
+			<p class="text-sm md:text-base leading-relaxed max-w-lg mx-auto mb-10" style="color: var(--stf-text-dim);">
+				A bill-splitting app with real-time updates between users. Create groups, add bills, adjust splits, and settle up â€” all synced instantly via Firebase.
 			</p>
 			<div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-				<a href="#features" class="px-8 py-3 bg-emerald-600 text-white rounded-full font-medium text-sm hover:bg-emerald-700 transition-colors">
-					See Features
+				<a href="#features" class="px-8 py-3 font-bold text-xs uppercase tracking-[2px] stf-btn-primary transition-opacity">
+					SEE FEATURES
 				</a>
-				<a href="#how-it-works" class="px-8 py-3 border border-gray-300 text-gray-700 rounded-full font-medium text-sm hover:border-emerald-600 hover:text-emerald-700 transition-colors">
-					How It Works
+				<a href="https://github.com/CrowdTypical/spreadthefund" target="_blank" rel="noopener noreferrer" class="px-8 py-3 font-bold text-xs uppercase tracking-[2px] border stf-btn-outline transition-colors">
+					VIEW ON GITHUB
 				</a>
 			</div>
 		</div>
-
-		<!-- Decorative circles -->
-		<div class="absolute top-20 left-10 w-64 h-64 bg-emerald-100 rounded-full opacity-30 blur-3xl"></div>
-		<div class="absolute bottom-10 right-10 w-80 h-80 bg-teal-100 rounded-full opacity-30 blur-3xl"></div>
 	</section>
 
-	<!-- App Demo / Preview -->
-	<section class="py-20 md:py-28 px-6 md:px-16 bg-white">
+	<!-- App Demo -->
+	<section class="py-16 md:py-20 px-6 md:px-16" style="background: var(--stf-surface-deep);">
 		<div class="max-w-5xl mx-auto">
-			<div class="text-center mb-16">
-				<p class="text-sm font-semibold uppercase tracking-wider text-emerald-600 mb-2">App Preview</p>
-				<h2 class="font-serif text-3xl md:text-4xl font-bold text-gray-900">See It In Action</h2>
+			<div class="text-center mb-12">
+				<p class="text-xs font-bold uppercase tracking-[3px] mb-3" style="color: var(--stf-primary);">APP PREVIEW</p>
+				<h2 class="text-2xl md:text-3xl font-bold uppercase tracking-[4px]" style="color: var(--stf-text);">SEE IT IN ACTION</h2>
 			</div>
 
-			<!-- Mock app screens -->
-			<div class="grid md:grid-cols-3 gap-8">
-				<!-- Screen 1: Dashboard -->
-				<div class="rounded-2xl border border-gray-200 bg-gray-50 overflow-hidden shadow-sm">
-					<div class="bg-emerald-600 px-4 py-3 flex items-center gap-2">
-						<div class="w-3 h-3 rounded-full bg-white/30"></div>
-						<div class="w-3 h-3 rounded-full bg-white/30"></div>
-						<div class="w-3 h-3 rounded-full bg-white/30"></div>
-						<span class="text-white text-xs font-medium ml-2">Dashboard</span>
+			<div class="grid md:grid-cols-3 gap-6">
+				<!-- Screen 1: Groups/Dashboard -->
+				<div class="border overflow-hidden stf-card" style="border-color: var(--stf-border);">
+					<div class="px-4 py-3 border-b" style="background: var(--stf-surface-alt); border-color: var(--stf-border);">
+						<span class="text-xs font-bold uppercase tracking-[2px]" style="color: var(--stf-text-secondary);">GROUPS</span>
 					</div>
-					<div class="p-5 space-y-3">
-						<div class="bg-white rounded-lg p-3 border border-gray-100">
-							<p class="text-xs text-gray-400 mb-1">Total Balance</p>
-							<p class="text-2xl font-bold text-gray-900">$2,450.00</p>
+					<div class="p-4 space-y-3">
+						<div class="p-3 border" style="background: var(--stf-surface-deep); border-color: var(--stf-border);">
+							<p class="text-xs font-bold uppercase tracking-[2px] mb-1" style="color: var(--stf-text-dim);">TOTAL BALANCE</p>
+							<p class="text-2xl font-bold" style="color: var(--stf-primary);">$127.50</p>
+							<p class="text-xs mt-1" style="color: var(--stf-text-dim);">YOU'RE OWED</p>
 						</div>
-						<div class="bg-white rounded-lg p-3 border border-gray-100 flex items-center justify-between">
+						<div class="p-3 border flex items-center justify-between" style="background: var(--stf-surface-deep); border-color: var(--stf-border);">
 							<div>
-								<p class="text-sm font-medium text-gray-900">Vacation Fund</p>
-								<p class="text-xs text-gray-400">4 members</p>
+								<p class="text-sm font-bold" style="color: var(--stf-text);">HOUSEMATES</p>
+								<p class="text-xs" style="color: var(--stf-text-dim);">3 MEMBERS</p>
 							</div>
-							<span class="text-sm font-semibold text-emerald-600">$1,200</span>
+							<span class="text-sm font-bold" style="color: var(--stf-primary);">+$85.00</span>
 						</div>
-						<div class="bg-white rounded-lg p-3 border border-gray-100 flex items-center justify-between">
+						<div class="p-3 border flex items-center justify-between" style="background: var(--stf-surface-deep); border-color: var(--stf-border);">
 							<div>
-								<p class="text-sm font-medium text-gray-900">Emergency Fund</p>
-								<p class="text-xs text-gray-400">2 members</p>
+								<p class="text-sm font-bold" style="color: var(--stf-text);">TRIP â€” VANCOUVER</p>
+								<p class="text-xs" style="color: var(--stf-text-dim);">5 MEMBERS</p>
 							</div>
-							<span class="text-sm font-semibold text-emerald-600">$850</span>
+							<span class="text-sm font-bold" style="color: var(--stf-negative);">-$42.50</span>
 						</div>
-						<div class="bg-white rounded-lg p-3 border border-gray-100 flex items-center justify-between">
+						<div class="p-3 border flex items-center justify-between" style="background: var(--stf-surface-deep); border-color: var(--stf-border);">
 							<div>
-								<p class="text-sm font-medium text-gray-900">Birthday Gift</p>
-								<p class="text-xs text-gray-400">6 members</p>
+								<p class="text-sm font-bold" style="color: var(--stf-text);">COUPLE</p>
+								<p class="text-xs" style="color: var(--stf-text-dim);">2 MEMBERS</p>
 							</div>
-							<span class="text-sm font-semibold text-emerald-600">$400</span>
+							<span class="text-sm font-bold" style="color: var(--stf-primary);">+$85.00</span>
 						</div>
 					</div>
 				</div>
 
-				<!-- Screen 2: Fund Detail -->
-				<div class="rounded-2xl border border-gray-200 bg-gray-50 overflow-hidden shadow-sm">
-					<div class="bg-emerald-600 px-4 py-3 flex items-center gap-2">
-						<div class="w-3 h-3 rounded-full bg-white/30"></div>
-						<div class="w-3 h-3 rounded-full bg-white/30"></div>
-						<div class="w-3 h-3 rounded-full bg-white/30"></div>
-						<span class="text-white text-xs font-medium ml-2">Fund Detail</span>
+				<!-- Screen 2: Bill Detail -->
+				<div class="border overflow-hidden stf-card" style="border-color: var(--stf-border);">
+					<div class="px-4 py-3 border-b" style="background: var(--stf-surface-alt); border-color: var(--stf-border);">
+						<span class="text-xs font-bold uppercase tracking-[2px]" style="color: var(--stf-text-secondary);">BILL DETAIL</span>
 					</div>
-					<div class="p-5 space-y-4">
-						<div class="text-center">
-							<p class="text-sm font-medium text-gray-900 mb-1">Vacation Fund</p>
-							<div class="w-full bg-gray-200 rounded-full h-2.5 mb-2">
-								<div class="bg-emerald-500 h-2.5 rounded-full" style="width: 60%"></div>
-							</div>
-							<p class="text-xs text-gray-400">$1,200 of $2,000 goal</p>
+					<div class="p-4 space-y-4">
+						<div class="text-center pb-3 border-b" style="border-color: var(--stf-border);">
+							<p class="text-xs font-bold uppercase tracking-[2px] mb-2" style="color: var(--stf-text-dim);">ðŸ• FOOD</p>
+							<p class="text-3xl font-bold" style="color: var(--stf-text);">$64.00</p>
+							<p class="text-xs mt-1" style="color: var(--stf-text-dim);">DINNER AT KING'S</p>
 						</div>
-						<div class="space-y-2">
-							<p class="text-xs font-semibold text-gray-500 uppercase tracking-wider">Recent Activity</p>
-							<div class="flex items-center gap-3 bg-white rounded-lg p-2.5 border border-gray-100">
-								<div class="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center text-xs font-bold text-emerald-700">JG</div>
-								<div class="flex-1">
-									<p class="text-xs font-medium text-gray-900">Jason contributed</p>
-									<p class="text-xs text-gray-400">2 hours ago</p>
+						<div>
+							<p class="text-xs font-bold uppercase tracking-[2px] mb-3" style="color: var(--stf-text-secondary);">SPLIT BREAKDOWN</p>
+							<div class="space-y-2">
+								<div class="flex items-center justify-between p-2 border" style="background: var(--stf-surface-deep); border-color: var(--stf-border);">
+									<div class="flex items-center gap-2">
+										<div class="w-6 h-6 flex items-center justify-center text-xs font-bold" style="background: rgba(0, 229, 204, 0.15); color: var(--stf-primary);">J</div>
+										<span class="text-xs font-bold" style="color: var(--stf-text);">JASON</span>
+										<span class="text-xs" style="color: var(--stf-text-dim);">PAID</span>
+									</div>
+									<span class="text-xs font-bold" style="color: var(--stf-primary);">$32.00</span>
 								</div>
-								<span class="text-xs font-semibold text-emerald-600">+$50</span>
-							</div>
-							<div class="flex items-center gap-3 bg-white rounded-lg p-2.5 border border-gray-100">
-								<div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-xs font-bold text-blue-700">AK</div>
-								<div class="flex-1">
-									<p class="text-xs font-medium text-gray-900">Alex contributed</p>
-									<p class="text-xs text-gray-400">1 day ago</p>
+								<div class="flex items-center justify-between p-2 border" style="background: var(--stf-surface-deep); border-color: var(--stf-border);">
+									<div class="flex items-center gap-2">
+										<div class="w-6 h-6 flex items-center justify-center text-xs font-bold" style="background: rgba(255, 76, 94, 0.15); color: var(--stf-negative);">A</div>
+										<span class="text-xs font-bold" style="color: var(--stf-text);">ALEX</span>
+										<span class="text-xs" style="color: var(--stf-text-dim);">OWES</span>
+									</div>
+									<span class="text-xs font-bold" style="color: var(--stf-negative);">$32.00</span>
 								</div>
-								<span class="text-xs font-semibold text-emerald-600">+$100</span>
 							</div>
-							<div class="flex items-center gap-3 bg-white rounded-lg p-2.5 border border-gray-100">
-								<div class="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-xs font-bold text-purple-700">SM</div>
-								<div class="flex-1">
-									<p class="text-xs font-medium text-gray-900">Sara contributed</p>
-									<p class="text-xs text-gray-400">3 days ago</p>
-								</div>
-								<span class="text-xs font-semibold text-emerald-600">+$75</span>
-							</div>
+						</div>
+						<div class="p-2 border" style="background: var(--stf-surface-deep); border-color: var(--stf-border);">
+							<p class="text-xs" style="color: var(--stf-text-dim);">ðŸ“ Split the dinner 50/50</p>
 						</div>
 					</div>
 				</div>
 
-				<!-- Screen 3: Create Fund -->
-				<div class="rounded-2xl border border-gray-200 bg-gray-50 overflow-hidden shadow-sm">
-					<div class="bg-emerald-600 px-4 py-3 flex items-center gap-2">
-						<div class="w-3 h-3 rounded-full bg-white/30"></div>
-						<div class="w-3 h-3 rounded-full bg-white/30"></div>
-						<div class="w-3 h-3 rounded-full bg-white/30"></div>
-						<span class="text-white text-xs font-medium ml-2">Create Fund</span>
+				<!-- Screen 3: Add Bill -->
+				<div class="border overflow-hidden stf-card" style="border-color: var(--stf-border);">
+					<div class="px-4 py-3 border-b" style="background: var(--stf-surface-alt); border-color: var(--stf-border);">
+						<span class="text-xs font-bold uppercase tracking-[2px]" style="color: var(--stf-text-secondary);">ADD BILL</span>
 					</div>
-					<div class="p-5 space-y-4">
+					<div class="p-4 space-y-4">
 						<div>
-							<label class="block text-xs font-medium text-gray-500 mb-1">Fund Name</label>
-							<div class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-900">Weekend Getaway</div>
+							<label class="block text-xs font-bold uppercase tracking-[2px] mb-2" style="color: var(--stf-text-secondary);">BILL NAME</label>
+							<div class="border px-3 py-2 text-sm" style="background: var(--stf-surface-deep); border-color: var(--stf-border); color: var(--stf-text);">Groceries</div>
 						</div>
 						<div>
-							<label class="block text-xs font-medium text-gray-500 mb-1">Goal Amount</label>
-							<div class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-900">$3,000</div>
+							<label class="block text-xs font-bold uppercase tracking-[2px] mb-2" style="color: var(--stf-text-secondary);">AMOUNT</label>
+							<div class="border px-3 py-2 text-sm" style="background: var(--stf-surface-deep); border-color: var(--stf-border); color: var(--stf-text);">$48.75</div>
 						</div>
 						<div>
-							<label class="block text-xs font-medium text-gray-500 mb-1">Description</label>
-							<div class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-400 h-16">A fund for our annual trip...</div>
-						</div>
-						<div>
-							<label class="block text-xs font-medium text-gray-500 mb-1">Invite Members</label>
-							<div class="flex gap-2">
-								<div class="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center text-xs font-bold text-emerald-700">+</div>
-								<div class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-xs font-bold text-gray-500">AK</div>
-								<div class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-xs font-bold text-gray-500">SM</div>
+							<label class="block text-xs font-bold uppercase tracking-[2px] mb-2" style="color: var(--stf-text-secondary);">CATEGORY</label>
+							<div class="grid grid-cols-4 gap-2">
+								<div class="p-2 border text-center text-xs" style="border-color: var(--stf-primary); color: var(--stf-primary); background: rgba(0, 229, 204, 0.08);">ðŸ›’</div>
+								<div class="p-2 border text-center text-xs" style="border-color: var(--stf-border); color: var(--stf-text-dim);">ðŸ•</div>
+								<div class="p-2 border text-center text-xs" style="border-color: var(--stf-border); color: var(--stf-text-dim);">ðŸš—</div>
+								<div class="p-2 border text-center text-xs" style="border-color: var(--stf-border); color: var(--stf-text-dim);">ðŸŽ¬</div>
 							</div>
 						</div>
-						<button class="w-full py-2.5 bg-emerald-600 text-white text-sm font-medium rounded-lg">Create Fund</button>
+						<div>
+							<label class="block text-xs font-bold uppercase tracking-[2px] mb-2" style="color: var(--stf-text-secondary);">SPLIT</label>
+							<div class="flex items-center gap-3">
+								<span class="text-xs font-bold" style="color: var(--stf-text);">50%</span>
+								<div class="flex-1 h-1 relative" style="background: var(--stf-border);">
+									<div class="absolute top-0 left-0 h-full" style="width: 50%; background: var(--stf-primary);"></div>
+								</div>
+								<span class="text-xs font-bold" style="color: var(--stf-text);">50%</span>
+							</div>
+						</div>
+						<button class="w-full py-2.5 font-bold text-xs uppercase tracking-[2px] stf-btn-primary">ADD BILL</button>
 					</div>
 				</div>
 			</div>
@@ -177,136 +207,200 @@ import Layout from '../../layouts/Layout.astro';
 	</section>
 
 	<!-- Features -->
-	<section id="features" class="py-20 md:py-28 px-6 md:px-16 bg-gray-50">
+	<section id="features" class="py-16 md:py-20 px-6 md:px-16" style="background: var(--stf-bg);">
 		<div class="max-w-5xl mx-auto">
-			<div class="text-center mb-16">
-				<p class="text-sm font-semibold uppercase tracking-wider text-emerald-600 mb-2">Features</p>
-				<h2 class="font-serif text-3xl md:text-4xl font-bold text-gray-900">Everything You Need</h2>
+			<div class="text-center mb-12">
+				<p class="text-xs font-bold uppercase tracking-[3px] mb-3" style="color: var(--stf-primary);">FEATURES</p>
+				<h2 class="text-2xl md:text-3xl font-bold uppercase tracking-[4px]" style="color: var(--stf-text);">EVERYTHING YOU NEED</h2>
 			</div>
 
-			<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-				<div class="bg-white rounded-xl p-6 border border-gray-100">
-					<div class="w-10 h-10 rounded-lg bg-emerald-100 flex items-center justify-center mb-4">
-						<svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>
+			<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+				<div class="p-6 border stf-card">
+					<div class="w-10 h-10 flex items-center justify-center mb-4 border" style="border-color: var(--stf-primary); background: rgba(0, 229, 204, 0.08);">
+						<span class="text-lg">âš¡</span>
 					</div>
-					<h3 class="font-semibold text-gray-900 mb-2">Shared Funds</h3>
-					<p class="text-sm text-gray-500 leading-relaxed">Create funds with friends, family, or groups. Everyone can contribute and track progress toward shared goals.</p>
+					<h3 class="text-xs font-bold uppercase tracking-[2px] mb-2" style="color: var(--stf-text);">REAL-TIME SYNC</h3>
+					<p class="text-[13px] leading-relaxed" style="color: var(--stf-text-dim);">Bills sync instantly between all group members via Firebase. Everyone sees updates the moment they happen.</p>
 				</div>
 
-				<div class="bg-white rounded-xl p-6 border border-gray-100">
-					<div class="w-10 h-10 rounded-lg bg-emerald-100 flex items-center justify-center mb-4">
-						<svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" /></svg>
+				<div class="p-6 border stf-card">
+					<div class="w-10 h-10 flex items-center justify-center mb-4 border" style="border-color: var(--stf-primary); background: rgba(0, 229, 204, 0.08);">
+						<span class="text-lg">ðŸ‘¥</span>
 					</div>
-					<h3 class="font-semibold text-gray-900 mb-2">Real-Time Tracking</h3>
-					<p class="text-sm text-gray-500 leading-relaxed">See contributions as they happen. Visual progress bars and activity feeds keep everyone in the loop.</p>
+					<h3 class="text-xs font-bold uppercase tracking-[2px] mb-2" style="color: var(--stf-text);">MULTIPLE GROUPS</h3>
+					<p class="text-[13px] leading-relaxed" style="color: var(--stf-text-dim);">Create separate groups for housemates, trips, couples, or any situation. Keep your bills organized.</p>
 				</div>
 
-				<div class="bg-white rounded-xl p-6 border border-gray-100">
-					<div class="w-10 h-10 rounded-lg bg-emerald-100 flex items-center justify-center mb-4">
-						<svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" /></svg>
+				<div class="p-6 border stf-card">
+					<div class="w-10 h-10 flex items-center justify-center mb-4 border" style="border-color: var(--stf-primary); background: rgba(0, 229, 204, 0.08);">
+						<span class="text-lg">ðŸŽ¨</span>
 					</div>
-					<h3 class="font-semibold text-gray-900 mb-2">Group Management</h3>
-					<p class="text-sm text-gray-500 leading-relaxed">Invite members, set roles, and manage permissions. Keep your funds organized and your group engaged.</p>
+					<h3 class="text-xs font-bold uppercase tracking-[2px] mb-2" style="color: var(--stf-text);">CUSTOM COLOURS</h3>
+					<p class="text-[13px] leading-relaxed" style="color: var(--stf-text-dim);">12 accent colours to personalise each group. Make it yours.</p>
 				</div>
 
-				<div class="bg-white rounded-xl p-6 border border-gray-100">
-					<div class="w-10 h-10 rounded-lg bg-emerald-100 flex items-center justify-center mb-4">
-						<svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" /></svg>
+				<div class="p-6 border stf-card">
+					<div class="w-10 h-10 flex items-center justify-center mb-4 border" style="border-color: var(--stf-primary); background: rgba(0, 229, 204, 0.08);">
+						<span class="text-lg">ðŸŽšï¸</span>
 					</div>
-					<h3 class="font-semibold text-gray-900 mb-2">Secure Transactions</h3>
-					<p class="text-sm text-gray-500 leading-relaxed">Industry-standard encryption and secure payment processing keep your money and data safe.</p>
+					<h3 class="text-xs font-bold uppercase tracking-[2px] mb-2" style="color: var(--stf-text);">SMART SPLIT SLIDER</h3>
+					<p class="text-[13px] leading-relaxed" style="color: var(--stf-text-dim);">Adjust the split percentage with an intuitive slider. No more manual math.</p>
 				</div>
 
-				<div class="bg-white rounded-xl p-6 border border-gray-100">
-					<div class="w-10 h-10 rounded-lg bg-emerald-100 flex items-center justify-center mb-4">
-						<svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" /></svg>
+				<div class="p-6 border stf-card">
+					<div class="w-10 h-10 flex items-center justify-center mb-4 border" style="border-color: var(--stf-primary); background: rgba(0, 229, 204, 0.08);">
+						<span class="text-lg">âœ…</span>
 					</div>
-					<h3 class="font-semibold text-gray-900 mb-2">Smart Notifications</h3>
-					<p class="text-sm text-gray-500 leading-relaxed">Stay informed with contribution alerts, goal milestones, and reminders. Never miss an update.</p>
+					<h3 class="text-xs font-bold uppercase tracking-[2px] mb-2" style="color: var(--stf-text);">SETTLEMENT TRACKING</h3>
+					<p class="text-[13px] leading-relaxed" style="color: var(--stf-text-dim);">Record payments and track who owes whom. Mark debts as settled and keep a clean ledger.</p>
 				</div>
 
-				<div class="bg-white rounded-xl p-6 border border-gray-100">
-					<div class="w-10 h-10 rounded-lg bg-emerald-100 flex items-center justify-center mb-4">
-						<svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 1 0 7.5 7.5h-7.5V6Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0 0 13.5 3v7.5Z" /></svg>
+				<div class="p-6 border stf-card">
+					<div class="w-10 h-10 flex items-center justify-center mb-4 border" style="border-color: var(--stf-primary); background: rgba(0, 229, 204, 0.08);">
+						<span class="text-lg">ðŸ”’</span>
 					</div>
-					<h3 class="font-semibold text-gray-900 mb-2">Spending Insights</h3>
-					<p class="text-sm text-gray-500 leading-relaxed">Understand your fund activity with clear breakdowns, contribution history, and goal analytics.</p>
+					<h3 class="text-xs font-bold uppercase tracking-[2px] mb-2" style="color: var(--stf-text);">PRIVACY FIRST</h3>
+					<p class="text-[13px] leading-relaxed" style="color: var(--stf-text-dim);">No analytics, no ads, no tracking. Your data stays yours. Delete everything at any time.</p>
+				</div>
+			</div>
+
+			<!-- Additional features -->
+			<div class="mt-12 grid sm:grid-cols-2 gap-3">
+				<div class="flex items-center gap-3 p-3 border" style="background: var(--stf-surface-deep); border-color: var(--stf-border);">
+					<span style="color: var(--stf-primary);">â€º</span>
+					<span class="text-xs font-bold uppercase tracking-[1px]" style="color: var(--stf-text-secondary);">GOOGLE SIGN-IN</span>
+				</div>
+				<div class="flex items-center gap-3 p-3 border" style="background: var(--stf-surface-deep); border-color: var(--stf-border);">
+					<span style="color: var(--stf-primary);">â€º</span>
+					<span class="text-xs font-bold uppercase tracking-[1px]" style="color: var(--stf-text-secondary);">CATEGORY ICONS</span>
+				</div>
+				<div class="flex items-center gap-3 p-3 border" style="background: var(--stf-surface-deep); border-color: var(--stf-border);">
+					<span style="color: var(--stf-primary);">â€º</span>
+					<span class="text-xs font-bold uppercase tracking-[1px]" style="color: var(--stf-text-secondary);">BILL NOTES</span>
+				</div>
+				<div class="flex items-center gap-3 p-3 border" style="background: var(--stf-surface-deep); border-color: var(--stf-border);">
+					<span style="color: var(--stf-primary);">â€º</span>
+					<span class="text-xs font-bold uppercase tracking-[1px]" style="color: var(--stf-text-secondary);">EMAIL INVITATIONS</span>
+				</div>
+				<div class="flex items-center gap-3 p-3 border" style="background: var(--stf-surface-deep); border-color: var(--stf-border);">
+					<span style="color: var(--stf-primary);">â€º</span>
+					<span class="text-xs font-bold uppercase tracking-[1px]" style="color: var(--stf-text-secondary);">DATA DELETION</span>
+				</div>
+				<div class="flex items-center gap-3 p-3 border" style="background: var(--stf-surface-deep); border-color: var(--stf-border);">
+					<span style="color: var(--stf-primary);">â€º</span>
+					<span class="text-xs font-bold uppercase tracking-[1px]" style="color: var(--stf-text-secondary);">OPEN SOURCE</span>
 				</div>
 			</div>
 		</div>
 	</section>
 
 	<!-- How It Works -->
-	<section id="how-it-works" class="py-20 md:py-28 px-6 md:px-16 bg-white">
+	<section id="how-it-works" class="py-16 md:py-20 px-6 md:px-16" style="background: var(--stf-surface-deep);">
 		<div class="max-w-4xl mx-auto">
-			<div class="text-center mb-16">
-				<p class="text-sm font-semibold uppercase tracking-wider text-emerald-600 mb-2">Simple Process</p>
-				<h2 class="font-serif text-3xl md:text-4xl font-bold text-gray-900">How It Works</h2>
+			<div class="text-center mb-12">
+				<p class="text-xs font-bold uppercase tracking-[3px] mb-3" style="color: var(--stf-primary);">SIMPLE PROCESS</p>
+				<h2 class="text-2xl md:text-3xl font-bold uppercase tracking-[4px]" style="color: var(--stf-text);">HOW IT WORKS</h2>
 			</div>
 
-			<div class="grid md:grid-cols-3 gap-12">
+			<div class="grid md:grid-cols-3 gap-8">
 				<div class="text-center">
-					<div class="w-14 h-14 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xl font-bold mx-auto mb-5">1</div>
-					<h3 class="font-semibold text-gray-900 mb-2">Create a Fund</h3>
-					<p class="text-sm text-gray-500 leading-relaxed">Name your fund, set a goal, and add a description. It only takes a minute.</p>
+					<div class="w-14 h-14 flex items-center justify-center text-xl font-bold mx-auto mb-5" style="background: var(--stf-primary); color: var(--stf-bg);">01</div>
+					<h3 class="text-xs font-bold uppercase tracking-[2px] mb-2" style="color: var(--stf-text);">CREATE A GROUP</h3>
+					<p class="text-[13px] leading-relaxed" style="color: var(--stf-text-dim);">Set up a group for your housemates, a trip, or any shared expense situation. Pick a colour and invite members by email.</p>
 				</div>
 				<div class="text-center">
-					<div class="w-14 h-14 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xl font-bold mx-auto mb-5">2</div>
-					<h3 class="font-semibold text-gray-900 mb-2">Invite People</h3>
-					<p class="text-sm text-gray-500 leading-relaxed">Share an invite link with friends, family, or your group. Anyone can join and contribute.</p>
+					<div class="w-14 h-14 flex items-center justify-center text-xl font-bold mx-auto mb-5" style="background: var(--stf-primary); color: var(--stf-bg);">02</div>
+					<h3 class="text-xs font-bold uppercase tracking-[2px] mb-2" style="color: var(--stf-text);">ADD BILLS</h3>
+					<p class="text-[13px] leading-relaxed" style="color: var(--stf-text-dim);">Log expenses as they happen. Choose a category, set the amount, and use the split slider to divide costs.</p>
 				</div>
 				<div class="text-center">
-					<div class="w-14 h-14 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xl font-bold mx-auto mb-5">3</div>
-					<h3 class="font-semibold text-gray-900 mb-2">Grow Together</h3>
-					<p class="text-sm text-gray-500 leading-relaxed">Watch your fund grow in real time. Track contributions, hit milestones, and reach your goals.</p>
+					<div class="w-14 h-14 flex items-center justify-center text-xl font-bold mx-auto mb-5" style="background: var(--stf-primary); color: var(--stf-bg);">03</div>
+					<h3 class="text-xs font-bold uppercase tracking-[2px] mb-2" style="color: var(--stf-text);">SETTLE UP</h3>
+					<p class="text-[13px] leading-relaxed" style="color: var(--stf-text-dim);">See who owes what at a glance. Record payments, track settlements, and keep everyone's balance clean.</p>
 				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Info Bar -->
+	<section class="py-8 px-6 border-y" style="background: var(--stf-surface); border-color: var(--stf-border);">
+		<div class="max-w-5xl mx-auto flex flex-wrap items-center justify-center gap-8 md:gap-16">
+			<div class="text-center">
+				<p class="text-xs font-bold uppercase tracking-[2px]" style="color: var(--stf-text-dim);">PLATFORM</p>
+				<p class="text-sm font-bold mt-1" style="color: var(--stf-text);">ANDROID</p>
+			</div>
+			<div class="text-center">
+				<p class="text-xs font-bold uppercase tracking-[2px]" style="color: var(--stf-text-dim);">VERSION</p>
+				<p class="text-sm font-bold mt-1" style="color: var(--stf-primary);">v1.0.3</p>
+			</div>
+			<div class="text-center">
+				<p class="text-xs font-bold uppercase tracking-[2px]" style="color: var(--stf-text-dim);">LICENSE</p>
+				<p class="text-sm font-bold mt-1" style="color: var(--stf-text);">POLYFORM SHIELD</p>
+			</div>
+			<div class="text-center">
+				<p class="text-xs font-bold uppercase tracking-[2px]" style="color: var(--stf-text-dim);">DEVELOPER</p>
+				<p class="text-sm font-bold mt-1" style="color: var(--stf-text);">CROWDTYPICAL</p>
 			</div>
 		</div>
 	</section>
 
 	<!-- Legal Section -->
-	<section id="legal" class="py-20 md:py-28 px-6 md:px-16 bg-gray-50 border-t border-gray-100">
+	<section id="legal" class="py-16 md:py-20 px-6 md:px-16" style="background: var(--stf-bg);">
 		<div class="max-w-3xl mx-auto text-center">
-			<p class="text-sm font-semibold uppercase tracking-wider text-gray-400 mb-2">Legal</p>
-			<h2 class="font-serif text-3xl md:text-4xl font-bold text-gray-900 mb-4">Legal Information</h2>
-			<p class="text-gray-500 text-base leading-relaxed mb-12 max-w-lg mx-auto">
+			<p class="text-xs font-bold uppercase tracking-[3px] mb-3" style="color: var(--stf-text-dim);">LEGAL</p>
+			<h2 class="text-2xl md:text-3xl font-bold uppercase tracking-[4px] mb-4" style="color: var(--stf-text);">LEGAL INFORMATION</h2>
+			<p class="text-sm leading-relaxed mb-10 max-w-lg mx-auto" style="color: var(--stf-text-dim);">
 				Transparency matters. Review our policies to understand how we handle your data and define the terms of service.
 			</p>
 
 			<div class="grid sm:grid-cols-3 gap-6">
-				<a href="/spread-the-fund/privacy" class="group block bg-white rounded-xl p-6 border border-gray-100 hover:border-emerald-200 hover:shadow-md transition-all">
-					<svg class="w-8 h-8 text-gray-300 group-hover:text-emerald-500 transition-colors mx-auto mb-3" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" /></svg>
-					<h3 class="font-semibold text-gray-900 mb-1">Privacy Policy</h3>
-					<p class="text-xs text-gray-400">How we collect, use, and protect your information.</p>
+				<a href="/privacy" class="block p-6 border stf-card transition-all">
+					<div class="text-2xl mb-3">ðŸ›¡ï¸</div>
+					<h3 class="text-xs font-bold uppercase tracking-[2px] mb-2" style="color: var(--stf-text);">PRIVACY POLICY</h3>
+					<p class="text-xs" style="color: var(--stf-text-dim);">How we collect, use, and protect your information.</p>
 				</a>
-
-				<a href="/spread-the-fund/terms" class="group block bg-white rounded-xl p-6 border border-gray-100 hover:border-emerald-200 hover:shadow-md transition-all">
-					<svg class="w-8 h-8 text-gray-300 group-hover:text-emerald-500 transition-colors mx-auto mb-3" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>
-					<h3 class="font-semibold text-gray-900 mb-1">Terms & Conditions</h3>
-					<p class="text-xs text-gray-400">The rules and guidelines for using Spread the Fund.</p>
+				<a href="/terms" class="block p-6 border stf-card transition-all">
+					<div class="text-2xl mb-3">ðŸ“„</div>
+					<h3 class="text-xs font-bold uppercase tracking-[2px] mb-2" style="color: var(--stf-text);">TERMS & CONDITIONS</h3>
+					<p class="text-xs" style="color: var(--stf-text-dim);">The rules and guidelines for using Spread the Fund.</p>
 				</a>
-
-				<a href="/spread-the-fund/copyright" class="group block bg-white rounded-xl p-6 border border-gray-100 hover:border-emerald-200 hover:shadow-md transition-all">
-					<svg class="w-8 h-8 text-gray-300 group-hover:text-emerald-500 transition-colors mx-auto mb-3" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418" /></svg>
-					<h3 class="font-semibold text-gray-900 mb-1">Copyright</h3>
-					<p class="text-xs text-gray-400">Intellectual property and usage rights information.</p>
+				<a href="/copyright" class="block p-6 border stf-card transition-all">
+					<div class="text-2xl mb-3">Â©</div>
+					<h3 class="text-xs font-bold uppercase tracking-[2px] mb-2" style="color: var(--stf-text);">COPYRIGHT</h3>
+					<p class="text-xs" style="color: var(--stf-text-dim);">Intellectual property and usage rights information.</p>
 				</a>
 			</div>
 		</div>
 	</section>
 
-	<!-- Footer -->
-	<footer class="bg-white border-t border-gray-100 py-8 px-6">
-		<div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-			<p class="font-sans text-sm text-gray-400">
-				&copy; {new Date().getFullYear()} Jason Green. All rights reserved.
+	<!-- Support / Donate -->
+	<section class="py-16 px-6 border-t" style="background: var(--stf-surface-deep); border-color: var(--stf-border);">
+		<div class="max-w-3xl mx-auto text-center">
+			<p class="text-xs font-bold uppercase tracking-[3px] mb-3" style="color: var(--stf-amber);">SUPPORT</p>
+			<h2 class="text-xl md:text-2xl font-bold uppercase tracking-[4px] mb-4" style="color: var(--stf-text);">BUY ME A COFFEE</h2>
+			<p class="text-sm leading-relaxed mb-8 max-w-md mx-auto" style="color: var(--stf-text-dim);">
+				Spread the Fund is free, open source, and ad-free. If you find it useful, consider supporting development.
 			</p>
-			<div class="flex items-center gap-6 text-xs text-gray-400">
-				<a href="/spread-the-fund/privacy" class="hover:text-gray-900 transition-colors">Privacy</a>
-				<a href="/spread-the-fund/terms" class="hover:text-gray-900 transition-colors">Terms</a>
-				<a href="/spread-the-fund/copyright" class="hover:text-gray-900 transition-colors">Copyright</a>
-				<a href="/preview" class="hover:text-gray-900 transition-colors">Portfolio</a>
+			<a href="https://buymeacoffee.com/crowdtypical" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3 font-bold text-xs uppercase tracking-[2px] transition-opacity" style="background: var(--stf-amber); color: var(--stf-bg);">
+				â˜• DONATE
+			</a>
+		</div>
+	</section>
+
+	<!-- Footer -->
+	<footer class="border-t py-8 px-6" style="background: var(--stf-surface-alt); border-color: var(--stf-border);">
+		<div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+			<p class="text-xs" style="color: var(--stf-text-dim);">
+				&copy; {new Date().getFullYear()} JASON GREEN. ALL RIGHTS RESERVED.
+			</p>
+			<div class="flex items-center gap-6 text-xs">
+				<a href="/privacy" class="stf-footer-link transition-colors uppercase tracking-[1px]">PRIVACY</a>
+				<a href="/terms" class="stf-footer-link transition-colors uppercase tracking-[1px]">TERMS</a>
+				<a href="/copyright" class="stf-footer-link transition-colors uppercase tracking-[1px]">COPYRIGHT</a>
+				<a href="mailto:spreadthefund@gmail.com" class="stf-footer-link transition-colors uppercase tracking-[1px]">CONTACT</a>
+				<a href="https://www.jasongreen.biz" class="stf-footer-link transition-colors uppercase tracking-[1px]">PORTFOLIO</a>
 			</div>
 		</div>
 	</footer>
+	</div>
 </Layout>
