@@ -42,112 +42,152 @@ import ContactSection from '../components/ContactSection.astro';
 	<style>
 		.floating-blob {
 			position: absolute;
-			border-radius: 50%;
-			filter: blur(100px);
-			opacity: 0.4;
-			will-change: transform;
-			mix-blend-mode: normal;
+			filter: blur(70px);
+			opacity: 0.55;
+			will-change: transform, border-radius;
 		}
 
 		.blob-1 {
-			width: 500px;
-			height: 500px;
-			background: radial-gradient(circle, rgba(240, 180, 240, 0.7), rgba(240, 180, 240, 0));
-			top: -10%;
-			left: 20%;
-			animation: drift-1 25s ease-in-out infinite;
+			width: 450px;
+			height: 450px;
+			background: #e879f9;
+			top: -8%;
+			left: 15%;
+			animation: drift-1 22s ease-in-out infinite, morph-1 18s ease-in-out infinite;
 		}
 
 		.blob-2 {
-			width: 450px;
-			height: 450px;
-			background: radial-gradient(circle, rgba(160, 210, 240, 0.7), rgba(160, 210, 240, 0));
+			width: 400px;
+			height: 400px;
+			background: #60a5fa;
 			top: 5%;
-			right: -5%;
-			animation: drift-2 30s ease-in-out infinite;
+			right: -3%;
+			animation: drift-2 28s ease-in-out infinite, morph-2 20s ease-in-out infinite;
 		}
 
 		.blob-3 {
-			width: 400px;
-			height: 400px;
-			background: radial-gradient(circle, rgba(180, 230, 200, 0.7), rgba(180, 230, 200, 0));
+			width: 380px;
+			height: 380px;
+			background: #34d399;
 			top: 30%;
-			left: -8%;
-			animation: drift-3 28s ease-in-out infinite;
+			left: -5%;
+			animation: drift-3 25s ease-in-out infinite, morph-3 16s ease-in-out infinite;
 		}
 
 		.blob-4 {
-			width: 550px;
-			height: 550px;
-			background: radial-gradient(circle, rgba(245, 220, 160, 0.6), rgba(245, 220, 160, 0));
+			width: 500px;
+			height: 500px;
+			background: #fbbf24;
 			top: 50%;
-			right: 15%;
-			animation: drift-4 32s ease-in-out infinite;
+			right: 10%;
+			animation: drift-4 30s ease-in-out infinite, morph-4 22s ease-in-out infinite;
 		}
 
 		.blob-5 {
-			width: 380px;
-			height: 380px;
-			background: radial-gradient(circle, rgba(200, 170, 240, 0.6), rgba(200, 170, 240, 0));
-			top: 70%;
-			left: 30%;
-			animation: drift-5 26s ease-in-out infinite;
+			width: 360px;
+			height: 360px;
+			background: #a78bfa;
+			top: 65%;
+			left: 25%;
+			animation: drift-5 24s ease-in-out infinite, morph-5 19s ease-in-out infinite;
 		}
 
 		.blob-6 {
 			width: 420px;
 			height: 420px;
-			background: radial-gradient(circle, rgba(240, 180, 180, 0.5), rgba(240, 180, 180, 0));
-			top: 15%;
-			left: 55%;
-			animation: drift-6 35s ease-in-out infinite;
+			background: #fb7185;
+			top: 12%;
+			left: 50%;
+			animation: drift-6 32s ease-in-out infinite, morph-6 21s ease-in-out infinite;
 		}
 
-		/* Each blob follows a unique orbital path so they overlap and merge */
+		/* Lava-lamp organic shape morphing */
+		@keyframes morph-1 {
+			0%, 100% { border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%; }
+			25% { border-radius: 70% 30% 50% 50% / 30% 65% 35% 70%; }
+			50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+			75% { border-radius: 55% 45% 33% 67% / 70% 35% 65% 30%; }
+		}
+
+		@keyframes morph-2 {
+			0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+			25% { border-radius: 35% 65% 55% 45% / 40% 70% 30% 60%; }
+			50% { border-radius: 55% 45% 65% 35% / 70% 40% 60% 30%; }
+			75% { border-radius: 40% 60% 40% 60% / 35% 55% 45% 65%; }
+		}
+
+		@keyframes morph-3 {
+			0%, 100% { border-radius: 50% 50% 40% 60% / 55% 40% 60% 45%; }
+			33% { border-radius: 65% 35% 60% 40% / 30% 60% 40% 70%; }
+			66% { border-radius: 35% 65% 45% 55% / 60% 35% 65% 40%; }
+		}
+
+		@keyframes morph-4 {
+			0%, 100% { border-radius: 45% 55% 60% 40% / 50% 55% 45% 50%; }
+			20% { border-radius: 70% 30% 35% 65% / 40% 65% 35% 60%; }
+			40% { border-radius: 30% 70% 55% 45% / 65% 35% 65% 35%; }
+			60% { border-radius: 55% 45% 40% 60% / 35% 50% 50% 65%; }
+			80% { border-radius: 40% 60% 65% 35% / 55% 40% 60% 45%; }
+		}
+
+		@keyframes morph-5 {
+			0%, 100% { border-radius: 55% 45% 45% 55% / 40% 60% 40% 60%; }
+			25% { border-radius: 35% 65% 60% 40% / 65% 35% 55% 45%; }
+			50% { border-radius: 65% 35% 35% 65% / 45% 55% 65% 35%; }
+			75% { border-radius: 45% 55% 55% 45% / 55% 45% 35% 65%; }
+		}
+
+		@keyframes morph-6 {
+			0%, 100% { border-radius: 40% 60% 55% 45% / 60% 45% 55% 40%; }
+			33% { border-radius: 60% 40% 35% 65% / 35% 60% 40% 65%; }
+			66% { border-radius: 50% 50% 65% 35% / 55% 35% 65% 45%; }
+		}
+
+		/* Movement paths */
 		@keyframes drift-1 {
 			0%, 100% { transform: translate(0, 0) scale(1); }
-			20% { transform: translate(120px, 80px) scale(1.1); }
+			20% { transform: translate(120px, 80px) scale(1.15); }
 			40% { transform: translate(30px, 160px) scale(0.9); }
-			60% { transform: translate(-80px, 100px) scale(1.05); }
+			60% { transform: translate(-80px, 100px) scale(1.1); }
 			80% { transform: translate(-40px, -30px) scale(0.95); }
 		}
 
 		@keyframes drift-2 {
 			0%, 100% { transform: translate(0, 0) scale(1); }
-			20% { transform: translate(-100px, 60px) scale(0.95); }
-			40% { transform: translate(-160px, 140px) scale(1.08); }
-			60% { transform: translate(-60px, 200px) scale(0.92); }
-			80% { transform: translate(40px, 80px) scale(1.03); }
+			20% { transform: translate(-100px, 60px) scale(0.92); }
+			40% { transform: translate(-160px, 140px) scale(1.12); }
+			60% { transform: translate(-60px, 200px) scale(0.88); }
+			80% { transform: translate(40px, 80px) scale(1.05); }
 		}
 
 		@keyframes drift-3 {
 			0%, 100% { transform: translate(0, 0) scale(1); }
-			25% { transform: translate(140px, -50px) scale(1.06); }
-			50% { transform: translate(200px, 70px) scale(0.94); }
-			75% { transform: translate(60px, 120px) scale(1.02); }
+			25% { transform: translate(140px, -50px) scale(1.1); }
+			50% { transform: translate(200px, 70px) scale(0.9); }
+			75% { transform: translate(60px, 120px) scale(1.05); }
 		}
 
 		@keyframes drift-4 {
 			0%, 100% { transform: translate(0, 0) scale(1); }
-			20% { transform: translate(-80px, -100px) scale(1.08); }
-			40% { transform: translate(-180px, -40px) scale(0.93); }
-			60% { transform: translate(-100px, 80px) scale(1.05); }
-			80% { transform: translate(30px, 40px) scale(0.97); }
+			20% { transform: translate(-80px, -100px) scale(1.12); }
+			40% { transform: translate(-180px, -40px) scale(0.9); }
+			60% { transform: translate(-100px, 80px) scale(1.08); }
+			80% { transform: translate(30px, 40px) scale(0.95); }
 		}
 
 		@keyframes drift-5 {
 			0%, 100% { transform: translate(0, 0) scale(1); }
-			20% { transform: translate(60px, -120px) scale(0.96); }
-			40% { transform: translate(150px, -60px) scale(1.07); }
-			60% { transform: translate(100px, 50px) scale(0.93); }
-			80% { transform: translate(-30px, -40px) scale(1.04); }
+			20% { transform: translate(60px, -120px) scale(0.93); }
+			40% { transform: translate(150px, -60px) scale(1.1); }
+			60% { transform: translate(100px, 50px) scale(0.9); }
+			80% { transform: translate(-30px, -40px) scale(1.06); }
 		}
 
 		@keyframes drift-6 {
 			0%, 100% { transform: translate(0, 0) scale(1); }
-			25% { transform: translate(-120px, 90px) scale(1.05); }
-			50% { transform: translate(-60px, 180px) scale(0.92); }
-			75% { transform: translate(80px, 100px) scale(1.08); }
+			25% { transform: translate(-120px, 90px) scale(1.08); }
+			50% { transform: translate(-60px, 180px) scale(0.9); }
+			75% { transform: translate(80px, 100px) scale(1.12); }
 		}
 
 		/* Reduce motion for accessibility */
