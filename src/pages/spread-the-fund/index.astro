@@ -58,10 +58,15 @@ import Layout from '../../layouts/Layout.astro';
 			border: 1px solid var(--stf-border);
 			overflow: hidden;
 			background: var(--stf-surface);
-			transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.35s ease, border-color 0.3s ease;
+			transition: transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1), box-shadow 0.5s ease, border-color 0.4s ease;
 			will-change: transform;
 			box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 			cursor: pointer;
+			animation: cardFloat 4s ease-in-out infinite;
+		}
+		@keyframes cardFloat {
+			0%, 100% { translate: 0 0; }
+			50% { translate: 0 -6px; }
 		}
 		.screenshot-fan-card:hover {
 			box-shadow: 0 12px 48px rgba(0, 229, 204, 0.15), 0 8px 32px rgba(0, 0, 0, 0.5);
@@ -393,7 +398,7 @@ import Layout from '../../layouts/Layout.astro';
 
 			function layoutFan() {
 				const isMobile = window.innerWidth < 768;
-				const spacing = isMobile ? 0.55 : 0.7;
+				const spacing = isMobile ? 0.42 : 0.52;
 
 				cards.forEach((card, i) => {
 					const pos = i - mid;
@@ -404,6 +409,9 @@ import Layout from '../../layouts/Layout.astro';
 					const z = total - Math.abs(pos);
 
 					restStates[i] = { tx, ty, rot, z };
+
+					// Stagger the float animation so cards bob at different times
+					card.style.animationDelay = `${i * 0.4}s`;
 
 					if (card !== expandedCard) {
 						card.style.transform = `translateX(${tx}px) translateY(${ty}px) rotate(${rot}deg)`;
