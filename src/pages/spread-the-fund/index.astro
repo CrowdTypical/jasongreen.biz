@@ -35,45 +35,51 @@ import Layout from '../../layouts/Layout.astro';
 		.stf-footer-link { color: #556677; }
 		.stf-footer-link:hover { color: #00E5CC; }
 
-		/* Screenshot gallery */
-		.screenshot-card {
+		/* Screenshot fan gallery */
+		.screenshot-fan {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			position: relative;
+			height: 420px;
+			perspective: 1200px;
+			padding: 0 40px;
+		}
+		@media (min-width: 768px) {
+			.screenshot-fan { height: 520px; }
+		}
+		@media (min-width: 1024px) {
+			.screenshot-fan { height: 600px; }
+		}
+		.screenshot-fan-card {
 			position: absolute;
-			inset: 0;
-			transition: transform 0.1s linear, opacity 0.2s ease;
-			will-change: transform, opacity;
+			width: 150px;
+			height: 300px;
 			border: 1px solid var(--stf-border);
 			overflow: hidden;
 			background: var(--stf-surface);
+			transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.4s ease, box-shadow 0.4s ease;
+			will-change: transform, opacity;
+			box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 		}
-		.screenshot-card img {
+		@media (min-width: 768px) {
+			.screenshot-fan-card {
+				width: 200px;
+				height: 400px;
+			}
+		}
+		@media (min-width: 1024px) {
+			.screenshot-fan-card {
+				width: 230px;
+				height: 460px;
+			}
+		}
+		.screenshot-fan-card img {
 			width: 100%;
 			height: 100%;
 			object-fit: cover;
 			object-position: top;
 			display: block;
-		}
-		.screenshot-label {
-			position: absolute;
-			bottom: 0;
-			left: 0;
-			right: 0;
-			padding: 8px 12px;
-			font-size: 10px;
-			font-weight: 700;
-			text-transform: uppercase;
-			letter-spacing: 2px;
-			color: var(--stf-text-secondary);
-			background: linear-gradient(transparent, rgba(10, 14, 20, 0.9));
-		}
-		.screenshot-dot {
-			width: 8px;
-			height: 8px;
-			background: var(--stf-border);
-			transition: background 0.2s ease, transform 0.2s ease;
-		}
-		.screenshot-dot.active {
-			background: var(--stf-primary);
-			transform: scale(1.25);
 		}
 	</style>
 
@@ -126,58 +132,35 @@ import Layout from '../../layouts/Layout.astro';
 	</section>
 
 	<!-- App Screenshots -->
-	<section class="relative overflow-hidden" style="background: var(--stf-surface-deep);">
-		<!-- Scroll runway -->
-		<div id="screenshot-scroll-outer" class="relative" style="height: 500vh;">
-			<!-- Sticky viewport -->
-			<div class="sticky top-0 h-screen overflow-hidden flex flex-col items-center justify-center">
-				<!-- Header -->
-				<div class="text-center mb-8 relative z-10">
-					<p class="text-xs font-bold uppercase tracking-[3px] mb-3" style="color: var(--stf-primary);">APP PREVIEW</p>
-					<h2 class="text-2xl md:text-3xl font-bold uppercase tracking-[4px]" style="color: var(--stf-text);">SEE IT IN ACTION</h2>
-				</div>
+	<section class="py-16 md:py-24 overflow-hidden" style="background: var(--stf-surface-deep);">
+		<div class="max-w-6xl mx-auto">
+			<div class="text-center mb-10 md:mb-14 px-6">
+				<p class="text-xs font-bold uppercase tracking-[3px] mb-3" style="color: var(--stf-primary);">APP PREVIEW</p>
+				<h2 class="text-2xl md:text-3xl font-bold uppercase tracking-[4px]" style="color: var(--stf-text);">SEE IT IN ACTION</h2>
+			</div>
 
-				<!-- Screenshot stack -->
-				<div id="screenshot-stack" class="relative w-[240px] h-[480px] md:w-[280px] md:h-[560px] lg:w-[320px] lg:h-[640px]">
-					<div class="screenshot-card" data-index="0" style="--card-rotate: -6deg; --card-x: -30px;">
-						<img src="/spread-the-fund/screenshots/login.png" alt="Login Screen" loading="lazy" />
-						<span class="screenshot-label">LOGIN</span>
-					</div>
-					<div class="screenshot-card" data-index="1" style="--card-rotate: 4deg; --card-x: 20px;">
-						<img src="/spread-the-fund/screenshots/groups.jpg" alt="Groups Dashboard" loading="lazy" />
-						<span class="screenshot-label">GROUPS</span>
-					</div>
-					<div class="screenshot-card" data-index="2" style="--card-rotate: -3deg; --card-x: -15px;">
-						<img src="/spread-the-fund/screenshots/group-detail.png" alt="Group Detail" loading="lazy" />
-						<span class="screenshot-label">GROUP DETAIL</span>
-					</div>
-					<div class="screenshot-card" data-index="3" style="--card-rotate: 5deg; --card-x: 25px;">
-						<img src="/spread-the-fund/screenshots/bill-detail.jpg" alt="Bill Detail" loading="lazy" />
-						<span class="screenshot-label">BILL DETAIL</span>
-					</div>
-					<div class="screenshot-card" data-index="4" style="--card-rotate: -4deg; --card-x: -20px;">
-						<img src="/spread-the-fund/screenshots/group-settings.jpg" alt="Group Settings" loading="lazy" />
-						<span class="screenshot-label">GROUP SETTINGS</span>
-					</div>
-					<div class="screenshot-card" data-index="5" style="--card-rotate: 3deg; --card-x: 15px;">
-						<img src="/spread-the-fund/screenshots/new-group.png" alt="New Group" loading="lazy" />
-						<span class="screenshot-label">NEW GROUP</span>
-					</div>
-					<div class="screenshot-card" data-index="6" style="--card-rotate: -5deg; --card-x: -25px;">
-						<img src="/spread-the-fund/screenshots/invite.png" alt="Invite Partner" loading="lazy" />
-						<span class="screenshot-label">INVITE</span>
-					</div>
+			<!-- Fan layout -->
+			<div class="screenshot-fan" id="screenshot-fan">
+				<div class="screenshot-fan-card" data-fan="0">
+					<img src="/spread-the-fund/screenshots/new-group.png" alt="New Group" loading="lazy" />
 				</div>
-
-				<!-- Progress dots -->
-				<div id="screenshot-dots" class="flex gap-2 mt-6 relative z-10">
-					<div class="screenshot-dot active" data-dot="0"></div>
-					<div class="screenshot-dot" data-dot="1"></div>
-					<div class="screenshot-dot" data-dot="2"></div>
-					<div class="screenshot-dot" data-dot="3"></div>
-					<div class="screenshot-dot" data-dot="4"></div>
-					<div class="screenshot-dot" data-dot="5"></div>
-					<div class="screenshot-dot" data-dot="6"></div>
+				<div class="screenshot-fan-card" data-fan="1">
+					<img src="/spread-the-fund/screenshots/invite.png" alt="Invite Partner" loading="lazy" />
+				</div>
+				<div class="screenshot-fan-card" data-fan="2">
+					<img src="/spread-the-fund/screenshots/bill-detail.jpg" alt="Bill Detail" loading="lazy" />
+				</div>
+				<div class="screenshot-fan-card" data-fan="3">
+					<img src="/spread-the-fund/screenshots/group-detail.png" alt="Group Detail" loading="lazy" />
+				</div>
+				<div class="screenshot-fan-card" data-fan="4">
+					<img src="/spread-the-fund/screenshots/group-settings.jpg" alt="Group Settings" loading="lazy" />
+				</div>
+				<div class="screenshot-fan-card" data-fan="5">
+					<img src="/spread-the-fund/screenshots/groups.jpg" alt="Groups Dashboard" loading="lazy" />
+				</div>
+				<div class="screenshot-fan-card" data-fan="6">
+					<img src="/spread-the-fund/screenshots/login.png" alt="Login Screen" loading="lazy" />
 				</div>
 			</div>
 		</div>
@@ -382,89 +365,39 @@ import Layout from '../../layouts/Layout.astro';
 	</div>
 
 	<script>
-		// Screenshot scroll gallery
+		// Screenshot fan layout
 		(function () {
-			const outer = document.getElementById('screenshot-scroll-outer');
-			const cards = document.querySelectorAll<HTMLElement>('.screenshot-card');
-			const dots = document.querySelectorAll<HTMLElement>('.screenshot-dot');
-			const totalCards = cards.length;
+			const cards = document.querySelectorAll<HTMLElement>('.screenshot-fan-card');
+			const total = cards.length;
+			if (total === 0) return;
 
-			if (!outer || totalCards === 0) return;
+			const mid = Math.floor(total / 2);
 
-			function updateCards() {
-				const rect = outer!.getBoundingClientRect();
-				const scrollHeight = outer!.offsetHeight - window.innerHeight;
-				const scrolled = Math.max(0, -rect.top);
-				const progress = Math.min(1, Math.max(0, scrolled / scrollHeight));
+			// Rotation & offset config for the fan spread
+			// Cards fan from left (-) to right (+) with center card at 0
+			const rotations = [-12, -8, -4, 0, 4, 8, 12];
+			const offsets =   [-90, -60, -30, 0, 30, 60, 90]; // % of card width
 
-				// Map progress to active card index
-				const activeFloat = progress * (totalCards - 1);
-				const activeIndex = Math.round(activeFloat);
+			function layoutFan() {
+				const isMobile = window.innerWidth < 768;
+				const spacing = isMobile ? 0.55 : 0.7; // overlap factor
 
 				cards.forEach((card, i) => {
-					const distance = i - activeFloat;
-					const absDistance = Math.abs(distance);
+					const pos = i - mid;
+					const rot = rotations[i] || pos * 4;
+					const cardW = card.offsetWidth;
+					const tx = pos * cardW * spacing;
+					const ty = Math.abs(pos) * (isMobile ? 8 : 12); // slight vertical arc
+					const z = total - Math.abs(pos); // center card on top
 
-					// Cards behind (already viewed) sink down and scale down
-					// Cards ahead (upcoming) are stacked below with offset
-					let translateY: number;
-					let scale: number;
-					let opacity: number;
-					let rotate: string;
-					let translateX: number;
-					let zIndex: number;
-
-					if (absDistance < 0.01) {
-						// Active card - front and center
-						translateY = 0;
-						scale = 1;
-						opacity = 1;
-						rotate = '0deg';
-						translateX = 0;
-						zIndex = totalCards + 1;
-					} else if (distance < 0) {
-						// Already passed - fly up and away
-						translateY = distance * 120;
-						scale = Math.max(0.85, 1 - absDistance * 0.08);
-						opacity = Math.max(0, 1 - absDistance * 0.7);
-						const cardRotate = card.style.getPropertyValue('--card-rotate');
-						rotate = cardRotate || '0deg';
-						const cardX = parseFloat(card.style.getPropertyValue('--card-x')) || 0;
-						translateX = cardX * Math.min(1, absDistance);
-						zIndex = totalCards - Math.floor(absDistance);
-					} else {
-						// Upcoming - stacked below with slight offset
-						translateY = Math.min(distance * 12, 60);
-						scale = Math.max(0.92, 1 - distance * 0.03);
-						opacity = Math.max(0.3, 1 - distance * 0.2);
-						rotate = '0deg';
-						translateX = 0;
-						zIndex = totalCards - Math.floor(distance);
-					}
-
-					card.style.transform = `translate(${translateX}px, ${translateY}px) rotate(${rotate}) scale(${scale})`;
-					card.style.opacity = String(opacity);
-					card.style.zIndex = String(zIndex);
-				});
-
-				// Update dots
-				dots.forEach((dot, i) => {
-					dot.classList.toggle('active', i === activeIndex);
+					card.style.transform = `translateX(${tx}px) translateY(${ty}px) rotate(${rot}deg)`;
+					card.style.zIndex = String(z);
+					card.style.opacity = '1';
 				});
 			}
 
-			let ticking = false;
-			window.addEventListener('scroll', () => {
-				if (!ticking) {
-					requestAnimationFrame(() => {
-						updateCards();
-						ticking = false;
-					});
-					ticking = true;
-				}
-			}, { passive: true });
-
-			updateCards();
+			layoutFan();
+			window.addEventListener('resize', layoutFan);
 		})();
 
 		// Page transition handling for STF page
