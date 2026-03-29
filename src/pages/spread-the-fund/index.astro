@@ -127,12 +127,8 @@ import Layout from '../../layouts/Layout.astro';
 			object-fit: contain;
 			border: 1px solid var(--stf-primary);
 			box-shadow: 0 20px 80px rgba(0, 229, 204, 0.15), 0 0 0 1px rgba(0, 229, 204, 0.3);
-			transition: transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.3s ease;
-			opacity: 0;
-		}
-		.screenshot-lightbox.open img {
-			transform: translate(0, 0) scale(1) !important;
-			opacity: 1;
+			transition: transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
+			position: absolute;
 		}
 		@media (min-width: 768px) {
 			.screenshot-fan-card {
@@ -508,41 +504,56 @@ import Layout from '../../layouts/Layout.astro';
 
 					// Get card's position on screen
 					const rect = card.getBoundingClientRect();
-					const vw = window.innerWidth;
-					const vh = window.innerHeight;
 
-					// Calculate where the card center is relative to viewport center
-					const cardCenterX = rect.left + rect.width / 2;
-					const cardCenterY = rect.top + rect.height / 2;
-					const offsetX = cardCenterX - vw / 2;
-					const offsetY = cardCenterY - vh / 2;
-
-					// Scale: how small is the card compared to final image size
-					const targetH = vh * 0.85;
-					const scaleRatio = rect.height / targetH;
-
+					// Position image exactly where the card is
 					lightboxImg.src = img.src;
 					lightboxImg.alt = img.alt;
-					// Start at the card's position and size
-					lightboxImg.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${scaleRatio})`;
-					lightboxImg.style.opacity = '1';
+					lightboxImg.style.transition = 'none';
+					lightboxImg.style.left = rect.left + 'px';
+					lightboxImg.style.top = rect.top + 'px';
+					lightboxImg.style.width = rect.width + 'px';
+					lightboxImg.style.height = rect.height + 'px';
+					lightboxImg.style.maxHeight = 'none';
+					lightboxImg.style.maxWidth = 'none';
+					lightboxImg.style.transform = 'none';
 
-					// Trigger reflow then animate to center
-					requestAnimationFrame(() => {
-						lightbox.classList.add('open');
-					});
+					// Force reflow so browser paints the starting position
+					lightboxImg.offsetHeight;
+
+					// Now animate to full size centered
+					const vw = window.innerWidth;
+					const vh = window.innerHeight;
+					const finalH = vh * 0.88;
+					const aspectRatio = rect.width / rect.height;
+					const finalW = finalH * aspectRatio;
+					const finalLeft = (vw - finalW) / 2;
+					const finalTop = (vh - finalH) / 2;
+
+					lightboxImg.style.transition = 'left 0.45s cubic-bezier(0.22, 0.61, 0.36, 1), top 0.45s cubic-bezier(0.22, 0.61, 0.36, 1), width 0.45s cubic-bezier(0.22, 0.61, 0.36, 1), height 0.45s cubic-bezier(0.22, 0.61, 0.36, 1)';
+					lightboxImg.style.left = finalLeft + 'px';
+					lightboxImg.style.top = finalTop + 'px';
+					lightboxImg.style.width = finalW + 'px';
+					lightboxImg.style.height = finalH + 'px';
+					lightbox.classList.add('open');
 				});
 			});
 
-			// Close lightbox on click
+			// Close lightbox — zoom back to nothing
 			const lightbox = document.getElementById('screenshot-lightbox');
 			if (lightbox) {
 				lightbox.addEventListener('click', () => {
+					const lbImg = document.getElementById('lightbox-img') as HTMLImageElement;
+					if (lbImg) {
+						lbImg.style.transition = 'left 0.35s ease-in, top 0.35s ease-in, width 0.35s ease-in, height 0.35s ease-in, opacity 0.3s ease';
+						lbImg.style.opacity = '0';
+						lbImg.style.width = '0';
+						lbImg.style.height = '0';
+						lbImg.style.left = window.innerWidth / 2 + 'px';
+						lbImg.style.top = window.innerHeight / 2 + 'px';
+					}
 					lightbox.classList.remove('open');
-					// Reset after transition
 					setTimeout(() => {
-						const lbImg = document.getElementById('lightbox-img') as HTMLImageElement;
-						if (lbImg) lbImg.style.opacity = '0';
+						if (lbImg) lbImg.style.opacity = '1';
 					}, 400);
 				});
 			}
