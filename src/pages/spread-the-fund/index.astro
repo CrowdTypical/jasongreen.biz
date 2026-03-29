@@ -58,9 +58,19 @@ import Layout from '../../layouts/Layout.astro';
 			border: 1px solid var(--stf-border);
 			overflow: hidden;
 			background: var(--stf-surface);
-			transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.4s ease, box-shadow 0.4s ease;
-			will-change: transform, opacity;
+			transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.35s ease, border-color 0.3s ease;
+			will-change: transform;
 			box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+			cursor: pointer;
+		}
+		.screenshot-fan-card:hover {
+			box-shadow: 0 12px 48px rgba(0, 229, 204, 0.15), 0 8px 32px rgba(0, 0, 0, 0.5);
+			border-color: rgba(0, 229, 204, 0.3);
+		}
+		.screenshot-fan-card.expanded {
+			z-index: 100 !important;
+			box-shadow: 0 20px 60px rgba(0, 229, 204, 0.2), 0 12px 40px rgba(0, 0, 0, 0.6);
+			border-color: var(--stf-primary);
 		}
 		@media (min-width: 768px) {
 			.screenshot-fan-card {
@@ -80,6 +90,7 @@ import Layout from '../../layouts/Layout.astro';
 			object-fit: cover;
 			object-position: top;
 			display: block;
+			pointer-events: none;
 		}
 	</style>
 
@@ -142,25 +153,25 @@ import Layout from '../../layouts/Layout.astro';
 			<!-- Fan layout -->
 			<div class="screenshot-fan" id="screenshot-fan">
 				<div class="screenshot-fan-card" data-fan="0">
-					<img src="/spread-the-fund/screenshots/new-group.png" alt="New Group" loading="lazy" />
+					<img src="/spread-the-fund/screenshots/new-group.jpg" alt="New Group" loading="lazy" />
 				</div>
 				<div class="screenshot-fan-card" data-fan="1">
-					<img src="/spread-the-fund/screenshots/invite.png" alt="Invite Partner" loading="lazy" />
+					<img src="/spread-the-fund/screenshots/add-partner.jpg" alt="Add Partner" loading="lazy" />
 				</div>
 				<div class="screenshot-fan-card" data-fan="2">
-					<img src="/spread-the-fund/screenshots/bill-detail.jpg" alt="Bill Detail" loading="lazy" />
-				</div>
-				<div class="screenshot-fan-card" data-fan="3">
-					<img src="/spread-the-fund/screenshots/group-detail.png" alt="Group Detail" loading="lazy" />
-				</div>
-				<div class="screenshot-fan-card" data-fan="4">
-					<img src="/spread-the-fund/screenshots/group-settings.jpg" alt="Group Settings" loading="lazy" />
-				</div>
-				<div class="screenshot-fan-card" data-fan="5">
 					<img src="/spread-the-fund/screenshots/groups.jpg" alt="Groups Dashboard" loading="lazy" />
 				</div>
+				<div class="screenshot-fan-card" data-fan="3">
+					<img src="/spread-the-fund/screenshots/login.jpg" alt="Login Screen" loading="lazy" />
+				</div>
+				<div class="screenshot-fan-card" data-fan="4">
+					<img src="/spread-the-fund/screenshots/group-activity.jpg" alt="Group Activity" loading="lazy" />
+				</div>
+				<div class="screenshot-fan-card" data-fan="5">
+					<img src="/spread-the-fund/screenshots/bill-edit.jpg" alt="Bill Edit" loading="lazy" />
+				</div>
 				<div class="screenshot-fan-card" data-fan="6">
-					<img src="/spread-the-fund/screenshots/login.png" alt="Login Screen" loading="lazy" />
+					<img src="/spread-the-fund/screenshots/group-details.jpg" alt="Group Details" loading="lazy" />
 				</div>
 			</div>
 		</div>
@@ -365,39 +376,94 @@ import Layout from '../../layouts/Layout.astro';
 	</div>
 
 	<script>
-		// Screenshot fan layout
+		// Screenshot fan layout with hover/click interactivity
 		(function () {
+			const fan = document.getElementById('screenshot-fan');
 			const cards = document.querySelectorAll<HTMLElement>('.screenshot-fan-card');
 			const total = cards.length;
-			if (total === 0) return;
+			if (!fan || total === 0) return;
 
 			const mid = Math.floor(total / 2);
-
-			// Rotation & offset config for the fan spread
-			// Cards fan from left (-) to right (+) with center card at 0
 			const rotations = [-12, -8, -4, 0, 4, 8, 12];
-			const offsets =   [-90, -60, -30, 0, 30, 60, 90]; // % of card width
+
+			// Store each card's resting transform
+			type CardState = { tx: number; ty: number; rot: number; z: number };
+			const restStates: CardState[] = [];
+			let expandedCard: HTMLElement | null = null;
 
 			function layoutFan() {
 				const isMobile = window.innerWidth < 768;
-				const spacing = isMobile ? 0.55 : 0.7; // overlap factor
+				const spacing = isMobile ? 0.55 : 0.7;
 
 				cards.forEach((card, i) => {
 					const pos = i - mid;
-					const rot = rotations[i] || pos * 4;
+					const rot = rotations[i] ?? pos * 4;
 					const cardW = card.offsetWidth;
 					const tx = pos * cardW * spacing;
-					const ty = Math.abs(pos) * (isMobile ? 8 : 12); // slight vertical arc
-					const z = total - Math.abs(pos); // center card on top
+					const ty = Math.abs(pos) * (isMobile ? 8 : 12);
+					const z = total - Math.abs(pos);
 
-					card.style.transform = `translateX(${tx}px) translateY(${ty}px) rotate(${rot}deg)`;
-					card.style.zIndex = String(z);
-					card.style.opacity = '1';
+					restStates[i] = { tx, ty, rot, z };
+
+					if (card !== expandedCard) {
+						card.style.transform = `translateX(${tx}px) translateY(${ty}px) rotate(${rot}deg)`;
+						card.style.zIndex = String(z);
+					}
 				});
 			}
 
+			// Hover: lift card up & remove rotation
+			cards.forEach((card, i) => {
+				card.addEventListener('mouseenter', () => {
+					if (card === expandedCard) return;
+					const s = restStates[i];
+					if (!s) return;
+					card.style.transform = `translateX(${s.tx}px) translateY(${s.ty - 20}px) rotate(${s.rot * 0.3}deg) scale(1.05)`;
+					card.style.zIndex = String(total + 1);
+				});
+
+				card.addEventListener('mouseleave', () => {
+					if (card === expandedCard) return;
+					const s = restStates[i];
+					if (!s) return;
+					card.style.transform = `translateX(${s.tx}px) translateY(${s.ty}px) rotate(${s.rot}deg)`;
+					card.style.zIndex = String(s.z);
+				});
+
+				// Click: expand to center, larger
+				card.addEventListener('click', (e) => {
+					e.stopPropagation();
+					if (expandedCard === card) {
+						collapseCard();
+						return;
+					}
+					collapseCard();
+					expandedCard = card;
+					card.classList.add('expanded');
+					card.style.transform = 'translateX(0) translateY(-10px) rotate(0deg) scale(1.35)';
+				});
+			});
+
+			function collapseCard() {
+				if (!expandedCard) return;
+				const idx = Array.from(cards).indexOf(expandedCard);
+				const s = restStates[idx];
+				if (s) {
+					expandedCard.style.transform = `translateX(${s.tx}px) translateY(${s.ty}px) rotate(${s.rot}deg)`;
+					expandedCard.style.zIndex = String(s.z);
+				}
+				expandedCard.classList.remove('expanded');
+				expandedCard = null;
+			}
+
+			// Click outside fan to collapse
+			document.addEventListener('click', () => collapseCard());
+
 			layoutFan();
-			window.addEventListener('resize', layoutFan);
+			window.addEventListener('resize', () => {
+				collapseCard();
+				layoutFan();
+			});
 		})();
 
 		// Page transition handling for STF page
