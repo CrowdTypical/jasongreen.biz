@@ -1,8 +1,8 @@
-﻿---
+---
 import Layout from '../../layouts/Layout.astro';
 ---
 
-<Layout title="SPREAD THE FUND â€” Split Bills in Real-Time">
+<Layout title="SPREAD THE FUNDS — Split Bills in Real-Time">
 	<style>
 		@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
 		:root {
@@ -34,6 +34,47 @@ import Layout from '../../layouts/Layout.astro';
 		.stf-card:hover { border-color: #00E5CC; }
 		.stf-footer-link { color: #556677; }
 		.stf-footer-link:hover { color: #00E5CC; }
+
+		/* Screenshot gallery */
+		.screenshot-card {
+			position: absolute;
+			inset: 0;
+			transition: transform 0.1s linear, opacity 0.2s ease;
+			will-change: transform, opacity;
+			border: 1px solid var(--stf-border);
+			overflow: hidden;
+			background: var(--stf-surface);
+		}
+		.screenshot-card img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: top;
+			display: block;
+		}
+		.screenshot-label {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			padding: 8px 12px;
+			font-size: 10px;
+			font-weight: 700;
+			text-transform: uppercase;
+			letter-spacing: 2px;
+			color: var(--stf-text-secondary);
+			background: linear-gradient(transparent, rgba(10, 14, 20, 0.9));
+		}
+		.screenshot-dot {
+			width: 8px;
+			height: 8px;
+			background: var(--stf-border);
+			transition: background 0.2s ease, transform 0.2s ease;
+		}
+		.screenshot-dot.active {
+			background: var(--stf-primary);
+			transform: scale(1.25);
+		}
 	</style>
 
 	<div class="stf-page min-h-screen">
@@ -41,8 +82,8 @@ import Layout from '../../layouts/Layout.astro';
 	<nav class="fixed top-0 left-0 right-0 z-50 border-b" style="background: var(--stf-surface-alt); border-color: var(--stf-border);">
 		<div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
 			<a href="/spread-the-fund" class="flex items-center gap-3">
-				<img src="/spread-the-fund/spreadthefund.svg" alt="Spread the Fund" class="w-7 h-7" />
-				<span class="text-sm font-bold uppercase tracking-[4px]" style="color: var(--stf-text);">SPREAD THE FUND</span>
+				<img src="/spread-the-fund/spreadthefund.svg" alt="Spread the Funds" class="w-7 h-7" />
+				<span class="text-sm font-bold uppercase tracking-[4px]" style="color: var(--stf-text);">SPREAD THE FUNDS</span>
 			</a>
 			<div class="flex items-center gap-6">
 				<a href="#features" class="hidden sm:inline text-xs font-bold uppercase tracking-[2px] stf-nav-link transition-colors">FEATURES</a>
@@ -59,19 +100,19 @@ import Layout from '../../layouts/Layout.astro';
 	<section class="relative min-h-[80vh] flex items-center justify-center pt-16" style="background: var(--stf-bg);">
 		<div class="relative z-10 text-center px-6 max-w-3xl mx-auto">
 			<div class="flex justify-center mb-8">
-				<img src="/spread-the-fund/app_icon_transparent.png" alt="Spread the Fund icon" class="w-20 h-20 md:w-24 md:h-24" />
+				<img src="/spread-the-fund/app_icon_transparent.png" alt="Spread the Funds icon" class="w-20 h-20 md:w-24 md:h-24" />
 			</div>
 			<div class="inline-block px-4 py-1.5 text-xs font-bold uppercase tracking-[3px] border mb-8" style="color: var(--stf-primary); border-color: var(--stf-primary); background: rgba(0, 229, 204, 0.08);">
 				ANDROID APP
 			</div>
 			<h1 class="text-3xl md:text-5xl lg:text-6xl font-bold uppercase tracking-[4px] leading-tight mb-6">
-				<span class="stf-gradient-text">SPREAD THE FUND</span>
+				<span class="stf-gradient-text">SPREAD THE FUNDS</span>
 			</h1>
 			<p class="text-base md:text-lg uppercase tracking-[3px] font-bold mb-4" style="color: var(--stf-text-secondary);">
 				SPLIT BILLS IN REAL-TIME
 			</p>
 			<p class="text-sm md:text-base leading-relaxed max-w-lg mx-auto mb-10" style="color: var(--stf-text-dim);">
-				A bill-splitting app with real-time updates between users. Create groups, add bills, adjust splits, and settle up â€” all synced instantly via Firebase.
+				A bill-splitting app with real-time updates between users. Create groups, add bills, adjust splits, and settle up — all synced instantly via Firebase.
 			</p>
 			<div class="flex flex-col sm:flex-row items-center justify-center gap-4">
 				<a href="#features" class="px-8 py-3 font-bold text-xs uppercase tracking-[2px] stf-btn-primary transition-opacity">
@@ -84,129 +125,65 @@ import Layout from '../../layouts/Layout.astro';
 		</div>
 	</section>
 
-	<!-- App Demo -->
-	<section class="py-16 md:py-20 px-6 md:px-16" style="background: var(--stf-surface-deep);">
-		<div class="max-w-5xl mx-auto">
-			<div class="text-center mb-12">
-				<p class="text-xs font-bold uppercase tracking-[3px] mb-3" style="color: var(--stf-primary);">APP PREVIEW</p>
-				<h2 class="text-2xl md:text-3xl font-bold uppercase tracking-[4px]" style="color: var(--stf-text);">SEE IT IN ACTION</h2>
-			</div>
+	<!-- App Screenshots -->
+	<section class="relative overflow-hidden" style="background: var(--stf-surface-deep);">
+		<!-- Scroll runway -->
+		<div id="screenshot-scroll-outer" class="relative" style="height: 500vh;">
+			<!-- Sticky viewport -->
+			<div class="sticky top-0 h-screen overflow-hidden flex flex-col items-center justify-center">
+				<!-- Header -->
+				<div class="text-center mb-8 relative z-10">
+					<p class="text-xs font-bold uppercase tracking-[3px] mb-3" style="color: var(--stf-primary);">APP PREVIEW</p>
+					<h2 class="text-2xl md:text-3xl font-bold uppercase tracking-[4px]" style="color: var(--stf-text);">SEE IT IN ACTION</h2>
+				</div>
 
-			<div class="grid md:grid-cols-3 gap-6">
-				<!-- Screen 1: Groups/Dashboard -->
-				<div class="border overflow-hidden stf-card" style="border-color: var(--stf-border);">
-					<div class="px-4 py-3 border-b" style="background: var(--stf-surface-alt); border-color: var(--stf-border);">
-						<span class="text-xs font-bold uppercase tracking-[2px]" style="color: var(--stf-text-secondary);">GROUPS</span>
+				<!-- Screenshot stack -->
+				<div id="screenshot-stack" class="relative w-[240px] h-[480px] md:w-[280px] md:h-[560px] lg:w-[320px] lg:h-[640px]">
+					<div class="screenshot-card" data-index="0" style="--card-rotate: -6deg; --card-x: -30px;">
+						<img src="/spread-the-fund/screenshots/login.png" alt="Login Screen" loading="lazy" />
+						<span class="screenshot-label">LOGIN</span>
 					</div>
-					<div class="p-4 space-y-3">
-						<div class="p-3 border" style="background: var(--stf-surface-deep); border-color: var(--stf-border);">
-							<p class="text-xs font-bold uppercase tracking-[2px] mb-1" style="color: var(--stf-text-dim);">TOTAL BALANCE</p>
-							<p class="text-2xl font-bold" style="color: var(--stf-primary);">$127.50</p>
-							<p class="text-xs mt-1" style="color: var(--stf-text-dim);">YOU'RE OWED</p>
-						</div>
-						<div class="p-3 border flex items-center justify-between" style="background: var(--stf-surface-deep); border-color: var(--stf-border);">
-							<div>
-								<p class="text-sm font-bold" style="color: var(--stf-text);">HOUSEMATES</p>
-								<p class="text-xs" style="color: var(--stf-text-dim);">3 MEMBERS</p>
-							</div>
-							<span class="text-sm font-bold" style="color: var(--stf-primary);">+$85.00</span>
-						</div>
-						<div class="p-3 border flex items-center justify-between" style="background: var(--stf-surface-deep); border-color: var(--stf-border);">
-							<div>
-								<p class="text-sm font-bold" style="color: var(--stf-text);">TRIP â€” VANCOUVER</p>
-								<p class="text-xs" style="color: var(--stf-text-dim);">5 MEMBERS</p>
-							</div>
-							<span class="text-sm font-bold" style="color: var(--stf-negative);">-$42.50</span>
-						</div>
-						<div class="p-3 border flex items-center justify-between" style="background: var(--stf-surface-deep); border-color: var(--stf-border);">
-							<div>
-								<p class="text-sm font-bold" style="color: var(--stf-text);">COUPLE</p>
-								<p class="text-xs" style="color: var(--stf-text-dim);">2 MEMBERS</p>
-							</div>
-							<span class="text-sm font-bold" style="color: var(--stf-primary);">+$85.00</span>
-						</div>
+					<div class="screenshot-card" data-index="1" style="--card-rotate: 4deg; --card-x: 20px;">
+						<img src="/spread-the-fund/screenshots/groups.jpg" alt="Groups Dashboard" loading="lazy" />
+						<span class="screenshot-label">GROUPS</span>
+					</div>
+					<div class="screenshot-card" data-index="2" style="--card-rotate: -3deg; --card-x: -15px;">
+						<img src="/spread-the-fund/screenshots/group-detail.png" alt="Group Detail" loading="lazy" />
+						<span class="screenshot-label">GROUP DETAIL</span>
+					</div>
+					<div class="screenshot-card" data-index="3" style="--card-rotate: 5deg; --card-x: 25px;">
+						<img src="/spread-the-fund/screenshots/bill-detail.jpg" alt="Bill Detail" loading="lazy" />
+						<span class="screenshot-label">BILL DETAIL</span>
+					</div>
+					<div class="screenshot-card" data-index="4" style="--card-rotate: -4deg; --card-x: -20px;">
+						<img src="/spread-the-fund/screenshots/group-settings.jpg" alt="Group Settings" loading="lazy" />
+						<span class="screenshot-label">GROUP SETTINGS</span>
+					</div>
+					<div class="screenshot-card" data-index="5" style="--card-rotate: 3deg; --card-x: 15px;">
+						<img src="/spread-the-fund/screenshots/new-group.png" alt="New Group" loading="lazy" />
+						<span class="screenshot-label">NEW GROUP</span>
+					</div>
+					<div class="screenshot-card" data-index="6" style="--card-rotate: -5deg; --card-x: -25px;">
+						<img src="/spread-the-fund/screenshots/invite.png" alt="Invite Partner" loading="lazy" />
+						<span class="screenshot-label">INVITE</span>
 					</div>
 				</div>
 
-				<!-- Screen 2: Bill Detail -->
-				<div class="border overflow-hidden stf-card" style="border-color: var(--stf-border);">
-					<div class="px-4 py-3 border-b" style="background: var(--stf-surface-alt); border-color: var(--stf-border);">
-						<span class="text-xs font-bold uppercase tracking-[2px]" style="color: var(--stf-text-secondary);">BILL DETAIL</span>
-					</div>
-					<div class="p-4 space-y-4">
-						<div class="text-center pb-3 border-b" style="border-color: var(--stf-border);">
-							<p class="text-xs font-bold uppercase tracking-[2px] mb-2" style="color: var(--stf-text-dim);">ðŸ• FOOD</p>
-							<p class="text-3xl font-bold" style="color: var(--stf-text);">$64.00</p>
-							<p class="text-xs mt-1" style="color: var(--stf-text-dim);">DINNER AT KING'S</p>
-						</div>
-						<div>
-							<p class="text-xs font-bold uppercase tracking-[2px] mb-3" style="color: var(--stf-text-secondary);">SPLIT BREAKDOWN</p>
-							<div class="space-y-2">
-								<div class="flex items-center justify-between p-2 border" style="background: var(--stf-surface-deep); border-color: var(--stf-border);">
-									<div class="flex items-center gap-2">
-										<div class="w-6 h-6 flex items-center justify-center text-xs font-bold" style="background: rgba(0, 229, 204, 0.15); color: var(--stf-primary);">J</div>
-										<span class="text-xs font-bold" style="color: var(--stf-text);">JASON</span>
-										<span class="text-xs" style="color: var(--stf-text-dim);">PAID</span>
-									</div>
-									<span class="text-xs font-bold" style="color: var(--stf-primary);">$32.00</span>
-								</div>
-								<div class="flex items-center justify-between p-2 border" style="background: var(--stf-surface-deep); border-color: var(--stf-border);">
-									<div class="flex items-center gap-2">
-										<div class="w-6 h-6 flex items-center justify-center text-xs font-bold" style="background: rgba(255, 76, 94, 0.15); color: var(--stf-negative);">A</div>
-										<span class="text-xs font-bold" style="color: var(--stf-text);">ALEX</span>
-										<span class="text-xs" style="color: var(--stf-text-dim);">OWES</span>
-									</div>
-									<span class="text-xs font-bold" style="color: var(--stf-negative);">$32.00</span>
-								</div>
-							</div>
-						</div>
-						<div class="p-2 border" style="background: var(--stf-surface-deep); border-color: var(--stf-border);">
-							<p class="text-xs" style="color: var(--stf-text-dim);">ðŸ“ Split the dinner 50/50</p>
-						</div>
-					</div>
-				</div>
-
-				<!-- Screen 3: Add Bill -->
-				<div class="border overflow-hidden stf-card" style="border-color: var(--stf-border);">
-					<div class="px-4 py-3 border-b" style="background: var(--stf-surface-alt); border-color: var(--stf-border);">
-						<span class="text-xs font-bold uppercase tracking-[2px]" style="color: var(--stf-text-secondary);">ADD BILL</span>
-					</div>
-					<div class="p-4 space-y-4">
-						<div>
-							<label class="block text-xs font-bold uppercase tracking-[2px] mb-2" style="color: var(--stf-text-secondary);">BILL NAME</label>
-							<div class="border px-3 py-2 text-sm" style="background: var(--stf-surface-deep); border-color: var(--stf-border); color: var(--stf-text);">Groceries</div>
-						</div>
-						<div>
-							<label class="block text-xs font-bold uppercase tracking-[2px] mb-2" style="color: var(--stf-text-secondary);">AMOUNT</label>
-							<div class="border px-3 py-2 text-sm" style="background: var(--stf-surface-deep); border-color: var(--stf-border); color: var(--stf-text);">$48.75</div>
-						</div>
-						<div>
-							<label class="block text-xs font-bold uppercase tracking-[2px] mb-2" style="color: var(--stf-text-secondary);">CATEGORY</label>
-							<div class="grid grid-cols-4 gap-2">
-								<div class="p-2 border text-center text-xs" style="border-color: var(--stf-primary); color: var(--stf-primary); background: rgba(0, 229, 204, 0.08);">ðŸ›’</div>
-								<div class="p-2 border text-center text-xs" style="border-color: var(--stf-border); color: var(--stf-text-dim);">ðŸ•</div>
-								<div class="p-2 border text-center text-xs" style="border-color: var(--stf-border); color: var(--stf-text-dim);">ðŸš—</div>
-								<div class="p-2 border text-center text-xs" style="border-color: var(--stf-border); color: var(--stf-text-dim);">ðŸŽ¬</div>
-							</div>
-						</div>
-						<div>
-							<label class="block text-xs font-bold uppercase tracking-[2px] mb-2" style="color: var(--stf-text-secondary);">SPLIT</label>
-							<div class="flex items-center gap-3">
-								<span class="text-xs font-bold" style="color: var(--stf-text);">50%</span>
-								<div class="flex-1 h-1 relative" style="background: var(--stf-border);">
-									<div class="absolute top-0 left-0 h-full" style="width: 50%; background: var(--stf-primary);"></div>
-								</div>
-								<span class="text-xs font-bold" style="color: var(--stf-text);">50%</span>
-							</div>
-						</div>
-						<button class="w-full py-2.5 font-bold text-xs uppercase tracking-[2px] stf-btn-primary">ADD BILL</button>
-					</div>
+				<!-- Progress dots -->
+				<div id="screenshot-dots" class="flex gap-2 mt-6 relative z-10">
+					<div class="screenshot-dot active" data-dot="0"></div>
+					<div class="screenshot-dot" data-dot="1"></div>
+					<div class="screenshot-dot" data-dot="2"></div>
+					<div class="screenshot-dot" data-dot="3"></div>
+					<div class="screenshot-dot" data-dot="4"></div>
+					<div class="screenshot-dot" data-dot="5"></div>
+					<div class="screenshot-dot" data-dot="6"></div>
 				</div>
 			</div>
 		</div>
 	</section>
 
-	<!-- Features -->
+		<!-- Features -->
 	<section id="features" class="py-16 md:py-20 px-6 md:px-16" style="background: var(--stf-bg);">
 		<div class="max-w-5xl mx-auto">
 			<div class="text-center mb-12">
@@ -217,7 +194,7 @@ import Layout from '../../layouts/Layout.astro';
 			<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
 				<div class="p-6 border stf-card">
 					<div class="w-10 h-10 flex items-center justify-center mb-4 border" style="border-color: var(--stf-primary); background: rgba(0, 229, 204, 0.08);">
-						<span class="text-lg">âš¡</span>
+						<span class="text-lg">⚡</span>
 					</div>
 					<h3 class="text-xs font-bold uppercase tracking-[2px] mb-2" style="color: var(--stf-text);">REAL-TIME SYNC</h3>
 					<p class="text-[13px] leading-relaxed" style="color: var(--stf-text-dim);">Bills sync instantly between all group members via Firebase. Everyone sees updates the moment they happen.</p>
@@ -225,7 +202,7 @@ import Layout from '../../layouts/Layout.astro';
 
 				<div class="p-6 border stf-card">
 					<div class="w-10 h-10 flex items-center justify-center mb-4 border" style="border-color: var(--stf-primary); background: rgba(0, 229, 204, 0.08);">
-						<span class="text-lg">ðŸ‘¥</span>
+						<span class="text-lg">👥</span>
 					</div>
 					<h3 class="text-xs font-bold uppercase tracking-[2px] mb-2" style="color: var(--stf-text);">MULTIPLE GROUPS</h3>
 					<p class="text-[13px] leading-relaxed" style="color: var(--stf-text-dim);">Create separate groups for housemates, trips, couples, or any situation. Keep your bills organized.</p>
@@ -233,7 +210,7 @@ import Layout from '../../layouts/Layout.astro';
 
 				<div class="p-6 border stf-card">
 					<div class="w-10 h-10 flex items-center justify-center mb-4 border" style="border-color: var(--stf-primary); background: rgba(0, 229, 204, 0.08);">
-						<span class="text-lg">ðŸŽ¨</span>
+						<span class="text-lg">🎨</span>
 					</div>
 					<h3 class="text-xs font-bold uppercase tracking-[2px] mb-2" style="color: var(--stf-text);">CUSTOM COLOURS</h3>
 					<p class="text-[13px] leading-relaxed" style="color: var(--stf-text-dim);">12 accent colours to personalise each group. Make it yours.</p>
@@ -241,7 +218,7 @@ import Layout from '../../layouts/Layout.astro';
 
 				<div class="p-6 border stf-card">
 					<div class="w-10 h-10 flex items-center justify-center mb-4 border" style="border-color: var(--stf-primary); background: rgba(0, 229, 204, 0.08);">
-						<span class="text-lg">ðŸŽšï¸</span>
+						<span class="text-lg">🎚ï¸</span>
 					</div>
 					<h3 class="text-xs font-bold uppercase tracking-[2px] mb-2" style="color: var(--stf-text);">SMART SPLIT SLIDER</h3>
 					<p class="text-[13px] leading-relaxed" style="color: var(--stf-text-dim);">Adjust the split percentage with an intuitive slider. No more manual math.</p>
@@ -249,7 +226,7 @@ import Layout from '../../layouts/Layout.astro';
 
 				<div class="p-6 border stf-card">
 					<div class="w-10 h-10 flex items-center justify-center mb-4 border" style="border-color: var(--stf-primary); background: rgba(0, 229, 204, 0.08);">
-						<span class="text-lg">âœ…</span>
+						<span class="text-lg">✅</span>
 					</div>
 					<h3 class="text-xs font-bold uppercase tracking-[2px] mb-2" style="color: var(--stf-text);">SETTLEMENT TRACKING</h3>
 					<p class="text-[13px] leading-relaxed" style="color: var(--stf-text-dim);">Record payments and track who owes whom. Mark debts as settled and keep a clean ledger.</p>
@@ -257,7 +234,7 @@ import Layout from '../../layouts/Layout.astro';
 
 				<div class="p-6 border stf-card">
 					<div class="w-10 h-10 flex items-center justify-center mb-4 border" style="border-color: var(--stf-primary); background: rgba(0, 229, 204, 0.08);">
-						<span class="text-lg">ðŸ”’</span>
+						<span class="text-lg">🔒</span>
 					</div>
 					<h3 class="text-xs font-bold uppercase tracking-[2px] mb-2" style="color: var(--stf-text);">PRIVACY FIRST</h3>
 					<p class="text-[13px] leading-relaxed" style="color: var(--stf-text-dim);">No analytics, no ads, no tracking. Your data stays yours. Delete everything at any time.</p>
@@ -267,27 +244,27 @@ import Layout from '../../layouts/Layout.astro';
 			<!-- Additional features -->
 			<div class="mt-12 grid sm:grid-cols-2 gap-3">
 				<div class="flex items-center gap-3 p-3 border" style="background: var(--stf-surface-deep); border-color: var(--stf-border);">
-					<span style="color: var(--stf-primary);">â€º</span>
+					<span style="color: var(--stf-primary);">›</span>
 					<span class="text-xs font-bold uppercase tracking-[1px]" style="color: var(--stf-text-secondary);">GOOGLE SIGN-IN</span>
 				</div>
 				<div class="flex items-center gap-3 p-3 border" style="background: var(--stf-surface-deep); border-color: var(--stf-border);">
-					<span style="color: var(--stf-primary);">â€º</span>
+					<span style="color: var(--stf-primary);">›</span>
 					<span class="text-xs font-bold uppercase tracking-[1px]" style="color: var(--stf-text-secondary);">CATEGORY ICONS</span>
 				</div>
 				<div class="flex items-center gap-3 p-3 border" style="background: var(--stf-surface-deep); border-color: var(--stf-border);">
-					<span style="color: var(--stf-primary);">â€º</span>
+					<span style="color: var(--stf-primary);">›</span>
 					<span class="text-xs font-bold uppercase tracking-[1px]" style="color: var(--stf-text-secondary);">BILL NOTES</span>
 				</div>
 				<div class="flex items-center gap-3 p-3 border" style="background: var(--stf-surface-deep); border-color: var(--stf-border);">
-					<span style="color: var(--stf-primary);">â€º</span>
+					<span style="color: var(--stf-primary);">›</span>
 					<span class="text-xs font-bold uppercase tracking-[1px]" style="color: var(--stf-text-secondary);">EMAIL INVITATIONS</span>
 				</div>
 				<div class="flex items-center gap-3 p-3 border" style="background: var(--stf-surface-deep); border-color: var(--stf-border);">
-					<span style="color: var(--stf-primary);">â€º</span>
+					<span style="color: var(--stf-primary);">›</span>
 					<span class="text-xs font-bold uppercase tracking-[1px]" style="color: var(--stf-text-secondary);">DATA DELETION</span>
 				</div>
 				<div class="flex items-center gap-3 p-3 border" style="background: var(--stf-surface-deep); border-color: var(--stf-border);">
-					<span style="color: var(--stf-primary);">â€º</span>
+					<span style="color: var(--stf-primary);">›</span>
 					<span class="text-xs font-bold uppercase tracking-[1px]" style="color: var(--stf-text-secondary);">OPEN SOURCE</span>
 				</div>
 			</div>
@@ -355,17 +332,17 @@ import Layout from '../../layouts/Layout.astro';
 
 			<div class="grid sm:grid-cols-3 gap-6">
 				<a href="/spread-the-fund/privacy" class="block p-6 border stf-card transition-all">
-					<div class="text-2xl mb-3">ðŸ›¡ï¸</div>
+					<div class="text-2xl mb-3">🛡ï¸</div>
 					<h3 class="text-xs font-bold uppercase tracking-[2px] mb-2" style="color: var(--stf-text);">PRIVACY POLICY</h3>
 					<p class="text-xs" style="color: var(--stf-text-dim);">How we collect, use, and protect your information.</p>
 				</a>
 				<a href="/spread-the-fund/terms" class="block p-6 border stf-card transition-all">
-					<div class="text-2xl mb-3">ðŸ“„</div>
+					<div class="text-2xl mb-3">📄</div>
 					<h3 class="text-xs font-bold uppercase tracking-[2px] mb-2" style="color: var(--stf-text);">TERMS & CONDITIONS</h3>
-					<p class="text-xs" style="color: var(--stf-text-dim);">The rules and guidelines for using Spread the Fund.</p>
+					<p class="text-xs" style="color: var(--stf-text-dim);">The rules and guidelines for using Spread the Funds.</p>
 				</a>
 				<a href="/spread-the-fund/copyright" class="block p-6 border stf-card transition-all">
-					<div class="text-2xl mb-3">Â©</div>
+					<div class="text-2xl mb-3">©</div>
 					<h3 class="text-xs font-bold uppercase tracking-[2px] mb-2" style="color: var(--stf-text);">COPYRIGHT</h3>
 					<p class="text-xs" style="color: var(--stf-text-dim);">Intellectual property and usage rights information.</p>
 				</a>
@@ -379,10 +356,10 @@ import Layout from '../../layouts/Layout.astro';
 			<p class="text-xs font-bold uppercase tracking-[3px] mb-3" style="color: var(--stf-amber);">SUPPORT</p>
 			<h2 class="text-xl md:text-2xl font-bold uppercase tracking-[4px] mb-4" style="color: var(--stf-text);">BUY ME A COFFEE</h2>
 			<p class="text-sm leading-relaxed mb-8 max-w-md mx-auto" style="color: var(--stf-text-dim);">
-				Spread the Fund is free, open source, and ad-free. If you find it useful, consider supporting development.
+				Spread the Funds is free, open source, and ad-free. If you find it useful, consider supporting development.
 			</p>
 			<a href="https://buymeacoffee.com/crowdtypical" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3 font-bold text-xs uppercase tracking-[2px] transition-opacity" style="background: var(--stf-amber); color: var(--stf-bg);">
-				â˜• DONATE
+				☕ DONATE
 			</a>
 		</div>
 	</section>
@@ -405,6 +382,91 @@ import Layout from '../../layouts/Layout.astro';
 	</div>
 
 	<script>
+		// Screenshot scroll gallery
+		(function () {
+			const outer = document.getElementById('screenshot-scroll-outer');
+			const cards = document.querySelectorAll<HTMLElement>('.screenshot-card');
+			const dots = document.querySelectorAll<HTMLElement>('.screenshot-dot');
+			const totalCards = cards.length;
+
+			if (!outer || totalCards === 0) return;
+
+			function updateCards() {
+				const rect = outer!.getBoundingClientRect();
+				const scrollHeight = outer!.offsetHeight - window.innerHeight;
+				const scrolled = Math.max(0, -rect.top);
+				const progress = Math.min(1, Math.max(0, scrolled / scrollHeight));
+
+				// Map progress to active card index
+				const activeFloat = progress * (totalCards - 1);
+				const activeIndex = Math.round(activeFloat);
+
+				cards.forEach((card, i) => {
+					const distance = i - activeFloat;
+					const absDistance = Math.abs(distance);
+
+					// Cards behind (already viewed) sink down and scale down
+					// Cards ahead (upcoming) are stacked below with offset
+					let translateY: number;
+					let scale: number;
+					let opacity: number;
+					let rotate: string;
+					let translateX: number;
+					let zIndex: number;
+
+					if (absDistance < 0.01) {
+						// Active card - front and center
+						translateY = 0;
+						scale = 1;
+						opacity = 1;
+						rotate = '0deg';
+						translateX = 0;
+						zIndex = totalCards + 1;
+					} else if (distance < 0) {
+						// Already passed - fly up and away
+						translateY = distance * 120;
+						scale = Math.max(0.85, 1 - absDistance * 0.08);
+						opacity = Math.max(0, 1 - absDistance * 0.7);
+						const cardRotate = card.style.getPropertyValue('--card-rotate');
+						rotate = cardRotate || '0deg';
+						const cardX = parseFloat(card.style.getPropertyValue('--card-x')) || 0;
+						translateX = cardX * Math.min(1, absDistance);
+						zIndex = totalCards - Math.floor(absDistance);
+					} else {
+						// Upcoming - stacked below with slight offset
+						translateY = Math.min(distance * 12, 60);
+						scale = Math.max(0.92, 1 - distance * 0.03);
+						opacity = Math.max(0.3, 1 - distance * 0.2);
+						rotate = '0deg';
+						translateX = 0;
+						zIndex = totalCards - Math.floor(distance);
+					}
+
+					card.style.transform = `translate(${translateX}px, ${translateY}px) rotate(${rotate}) scale(${scale})`;
+					card.style.opacity = String(opacity);
+					card.style.zIndex = String(zIndex);
+				});
+
+				// Update dots
+				dots.forEach((dot, i) => {
+					dot.classList.toggle('active', i === activeIndex);
+				});
+			}
+
+			let ticking = false;
+			window.addEventListener('scroll', () => {
+				if (!ticking) {
+					requestAnimationFrame(() => {
+						updateCards();
+						ticking = false;
+					});
+					ticking = true;
+				}
+			}, { passive: true });
+
+			updateCards();
+		})();
+
 		// Page transition handling for STF page
 		document.querySelectorAll('.page-transition-left').forEach(link => {
 			link.addEventListener('click', (e) => {

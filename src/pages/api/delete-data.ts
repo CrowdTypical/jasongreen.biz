@@ -42,14 +42,14 @@ async function sendConfirmationEmail(to: string) {
   });
 
   await transporter.sendMail({
-    from: '"Spread the Fund" <spreadthefund@gmail.com>',
+    from: '"Spread the Funds" <spreadthefund@gmail.com>',
     to,
-    subject: 'SPREAD THE FUND — Your Data Has Been Deleted',
-    text: `Your data has been successfully deleted from Spread the Fund.\n\nAll account information, group memberships, bill and settlement history, feedback, invitations, and authentication data associated with this email have been permanently removed.\n\nIf you did not request this, please contact us immediately at spreadthefund@gmail.com.\n\n— Spread the Fund`,
+    subject: 'SPREAD THE FUNDS — Your Data Has Been Deleted',
+    text: `Your data has been successfully deleted from Spread the Funds.\n\nAll account information, group memberships, bill and settlement history, feedback, invitations, and authentication data associated with this email have been permanently removed.\n\nIf you did not request this, please contact us immediately at spreadthefund@gmail.com.\n\n— Spread the Funds`,
     html: `
       <div style="font-family: 'Courier New', monospace; background: #0A0E14; color: #E0E0E0; padding: 40px; max-width: 500px;">
         <h1 style="color: #00E5CC; font-size: 14px; letter-spacing: 4px; margin-bottom: 24px; border-bottom: 1px solid #1E2A35; padding-bottom: 12px;">
-          SPREAD THE FUND
+          SPREAD THE FUNDS
         </h1>
         <p style="color: #8899AA; font-size: 12px; letter-spacing: 2px; margin-bottom: 16px;">DATA DELETION CONFIRMATION</p>
         <div style="background: #141A22; border: 1px solid #1E2A35; padding: 20px; margin: 20px 0;">
@@ -69,7 +69,7 @@ async function sendConfirmationEmail(to: string) {
           <a href="mailto:spreadthefund@gmail.com" style="color: #00E5CC;">spreadthefund@gmail.com</a>.
         </p>
         <div style="margin-top: 24px; padding-top: 12px; border-top: 1px solid #1E2A35;">
-          <p style="color: #455566; font-size: 10px; letter-spacing: 1px;">SPREAD THE FUND — SPLIT BILLS IN REAL-TIME</p>
+          <p style="color: #455566; font-size: 10px; letter-spacing: 1px;">SPREAD THE FUNDS — SPLIT BILLS IN REAL-TIME</p>
         </div>
       </div>
     `,

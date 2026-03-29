@@ -1,11 +1,11 @@
-# Spread the Fund — Branding Guide
+# Spread the Funds — Branding Guide
 
 ## App Identity
 
 | Property | Value |
 |---|---|
-| **App Name** | Spread the Fund |
-| **Display Name (stylised)** | `SPREAD THE FUND` (uppercase, wide letter-spacing) |
+| **App Name** | Spread the Funds |
+| **Display Name (stylised)** | `SPREAD THE FUNDS` (uppercase, wide letter-spacing) |
 | **Tagline** | SPLIT BILLS IN REAL-TIME |
 | **One-liner** | A bill-splitting app with real-time updates between users. |
 | **Version** | v1.0.3 |
@@ -78,7 +78,7 @@ The app title uses a **linear gradient** from teal to blue:
 #00E5CC → #42A5F5
 ```
 
-This gradient is used on the "SPREAD THE FUND" logo text in the about dialog.
+This gradient is used on the "SPREAD THE FUNDS" logo text in the about dialog.
 
 ### Group Accent Colour Palette (12 colours)
 
@@ -152,7 +152,7 @@ All image assets are included in this folder under `images/`. Here's what each f
 
 **No screenshots currently exist.** Recommended screenshots to capture:
 
-1. **Login Screen** — "SPREAD THE FUND" branding with Google Sign-In button and receipt icon
+1. **Login Screen** — "SPREAD THE FUNDS" branding with Google Sign-In button and receipt icon
 2. **Home Screen** — Main dashboard with groups, balance summary, and recent activity
 3. **Add Bill Screen** — Bill creation form with category grid, amount input, and split slider
 4. **Bill Detail Screen** — Individual bill view with who paid, split breakdown, and notes
