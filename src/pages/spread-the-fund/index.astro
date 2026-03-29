@@ -62,11 +62,36 @@ import Layout from '../../layouts/Layout.astro';
 			will-change: transform;
 			box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 			cursor: pointer;
-			animation: cardFloat 4s ease-in-out infinite;
 		}
-		@keyframes cardFloat {
-			0%, 100% { translate: 0 0; }
-			50% { translate: 0 -6px; }
+		/* Water-like float: each card gets its own rhythm via nth-child */
+		.screenshot-fan-card:nth-child(1) { animation: waterFloat1 5.2s ease-in-out infinite; }
+		.screenshot-fan-card:nth-child(2) { animation: waterFloat2 6.0s ease-in-out infinite; }
+		.screenshot-fan-card:nth-child(3) { animation: waterFloat3 4.8s ease-in-out infinite; }
+		.screenshot-fan-card:nth-child(4) { animation: waterFloat1 5.5s ease-in-out infinite; }
+		.screenshot-fan-card:nth-child(5) { animation: waterFloat3 5.8s ease-in-out infinite; }
+		.screenshot-fan-card:nth-child(6) { animation: waterFloat2 4.6s ease-in-out infinite; }
+		.screenshot-fan-card:nth-child(7) { animation: waterFloat1 6.2s ease-in-out infinite; }
+
+		@keyframes waterFloat1 {
+			0%   { translate: 0 0;    rotate: 0deg; }
+			25%  { translate: 3px -8px;  rotate: 0.8deg; }
+			50%  { translate: -2px -4px; rotate: -0.5deg; }
+			75%  { translate: 4px -10px; rotate: 0.6deg; }
+			100% { translate: 0 0;    rotate: 0deg; }
+		}
+		@keyframes waterFloat2 {
+			0%   { translate: 0 0;     rotate: 0deg; }
+			30%  { translate: -4px -9px; rotate: -0.7deg; }
+			60%  { translate: 2px -5px;  rotate: 0.9deg; }
+			80%  { translate: -3px -11px; rotate: -0.4deg; }
+			100% { translate: 0 0;     rotate: 0deg; }
+		}
+		@keyframes waterFloat3 {
+			0%   { translate: 0 0;     rotate: 0deg; }
+			20%  { translate: 2px -7px;  rotate: 0.6deg; }
+			45%  { translate: -3px -11px; rotate: -0.8deg; }
+			70%  { translate: 4px -5px;  rotate: 0.4deg; }
+			100% { translate: 0 0;     rotate: 0deg; }
 		}
 		.screenshot-fan-card:hover {
 			box-shadow: 0 12px 48px rgba(0, 229, 204, 0.15), 0 8px 32px rgba(0, 0, 0, 0.5);
