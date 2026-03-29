@@ -107,20 +107,19 @@ import Layout from '../../layouts/Layout.astro';
 			position: fixed;
 			inset: 0;
 			z-index: 9999;
-			background: rgba(10, 14, 20, 0.92);
+			background: rgba(10, 14, 20, 0);
 			display: flex;
 			align-items: center;
 			justify-content: center;
 			cursor: pointer;
-			opacity: 0;
-			visibility: hidden;
-			transition: opacity 0.35s ease, visibility 0.35s ease;
-			backdrop-filter: blur(8px);
-			-webkit-backdrop-filter: blur(8px);
+			pointer-events: none;
+			transition: background 0.4s ease;
 		}
 		.screenshot-lightbox.open {
-			opacity: 1;
-			visibility: visible;
+			background: rgba(10, 14, 20, 0.92);
+			pointer-events: auto;
+			backdrop-filter: blur(8px);
+			-webkit-backdrop-filter: blur(8px);
 		}
 		.screenshot-lightbox img {
 			max-height: 90vh;
@@ -128,11 +127,12 @@ import Layout from '../../layouts/Layout.astro';
 			object-fit: contain;
 			border: 1px solid var(--stf-primary);
 			box-shadow: 0 20px 80px rgba(0, 229, 204, 0.15), 0 0 0 1px rgba(0, 229, 204, 0.3);
-			transition: transform 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
-			transform: scale(0.9);
+			transition: transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.3s ease;
+			opacity: 0;
 		}
 		.screenshot-lightbox.open img {
-			transform: scale(1);
+			transform: translate(0, 0) scale(1) !important;
+			opacity: 1;
 		}
 		@media (min-width: 768px) {
 			.screenshot-fan-card {
@@ -497,7 +497,7 @@ import Layout from '../../layouts/Layout.astro';
 					card.style.zIndex = String(s.z);
 				});
 
-				// Click: open lightbox with full-size image
+				// Click: open lightbox with zoom-from-card effect
 				card.addEventListener('click', (e) => {
 					e.stopPropagation();
 					const img = card.querySelector('img');
@@ -505,9 +505,32 @@ import Layout from '../../layouts/Layout.astro';
 					const lightbox = document.getElementById('screenshot-lightbox');
 					const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement;
 					if (!lightbox || !lightboxImg) return;
+
+					// Get card's position on screen
+					const rect = card.getBoundingClientRect();
+					const vw = window.innerWidth;
+					const vh = window.innerHeight;
+
+					// Calculate where the card center is relative to viewport center
+					const cardCenterX = rect.left + rect.width / 2;
+					const cardCenterY = rect.top + rect.height / 2;
+					const offsetX = cardCenterX - vw / 2;
+					const offsetY = cardCenterY - vh / 2;
+
+					// Scale: how small is the card compared to final image size
+					const targetH = vh * 0.85;
+					const scaleRatio = rect.height / targetH;
+
 					lightboxImg.src = img.src;
 					lightboxImg.alt = img.alt;
-					lightbox.classList.add('open');
+					// Start at the card's position and size
+					lightboxImg.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${scaleRatio})`;
+					lightboxImg.style.opacity = '1';
+
+					// Trigger reflow then animate to center
+					requestAnimationFrame(() => {
+						lightbox.classList.add('open');
+					});
 				});
 			});
 
@@ -516,6 +539,11 @@ import Layout from '../../layouts/Layout.astro';
 			if (lightbox) {
 				lightbox.addEventListener('click', () => {
 					lightbox.classList.remove('open');
+					// Reset after transition
+					setTimeout(() => {
+						const lbImg = document.getElementById('lightbox-img') as HTMLImageElement;
+						if (lbImg) lbImg.style.opacity = '0';
+					}, 400);
 				});
 			}
 
