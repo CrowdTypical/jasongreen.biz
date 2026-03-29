@@ -129,6 +129,10 @@ import Layout from '../../layouts/Layout.astro';
 			box-shadow: 0 20px 80px rgba(0, 229, 204, 0.15), 0 0 0 1px rgba(0, 229, 204, 0.3);
 			transition: transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
 			position: absolute;
+			visibility: hidden;
+		}
+		.screenshot-lightbox.open img {
+			visibility: visible;
 		}
 		@media (min-width: 768px) {
 			.screenshot-fan-card {
@@ -478,7 +482,6 @@ import Layout from '../../layouts/Layout.astro';
 			// Hover: lift card up & remove rotation
 			cards.forEach((card, i) => {
 				card.addEventListener('mouseenter', () => {
-					if (card === expandedCard) return;
 					const s = restStates[i];
 					if (!s) return;
 					card.style.transform = `translateX(${s.tx}px) translateY(${s.ty - 20}px) rotate(${s.rot * 0.3}deg) scale(1.05)`;
@@ -486,7 +489,6 @@ import Layout from '../../layouts/Layout.astro';
 				});
 
 				card.addEventListener('mouseleave', () => {
-					if (card === expandedCard) return;
 					const s = restStates[i];
 					if (!s) return;
 					card.style.transform = `translateX(${s.tx}px) translateY(${s.ty}px) rotate(${s.rot}deg)`;
