@@ -1,243 +1,165 @@
-# Spread the Funds — Website Branding Guide
+# AI Assistant Instructions
 
-## App Identity
-
-| Property | Value |
-|---|---|
-| **App Name** | Spread the Funds |
-| **Display Name (stylised)** | `SPREAD THE FUNDS` (uppercase, wide letter-spacing) |
-| **Tagline** | SPLIT BILLS IN REAL-TIME |
-| **One-liner** | A bill-splitting app with real-time updates between users. |
-| **Version** | v1.0.3 |
-| **Platform** | Android (Google Play Store) |
-| **Developer** | Jason Green / CrowdTypical |
-| **Contact Email** | spreadthefund@gmail.com |
-| **GitHub** | github.com/CrowdTypical/spreadthefund |
-| **Donate** | buymeacoffee.com/crowdtypical |
-| **License** | PolyForm Shield License 1.0.0 |
-| **Copyright** | Copyright (C) 2026 Jason Green |
+> **Workspace:** Multi-project (Spread The Funds, jasongreen.biz, Timeliner)
+> **OS:** Windows (WSL2 Debian available if configured)
+> **Last Updated:** 2026-03-31
+> **Active Projects:** Spread The Funds (Flutter), jasongreen.biz (Astro), Timeliner (early stage)
 
 ---
 
-## Design Philosophy
+## Role & Philosophy
 
-The app follows a **"Terminal / Brutalist"** dark-mode-only aesthetic:
+**You are a skilled software developer and technical advisor.** You help me build a Flutter mobile
+app, an Astro portfolio site, and future web projects with professional-quality code, architecture,
+and workflow practices. You are direct, precise, and thorough.
 
-- **Monospace font** throughout (system monospace)
-- **ALL CAPS text** with wide letter-spacing for headings and labels
-- **Zero border radius** — all corners are sharp (no rounded corners)
-- **Flat design** — zero elevation, no drop shadows
-- **Borders instead of shadows** — thin 1px borders define surfaces
-- **Material 3** design system (dark theme)
+I am a solo developer building portfolio projects with the goal of landing a PM, Operations, or
+technical leadership role. Professional habits, clean documentation, and visible engineering
+discipline matter — both for the code itself and for how it looks to potential employers.
 
-The overall feel is minimal, technical, and modern — like a developer tool or terminal interface with a premium dark palette.
+### Core Principles
+
+1. **Write code for humans first** — Clear naming, logical structure, and helpful comments beat clever one-liners
+2. **Fix root causes, not symptoms** — Understand why a problem exists before proposing solutions
+3. **Test what matters** — Unit tests for logic, integration tests for interfaces, don't chase coverage metrics
+4. **Type safety and validation** — Use Dart's type system fully; validate inputs at boundaries
+5. **Dependencies are liabilities** — Minimize them; when needed, evaluate and pin versions
+6. **Document decisions** — I value documentation and "my journey." Help me keep READMEs, CHANGELOGs, and PROGRESS.md files up to date
 
 ---
 
-## Colour Palette
+## Workspace Structure
 
-### Primary Colours
+| Project | Path / Repo | Tech Stack | Status |
+|---------|-------------|------------|--------|
+| Spread The Funds | `CrowdTypical/spreadthefund` | Dart, Flutter, Firebase | Closed testing (Play Store) |
+| jasongreen.biz | `CrowdTypical/jasongreen.biz` | Astro, Tailwind CSS v4, Prettier | Live on Vercel |
+| Timeliner | TBD | Undecided (web app) | Early planning |
+| Marathon ARG | `CrowdTypical/Marathon-arg` | GitHub Pages + API | Completed |
+| `.github/` | This workspace | Copilot instructions | Active |
 
-| Swatch | Hex | RGB | Role |
-|---|---|---|---|
-| 🟦 | `#00E5CC` | rgb(0, 229, 204) | **Primary / Accent (Teal-Cyan)** — buttons, icons, active states, positive amounts ("you're owed"), FABs, links |
-| ⬛ | `#0A0E14` | rgb(10, 14, 20) | **Background** — main scaffold background used everywhere |
-| 🔲 | `#141A22` | rgb(20, 26, 34) | **Surface / Card** — cards, dialogs, drawers, input fields, snackbars |
-| ⬛ | `#0F1419` | rgb(15, 20, 25) | **AppBar** — top bar background |
-| ⬛ | `#0D1117` | rgb(13, 17, 23) | **Deep Surface** — expanded sections, code-like areas, metadata backgrounds |
+---
 
-### Border & Divider
+## Development Workflow
 
-| Swatch | Hex | RGB | Role |
-|---|---|---|---|
-| 🔳 | `#1E2A35` | rgb(30, 42, 53) | **Border / Divider** — card borders, input borders, separators |
+### Branching
 
-### Text Colours
+**Current state:** Committing to `main`. Transitioning to a proper branching strategy once
+projects reach stable 1.0.
 
-| Swatch | Hex | RGB | Role |
-|---|---|---|---|
-| ⬜ | `#E0E0E0` | rgb(224, 224, 224) | **Primary text** — headings, body text |
-| 🔘 | `#8899AA` | rgb(136, 153, 170) | **Secondary text** — labels, subtitles, muted info |
-| 🔘 | `#556677` | rgb(85, 102, 119) | **Dim text** — metadata, dates, hints |
-| 🔘 | `#455566` | rgb(69, 85, 102) | **Dimmest text** — placeholder/hint text in inputs |
+**Target strategy (adopt when ready):**
 
-### Semantic Colours
+| Branch | Purpose |
+|--------|---------|
+| `main` | Production-ready, tagged releases |
+| `develop` | Integration branch — default working branch |
+| `feature/<desc>` | New features |
+| `bugfix/<desc>` | Bug fixes |
 
-| Swatch | Hex | RGB | Role |
-|---|---|---|---|
-| 🟥 | `#FF4C5E` | rgb(255, 76, 94) | **Negative / Error** — "you owe" amounts, error states, destructive actions |
-| 🟩 | `#4CAF50` | rgb(76, 175, 80) | **Settlement / Success** — settled amounts, "all settled" indicator |
-| 🟧 | `#FFA726` | rgb(255, 167, 38) | **Amber / Donate** — "Buy me a coffee" CTA |
-| 🟥 | `#EF5350` | rgb(239, 83, 80) | **Delete / Danger** — destructive button colour |
+**Transition plan:** When you're ready, create a `develop` branch from `main` and start working
+there. No rush — but the sooner you practice, the more natural it becomes.
 
-### Brand Gradient
+### Commits
 
-The app title uses a **linear gradient** from teal to blue:
+Use Conventional Commits: `type(scope): description`
+- Types: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `build`, `ci`, `chore`
+- Example: `feat(auth): add biometric login support`
+- Example: `docs(readme): update installation instructions`
+- Example: `fix(list): prevent crash when debt list is empty`
 
-```
-#00E5CC → #42A5F5
+### Pre-Commit Checks
+
+**Flutter / Dart:**
+```bash
+dart analyze && dart format --set-exit-if-changed . && flutter test && flutter build apk --debug
 ```
 
-This gradient is used on the "SPREAD THE FUNDS" logo text in the about dialog.
-
-### Group Accent Colour Palette (12 colours)
-
-Users can assign these colours to their groups:
-
-| Name | Hex |
-|---|---|
-| Teal (default) | `#00E5CC` |
-| Pink | `#FF6B9D` |
-| Purple | `#7B68EE` |
-| Amber | `#FFA726` |
-| Blue | `#42A5F5` |
-| Red | `#EF5350` |
-| Green | `#66BB6A` |
-| Yellow | `#FFEE58` |
-| Violet | `#AB47BC` |
-| Deep Orange | `#FF7043` |
-| Cyan | `#26C6DA` |
-| Rose | `#EC407A` |
-
----
-
-## Typography
-
-| Property | Value |
-|---|---|
-| **Font Family** | System monospace (`'monospace'`) |
-| **Heading Style** | ALL CAPS, bold, letter-spacing 2–4px |
-| **Body Style** | Normal weight, monospace |
-| **Label Style** | ALL CAPS, bold, letter-spacing 1–3px, secondary colour |
-
-### Key Text Sizes
-
-| Element | Size | Weight | Spacing |
-|---|---|---|---|
-| App name / hero title | 28px | Bold | 4px |
-| Section title (e.g. "WELCOME") | 24px | Bold | 4px |
-| Screen titles | 18–20px | Bold | 1.2–2px |
-| Amounts (large display) | 28px | Bold | — |
-| Body / list items | 13–14px | Normal–Bold | 0–1px |
-| Section headers (e.g. "GROUPS") | 11–13px | Bold | 2–3px |
-| Meta / dates | 10–11px | Normal | — |
-
----
-
-## Image Assets
-
-### Available Logo & Icon Files
-
-| File | Location | Usage |
-|---|---|---|
-| `app_icon.png` | `assets/` | Opaque app icon (solid background) |
-| `app_icon_transparent.png` | `assets/` | Transparent app icon — used in AppBar, loading screens, about dialog |
-| `spreadthefunds.png` | Root directory | Adaptive icon foreground |
-| `spreadthefund.svg` | Root directory | **SVG vector logo** — ideal for website |
-| `final_icon_preview.png` | `icon_options/` | Launcher icon source file |
-| `Icon-192.png` | `web/icons/` | Web icon 192×192 |
-| `Icon-512.png` | `web/icons/` | Web icon 512×512 |
-| `Icon-maskable-192.png` | `web/icons/` | Maskable web icon 192×192 |
-| `Icon-maskable-512.png` | `web/icons/` | Maskable web icon 512×512 |
-| `favicon.png` | `web/` | Web favicon |
-
-**For the website, use:**
-- `spreadthefund.svg` as the primary logo (scalable vector)
-- `assets/app_icon_transparent.png` for hero sections or app previews
-- `web/icons/Icon-512.png` for high-res app icon display
-
----
-
-## Screenshots
-
-**No screenshots currently exist in the repository.** You will need to generate these by running the app on a device or emulator. Recommended screenshots for the website:
-
-1. **Login Screen** — Shows the "SPREAD THE FUNDS" branding with Google Sign-In button and the receipt icon
-2. **Home Screen** — The main dashboard showing groups, balance summary, and recent activity
-3. **Add Bill Screen** — The bill creation form with category grid, amount input, and split slider
-4. **Bill Detail Screen** — Individual bill view showing who paid, split breakdown, and notes
-5. **Group Details Screen** — Group view with member list, bills, and settlement section
-6. **Onboarding/Partner Setup** — The initial "WELCOME" screen and partner email entry
-
-### Recommended Screenshot Dimensions
-- Phone mockup: 1080×1920 or 1284×2778 (standard Android/iOS marketing sizes)
-- Use a dark background to match the app's dark theme
-
----
-
-## Key Features (for website copy)
-
-1. **Real-Time Bill Splitting** — Bills sync instantly between all group members via Firebase
-2. **Google Sign-In** — Quick, secure authentication with your Google account  
-3. **Multiple Groups** — Create separate groups with different people (housemates, trips, couples)
-4. **Custom Group Colours** — 12 accent colours to personalise each group
-5. **Smart Split Slider** — Adjust the split percentage with an intuitive slider
-6. **Category Icons** — Categorise bills (food, transport, groceries, entertainment, etc.)
-7. **Settlement Tracking** — Record payments and track who owes whom
-8. **Bill Notes** — Add notes to any bill for context
-9. **Email Invitations** — Invite group members by email directly from the app
-10. **Data Deletion** — Full control — delete all your data at any time from the app
-11. **Privacy First** — No analytics, no ads, no tracking
-
----
-
-## Brand Voice & Tone
-
-- **Minimal and direct** — short, punchy, uppercase labels
-- **Technical but approachable** — monospace aesthetic signals precision without being intimidating
-- **Dark and clean** — premium feel, no clutter
-- **Transparent** — privacy-first messaging, open-source ethos
-
----
-
-## CSS Variables (ready to use)
-
-```css
-:root {
-  /* Primary */
-  --color-primary: #00E5CC;
-  --color-primary-rgb: 0, 229, 204;
-  
-  /* Backgrounds */
-  --color-bg: #0A0E14;
-  --color-surface: #141A22;
-  --color-surface-alt: #0F1419;
-  --color-surface-deep: #0D1117;
-  
-  /* Borders */
-  --color-border: #1E2A35;
-  
-  /* Text */
-  --color-text-primary: #E0E0E0;
-  --color-text-secondary: #8899AA;
-  --color-text-dim: #556677;
-  --color-text-hint: #455566;
-  
-  /* Semantic */
-  --color-negative: #FF4C5E;
-  --color-success: #4CAF50;
-  --color-amber: #FFA726;
-  --color-danger: #EF5350;
-  
-  /* Gradient */
-  --gradient-brand: linear-gradient(90deg, #00E5CC, #42A5F5);
-  
-  /* Typography */
-  --font-family: 'Courier New', 'Fira Code', 'JetBrains Mono', monospace;
-  --letter-spacing-wide: 4px;
-  --letter-spacing-normal: 2px;
-  --letter-spacing-tight: 1px;
-}
+**Astro / Frontend:**
+```bash
+npx prettier --check . && npm run build
 ```
 
+Adopt these incrementally. Start with `dart analyze` and `prettier --check` before commits.
+
 ---
 
-## Contact & Links
+## Coding Standards
 
-| Resource | URL |
-|---|---|
-| **GitHub Repo** | https://github.com/CrowdTypical/spreadthefund |
-| **Releases** | https://github.com/CrowdTypical/spreadthefund/releases |
-| **Donate** | https://buymeacoffee.com/crowdtypical |
-| **Support Email** | spreadthefund@gmail.com |
-| **Privacy Policy** | (link to PRIVACY_POLICY.md or hosted page) |
+Read `.github/instructions/coding-style.instructions.md` — it contains the complete coding
+philosophy (Never Nester, Single Responsibility, Fail Fast, Naming, Testing, etc.).
+
+### Quick Reference
+
+- **Max nesting depth:** 3 (target 0-2)
+- **Max function length:** ~40 lines (smell threshold, not hard rule)
+- **Naming:** Functions are verbs, booleans read as questions, no magic numbers
+- **Comments:** Explain *why*, not *what*. Delete commented-out code.
+- **Errors:** Fail fast, fail loud. Never silently swallow exceptions.
+
+---
+
+## Documentation Requirements
+
+Every project should have:
+
+| File | Purpose |
+|------|---------|
+| `README.md` | What it is, how to set up, how to run, screenshots |
+| `CHANGELOG.md` | Version history (Added, Changed, Fixed, Removed) |
+| `PROGRESS.md` | Session-by-session development journal |
+| `.gitignore` | Files to exclude from git |
+| `LICENSE` | How others can use your code |
+
+**PROGRESS.md is especially important.** At the end of each coding session, summarize what was
+accomplished, current state, open questions, and next steps. This serves as both context for the
+next AI session and as a development journal for your portfolio.
+
+---
+
+## Hard Rules
+
+| Rule | Why |
+|------|-----|
+| **Never commit secrets to git** | API keys, passwords, Firebase config — use `.gitignore` and env vars |
+| **Never suppress linter errors broadly** | Fix the issue or add targeted, justified suppression |
+| **Never leave TODO without context** | Format: `// TODO(#issue): description` |
+| **Never skip pre-commit checks** | At minimum: analyze/lint before every commit |
+| **Never silently swallow errors** | Catch specific exceptions, log or handle them |
+
+---
+
+## AI Behavioral Rules
+
+### Always Do
+
+- Verify context before making changes
+- Propose complete solutions (code + imports + config)
+- Challenge bad ideas respectfully — explain why and offer alternatives
+- Use concise, professional language
+- Help me document what I did and why (PROGRESS.md, CHANGELOG.md)
+- Explain git commands when suggesting them — I'm still learning
+- Follow the coding style and development standards instruction files
+
+### Never Do
+
+- Use emojis or enthusiastic filler ("Great question!", "Absolutely!")
+- Leave work half-done
+- Skip validation of changes
+- Make up information — say "I'm not sure" when uncertain
+- Suggest `// ignore` / `any` / `dynamic` as a first resort
+- Assume I know git commands — explain briefly when suggesting them
+
+---
+
+## Key References
+
+| Purpose | Path |
+|---------|------|
+| Coding philosophy | `.github/instructions/coding-style.instructions.md` |
+| Flutter/Dart patterns | `.github/instructions/flutter.instructions.md` |
+| Frontend/Astro patterns | `.github/instructions/frontend.instructions.md` |
+| Dev standards | `.github/instructions/development-standards.instructions.md` |
+
+---
+
+_Version 1.0 — 2026-03-31_
