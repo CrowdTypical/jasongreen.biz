@@ -6,19 +6,18 @@
   The inner sticky wrapper stays on-screen and translates its content
   horizontally based on the user's vertical scroll progress through the outer container.
 -->
-<section id="work" class="relative bg-slate-900">
-	<!-- Section header (always visible at top of sticky frame) -->
-	<div class="sticky-header absolute top-0 left-0 right-0 z-20 pt-8 pb-4 px-8 md:px-16 pointer-events-none">
-		<p class="font-script text-sm md:text-base text-slate-400 mb-1">What I've been working on</p>
-		<h2 class="font-serif text-3xl md:text-4xl font-bold text-white">My Work</h2>
-	</div>
-
+<section id="work" class="relative z-10 bg-slate-900">
 	<!-- Scroll runway — height = (number of panels) * 100vh -->
 	<div id="horizontal-scroll-outer" class="relative" style="height: 500vh;">
 		<!-- Sticky viewport -->
-		<div class="sticky top-0 h-screen overflow-hidden flex items-center">
+		<div class="sticky top-[60px] h-[calc(100vh-60px)] overflow-hidden flex flex-col">
+			<!-- Section header (inside sticky frame, clears nav) -->
+			<div class="sticky-header flex-shrink-0 z-20 pt-8 pb-4 px-8 md:px-16 pointer-events-none">
+				<p class="font-script text-sm md:text-base text-slate-400 mb-1">What I've been working on</p>
+				<h2 class="font-serif text-3xl md:text-4xl font-bold text-white">My Work</h2>
+			</div>
 			<!-- Horizontal track -->
-			<div id="horizontal-track" class="flex items-stretch h-full will-change-transform transition-none">
+			<div id="horizontal-track" class="flex items-stretch flex-1 will-change-transform transition-none">
 
 				<!-- Panel 1: App — Project Under Development -->
 				<div class="work-panel flex-shrink-0 w-screen h-full flex items-center justify-center px-8 md:px-20">
@@ -170,15 +169,111 @@
 		</div>
 	</div>
 
-	<!-- Horizontal scroll progress indicator -->
-	<div class="sticky bottom-0 left-0 right-0 z-20 pointer-events-none" style="position: sticky;">
-		<div class="h-1 bg-slate-800">
-			<div id="scroll-progress" class="h-full bg-gradient-to-r from-blue-500 to-purple-500 transition-none will-change-transform" style="width: 0%; transform-origin: left;"></div>
+	<!-- Horizontal scroll progress indicator (draggable) -->
+	<div class="sticky bottom-0 left-0 right-0 z-20 pb-6 px-4 select-none" style="position: sticky;">
+		<div id="scroll-progress-bar" class="relative cursor-pointer py-3" style="touch-action: none;">
+			<div class="flex gap-1.5 h-3">
+				<!-- Segment tracks -->
+				<div class="segment-track flex-1 bg-slate-800 rounded-full relative">
+					<div class="segment-fill relative h-full bg-gradient-to-r from-blue-500 to-blue-400 rounded-full overflow-hidden" data-segment="0"></div>
+				</div>
+				<div class="segment-track flex-1 bg-slate-800 rounded-full relative">
+					<div class="segment-fill relative h-full bg-gradient-to-r from-blue-400 to-purple-400 rounded-full overflow-hidden" data-segment="1"></div>
+				</div>
+				<div class="segment-track flex-1 bg-slate-800 rounded-full relative">
+					<div class="segment-fill relative h-full bg-gradient-to-r from-purple-400 to-purple-500 rounded-full overflow-hidden" data-segment="2"></div>
+				</div>
+				<div class="segment-track flex-1 bg-slate-800 rounded-full relative">
+					<div class="segment-fill relative h-full bg-gradient-to-r from-purple-500 to-fuchsia-500 rounded-full overflow-hidden" data-segment="3"></div>
+				</div>
+			</div>
+			<!-- Drag handle -->
+			<div id="scroll-handle" class="absolute top-1/2 -translate-y-1/2 w-5 h-5 rounded-full shadow-lg pointer-events-none transition-none scroll-handle" style="left: 0%;"></div>
 		</div>
 	</div>
 </section>
 
 <style>
+	.segment-fill {
+		transition: background-image 400ms ease;
+	}
+
+	.segment-complete {
+		background-image: linear-gradient(to right, #065f46, #10b981, #6ee7b7) !important;
+	}
+
+	.segment-track-complete::after {
+		content: '✓';
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%) scale(0);
+		font-size: 32px;
+		font-weight: 300;
+		line-height: 1;
+		color: rgba(255, 255, 255, 0.9);
+		font-family: system-ui, sans-serif;
+		-webkit-text-stroke: 2px rgba(255, 255, 255, 0.9);
+		text-shadow: 0 0 6px rgba(52, 211, 153, 0.6);
+		z-index: 10;
+		pointer-events: none;
+		animation: check-drop 500ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+	}
+
+	@keyframes check-drop {
+		0% { transform: translate(-50%, -50%) scale(3); opacity: 0; }
+		50% { opacity: 0.6; }
+		85% { transform: translate(-50%, -50%) scale(0.95); }
+		100% { transform: translate(-50%, -50%) scale(1); opacity: 0.9; }
+	}
+
+	.segment-track-leaving::after {
+		content: '\2713';
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		font-size: 32px;
+		font-weight: 300;
+		line-height: 1;
+		color: rgba(255, 255, 255, 0.9);
+		font-family: system-ui, sans-serif;
+		-webkit-text-stroke: 2px rgba(255, 255, 255, 0.9);
+		text-shadow: 0 0 6px rgba(52, 211, 153, 0.6);
+		z-index: 10;
+		pointer-events: none;
+		animation: check-shrink 300ms ease forwards;
+	}
+
+	@keyframes check-shrink {
+		0% { transform: translate(-50%, -50%) scale(1); opacity: 0.9; }
+		100% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+	}
+
+	@keyframes confetti-0 {
+		0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+		100% { transform: translate(-40px, -36px) scale(0); opacity: 0; }
+	}
+	@keyframes confetti-1 {
+		0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+		100% { transform: translate(35px, -32px) scale(0); opacity: 0; }
+	}
+	@keyframes confetti-2 {
+		0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+		100% { transform: translate(8px, 34px) scale(0); opacity: 0; }
+	}
+	@keyframes confetti-3 {
+		0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+		100% { transform: translate(-32px, 28px) scale(0); opacity: 0; }
+	}
+	@keyframes confetti-4 {
+		0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+		100% { transform: translate(42px, 8px) scale(0); opacity: 0; }
+	}
+	@keyframes confetti-5 {
+		0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+		100% { transform: translate(-18px, -40px) scale(0); opacity: 0; }
+	}
+
 	.tag {
 		display: inline-block;
 		padding: 0.25rem 0.75rem;
@@ -196,26 +291,69 @@
 		top: 0;
 		z-index: 20;
 	}
+
+	.scroll-handle {
+		background: conic-gradient(from var(--handle-angle, 0deg), #3b82f6, #8b5cf6, #a855f7, #3b82f6);
+		animation: handle-glow 2s ease-in-out infinite;
+	}
+
+	@keyframes handle-glow {
+		0%, 100% { box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4), 0 0 8px rgba(139, 92, 246, 0.5); }
+		50% { box-shadow: 0 3px 12px rgba(0, 0, 0, 0.5), 0 0 16px rgba(139, 92, 246, 0.8), 0 0 6px rgba(59, 130, 246, 0.4); }
+	}
+
+	@property --handle-angle {
+		syntax: '<angle>';
+		initial-value: 0deg;
+		inherits: false;
+	}
 </style>
 
 <script>
 	function initHorizontalScroll() {
 		const outer = document.getElementById('horizontal-scroll-outer');
 		const track = document.getElementById('horizontal-track');
-		const progress = document.getElementById('scroll-progress');
+		const handle = document.getElementById('scroll-handle');
+		const progressBar = document.getElementById('scroll-progress-bar');
+		const segmentFills = Array.from(document.querySelectorAll<HTMLElement>('.segment-fill'));
 
-		if (!outer || !track || !progress) return;
+		if (!outer || !track || !progressBar) return;
 
 		const panels = track.querySelectorAll('.work-panel');
 		const panelCount = panels.length;
 
-		function onScroll() {
-			const outerRect = outer.getBoundingClientRect();
-			const outerTop = outer.offsetTop;
-			const scrollY = window.scrollY;
+		// Compute actual page-top offset (offsetTop only gives offset
+		// relative to the nearest positioned ancestor, not the document).
+		let outerPageTop = 0;
+		function computeLayout() {
+			outerPageTop = outer.getBoundingClientRect().top + window.scrollY;
+		}
 
+		function spawnConfetti(trackEl: HTMLElement) {
+			const colors = ['#10b981', '#6ee7b7', '#34d399', '#fbbf24', '#a78bfa', '#f472b6'];
+			for (let c = 0; c < 6; c++) {
+				const dot = document.createElement('div');
+				dot.style.cssText = `
+					position: absolute;
+					left: 50%;
+					top: 50%;
+					width: 8px;
+					height: 8px;
+					border-radius: 50%;
+					background: ${colors[c]};
+					z-index: 11;
+					pointer-events: none;
+					box-shadow: 0 0 6px ${colors[c]};
+					animation: confetti-${c} 800ms ease-out forwards;
+				`;
+				trackEl.appendChild(dot);
+				setTimeout(() => dot.remove(), 850);
+			}
+		}
+
+		function onScroll() {
 			// How far we've scrolled into the outer container
-			const scrolled = scrollY - outerTop;
+			const scrolled = window.scrollY - outerPageTop;
 			// Total scrollable distance (outer height minus one viewport)
 			const maxScroll = outer.offsetHeight - window.innerHeight;
 
@@ -229,11 +367,116 @@
 			const translateX = rawProgress * maxTranslate;
 
 			track.style.transform = `translateX(-${translateX}px)`;
-			progress.style.width = `${rawProgress * 100}%`;
+
+			// Fill individual segments: each segment represents 1/segmentCount of progress
+			const segmentCount = segmentFills.length;
+			let latestComplete = -1;
+
+			// First pass: determine fill widths and which segments are complete
+			segmentFills.forEach((fill, i) => {
+				const segStart = i / segmentCount;
+				const segEnd = (i + 1) / segmentCount;
+				const isFull = rawProgress >= segEnd;
+
+				if (isFull) {
+					fill.style.width = '100%';
+					fill.classList.add('segment-complete');
+					latestComplete = i;
+				} else if (rawProgress <= segStart) {
+					fill.style.width = '0%';
+					if (fill.classList.contains('segment-complete')) {
+						fill.classList.remove('segment-complete');
+					}
+				} else {
+					fill.style.width = `${((rawProgress - segStart) / (segEnd - segStart)) * 100}%`;
+					if (fill.classList.contains('segment-complete')) {
+						fill.classList.remove('segment-complete');
+					}
+				}
+			});
+
+			// Second pass: only the latest completed segment gets the checkmark
+			segmentFills.forEach((fill, i) => {
+				const segTrack = fill.parentElement;
+				if (!segTrack) return;
+				const isLatest = i === latestComplete;
+				const hadCheck = segTrack.classList.contains('segment-track-complete');
+
+				if (isLatest && !hadCheck) {
+					// Newly earned checkmark — show it + confetti
+					segTrack.classList.remove('segment-track-leaving');
+					segTrack.classList.add('segment-track-complete');
+					spawnConfetti(segTrack);
+				} else if (isLatest && hadCheck) {
+					// Already showing, keep it
+				} else if (!isLatest && hadCheck) {
+					// No longer the latest — fade out
+					segTrack.classList.remove('segment-track-complete');
+					segTrack.classList.add('segment-track-leaving');
+					setTimeout(() => segTrack.classList.remove('segment-track-leaving'), 300);
+				}
+			});
+
+			if (handle) {
+				handle.style.left = `calc(${rawProgress * 100}% - 10px)`;
+				handle.style.setProperty('--handle-angle', `${rawProgress * 720}deg`);
+			}
 		}
 
+		// --- Drag-to-scrub on the progress bar ---
+		let isDragging = false;
+
+		function scrubToX(clientX, smooth = false) {
+			if (!progressBar) return;
+			const rect = progressBar.getBoundingClientRect();
+			const ratio = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+			const maxScroll = outer.offsetHeight - window.innerHeight;
+			window.scrollTo({ top: outerPageTop + ratio * maxScroll, behavior: smooth ? 'smooth' : 'instant' });
+		}
+
+		if (progressBar) {
+			// Segment click — snap to that panel
+			segmentFills.forEach((fill) => {
+				const segmentTrack = fill.parentElement;
+				if (!segmentTrack) return;
+				segmentTrack.addEventListener('click', (e) => {
+					e.stopPropagation();
+					const panelIndex = Number(fill.dataset.segment);
+					const maxScroll = outer.offsetHeight - window.innerHeight;
+					const targetProgress = panelCount <= 1 ? 0 : panelIndex / (panelCount - 1);
+					window.scrollTo({ top: outerPageTop + targetProgress * maxScroll, behavior: 'smooth' });
+				});
+			});
+
+			progressBar.addEventListener('pointerdown', (e) => {
+				e.preventDefault();
+				isDragging = true;
+				progressBar.setPointerCapture(e.pointerId);
+				document.body.style.userSelect = 'none';
+				scrubToX(e.clientX, true);
+			});
+			progressBar.addEventListener('pointermove', (e) => {
+				if (!isDragging) return;
+				e.preventDefault();
+				// Only respond to horizontal movement — clamp to bar bounds
+				const barRect = progressBar.getBoundingClientRect();
+				const clampedX = Math.max(barRect.left, Math.min(barRect.right, e.clientX));
+				scrubToX(clampedX);
+			});
+			function stopDrag() {
+				if (isDragging) {
+					isDragging = false;
+					document.body.style.userSelect = '';
+				}
+			}
+			progressBar.addEventListener('pointerup', stopDrag);
+			progressBar.addEventListener('pointercancel', stopDrag);
+			document.addEventListener('pointerup', stopDrag);
+		}
+
+		computeLayout();
 		window.addEventListener('scroll', onScroll, { passive: true });
-		window.addEventListener('resize', onScroll, { passive: true });
+		window.addEventListener('resize', () => { computeLayout(); onScroll(); }, { passive: true });
 		onScroll();
 	}
 

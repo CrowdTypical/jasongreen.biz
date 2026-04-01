@@ -1,188 +1,296 @@
 ---
-import '../styles/global.css';
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import HeroSection from '../components/HeroSection.astro';
+import SectionDivider from '../components/SectionDivider.astro';
+import HorizontalWorkSection from '../components/HorizontalWorkSection.astro';
+import ResumeSection from '../components/ResumeSection.astro';
+import ContactSection from '../components/ContactSection.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Jason Green — Coming Soon</title>
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&family=Dancing+Script:wght@400;500&display=swap" rel="stylesheet" />
-	</head>
-	<body class="bg-white min-h-screen overflow-hidden relative flex items-center justify-center">
-		<!-- Soft pastel gradient blobs -->
-		<div class="blob blob-pink"></div>
-		<div class="blob blob-green"></div>
-		<div class="blob blob-blue"></div>
-		<div class="blob blob-yellow"></div>
+<Layout title="Jason Green — Product & Operations Leader">
+	<!-- Dynamic floating background blobs (hero area only) -->
+	<div id="blob-bg" class="absolute top-0 left-0 right-0 pointer-events-none overflow-hidden" style="height: calc(100vh + 160px); z-index: 1;" aria-hidden="true">
+		<div class="floating-blob blob-1"></div>
+		<div class="floating-blob blob-2"></div>
+		<div class="floating-blob blob-3"></div>
+		<div class="floating-blob blob-4"></div>
+		<div class="floating-blob blob-5"></div>
+	</div>
 
-		<!-- Content -->
-		<main class="relative z-10 text-center px-6 max-w-3xl mx-auto">
-			<p class="font-script text-lg md:text-xl text-gray-500 mb-4 tracking-wide">
-				Something new is on the way
-			</p>
+	<Nav />
 
-			<h1 class="font-serif text-6xl md:text-8xl lg:text-9xl font-normal text-gray-900 leading-[0.95] mb-8">
-				coming<br />soon
-			</h1>
+	<!-- Hero: vertical scroll -->
+	<HeroSection />
 
-			<p class="font-sans text-base md:text-lg text-gray-500 max-w-md mx-auto leading-relaxed mb-10">
-				A personal brand website by Jason Green — currently under construction. Check back soon.
-			</p>
+	<!-- Divider + Work wrapper (divider stays sticky through work scroll runway) -->
+	<div class="relative">
+		<!-- Divider: white → dark -->
+		<SectionDivider fromColor="#ffffff" toColor="#0f172a" sticky />
 
-			<!-- Password gate -->
-			<form id="preview-gate" class="mb-12 max-w-xs mx-auto">
-				<label for="preview-password" class="sr-only">Preview password</label>
-				<div class="flex items-stretch gap-2">
-					<input
-						id="preview-password"
-						type="password"
-						placeholder="Enter preview password"
-						autocomplete="off"
-						class="flex-1 px-4 py-2.5 rounded-full border border-gray-200 bg-white/80 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-300 font-sans transition-colors"
-					/>
-					<button
-						type="submit"
-						class="px-5 py-2.5 bg-gray-900 text-white text-sm font-medium rounded-full hover:bg-gray-700 transition-colors"
-					>
-						Go
-					</button>
-				</div>
-				<p id="gate-error" class="text-xs text-red-400 mt-2 hidden font-sans">
-					Incorrect password. Try again.
-				</p>
-			</form>
+		<!-- Work: horizontal scroll triggered by vertical scrolling -->
+		<HorizontalWorkSection />
+	</div>
 
-			<div class="flex items-center justify-center gap-6 text-gray-400">
-				<a href="https://github.com/CrowdTypical" aria-label="GitHub" class="hover:text-gray-900 transition-colors">
-					<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-				</a>
-				<a href="mailto:contact@jasongreen.biz" aria-label="Email" class="hover:text-gray-900 transition-colors">
-					<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" /></svg>
-				</a>
-			</div>
-		</main>
+	<!-- Divider: dark → white (visually connects to Work section above) -->
+	<div class="relative z-10 -mt-1 bg-slate-900">
+		<SectionDivider fromColor="#0f172a" toColor="#ffffff" />
+	</div>
 
-		<!-- Scroll hint -->
-		<div class="absolute bottom-8 right-8 z-10">
-			<p class="font-sans text-xs text-gray-300 tracking-widest uppercase writing-vertical">Scroll</p>
-		</div>
-	</body>
-</html>
+	<!-- Resume: back to vertical -->
+	<ResumeSection />
 
-<script>
-	// SHA-256 hash check — the password hash is stored, not the plaintext.
-	// This is client-side only, so the /preview page is technically accessible
-	// by URL, but the password gate keeps casual visitors out.
-	async function sha256(message: string): Promise<string> {
-		const msgBuffer = new TextEncoder().encode(message);
-		const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-		const hashArray = Array.from(new Uint8Array(hashBuffer));
-		return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-	}
+	<!-- Contact + Footer -->
+	<ContactSection />
 
-	// SHA-256 of the password "preview" — change the password by updating this hash
-	// To generate a new hash: console.log(await sha256('your-password'))
-	const EXPECTED_HASH = '5975cf1bba432391c94667f5886225f69377c0aa8b9fa21fddfb21c89bcf9092';
-
-	const form = document.getElementById('preview-gate') as HTMLFormElement;
-	const input = document.getElementById('preview-password') as HTMLInputElement;
-	const error = document.getElementById('gate-error') as HTMLElement;
-
-	form?.addEventListener('submit', async (e) => {
-		e.preventDefault();
-		const value = input?.value?.trim();
-		if (!value) return;
-
-		const hash = await sha256(value);
-		if (hash === EXPECTED_HASH) {
-			window.location.href = '/preview';
-		} else {
-			error?.classList.remove('hidden');
-			input?.classList.add('border-red-300');
-			setTimeout(() => {
-				error?.classList.add('hidden');
-				input?.classList.remove('border-red-300');
-			}, 3000);
+	<style>
+		.floating-blob {
+			position: absolute;
+			filter: blur(40px);
+			opacity: 0.4;
+			mix-blend-mode: multiply;
+			will-change: transform, border-radius;
 		}
-	});
-</script>
 
-<style>
-	.font-serif {
-		font-family: 'Playfair Display', Georgia, serif;
-	}
-	.font-sans {
-		font-family: 'Inter', system-ui, sans-serif;
-	}
-	.font-script {
-		font-family: 'Dancing Script', cursive;
-	}
-	.writing-vertical {
-		writing-mode: vertical-rl;
-	}
-	.sr-only {
-		position: absolute;
-		width: 1px;
-		height: 1px;
-		padding: 0;
-		margin: -1px;
-		overflow: hidden;
-		clip: rect(0, 0, 0, 0);
-		white-space: nowrap;
-		border-width: 0;
-	}
+		.blob-1 {
+			width: 450px;
+			height: 450px;
+			background: #c98585;
+			top: -8%;
+			left: 15%;
+			animation: drift-1 21s ease-in-out infinite, morph-1 17s ease-in-out infinite;
+		}
 
-	/* Soft pastel gradient blobs */
-	.blob {
-		position: absolute;
-		border-radius: 50%;
-		filter: blur(80px);
-		opacity: 0.5;
-		animation: float 20s ease-in-out infinite;
-	}
-	.blob-pink {
-		width: 340px;
-		height: 340px;
-		background: radial-gradient(circle, #f0b4f0, #f5d0f5);
-		top: -5%;
-		right: 25%;
-		animation-delay: 0s;
-	}
-	.blob-green {
-		width: 280px;
-		height: 280px;
-		background: radial-gradient(circle, #b8e6c8, #d4f0dc);
-		top: 20%;
-		left: 8%;
-		animation-delay: -5s;
-	}
-	.blob-blue {
-		width: 240px;
-		height: 240px;
-		background: radial-gradient(circle, #b8dff0, #d0ecf8);
-		top: 5%;
-		right: 5%;
-		animation-delay: -10s;
-	}
-	.blob-yellow {
-		width: 320px;
-		height: 320px;
-		background: radial-gradient(circle, #f5e6a0, #faf0c8);
-		bottom: -5%;
-		right: 15%;
-		animation-delay: -15s;
-	}
+		.blob-2 {
+			width: 400px;
+			height: 400px;
+			background: #d4c86e;
+			top: 5%;
+			right: -3%;
+			animation: drift-2 27s ease-in-out infinite, morph-2 19s ease-in-out infinite;
+		}
 
-	@keyframes float {
-		0%, 100% { transform: translate(0, 0) scale(1); }
-		25% { transform: translate(30px, -20px) scale(1.05); }
-		50% { transform: translate(-20px, 15px) scale(0.95); }
-		75% { transform: translate(15px, 25px) scale(1.02); }
-	}
-</style>
+		.blob-3 {
+			width: 380px;
+			height: 380px;
+			background: #7fba95;
+			top: 30%;
+			left: -5%;
+			animation: drift-3 24s ease-in-out infinite, morph-3 15s ease-in-out infinite;
+		}
+
+		.blob-4 {
+			width: 500px;
+			height: 500px;
+			background: #7aa3c4;
+			top: 50%;
+			right: 10%;
+			animation: drift-4 28s ease-in-out infinite, morph-4 21s ease-in-out infinite;
+		}
+
+		.blob-5 {
+			width: 360px;
+			height: 360px;
+			background: #cc9db8;
+			top: 65%;
+			left: 25%;
+			animation: drift-5 23s ease-in-out infinite, morph-5 18s ease-in-out infinite;
+		}
+
+
+
+		/* Lava-lamp organic shape morphing — extreme shapes */
+		@keyframes morph-1 {
+			0%, 100% { border-radius: 24% 76% 72% 28% / 18% 68% 32% 82%; }
+			20% { border-radius: 78% 22% 28% 72% / 62% 20% 80% 38%; }
+			40% { border-radius: 18% 82% 68% 32% / 32% 74% 26% 68%; }
+			60% { border-radius: 72% 28% 22% 78% / 76% 30% 70% 24%; }
+			80% { border-radius: 36% 64% 78% 22% / 22% 58% 42% 78%; }
+		}
+
+		@keyframes morph-2 {
+			0%, 100% { border-radius: 76% 24% 18% 82% / 72% 22% 78% 28%; }
+			20% { border-radius: 22% 78% 64% 36% / 28% 80% 20% 72%; }
+			40% { border-radius: 68% 32% 82% 18% / 78% 26% 74% 22%; }
+			60% { border-radius: 28% 72% 36% 64% / 20% 68% 32% 80%; }
+			80% { border-radius: 82% 18% 24% 76% / 64% 36% 64% 36%; }
+		}
+
+		@keyframes morph-3 {
+			0%, 100% { border-radius: 32% 68% 26% 74% / 68% 24% 76% 32%; }
+			25% { border-radius: 80% 20% 74% 26% / 18% 76% 24% 82%; }
+			50% { border-radius: 20% 80% 32% 68% / 74% 28% 72% 26%; }
+			75% { border-radius: 68% 32% 80% 20% / 26% 64% 36% 74%; }
+		}
+
+		@keyframes morph-4 {
+			0%, 100% { border-radius: 26% 74% 68% 32% / 42% 76% 24% 58%; }
+			16% { border-radius: 80% 20% 22% 78% / 78% 18% 82% 22%; }
+			33% { border-radius: 18% 82% 76% 24% / 24% 72% 28% 76%; }
+			50% { border-radius: 74% 26% 32% 68% / 68% 32% 68% 32%; }
+			66% { border-radius: 32% 68% 82% 18% / 20% 64% 36% 80%; }
+			83% { border-radius: 64% 36% 20% 80% / 76% 24% 76% 24%; }
+		}
+
+		@keyframes morph-5 {
+			0%, 100% { border-radius: 72% 28% 22% 78% / 26% 74% 26% 74%; }
+			20% { border-radius: 22% 78% 76% 24% / 80% 20% 80% 20%; }
+			40% { border-radius: 78% 22% 32% 68% / 32% 68% 32% 68%; }
+			60% { border-radius: 28% 72% 68% 32% / 72% 28% 72% 28%; }
+			80% { border-radius: 68% 32% 24% 76% / 24% 76% 24% 76%; }
+		}
+
+
+
+		/* Movement paths — wide sweeps for merging overlap */
+		@keyframes drift-1 {
+			0%, 100% { transform: translate(0, 0) scale(1); }
+			20% { transform: translate(200px, 120px) scale(1.25); }
+			40% { transform: translate(50px, 260px) scale(0.8); }
+			60% { transform: translate(-140px, 160px) scale(1.2); }
+			80% { transform: translate(-60px, -50px) scale(0.85); }
+		}
+
+		@keyframes drift-2 {
+			0%, 100% { transform: translate(0, 0) scale(1); }
+			20% { transform: translate(-180px, 100px) scale(0.82); }
+			40% { transform: translate(-280px, 220px) scale(1.22); }
+			60% { transform: translate(-100px, 320px) scale(0.78); }
+			80% { transform: translate(80px, 140px) scale(1.15); }
+		}
+
+		@keyframes drift-3 {
+			0%, 100% { transform: translate(0, 0) scale(1); }
+			25% { transform: translate(240px, -80px) scale(1.2); }
+			50% { transform: translate(340px, 120px) scale(0.8); }
+			75% { transform: translate(100px, 200px) scale(1.15); }
+		}
+
+		@keyframes drift-4 {
+			0%, 100% { transform: translate(0, 0) scale(1); }
+			20% { transform: translate(-140px, -160px) scale(1.25); }
+			40% { transform: translate(-300px, -60px) scale(0.78); }
+			60% { transform: translate(-180px, 140px) scale(1.18); }
+			80% { transform: translate(60px, 60px) scale(0.85); }
+		}
+
+		@keyframes drift-5 {
+			0%, 100% { transform: translate(0, 0) scale(1); }
+			20% { transform: translate(100px, -200px) scale(0.82); }
+			40% { transform: translate(260px, -100px) scale(1.22); }
+			60% { transform: translate(180px, 80px) scale(0.8); }
+			80% { transform: translate(-50px, -60px) scale(1.16); }
+		}
+
+
+
+		/* Reduce motion for accessibility */
+		@media (prefers-reduced-motion: reduce) {
+			.floating-blob {
+				animation: none !important;
+			}
+		}
+	</style>
+
+	<script>
+		(() => {
+			if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+			const blobBg = document.getElementById('blob-bg');
+			if (!blobBg) return;
+
+			const blobs = blobBg.querySelectorAll<HTMLElement>('.floating-blob');
+			if (blobs.length === 0) return;
+
+			const REPEL_RADIUS = 500;
+			const REPEL_FORCE = 18;      // push per frame (accumulates)
+			const RETURN_EASE = 0.02;    // slow drift back when mouse is gone
+
+			let mouseX = -9999;
+			let mouseY = -9999;
+			let active = false;
+			let rafId: number | null = null;
+
+			const state = Array.from(blobs, () => ({
+				x: 0, y: 0,       // accumulated offset
+				paused: false,     // whether drift animation is paused
+			}));
+
+			function tick() {
+				blobs.forEach((blob, i) => {
+					const s = state[i];
+					const rect = blob.getBoundingClientRect();
+					const cx = rect.left + rect.width / 2;
+					const cy = rect.top + rect.height / 2;
+
+					const dx = cx - mouseX;
+					const dy = cy - mouseY;
+					const dist = Math.sqrt(dx * dx + dy * dy);
+
+					const inRange = active && dist < REPEL_RADIUS && dist > 1;
+
+					if (inRange) {
+						// Pause drift so mouse has full control
+						if (!s.paused) {
+							blob.style.animationPlayState = 'paused, running';
+							s.paused = true;
+						}
+						// Push away — accumulate, don't ease toward target
+						const t = 1 - dist / REPEL_RADIUS;
+						const force = t * t * REPEL_FORCE;
+						s.x += (dx / dist) * force;
+						s.y += (dy / dist) * force;
+					} else {
+						// Ease offset back toward 0
+						s.x += (0 - s.x) * RETURN_EASE;
+						s.y += (0 - s.y) * RETURN_EASE;
+
+						// Resume drift once nearly settled
+						if (s.paused && Math.abs(s.x) < 2 && Math.abs(s.y) < 2) {
+							blob.style.animationPlayState = '';
+							s.paused = false;
+						}
+					}
+
+					blob.style.translate = `${s.x}px ${s.y}px`;
+				});
+
+				// Stop loop when everything is settled and mouse gone
+				if (!active && state.every(s =>
+					!s.paused && Math.abs(s.x) < 0.5 && Math.abs(s.y) < 0.5
+				)) {
+					blobs.forEach(b => { b.style.translate = ''; });
+					state.forEach(s => { s.x = 0; s.y = 0; });
+					rafId = null;
+					return;
+				}
+
+				rafId = requestAnimationFrame(tick);
+			}
+
+			function startIfNeeded() {
+				if (!rafId) { rafId = requestAnimationFrame(tick); }
+			}
+
+			document.addEventListener('mousemove', (e) => {
+				mouseX = e.clientX; mouseY = e.clientY;
+				active = true;
+				startIfNeeded();
+			}, { passive: true });
+
+			document.addEventListener('mouseleave', () => { active = false; });
+
+			document.addEventListener('touchmove', (e) => {
+				if (e.touches.length > 0) {
+					mouseX = e.touches[0].clientX;
+					mouseY = e.touches[0].clientY;
+					active = true;
+					startIfNeeded();
+				}
+			}, { passive: true });
+
+			document.addEventListener('touchend', () => { active = false; });
+		})();
+
+	</script>
+</Layout>
