@@ -23,14 +23,19 @@ import ContactSection from '../components/ContactSection.astro';
 	<!-- Hero: vertical scroll -->
 	<HeroSection />
 
-	<!-- Divider: white → dark -->
-	<SectionDivider fromColor="#ffffff" toColor="#0f172a" />
+	<!-- Divider + Work wrapper (divider stays sticky through work scroll runway) -->
+	<div class="relative">
+		<!-- Divider: white → dark -->
+		<SectionDivider fromColor="#ffffff" toColor="#0f172a" sticky />
 
-	<!-- Work: horizontal scroll triggered by vertical scrolling -->
-	<HorizontalWorkSection />
+		<!-- Work: horizontal scroll triggered by vertical scrolling -->
+		<HorizontalWorkSection />
+	</div>
 
-	<!-- Divider: dark → white -->
-	<SectionDivider fromColor="#0f172a" toColor="#ffffff" flip />
+	<!-- Divider: dark → white (visually connects to Work section above) -->
+	<div class="relative z-10 -mt-1 bg-slate-900">
+		<SectionDivider fromColor="#0f172a" toColor="#ffffff" />
+	</div>
 
 	<!-- Resume: back to vertical -->
 	<ResumeSection />
@@ -286,5 +291,6 @@ import ContactSection from '../components/ContactSection.astro';
 
 			document.addEventListener('touchend', () => { active = false; });
 		})();
+
 	</script>
 </Layout>
