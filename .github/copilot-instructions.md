@@ -30,13 +30,13 @@ discipline matter — both for the code itself and for how it looks to potential
 
 ## Workspace Structure
 
-| Project | Path / Repo | Tech Stack | Status |
-|---------|-------------|------------|--------|
-| Spread The Funds | `CrowdTypical/spreadthefund` | Dart, Flutter, Firebase | Closed testing (Play Store) |
-| jasongreen.biz | `CrowdTypical/jasongreen.biz` | Astro, Tailwind CSS v4, Prettier | Live on Vercel |
-| Timeliner | TBD | Undecided (web app) | Early planning |
-| Marathon ARG | `CrowdTypical/Marathon-arg` | GitHub Pages + API | Completed |
-| `.github/` | This workspace | Copilot instructions | Active |
+| Project          | Path / Repo                   | Tech Stack                       | Status                      |
+| ---------------- | ----------------------------- | -------------------------------- | --------------------------- |
+| Spread The Funds | `CrowdTypical/spreadthefund`  | Dart, Flutter, Firebase          | Closed testing (Play Store) |
+| jasongreen.biz   | `CrowdTypical/jasongreen.biz` | Astro, Tailwind CSS v4, Prettier | Live on Vercel              |
+| Timeliner        | TBD                           | Undecided (web app)              | Early planning              |
+| Marathon ARG     | `CrowdTypical/Marathon-arg`   | GitHub Pages + API               | Completed                   |
+| `.github/`       | This workspace                | Copilot instructions             | Active                      |
 
 ---
 
@@ -49,12 +49,12 @@ projects reach stable 1.0.
 
 **Target strategy (adopt when ready):**
 
-| Branch | Purpose |
-|--------|---------|
-| `main` | Production-ready, tagged releases |
-| `develop` | Integration branch — default working branch |
-| `feature/<desc>` | New features |
-| `bugfix/<desc>` | Bug fixes |
+| Branch           | Purpose                                     |
+| ---------------- | ------------------------------------------- |
+| `main`           | Production-ready, tagged releases           |
+| `develop`        | Integration branch — default working branch |
+| `feature/<desc>` | New features                                |
+| `bugfix/<desc>`  | Bug fixes                                   |
 
 **Transition plan:** When you're ready, create a `develop` branch from `main` and start working
 there. No rush — but the sooner you practice, the more natural it becomes.
@@ -62,6 +62,7 @@ there. No rush — but the sooner you practice, the more natural it becomes.
 ### Commits
 
 Use Conventional Commits: `type(scope): description`
+
 - Types: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `build`, `ci`, `chore`
 - Example: `feat(auth): add biometric login support`
 - Example: `docs(readme): update installation instructions`
@@ -70,11 +71,13 @@ Use Conventional Commits: `type(scope): description`
 ### Pre-Commit Checks
 
 **Flutter / Dart:**
+
 ```bash
 dart analyze && dart format --set-exit-if-changed . && flutter test && flutter build apk --debug
 ```
 
 **Astro / Frontend:**
+
 ```bash
 npx prettier --check . && npm run build
 ```
@@ -93,7 +96,7 @@ philosophy (Never Nester, Single Responsibility, Fail Fast, Naming, Testing, etc
 - **Max nesting depth:** 3 (target 0-2)
 - **Max function length:** ~40 lines (smell threshold, not hard rule)
 - **Naming:** Functions are verbs, booleans read as questions, no magic numbers
-- **Comments:** Explain *why*, not *what*. Delete commented-out code.
+- **Comments:** Explain _why_, not _what_. Delete commented-out code.
 - **Errors:** Fail fast, fail loud. Never silently swallow exceptions.
 
 ---
@@ -102,13 +105,13 @@ philosophy (Never Nester, Single Responsibility, Fail Fast, Naming, Testing, etc
 
 Every project should have:
 
-| File | Purpose |
-|------|---------|
-| `README.md` | What it is, how to set up, how to run, screenshots |
-| `CHANGELOG.md` | Version history (Added, Changed, Fixed, Removed) |
-| `PROGRESS.md` | Session-by-session development journal |
-| `.gitignore` | Files to exclude from git |
-| `LICENSE` | How others can use your code |
+| File           | Purpose                                            |
+| -------------- | -------------------------------------------------- |
+| `README.md`    | What it is, how to set up, how to run, screenshots |
+| `CHANGELOG.md` | Version history (Added, Changed, Fixed, Removed)   |
+| `PROGRESS.md`  | Session-by-session development journal             |
+| `.gitignore`   | Files to exclude from git                          |
+| `LICENSE`      | How others can use your code                       |
 
 **PROGRESS.md is especially important.** At the end of each coding session, summarize what was
 accomplished, current state, open questions, and next steps. This serves as both context for the
@@ -118,13 +121,13 @@ next AI session and as a development journal for your portfolio.
 
 ## Hard Rules
 
-| Rule | Why |
-|------|-----|
-| **Never commit secrets to git** | API keys, passwords, Firebase config — use `.gitignore` and env vars |
-| **Never suppress linter errors broadly** | Fix the issue or add targeted, justified suppression |
-| **Never leave TODO without context** | Format: `// TODO(#issue): description` |
-| **Never skip pre-commit checks** | At minimum: analyze/lint before every commit |
-| **Never silently swallow errors** | Catch specific exceptions, log or handle them |
+| Rule                                     | Why                                                                  |
+| ---------------------------------------- | -------------------------------------------------------------------- |
+| **Never commit secrets to git**          | API keys, passwords, Firebase config — use `.gitignore` and env vars |
+| **Never suppress linter errors broadly** | Fix the issue or add targeted, justified suppression                 |
+| **Never leave TODO without context**     | Format: `// TODO(#issue): description`                               |
+| **Never skip pre-commit checks**         | At minimum: analyze/lint before every commit                         |
+| **Never silently swallow errors**        | Catch specific exceptions, log or handle them                        |
 
 ---
 
@@ -153,12 +156,12 @@ next AI session and as a development journal for your portfolio.
 
 ## Key References
 
-| Purpose | Path |
-|---------|------|
-| Coding philosophy | `.github/instructions/coding-style.instructions.md` |
-| Flutter/Dart patterns | `.github/instructions/flutter.instructions.md` |
-| Frontend/Astro patterns | `.github/instructions/frontend.instructions.md` |
-| Dev standards | `.github/instructions/development-standards.instructions.md` |
+| Purpose                 | Path                                                         |
+| ----------------------- | ------------------------------------------------------------ |
+| Coding philosophy       | `.github/instructions/coding-style.instructions.md`          |
+| Flutter/Dart patterns   | `.github/instructions/flutter.instructions.md`               |
+| Frontend/Astro patterns | `.github/instructions/frontend.instructions.md`              |
+| Dev standards           | `.github/instructions/development-standards.instructions.md` |
 
 ---
 

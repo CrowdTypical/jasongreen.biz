@@ -1,146 +1,115 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import StfLayout from '../../layouts/StfLayout.astro';
+import StfBackNav from '../../components/StfBackNav.astro';
 ---
 
-<Layout title="SPREAD THE FUNDS — Copyright">
-	<style>
-		@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
-		:root {
-			--stf-primary: #00E5CC;
-			--stf-bg: #0A0E14;
-			--stf-surface: #141A22;
-			--stf-surface-alt: #0F1419;
-			--stf-border: #1E2A35;
-			--stf-text: #E0E0E0;
-			--stf-text-secondary: #8899AA;
-			--stf-text-dim: #556677;
-			--stf-font: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
-		}
-		.stf-legal { font-family: var(--stf-font); background: var(--stf-bg); color: var(--stf-text); min-height: 100vh; }
-	</style>
+<StfLayout title="SPREAD THE FUNDS — Copyright">
+  <StfBackNav />
 
-	<div class="stf-legal">
-	<nav class="fixed top-0 left-0 right-0 z-50 border-b" style="background: var(--stf-surface-alt); border-color: var(--stf-border);">
-		<div class="max-w-5xl mx-auto px-6 py-4 flex items-center gap-4">
-			<a href="/spread-the-fund" class="text-xs font-bold uppercase tracking-[2px] flex items-center gap-2 transition-colors" style="color: var(--stf-text-secondary);">
-				<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" /></svg>
-				BACK TO SPREAD THE FUNDS
-			</a>
-		</div>
-	</nav>
+    <main class="pt-24 pb-20 px-6 md:px-16">
+      <div class="max-w-3xl mx-auto">
+        <h1
+          class="text-2xl md:text-3xl font-bold uppercase tracking-[4px] mb-2"
+          style="color: var(--stf-text);"
+        >
+          COPYRIGHT INFORMATION
+        </h1>
+        <p
+          class="text-xs uppercase tracking-[2px] mb-10"
+          style="color: var(--stf-text-dim);"
+        >
+          LAST UPDATED: MARCH 27, 2026
+        </p>
 
-	<main class="pt-24 pb-20 px-6 md:px-16">
-		<div class="max-w-3xl mx-auto">
-			<h1 class="text-2xl md:text-3xl font-bold uppercase tracking-[4px] mb-2" style="color: var(--stf-text);">COPYRIGHT INFORMATION</h1>
-			<p class="text-xs uppercase tracking-[2px] mb-10" style="color: var(--stf-text-dim);">LAST UPDATED: MARCH 27, 2026</p>
+        <div class="prose">
+          <h2>Copyright Notice</h2>
+          <p>&copy; 2026 Jason Green. All rights reserved.</p>
+          <p>
+            Spread the Funds, including but not limited to its name, logo,
+            design, user interface, graphics, icons, and all software and
+            underlying source code, is the intellectual property of Jason Green.
+          </p>
 
-			<div class="prose">
-				<h2>Copyright Notice</h2>
-				<p>
-					&copy; 2026 Jason Green. All rights reserved.
-				</p>
-				<p>
-					Spread the Funds, including but not limited to its name, logo, design, user interface, graphics, icons, and all software and underlying source code, is the intellectual property of Jason Green.
-				</p>
+          <h2>Permitted Use</h2>
+          <p>
+            You are granted a limited, non-exclusive, non-transferable license
+            to use the Spread the Funds application for its intended purpose —
+            creating and participating in shared funds. This license does not
+            include the right to:
+          </p>
+          <ul>
+            <li>
+              Copy, modify, or distribute the application or its source code
+            </li>
+            <li>
+              Reverse engineer, decompile, or disassemble any part of the
+              application
+            </li>
+            <li>
+              Use the application's name, logo, or branding for any commercial
+              purpose
+            </li>
+            <li>Create derivative works based on the application</li>
+          </ul>
 
-				<h2>Permitted Use</h2>
-				<p>
-					You are granted a limited, non-exclusive, non-transferable license to use the Spread the Funds application for its intended purpose — creating and participating in shared funds. This license does not include the right to:
-				</p>
-				<ul>
-					<li>Copy, modify, or distribute the application or its source code</li>
-					<li>Reverse engineer, decompile, or disassemble any part of the application</li>
-					<li>Use the application's name, logo, or branding for any commercial purpose</li>
-					<li>Create derivative works based on the application</li>
-				</ul>
+          <h2>User-Generated Content</h2>
+          <p>
+            Content you create within the Service (fund names, descriptions,
+            messages) remains your intellectual property. By posting content
+            through the Service, you grant us a limited license to display and
+            distribute that content as necessary to operate the Service.
+          </p>
 
-				<h2>User-Generated Content</h2>
-				<p>
-					Content you create within the Service (fund names, descriptions, messages) remains your intellectual property. By posting content through the Service, you grant us a limited license to display and distribute that content as necessary to operate the Service.
-				</p>
+          <h2>Third-Party Content</h2>
+          <p>
+            The Service may incorporate third-party libraries, fonts, icons, or
+            services. These remain the property of their respective owners and
+            are used under their respective licenses.
+          </p>
 
-				<h2>Third-Party Content</h2>
-				<p>
-					The Service may incorporate third-party libraries, fonts, icons, or services. These remain the property of their respective owners and are used under their respective licenses.
-				</p>
+          <h2>Trademarks</h2>
+          <p>
+            "Spread the Funds" and any associated logos are trademarks of Jason
+            Green. Use of these trademarks without prior written permission is
+            prohibited.
+          </p>
 
-				<h2>Trademarks</h2>
-				<p>
-					"Spread the Funds" and any associated logos are trademarks of Jason Green. Use of these trademarks without prior written permission is prohibited.
-				</p>
+          <h2>DMCA / Copyright Complaints</h2>
+          <p>
+            If you believe that content available through the Service infringes
+            your copyright, please contact us with the following information:
+          </p>
+          <ul>
+            <li>
+              A description of the copyrighted work you claim has been infringed
+            </li>
+            <li>
+              A description of where the infringing material is located within
+              the Service
+            </li>
+            <li>
+              Your contact information (name, address, email, phone number)
+            </li>
+            <li>
+              A statement that you have a good faith belief that the use is not
+              authorized
+            </li>
+            <li>
+              A statement, under penalty of perjury, that the information is
+              accurate and that you are the copyright owner or authorized to act
+              on their behalf
+            </li>
+          </ul>
 
-				<h2>DMCA / Copyright Complaints</h2>
-				<p>
-					If you believe that content available through the Service infringes your copyright, please contact us with the following information:
-				</p>
-				<ul>
-					<li>A description of the copyrighted work you claim has been infringed</li>
-					<li>A description of where the infringing material is located within the Service</li>
-					<li>Your contact information (name, address, email, phone number)</li>
-					<li>A statement that you have a good faith belief that the use is not authorized</li>
-					<li>A statement, under penalty of perjury, that the information is accurate and that you are the copyright owner or authorized to act on their behalf</li>
-				</ul>
-
-				<h2>Contact</h2>
-				<p>
-					For copyright inquiries, please contact
-					<a href="mailto:spreadthefund@gmail.com" style="color: var(--stf-primary);">spreadthefund@gmail.com</a>.
-				</p>
-			</div>
-		</div>
-	</main>
-	</div>
-</Layout>
-
-<style>
-	.prose h2 {
-		font-family: var(--stf-font);
-		font-size: 0.8125rem;
-		font-weight: 700;
-		color: var(--stf-text);
-		text-transform: uppercase;
-		letter-spacing: 2px;
-		margin-top: 2.5rem;
-		margin-bottom: 0.75rem;
-		padding-bottom: 0.5rem;
-		border-bottom: 1px solid var(--stf-border);
-	}
-	.prose p {
-		font-family: var(--stf-font);
-		font-size: 0.875rem;
-		line-height: 1.85;
-		color: var(--stf-text-dim);
-		margin-bottom: 1rem;
-	}
-	.prose ul {
-		list-style: none;
-		padding-left: 0;
-		margin-bottom: 1rem;
-	}
-	.prose li {
-		font-family: var(--stf-font);
-		font-size: 0.875rem;
-		line-height: 1.85;
-		color: var(--stf-text-dim);
-		margin-bottom: 0.25rem;
-		padding-left: 1.25rem;
-		position: relative;
-	}
-	.prose li::before {
-		content: '›';
-		position: absolute;
-		left: 0;
-		color: var(--stf-primary);
-		font-weight: bold;
-	}
-	.prose a {
-		color: var(--stf-primary);
-		text-decoration: none;
-	}
-	.prose a:hover {
-		text-decoration: underline;
-	}
-	.prose strong {
-		color: var(--stf-text-secondary);
-	}
-</style>
+          <h2>Contact</h2>
+          <p>
+            For copyright inquiries, please contact
+            <a
+              href="mailto:spreadthefund@gmail.com"
+              style="color: var(--stf-primary);">spreadthefund@gmail.com</a
+            >.
+          </p>
+        </div>
+      </div>
+    </main>
+</StfLayout>

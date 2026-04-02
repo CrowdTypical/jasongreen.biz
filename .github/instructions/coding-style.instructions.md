@@ -1,6 +1,6 @@
 ---
 description: Universal coding philosophy — language-agnostic principles for all code
-applyTo: "**/*.dart,**/*.ts,**/*.tsx,**/*.js,**/*.jsx,**/*.astro,**/*.css,**/*.html"
+applyTo: '**/*.dart,**/*.ts,**/*.tsx,**/*.js,**/*.jsx,**/*.astro,**/*.css,**/*.html'
 ---
 
 # Coding Style — Universal Principles
@@ -13,15 +13,16 @@ These principles apply to all code in every project regardless of language or fr
 
 Flat code is readable code. This is the foundational structural rule.
 
-| Depth | Status | Meaning |
-|-------|--------|---------|
-| 0–2 | **Target** | Where most code should live |
-| 3 | **Exception** | Acceptable for specific, justified cases |
-| 4 | **Hard limit** | Never exceed — refactor before proceeding |
+| Depth | Status         | Meaning                                   |
+| ----- | -------------- | ----------------------------------------- |
+| 0–2   | **Target**     | Where most code should live               |
+| 3     | **Exception**  | Acceptable for specific, justified cases  |
+| 4     | **Hard limit** | Never exceed — refactor before proceeding |
 
 ### Techniques to Stay Flat
 
 **Guard clauses / early returns:**
+
 ```dart
 // ❌ Nested
 Future<Result> handleRequest(Request request) async {
@@ -43,6 +44,7 @@ Future<Result> handleRequest(Request request) async {
 ```
 
 **Continue in loops:**
+
 ```dart
 // ❌ Wrapped loop body
 for (final item in items) {
@@ -61,6 +63,7 @@ for (final item in items) {
 ```
 
 **Extract to functions** when nesting grows:
+
 ```dart
 // ❌ Deeply nested
 for (final zone in zones) {
@@ -129,13 +132,13 @@ try {
 
 Good names eliminate the need for most comments.
 
-| Element | Convention | Examples |
-|---------|-----------|---------|
-| Variables | Descriptive at distance, short at proximity | `i` in a 3-line loop; `userAccount` across 20 lines |
-| Functions | Verb phrases | `getRecord()`, `validateConfig()`, `buildResponse()` |
-| Booleans | Read as questions | `isValid`, `hasPermission`, `canRetry` |
-| Constants | Describe meaning, not value | `maxRetries` not `three` |
-| Classes/Types | Nouns or noun phrases | `UserRepository`, `DebtItem`, `PaymentResult` |
+| Element       | Convention                                  | Examples                                             |
+| ------------- | ------------------------------------------- | ---------------------------------------------------- |
+| Variables     | Descriptive at distance, short at proximity | `i` in a 3-line loop; `userAccount` across 20 lines  |
+| Functions     | Verb phrases                                | `getRecord()`, `validateConfig()`, `buildResponse()` |
+| Booleans      | Read as questions                           | `isValid`, `hasPermission`, `canRetry`               |
+| Constants     | Describe meaning, not value                 | `maxRetries` not `three`                             |
+| Classes/Types | Nouns or noun phrases                       | `UserRepository`, `DebtItem`, `PaymentResult`        |
 
 **Abbreviations:** Only universally understood ones — `ctx`, `err`, `req`, `res`, `db`.
 When in doubt, spell it out.
@@ -144,7 +147,7 @@ When in doubt, spell it out.
 
 ## 5. Comments Explain Why, Not What
 
-- Code tells you *what*. Comments tell you *why*.
+- Code tells you _what_. Comments tell you _why_.
 - Every workaround gets a comment explaining what it works around
 - **TODO format:** `// TODO(#issue): description`
 - **Delete commented-out code** — git history preserves everything
@@ -165,7 +168,7 @@ await Future.delayed(rateLimitDelay);
 
 - **Rule of Three:** Don't abstract until you've seen the pattern three times
 - Duplication is cheaper than the wrong abstraction
-- When abstracting, the shared code must represent the *same concept*, not just similar text
+- When abstracting, the shared code must represent the _same concept_, not just similar text
 
 ---
 
@@ -188,7 +191,7 @@ if (retries > maxRetries) { ... }
 
 ## 8. Consistent Error Handling
 
-Wrap errors with context about *what was being attempted*:
+Wrap errors with context about _what was being attempted_:
 
 ```dart
 try {
@@ -237,13 +240,13 @@ Organize by **logical grouping**, not alphabetically.
 
 **No premature optimization.** Follow the ladder:
 
-| Step | Action |
-|------|--------|
-| 1 | Notice a real, measurable problem |
-| 2 | Measure it with profilers/timing |
-| 3 | Check data structures first (biggest lever) |
-| 4 | Profile for hotspots |
-| 5 | Look under the hood (last resort) |
+| Step | Action                                      |
+| ---- | ------------------------------------------- |
+| 1    | Notice a real, measurable problem           |
+| 2    | Measure it with profilers/timing            |
+| 3    | Check data structures first (biggest lever) |
+| 4    | Profile for hotspots                        |
+| 5    | Look under the hood (last resort)           |
 
 Write clear code first. Correct and readable beats fast and clever.
 
@@ -251,18 +254,18 @@ Write clear code first. Correct and readable beats fast and clever.
 
 ## 12. Anti-Patterns Summary
 
-| ❌ Avoid | ✅ Prefer |
-|----------|-----------|
-| Deep nesting (4+ levels) | Guard clauses, extraction, early returns |
-| Functions that do multiple things | Single-purpose functions composed together |
-| Silent error swallowing | Explicit handling or justified suppression |
-| Clever one-liners | Clear multi-line code humans read easily |
-| Magic numbers and strings | Named constants |
-| Commented-out code blocks | Delete it — git remembers |
-| `dynamic` / `any` escape hatches | Proper types, even if verbose |
+| ❌ Avoid                          | ✅ Prefer                                     |
+| --------------------------------- | --------------------------------------------- |
+| Deep nesting (4+ levels)          | Guard clauses, extraction, early returns      |
+| Functions that do multiple things | Single-purpose functions composed together    |
+| Silent error swallowing           | Explicit handling or justified suppression    |
+| Clever one-liners                 | Clear multi-line code humans read easily      |
+| Magic numbers and strings         | Named constants                               |
+| Commented-out code blocks         | Delete it — git remembers                     |
+| `dynamic` / `any` escape hatches  | Proper types, even if verbose                 |
 | Copy-pasting on first duplication | Accept duplication until the pattern is clear |
-| Optimizing without measuring | Follow the performance ladder |
-| Abbreviations only you understand | Spell it out |
+| Optimizing without measuring      | Follow the performance ladder                 |
+| Abbreviations only you understand | Spell it out                                  |
 
 ---
 
@@ -270,15 +273,15 @@ Write clear code first. Correct and readable beats fast and clever.
 
 **No testing theater.** Every test should exist for a reason.
 
-| Test It | Why |
-|---------|-----|
-| Functions with branching logic | Multiple paths = multiple ways to break |
-| Core business logic | If this breaks, everything breaks |
+| Test It                                    | Why                                     |
+| ------------------------------------------ | --------------------------------------- |
+| Functions with branching logic             | Multiple paths = multiple ways to break |
+| Core business logic                        | If this breaks, everything breaks       |
 | Edge cases (empty input, null, max values) | Off-by-one and boundary bugs are common |
-| Code likely to be refactored | Tests are your safety net |
-| Anything that's bitten you before | Regression tests prevent repeat pain |
+| Code likely to be refactored               | Tests are your safety net               |
+| Anything that's bitten you before          | Regression tests prevent repeat pain    |
 
-| Skip It | Why |
-|---------|-----|
-| Simple getters with no logic | Testing the language, not your code |
-| Thin wrappers around libraries | Test your logic, not theirs |
+| Skip It                        | Why                                 |
+| ------------------------------ | ----------------------------------- |
+| Simple getters with no logic   | Testing the language, not your code |
+| Thin wrappers around libraries | Test your logic, not theirs         |

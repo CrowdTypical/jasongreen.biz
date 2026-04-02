@@ -1,364 +1,398 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import StfLayout from '../../layouts/StfLayout.astro';
+import StfBackNav from '../../components/StfBackNav.astro';
 ---
 
-<Layout title="SPREAD THE FUNDS — Privacy Policy">
-	<style>
-		@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
-		:root {
-			--stf-primary: #00E5CC;
-			--stf-bg: #0A0E14;
-			--stf-surface: #141A22;
-			--stf-surface-alt: #0F1419;
-			--stf-border: #1E2A35;
-			--stf-text: #E0E0E0;
-			--stf-text-secondary: #8899AA;
-			--stf-text-dim: #556677;
-			--stf-font: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
-		}
-		.stf-legal { font-family: var(--stf-font); background: var(--stf-bg); color: var(--stf-text); min-height: 100vh; }
-	</style>
+<StfLayout title="SPREAD THE FUNDS — Privacy Policy">
+  <StfBackNav />
 
-	<div class="stf-legal">
-	<nav class="fixed top-0 left-0 right-0 z-50 border-b" style="background: var(--stf-surface-alt); border-color: var(--stf-border);">
-		<div class="max-w-5xl mx-auto px-6 py-4 flex items-center gap-4">
-			<a href="/spread-the-fund" class="text-xs font-bold uppercase tracking-[2px] flex items-center gap-2 transition-colors" style="color: var(--stf-text-secondary);">
-				<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" /></svg>
-				BACK TO SPREAD THE FUNDS
-			</a>
-		</div>
-	</nav>
+    <main class="pt-24 pb-20 px-6 md:px-16">
+      <div class="max-w-3xl mx-auto">
+        <h1
+          class="text-2xl md:text-3xl font-bold uppercase tracking-[4px] mb-2"
+          style="color: var(--stf-text);"
+        >
+          PRIVACY POLICY
+        </h1>
+        <p
+          class="text-xs uppercase tracking-[2px] mb-10"
+          style="color: var(--stf-text-dim);"
+        >
+          LAST UPDATED: MARCH 27, 2026
+        </p>
 
-	<main class="pt-24 pb-20 px-6 md:px-16">
-		<div class="max-w-3xl mx-auto">
-			<h1 class="text-2xl md:text-3xl font-bold uppercase tracking-[4px] mb-2" style="color: var(--stf-text);">PRIVACY POLICY</h1>
-			<p class="text-xs uppercase tracking-[2px] mb-10" style="color: var(--stf-text-dim);">LAST UPDATED: MARCH 27, 2026</p>
+        <div class="prose">
+          <h2>1. Introduction</h2>
+          <p>
+            Spread the Funds ("we," "our," or "us") is committed to protecting
+            your privacy. This Privacy Policy explains how we collect, use,
+            disclose, and safeguard your information when you use our mobile
+            application and related services (collectively, the "Service").
+          </p>
 
-			<div class="prose">
-				<h2>1. Introduction</h2>
-				<p>
-					Spread the Funds ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our mobile application and related services (collectively, the "Service").
-				</p>
+          <h2>2. Information We Collect</h2>
+          <h3>Information You Provide</h3>
+          <ul>
+            <li>
+              <strong>Account Information:</strong> Name, email address, and profile
+              details when you create an account.
+            </li>
+            <li>
+              <strong>Financial Information:</strong> Payment details processed securely
+              through third-party payment processors. We do not store your full payment
+              card details.
+            </li>
+            <li>
+              <strong>Fund Information:</strong> Details about funds you create or
+              contribute to, including names, descriptions, and contribution amounts.
+            </li>
+            <li>
+              <strong>Communications:</strong> Messages and content you share through
+              the Service.
+            </li>
+          </ul>
 
-				<h2>2. Information We Collect</h2>
-				<h3>Information You Provide</h3>
-				<ul>
-					<li><strong>Account Information:</strong> Name, email address, and profile details when you create an account.</li>
-					<li><strong>Financial Information:</strong> Payment details processed securely through third-party payment processors. We do not store your full payment card details.</li>
-					<li><strong>Fund Information:</strong> Details about funds you create or contribute to, including names, descriptions, and contribution amounts.</li>
-					<li><strong>Communications:</strong> Messages and content you share through the Service.</li>
-				</ul>
+          <h3>Information Collected Automatically</h3>
+          <ul>
+            <li>
+              <strong>Usage Data:</strong> How you interact with the Service, including
+              features used and time spent.
+            </li>
+            <li>
+              <strong>Device Information:</strong> Device type, operating system,
+              and unique device identifiers.
+            </li>
+            <li>
+              <strong>Log Data:</strong> IP address, browser type, and access times.
+            </li>
+          </ul>
 
-				<h3>Information Collected Automatically</h3>
-				<ul>
-					<li><strong>Usage Data:</strong> How you interact with the Service, including features used and time spent.</li>
-					<li><strong>Device Information:</strong> Device type, operating system, and unique device identifiers.</li>
-					<li><strong>Log Data:</strong> IP address, browser type, and access times.</li>
-				</ul>
+          <h2>3. How We Use Your Information</h2>
+          <p>We use the information we collect to:</p>
+          <ul>
+            <li>Provide, maintain, and improve the Service</li>
+            <li>Process transactions and send related information</li>
+            <li>Send notifications about your account and fund activity</li>
+            <li>Respond to your comments, questions, and support requests</li>
+            <li>Monitor and analyze usage trends to improve user experience</li>
+            <li>Detect, prevent, and address fraud and security issues</li>
+          </ul>
 
-				<h2>3. How We Use Your Information</h2>
-				<p>We use the information we collect to:</p>
-				<ul>
-					<li>Provide, maintain, and improve the Service</li>
-					<li>Process transactions and send related information</li>
-					<li>Send notifications about your account and fund activity</li>
-					<li>Respond to your comments, questions, and support requests</li>
-					<li>Monitor and analyze usage trends to improve user experience</li>
-					<li>Detect, prevent, and address fraud and security issues</li>
-				</ul>
+          <h2>4. Sharing of Information</h2>
+          <p>
+            We do not sell your personal information. We may share information
+            with:
+          </p>
+          <ul>
+            <li>
+              <strong>Service Providers:</strong> Third-party companies that assist
+              in providing the Service (payment processing, hosting, analytics).
+            </li>
+            <li>
+              <strong>Fund Participants:</strong> Other members of funds you participate
+              in may see your name and contribution activity as part of normal fund
+              operation.
+            </li>
+            <li>
+              <strong>Legal Requirements:</strong> When required by law, regulation,
+              or legal process.
+            </li>
+          </ul>
 
-				<h2>4. Sharing of Information</h2>
-				<p>We do not sell your personal information. We may share information with:</p>
-				<ul>
-					<li><strong>Service Providers:</strong> Third-party companies that assist in providing the Service (payment processing, hosting, analytics).</li>
-					<li><strong>Fund Participants:</strong> Other members of funds you participate in may see your name and contribution activity as part of normal fund operation.</li>
-					<li><strong>Legal Requirements:</strong> When required by law, regulation, or legal process.</li>
-				</ul>
+          <h2>5. Data Security</h2>
+          <p>
+            We implement appropriate technical and organizational measures to
+            protect your personal information. However, no method of
+            transmission over the Internet or electronic storage is 100% secure,
+            and we cannot guarantee absolute security.
+          </p>
 
-				<h2>5. Data Security</h2>
-				<p>
-					We implement appropriate technical and organizational measures to protect your personal information. However, no method of transmission over the Internet or electronic storage is 100% secure, and we cannot guarantee absolute security.
-				</p>
+          <h2>6. Data Retention</h2>
+          <p>
+            We retain your personal information for as long as your account is
+            active or as needed to provide the Service. You may request deletion
+            of your account and associated data at any time.
+          </p>
 
-				<h2>6. Data Retention</h2>
-				<p>
-					We retain your personal information for as long as your account is active or as needed to provide the Service. You may request deletion of your account and associated data at any time.
-				</p>
+          <h2>7. Your Rights</h2>
+          <p>Depending on your jurisdiction, you may have the right to:</p>
+          <ul>
+            <li>Access the personal information we hold about you</li>
+            <li>Request correction of inaccurate information</li>
+            <li>Request deletion of your information</li>
+            <li>Withdraw consent for data processing</li>
+            <li>Data portability</li>
+          </ul>
 
-				<h2>7. Your Rights</h2>
-				<p>Depending on your jurisdiction, you may have the right to:</p>
-				<ul>
-					<li>Access the personal information we hold about you</li>
-					<li>Request correction of inaccurate information</li>
-					<li>Request deletion of your information</li>
-					<li>Withdraw consent for data processing</li>
-					<li>Data portability</li>
-				</ul>
+          <h2>8. Children's Privacy</h2>
+          <p>
+            The Service is not intended for users under the age of 18. We do not
+            knowingly collect personal information from children under 18.
+          </p>
 
-				<h2>8. Children's Privacy</h2>
-				<p>
-					The Service is not intended for users under the age of 18. We do not knowingly collect personal information from children under 18.
-				</p>
+          <h2>9. Changes to This Policy</h2>
+          <p>
+            We may update this Privacy Policy from time to time. We will notify
+            you of any changes by posting the new policy on this page and
+            updating the "Last updated" date.
+          </p>
 
-				<h2>9. Changes to This Policy</h2>
-				<p>
-					We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new policy on this page and updating the "Last updated" date.
-				</p>
+          <h2>10. Contact Us</h2>
+          <p>
+            If you have questions about this Privacy Policy, please contact us
+            at
+            <a
+              href="mailto:spreadthefund@gmail.com"
+              style="color: var(--stf-primary);">spreadthefund@gmail.com</a
+            >.
+          </p>
 
-				<h2>10. Contact Us</h2>
-				<p>
-					If you have questions about this Privacy Policy, please contact us at
-					<a href="mailto:spreadthefund@gmail.com" style="color: var(--stf-primary);">spreadthefund@gmail.com</a>.
-				</p>
+          <h2>11. Delete My Data</h2>
+          <p>
+            You have the right to request deletion of all your personal data
+            from Spread the Funds at any time. For security, we will send a
+            verification code to your email to confirm your identity before
+            deleting any data.
+          </p>
+          <div
+            class="delete-data-section"
+            style="margin-top: 1.5rem; padding: 1.5rem; border: 1px solid var(--stf-border); background: var(--stf-surface);"
+          >
+            <!-- Step 1: Email -->
+            <div id="step-email">
+              <label
+                for="delete-email"
+                class="block text-xs font-bold uppercase tracking-[2px] mb-3"
+                style="color: var(--stf-text-secondary); font-family: var(--stf-font);"
+              >
+                STEP 1 — ENTER YOUR ACCOUNT EMAIL
+              </label>
+              <div class="flex flex-col sm:flex-row gap-3">
+                <input
+                  type="email"
+                  id="delete-email"
+                  placeholder="you@example.com"
+                  required
+                  class="flex-1 px-4 py-3 text-sm outline-none"
+                  style="background: var(--stf-bg); border: 1px solid var(--stf-border); color: var(--stf-text); font-family: var(--stf-font); border-radius: 0;"
+                />
+                <button
+                  id="send-code-btn"
+                  type="button"
+                  class="px-6 py-3 text-xs font-bold uppercase tracking-[2px] transition-all cursor-pointer"
+                  style="background: transparent; border: 1px solid var(--stf-primary); color: var(--stf-primary); font-family: var(--stf-font); border-radius: 0;"
+                >
+                  SEND CODE
+                </button>
+              </div>
+            </div>
 
-				<h2>11. Delete My Data</h2>
-				<p>
-					You have the right to request deletion of all your personal data from Spread the Funds at any time. For security, we will send a verification code to your email to confirm your identity before deleting any data.
-				</p>
-				<div class="delete-data-section" style="margin-top: 1.5rem; padding: 1.5rem; border: 1px solid var(--stf-border); background: var(--stf-surface);">
-					<!-- Step 1: Email -->
-					<div id="step-email">
-						<label for="delete-email" class="block text-xs font-bold uppercase tracking-[2px] mb-3" style="color: var(--stf-text-secondary); font-family: var(--stf-font);">
-							STEP 1 — ENTER YOUR ACCOUNT EMAIL
-						</label>
-						<div class="flex flex-col sm:flex-row gap-3">
-							<input
-								type="email"
-								id="delete-email"
-								placeholder="you@example.com"
-								required
-								class="flex-1 px-4 py-3 text-sm outline-none"
-								style="background: var(--stf-bg); border: 1px solid var(--stf-border); color: var(--stf-text); font-family: var(--stf-font); border-radius: 0;"
-							/>
-							<button
-								id="send-code-btn"
-								type="button"
-								class="px-6 py-3 text-xs font-bold uppercase tracking-[2px] transition-all cursor-pointer"
-								style="background: transparent; border: 1px solid var(--stf-primary); color: var(--stf-primary); font-family: var(--stf-font); border-radius: 0;"
-							>
-								SEND CODE
-							</button>
-						</div>
-					</div>
+            <!-- Step 2: Code verification (hidden initially) -->
+            <div
+              id="step-code"
+              style="display: none; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--stf-border);"
+            >
+              <label
+                for="delete-code"
+                class="block text-xs font-bold uppercase tracking-[2px] mb-3"
+                style="color: var(--stf-text-secondary); font-family: var(--stf-font);"
+              >
+                STEP 2 — ENTER VERIFICATION CODE
+              </label>
+              <p
+                class="text-xs mb-3"
+                style="color: var(--stf-text-dim); font-family: var(--stf-font); line-height: 1.6;"
+              >
+                A 6-digit code has been sent to <span
+                  id="code-email-display"
+                  style="color: var(--stf-primary);"></span>. Check your inbox
+                (and spam folder).
+              </p>
+              <div class="flex flex-col sm:flex-row gap-3">
+                <input
+                  type="text"
+                  id="delete-code"
+                  placeholder="000000"
+                  maxlength="6"
+                  pattern="\d{6}"
+                  class="flex-1 px-4 py-3 text-sm outline-none text-center"
+                  style="background: var(--stf-bg); border: 1px solid var(--stf-border); color: var(--stf-text); font-family: var(--stf-font); border-radius: 0; letter-spacing: 8px; font-size: 1.25rem;"
+                />
+                <button
+                  id="confirm-delete-btn"
+                  type="button"
+                  class="px-6 py-3 text-xs font-bold uppercase tracking-[2px] transition-all cursor-pointer"
+                  style="background: transparent; border: 1px solid #EF5350; color: #EF5350; font-family: var(--stf-font); border-radius: 0;"
+                >
+                  DELETE MY DATA
+                </button>
+              </div>
+              <button
+                id="resend-code-btn"
+                type="button"
+                class="mt-3 text-xs uppercase tracking-[1px] cursor-pointer"
+                style="background: none; border: none; color: var(--stf-text-dim); font-family: var(--stf-font); text-decoration: underline;"
+              >
+                RESEND CODE
+              </button>
+            </div>
 
-					<!-- Step 2: Code verification (hidden initially) -->
-					<div id="step-code" style="display: none; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--stf-border);">
-						<label for="delete-code" class="block text-xs font-bold uppercase tracking-[2px] mb-3" style="color: var(--stf-text-secondary); font-family: var(--stf-font);">
-							STEP 2 — ENTER VERIFICATION CODE
-						</label>
-						<p class="text-xs mb-3" style="color: var(--stf-text-dim); font-family: var(--stf-font); line-height: 1.6;">
-							A 6-digit code has been sent to <span id="code-email-display" style="color: var(--stf-primary);"></span>. Check your inbox (and spam folder).
-						</p>
-						<div class="flex flex-col sm:flex-row gap-3">
-							<input
-								type="text"
-								id="delete-code"
-								placeholder="000000"
-								maxlength="6"
-								pattern="\d{6}"
-								class="flex-1 px-4 py-3 text-sm outline-none text-center"
-								style="background: var(--stf-bg); border: 1px solid var(--stf-border); color: var(--stf-text); font-family: var(--stf-font); border-radius: 0; letter-spacing: 8px; font-size: 1.25rem;"
-							/>
-							<button
-								id="confirm-delete-btn"
-								type="button"
-								class="px-6 py-3 text-xs font-bold uppercase tracking-[2px] transition-all cursor-pointer"
-								style="background: transparent; border: 1px solid #EF5350; color: #EF5350; font-family: var(--stf-font); border-radius: 0;"
-							>
-								DELETE MY DATA
-							</button>
-						</div>
-						<button
-							id="resend-code-btn"
-							type="button"
-							class="mt-3 text-xs uppercase tracking-[1px] cursor-pointer"
-							style="background: none; border: none; color: var(--stf-text-dim); font-family: var(--stf-font); text-decoration: underline;"
-						>
-							RESEND CODE
-						</button>
-					</div>
+            <div
+              id="delete-status"
+              class="mt-4 text-sm"
+              style="font-family: var(--stf-font); display: none;"
+            >
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
 
-					<div id="delete-status" class="mt-4 text-sm" style="font-family: var(--stf-font); display: none;"></div>
-				</div>
-			</div>
-		</div>
-	</main>
-	</div>
+  <script is:inline>
+    (function () {
+      var emailInput = document.getElementById('delete-email');
+      var codeInput = document.getElementById('delete-code');
+      var sendCodeBtn = document.getElementById('send-code-btn');
+      var confirmBtn = document.getElementById('confirm-delete-btn');
+      var resendBtn = document.getElementById('resend-code-btn');
+      var stepEmail = document.getElementById('step-email');
+      var stepCode = document.getElementById('step-code');
+      var codeEmailDisplay = document.getElementById('code-email-display');
+      var statusEl = document.getElementById('delete-status');
+      var currentEmail = '';
 
-	<script is:inline>
-		(function() {
-			var emailInput = document.getElementById('delete-email');
-			var codeInput = document.getElementById('delete-code');
-			var sendCodeBtn = document.getElementById('send-code-btn');
-			var confirmBtn = document.getElementById('confirm-delete-btn');
-			var resendBtn = document.getElementById('resend-code-btn');
-			var stepEmail = document.getElementById('step-email');
-			var stepCode = document.getElementById('step-code');
-			var codeEmailDisplay = document.getElementById('code-email-display');
-			var statusEl = document.getElementById('delete-status');
-			var currentEmail = '';
+      function setStatus(msg, color) {
+        statusEl.style.display = 'block';
+        statusEl.style.color = color;
+        statusEl.textContent = '> ' + msg;
+      }
 
-			function setStatus(msg, color) {
-				statusEl.style.display = 'block';
-				statusEl.style.color = color;
-				statusEl.textContent = '> ' + msg;
-			}
+      function setButtonLoading(btn, loading, originalText) {
+        btn.disabled = loading;
+        btn.textContent = loading ? 'PROCESSING...' : originalText;
+        btn.style.opacity = loading ? '0.5' : '1';
+        btn.style.cursor = loading ? 'not-allowed' : 'pointer';
+      }
 
-			function setButtonLoading(btn, loading, originalText) {
-				btn.disabled = loading;
-				btn.textContent = loading ? 'PROCESSING...' : originalText;
-				btn.style.opacity = loading ? '0.5' : '1';
-				btn.style.cursor = loading ? 'not-allowed' : 'pointer';
-			}
+      function sendCode() {
+        var email = emailInput.value.trim();
+        if (!email || !emailInput.checkValidity()) {
+          setStatus('PLEASE ENTER A VALID EMAIL ADDRESS', '#EF5350');
+          return;
+        }
 
-			function sendCode() {
-				var email = emailInput.value.trim();
-				if (!email || !emailInput.checkValidity()) {
-					setStatus('PLEASE ENTER A VALID EMAIL ADDRESS', '#EF5350');
-					return;
-				}
+        currentEmail = email;
+        setButtonLoading(sendCodeBtn, true, 'SEND CODE');
+        setStatus('SENDING VERIFICATION CODE...', 'var(--stf-text-dim)');
 
-				currentEmail = email;
-				setButtonLoading(sendCodeBtn, true, 'SEND CODE');
-				setStatus('SENDING VERIFICATION CODE...', 'var(--stf-text-dim)');
+        fetch('/api/send-code', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email }),
+        })
+          .then(function (res) {
+            return res.json().then(function (data) {
+              return { status: res.status, data: data };
+            });
+          })
+          .then(function (result) {
+            if (result.status === 429) {
+              setStatus(
+                'TOO MANY REQUESTS — PLEASE TRY AGAIN LATER',
+                '#FFA726'
+              );
+            } else if (result.data.success) {
+              setStatus('VERIFICATION CODE SENT — CHECK YOUR EMAIL', '#00E5CC');
+              codeEmailDisplay.textContent = currentEmail;
+              stepCode.style.display = 'block';
+              emailInput.disabled = true;
+              codeInput.focus();
+            } else {
+              setStatus(
+                'ERROR: ' + (result.data.error || 'UNKNOWN ERROR'),
+                '#EF5350'
+              );
+            }
+          })
+          .catch(function () {
+            setStatus('CONNECTION ERROR — PLEASE TRY AGAIN LATER', '#EF5350');
+          })
+          .finally(function () {
+            setButtonLoading(sendCodeBtn, false, 'SEND CODE');
+          });
+      }
 
-				fetch('/api/send-code', {
-					method: 'POST',
-					headers: { 'Content-Type': 'application/json' },
-					body: JSON.stringify({ email: email })
-				})
-				.then(function(res) { return res.json().then(function(data) { return { status: res.status, data: data }; }); })
-				.then(function(result) {
-					if (result.status === 429) {
-						setStatus('TOO MANY REQUESTS — PLEASE TRY AGAIN LATER', '#FFA726');
-					} else if (result.data.success) {
-						setStatus('VERIFICATION CODE SENT — CHECK YOUR EMAIL', '#00E5CC');
-						codeEmailDisplay.textContent = currentEmail;
-						stepCode.style.display = 'block';
-						emailInput.disabled = true;
-						codeInput.focus();
-					} else {
-						setStatus('ERROR: ' + (result.data.error || 'UNKNOWN ERROR'), '#EF5350');
-					}
-				})
-				.catch(function() {
-					setStatus('CONNECTION ERROR — PLEASE TRY AGAIN LATER', '#EF5350');
-				})
-				.finally(function() {
-					setButtonLoading(sendCodeBtn, false, 'SEND CODE');
-				});
-			}
+      function confirmDeletion() {
+        var code = codeInput.value.trim();
+        if (!code || !/^\d{6}$/.test(code)) {
+          setStatus('PLEASE ENTER THE 6-DIGIT CODE FROM YOUR EMAIL', '#EF5350');
+          return;
+        }
 
-			function confirmDeletion() {
-				var code = codeInput.value.trim();
-				if (!code || !/^\d{6}$/.test(code)) {
-					setStatus('PLEASE ENTER THE 6-DIGIT CODE FROM YOUR EMAIL', '#EF5350');
-					return;
-				}
+        if (
+          !confirm(
+            'This will permanently delete ALL your data from Spread the Funds. This cannot be undone. Proceed?'
+          )
+        ) {
+          return;
+        }
 
-				if (!confirm('This will permanently delete ALL your data from Spread the Funds. This cannot be undone. Proceed?')) {
-					return;
-				}
+        setButtonLoading(confirmBtn, true, 'DELETE MY DATA');
+        setStatus('DELETING YOUR DATA...', 'var(--stf-text-dim)');
 
-				setButtonLoading(confirmBtn, true, 'DELETE MY DATA');
-				setStatus('DELETING YOUR DATA...', 'var(--stf-text-dim)');
+        fetch('/api/delete-data', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: currentEmail, code: code }),
+        })
+          .then(function (res) {
+            return res.json().then(function (data) {
+              return { status: res.status, data: data };
+            });
+          })
+          .then(function (result) {
+            if (result.status === 429) {
+              setStatus(
+                'TOO MANY REQUESTS — PLEASE TRY AGAIN LATER',
+                '#FFA726'
+              );
+            } else if (result.data.success) {
+              setStatus(
+                'YOUR DATA HAS BEEN PERMANENTLY DELETED — A CONFIRMATION EMAIL HAS BEEN SENT',
+                '#4CAF50'
+              );
+              stepCode.style.display = 'none';
+              emailInput.value = '';
+              emailInput.disabled = false;
+              codeInput.value = '';
+            } else {
+              setStatus(
+                'ERROR: ' +
+                  (result.data.error || 'UNKNOWN ERROR').toUpperCase(),
+                '#EF5350'
+              );
+            }
+          })
+          .catch(function () {
+            setStatus('CONNECTION ERROR — PLEASE TRY AGAIN LATER', '#EF5350');
+          })
+          .finally(function () {
+            setButtonLoading(confirmBtn, false, 'DELETE MY DATA');
+          });
+      }
 
-				fetch('/api/delete-data', {
-					method: 'POST',
-					headers: { 'Content-Type': 'application/json' },
-					body: JSON.stringify({ email: currentEmail, code: code })
-				})
-				.then(function(res) { return res.json().then(function(data) { return { status: res.status, data: data }; }); })
-				.then(function(result) {
-					if (result.status === 429) {
-						setStatus('TOO MANY REQUESTS — PLEASE TRY AGAIN LATER', '#FFA726');
-					} else if (result.data.success) {
-						setStatus('YOUR DATA HAS BEEN PERMANENTLY DELETED — A CONFIRMATION EMAIL HAS BEEN SENT', '#4CAF50');
-						stepCode.style.display = 'none';
-						emailInput.value = '';
-						emailInput.disabled = false;
-						codeInput.value = '';
-					} else {
-						setStatus('ERROR: ' + (result.data.error || 'UNKNOWN ERROR').toUpperCase(), '#EF5350');
-					}
-				})
-				.catch(function() {
-					setStatus('CONNECTION ERROR — PLEASE TRY AGAIN LATER', '#EF5350');
-				})
-				.finally(function() {
-					setButtonLoading(confirmBtn, false, 'DELETE MY DATA');
-				});
-			}
+      sendCodeBtn.addEventListener('click', sendCode);
+      resendBtn.addEventListener('click', sendCode);
+      confirmBtn.addEventListener('click', confirmDeletion);
 
-			sendCodeBtn.addEventListener('click', sendCode);
-			resendBtn.addEventListener('click', sendCode);
-			confirmBtn.addEventListener('click', confirmDeletion);
-
-			// Allow Enter key in inputs
-			emailInput.addEventListener('keydown', function(e) { if (e.key === 'Enter') sendCode(); });
-			codeInput.addEventListener('keydown', function(e) { if (e.key === 'Enter') confirmDeletion(); });
-		})();
-	</script>
-
-<style>
-	.prose h2 {
-		font-family: var(--stf-font);
-		font-size: 0.8125rem;
-		font-weight: 700;
-		color: var(--stf-text);
-		text-transform: uppercase;
-		letter-spacing: 2px;
-		margin-top: 2.5rem;
-		margin-bottom: 0.75rem;
-		padding-bottom: 0.5rem;
-		border-bottom: 1px solid var(--stf-border);
-	}
-	.prose h3 {
-		font-family: var(--stf-font);
-		font-size: 0.75rem;
-		font-weight: 700;
-		color: var(--stf-text-secondary);
-		text-transform: uppercase;
-		letter-spacing: 1px;
-		margin-top: 1.5rem;
-		margin-bottom: 0.5rem;
-	}
-	.prose p {
-		font-family: var(--stf-font);
-		font-size: 0.875rem;
-		line-height: 1.85;
-		color: var(--stf-text-dim);
-		margin-bottom: 1rem;
-	}
-	.prose ul {
-		list-style: none;
-		padding-left: 0;
-		margin-bottom: 1rem;
-	}
-	.prose li {
-		font-family: var(--stf-font);
-		font-size: 0.875rem;
-		line-height: 1.85;
-		color: var(--stf-text-dim);
-		margin-bottom: 0.25rem;
-		padding-left: 1.25rem;
-		position: relative;
-	}
-	.prose li::before {
-		content: '›';
-		position: absolute;
-		left: 0;
-		color: var(--stf-primary);
-		font-weight: bold;
-	}
-	.prose a {
-		color: var(--stf-primary);
-		text-decoration: none;
-	}
-	.prose a:hover {
-		text-decoration: underline;
-	}
-	.prose strong {
-		color: var(--stf-text-secondary);
-	}
-</style>
+      // Allow Enter key in inputs
+      emailInput.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') sendCode();
+      });
+      codeInput.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') confirmDeletion();
+      });
+    })();
+  </script>
+</StfLayout>
