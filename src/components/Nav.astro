@@ -1,191 +1,320 @@
 ---
+
 ---
 
-<nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-	<div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-		<!-- Logo / Name -->
-		<a href="#hero" class="flex items-center gap-2 font-serif text-xl font-bold text-gray-900 hover:text-gray-700 transition-colors">
-			<img src="/jgiconlogo.svg" alt="" class="h-7 w-auto" />
-			JG
-		</a>
+<nav
+  id="main-nav"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+>
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <!-- Logo / Name — hidden until hero name scrolls out of view -->
+    <a
+      id="nav-brand"
+      href="#hero"
+      class="flex items-center gap-2 font-serif text-xl font-bold text-slate-900 hover:text-blue-900 transition-all duration-300 opacity-0 -translate-y-2 pointer-events-none"
+    >
+      <img src="/jgiconlogo.svg" alt="" class="h-7 w-auto" />
+      Jason Green
+    </a>
 
-		<!-- Desktop Nav -->
-		<div class="hidden md:flex items-center gap-8">
-			<a href="#hero" class="nav-link text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Home</a>
-			<a href="#work" class="nav-link text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Work</a>
-			<a href="#resume" class="nav-link text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Resume</a>
-			<!-- App Support Dropdown -->
-			<div class="relative" id="app-support-dropdown">
-				<button class="nav-link text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors flex items-center gap-1" id="app-support-btn" aria-expanded="false" aria-haspopup="true">
-					App Support
-					<svg class="w-3.5 h-3.5 transition-transform duration-200" id="dropdown-chevron" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" /></svg>
-				</button>
-				<div id="dropdown-menu" class="absolute top-full right-0 mt-2 w-52 bg-white rounded-lg shadow-lg border border-gray-100 opacity-0 invisible translate-y-1 transition-all duration-200 overflow-hidden">
-					<a href="/spread-the-fund" class="page-transition-right flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors">
-						<img src="/spread-the-fund/spreadthefund.svg" alt="" class="w-5 h-5" />
-						Spread the Funds
-					</a>
-				</div>
-			</div>
-			<a href="#contact" class="nav-link text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors border border-gray-900 px-4 py-2 rounded-full hover:bg-gray-900 hover:text-white">
-				Let's Talk
-			</a>
-		</div>
+    <!-- Desktop Nav -->
+    <div class="hidden md:flex items-center gap-8">
+      <a
+        href="#hero"
+        class="nav-link text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors"
+        >Home</a
+      >
+      <a
+        href="#work"
+        class="nav-link text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors"
+        >Work</a
+      >
+      <a
+        href="#resume"
+        class="nav-link text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors"
+        >Resume</a
+      >
+      <!-- App Support Dropdown -->
+      <div class="relative" id="app-support-dropdown">
+        <button
+          class="nav-link text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors flex items-center gap-1"
+          id="app-support-btn"
+          aria-expanded="false"
+          aria-haspopup="true"
+        >
+          App Support
+          <svg
+            class="w-3.5 h-3.5 transition-transform duration-200"
+            id="dropdown-chevron"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="m19.5 8.25-7.5 7.5-7.5-7.5"></path></svg
+          >
+        </button>
+        <div
+          id="dropdown-menu"
+          class="absolute top-full right-0 mt-2 w-52 bg-white rounded-lg shadow-lg border border-slate-100 opacity-0 invisible translate-y-1 transition-all duration-200 overflow-hidden"
+        >
+          <a
+            href="/spread-the-fund"
+            class="page-transition-right flex items-center gap-3 px-4 py-3 text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors"
+          >
+            <img
+              src="/spread-the-fund/spreadthefund.svg"
+              alt=""
+              class="w-5 h-5"
+            />
+            Spread the Funds
+          </a>
+        </div>
+      </div>
+      <a
+        href="#contact"
+        class="nav-link text-sm font-medium text-blue-900 transition-colors bg-white border-2 border-blue-900 px-4 py-2 rounded-full hover:bg-blue-900 hover:text-white"
+      >
+        Let's Talk
+      </a>
+    </div>
 
-		<!-- Mobile Hamburger -->
-		<button
-			id="menu-toggle"
-			class="md:hidden flex flex-col gap-1.5 p-2 -mr-2"
-			aria-label="Toggle navigation menu"
-			aria-expanded="false"
-		>
-			<span class="hamburger-line block w-6 h-0.5 bg-gray-900 transition-all duration-300 origin-center"></span>
-			<span class="hamburger-line block w-6 h-0.5 bg-gray-900 transition-all duration-300 origin-center"></span>
-			<span class="hamburger-line block w-6 h-0.5 bg-gray-900 transition-all duration-300 origin-center"></span>
-		</button>
-	</div>
+    <!-- Mobile Hamburger -->
+    <button
+      id="menu-toggle"
+      class="md:hidden flex flex-col gap-1.5 p-2 -mr-2"
+      aria-label="Toggle navigation menu"
+      aria-expanded="false"
+    >
+      <span
+        class="hamburger-line block w-6 h-0.5 bg-slate-900 transition-all duration-300 origin-center"
+      ></span>
+      <span
+        class="hamburger-line block w-6 h-0.5 bg-slate-900 transition-all duration-300 origin-center"
+      ></span>
+      <span
+        class="hamburger-line block w-6 h-0.5 bg-slate-900 transition-all duration-300 origin-center"
+      ></span>
+    </button>
+  </div>
 
-	<!-- Mobile Menu Overlay -->
-	<div id="mobile-menu" class="md:hidden fixed inset-0 top-0 bg-white z-40 flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-opacity duration-300">
-		<a href="#hero" class="mobile-nav-link font-serif text-3xl text-gray-900 hover:text-gray-600 transition-colors">Home</a>
-		<a href="#work" class="mobile-nav-link font-serif text-3xl text-gray-900 hover:text-gray-600 transition-colors">Work</a>
-		<a href="#resume" class="mobile-nav-link font-serif text-3xl text-gray-900 hover:text-gray-600 transition-colors">Resume</a>
-		<!-- Mobile App Support Section -->
-		<div class="flex flex-col items-center gap-3">
-			<span class="font-serif text-3xl text-gray-400">App Support</span>
-			<a href="/spread-the-fund" class="page-transition-right mobile-nav-link flex items-center gap-3 font-serif text-xl text-gray-600 hover:text-gray-900 transition-colors">
-				<img src="/spread-the-fund/spreadthefund.svg" alt="" class="w-6 h-6" />
-				Spread the Funds
-			</a>
-		</div>
-		<a href="#contact" class="mobile-nav-link font-serif text-3xl text-gray-900 hover:text-gray-600 transition-colors">Contact</a>
-	</div>
+  <!-- Mobile Menu Overlay -->
+  <div
+    id="mobile-menu"
+    class="md:hidden fixed inset-0 top-0 bg-white z-40 flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-opacity duration-300"
+  >
+    <a
+      href="#hero"
+      class="mobile-nav-link font-serif text-3xl text-slate-900 hover:text-slate-600 transition-colors"
+      >Home</a
+    >
+    <a
+      href="#work"
+      class="mobile-nav-link font-serif text-3xl text-slate-900 hover:text-slate-600 transition-colors"
+      >Work</a
+    >
+    <a
+      href="#resume"
+      class="mobile-nav-link font-serif text-3xl text-slate-900 hover:text-slate-600 transition-colors"
+      >Resume</a
+    >
+    <!-- Mobile App Support Section -->
+    <div class="flex flex-col items-center gap-3">
+      <span class="font-serif text-3xl text-slate-400">App Support</span>
+      <a
+        href="/spread-the-fund"
+        class="page-transition-right mobile-nav-link flex items-center gap-3 font-serif text-xl text-slate-600 hover:text-slate-900 transition-colors"
+      >
+        <img src="/spread-the-fund/spreadthefund.svg" alt="" class="w-6 h-6" />
+        Spread the Funds
+      </a>
+    </div>
+    <a
+      href="#contact"
+      class="mobile-nav-link font-serif text-3xl text-slate-900 hover:text-slate-600 transition-colors"
+      >Contact</a
+    >
+  </div>
 </nav>
 
 <script>
-	const toggle = document.getElementById('menu-toggle');
-	const menu = document.getElementById('mobile-menu');
-	const mobileLinks = menu?.querySelectorAll('.mobile-nav-link');
-	const nav = document.getElementById('main-nav');
-	let isOpen = false;
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const mobileLinks = menu?.querySelectorAll('.mobile-nav-link');
+  const nav = document.getElementById('main-nav');
+  let isOpen = false;
 
-	function openMenu() {
-		isOpen = true;
-		toggle?.setAttribute('aria-expanded', 'true');
-		menu?.classList.remove('opacity-0', 'pointer-events-none');
-		menu?.classList.add('opacity-100', 'pointer-events-auto');
-		document.body.style.overflow = 'hidden';
-		// Animate hamburger to X
-		const lines = toggle?.querySelectorAll('.hamburger-line');
-		if (lines) {
-			(lines[0] as HTMLElement).style.transform = 'rotate(45deg) translate(3px, 3px)';
-			(lines[1] as HTMLElement).style.opacity = '0';
-			(lines[2] as HTMLElement).style.transform = 'rotate(-45deg) translate(3px, -3px)';
-		}
-	}
+  function openMenu() {
+    isOpen = true;
+    toggle?.setAttribute('aria-expanded', 'true');
+    menu?.classList.remove('opacity-0', 'pointer-events-none');
+    menu?.classList.add('opacity-100', 'pointer-events-auto');
+    document.body.style.overflow = 'hidden';
+    // Animate hamburger to X
+    const lines = toggle?.querySelectorAll('.hamburger-line');
+    if (lines) {
+      (lines[0] as HTMLElement).style.transform =
+        'rotate(45deg) translate(3px, 3px)';
+      (lines[1] as HTMLElement).style.opacity = '0';
+      (lines[2] as HTMLElement).style.transform =
+        'rotate(-45deg) translate(3px, -3px)';
+    }
+  }
 
-	function closeMenu() {
-		isOpen = false;
-		toggle?.setAttribute('aria-expanded', 'false');
-		menu?.classList.add('opacity-0', 'pointer-events-none');
-		menu?.classList.remove('opacity-100', 'pointer-events-auto');
-		document.body.style.overflow = '';
-		// Animate X back to hamburger
-		const lines = toggle?.querySelectorAll('.hamburger-line');
-		if (lines) {
-			(lines[0] as HTMLElement).style.transform = '';
-			(lines[1] as HTMLElement).style.opacity = '1';
-			(lines[2] as HTMLElement).style.transform = '';
-		}
-	}
+  function closeMenu() {
+    isOpen = false;
+    toggle?.setAttribute('aria-expanded', 'false');
+    menu?.classList.add('opacity-0', 'pointer-events-none');
+    menu?.classList.remove('opacity-100', 'pointer-events-auto');
+    document.body.style.overflow = '';
+    // Animate X back to hamburger
+    const lines = toggle?.querySelectorAll('.hamburger-line');
+    if (lines) {
+      (lines[0] as HTMLElement).style.transform = '';
+      (lines[1] as HTMLElement).style.opacity = '1';
+      (lines[2] as HTMLElement).style.transform = '';
+    }
+  }
 
-	toggle?.addEventListener('click', () => {
-		if (isOpen) closeMenu();
-		else openMenu();
-	});
+  toggle?.addEventListener('click', () => {
+    if (isOpen) closeMenu();
+    else openMenu();
+  });
 
-	mobileLinks?.forEach(link => {
-		link.addEventListener('click', closeMenu);
-	});
+  mobileLinks?.forEach((link) => {
+    link.addEventListener('click', closeMenu);
+  });
 
-	// Nav background on scroll
-	// Fully opaque through hero + work, then semi-transparent after
-	const workSection = document.getElementById('work');
-	let lastScrollY = 0;
-	window.addEventListener('scroll', () => {
-		const scrollY = window.scrollY;
-		const workBottom = workSection
-			? workSection.getBoundingClientRect().bottom + scrollY
-			: 0;
+  // Show/hide nav brand based on hero name visibility
+  const navBrand = document.getElementById('nav-brand');
+  const heroHeading = document.querySelector('#hero h1');
 
-		if (scrollY > 50 && scrollY < workBottom) {
-			// Fully opaque through hero + work section
-			nav?.classList.add('bg-white', 'shadow-sm');
-			nav?.classList.remove('bg-white/90', 'backdrop-blur-md');
-		} else if (scrollY >= workBottom) {
-			// Semi-transparent after work section
-			nav?.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-sm');
-			nav?.classList.remove('bg-white');
-		} else {
-			// Top of page — transparent
-			nav?.classList.remove('bg-white', 'bg-white/90', 'backdrop-blur-md', 'shadow-sm');
-		}
-		lastScrollY = scrollY;
-	}, { passive: true });
+  if (heroHeading && navBrand) {
+    const brandObserver = new IntersectionObserver(
+      (entries) => {
+        const heroVisible = entries[0].isIntersecting;
+        if (heroVisible) {
+          // Hero name on screen — hide nav brand
+          navBrand.classList.add(
+            'opacity-0',
+            '-translate-y-2',
+            'pointer-events-none'
+          );
+          navBrand.classList.remove(
+            'opacity-100',
+            'translate-y-0',
+            'pointer-events-auto'
+          );
+        } else {
+          // Hero name scrolled away — show nav brand
+          navBrand.classList.remove(
+            'opacity-0',
+            '-translate-y-2',
+            'pointer-events-none'
+          );
+          navBrand.classList.add(
+            'opacity-100',
+            'translate-y-0',
+            'pointer-events-auto'
+          );
+        }
+      },
+      { threshold: 0 }
+    );
+    brandObserver.observe(heroHeading);
+  }
 
-	// App Support dropdown
-	const dropdownBtn = document.getElementById('app-support-btn');
-	const dropdownMenu = document.getElementById('dropdown-menu');
-	const dropdownChevron = document.getElementById('dropdown-chevron');
-	const dropdownContainer = document.getElementById('app-support-dropdown');
-	let dropdownOpen = false;
+  // Nav background on scroll
+  // Fully opaque through hero + work, then semi-transparent after
+  const workSection = document.getElementById('work');
+  window.addEventListener(
+    'scroll',
+    () => {
+      const scrollY = window.scrollY;
+      const workBottom = workSection
+        ? workSection.getBoundingClientRect().bottom + scrollY
+        : 0;
 
-	function openDropdown() {
-		dropdownOpen = true;
-		dropdownBtn?.setAttribute('aria-expanded', 'true');
-		dropdownMenu?.classList.remove('opacity-0', 'invisible', 'translate-y-1');
-		dropdownMenu?.classList.add('opacity-100', 'visible', 'translate-y-0');
-		dropdownChevron?.classList.add('rotate-180');
-	}
+      if (scrollY > 50 && scrollY < workBottom) {
+        // Fully opaque through hero + work section
+        nav?.classList.add('bg-white', 'shadow-sm');
+        nav?.classList.remove('bg-white/90', 'backdrop-blur-md');
+      } else if (scrollY >= workBottom) {
+        // Semi-transparent after work section
+        nav?.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-sm');
+        nav?.classList.remove('bg-white');
+      } else {
+        // Top of page — transparent
+        nav?.classList.remove(
+          'bg-white',
+          'bg-white/90',
+          'backdrop-blur-md',
+          'shadow-sm'
+        );
+      }
+    },
+    { passive: true }
+  );
 
-	function closeDropdown() {
-		dropdownOpen = false;
-		dropdownBtn?.setAttribute('aria-expanded', 'false');
-		dropdownMenu?.classList.add('opacity-0', 'invisible', 'translate-y-1');
-		dropdownMenu?.classList.remove('opacity-100', 'visible', 'translate-y-0');
-		dropdownChevron?.classList.remove('rotate-180');
-	}
+  // App Support dropdown
+  const dropdownBtn = document.getElementById('app-support-btn');
+  const dropdownMenu = document.getElementById('dropdown-menu');
+  const dropdownChevron = document.getElementById('dropdown-chevron');
+  const dropdownContainer = document.getElementById('app-support-dropdown');
+  let dropdownOpen = false;
 
-	dropdownBtn?.addEventListener('click', (e) => {
-		e.stopPropagation();
-		if (dropdownOpen) closeDropdown();
-		else openDropdown();
-	});
+  function openDropdown() {
+    dropdownOpen = true;
+    dropdownBtn?.setAttribute('aria-expanded', 'true');
+    dropdownMenu?.classList.remove('opacity-0', 'invisible', 'translate-y-1');
+    dropdownMenu?.classList.add('opacity-100', 'visible', 'translate-y-0');
+    dropdownChevron?.classList.add('rotate-180');
+  }
 
-	document.addEventListener('click', (e) => {
-		if (dropdownOpen && !dropdownContainer?.contains(e.target as Node)) {
-			closeDropdown();
-		}
-	});
+  function closeDropdown() {
+    dropdownOpen = false;
+    dropdownBtn?.setAttribute('aria-expanded', 'false');
+    dropdownMenu?.classList.add('opacity-0', 'invisible', 'translate-y-1');
+    dropdownMenu?.classList.remove('opacity-100', 'visible', 'translate-y-0');
+    dropdownChevron?.classList.remove('rotate-180');
+  }
 
-	// Page transition handling
-	document.querySelectorAll('.page-transition-right').forEach(link => {
-		link.addEventListener('click', (e) => {
-			e.preventDefault();
-			const href = (link as HTMLAnchorElement).href;
-			sessionStorage.setItem('page-transition-dir', 'right');
-			document.body.classList.add('page-exit-left');
-			setTimeout(() => { window.location.href = href; }, 200);
-		});
-	});
+  dropdownBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (dropdownOpen) closeDropdown();
+    else openDropdown();
+  });
 
-	document.querySelectorAll('.page-transition-left').forEach(link => {
-		link.addEventListener('click', (e) => {
-			e.preventDefault();
-			const href = (link as HTMLAnchorElement).href;
-			sessionStorage.setItem('page-transition-dir', 'left');
-			document.body.classList.add('page-exit-right');
-			setTimeout(() => { window.location.href = href; }, 200);
-		});
-	});
+  document.addEventListener('click', (e) => {
+    if (dropdownOpen && !dropdownContainer?.contains(e.target as Node)) {
+      closeDropdown();
+    }
+  });
+
+  // Page transition handling
+  document.querySelectorAll('.page-transition-right').forEach((link) => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const href = (link as HTMLAnchorElement).href;
+      sessionStorage.setItem('page-transition-dir', 'right');
+      document.body.classList.add('page-exit-left');
+      setTimeout(() => {
+        window.location.href = href;
+      }, 200);
+    });
+  });
+
+  document.querySelectorAll('.page-transition-left').forEach((link) => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const href = (link as HTMLAnchorElement).href;
+      sessionStorage.setItem('page-transition-dir', 'left');
+      document.body.classList.add('page-exit-right');
+      setTimeout(() => {
+        window.location.href = href;
+      }, 200);
+    });
+  });
 </script>

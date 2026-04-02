@@ -1,107 +1,158 @@
 ---
 interface Props {
-	flip?: boolean;
-	fromColor?: string;
-	toColor?: string;
-	sticky?: boolean;
+  flip?: boolean;
+  fromColor?: string;
+  toColor?: string;
+  sticky?: boolean;
 }
 
-const { flip = false, fromColor = '#ffffff', toColor = '#0f172a', sticky = false } = Astro.props;
+const {
+  flip = false,
+  fromColor = '#ffffff',
+  toColor = '#0f172a',
+  sticky = false,
+} = Astro.props;
 ---
 
-<div class={`section-divider relative w-full overflow-hidden leading-none ${flip ? 'rotate-180' : ''} ${sticky ? 'sticky top-[56px] md:top-[60px] z-20' : 'z-10'}`} style="background: transparent;">
-	<svg
-		viewBox="0 0 1440 120"
-		preserveAspectRatio="none"
-		class="w-full h-[80px] md:h-[120px] lg:h-[160px] block"
-		xmlns="http://www.w3.org/2000/svg"
-	>
-		<defs>
-			<linearGradient id={`wave-grad-back-${flip ? 'f' : 'n'}`} x1="0%" y1="0%" x2="100%" y2="0%">
-				<stop offset="0%" stop-color="#a78bfa" stop-opacity="0.4" />
-				<stop offset="50%" stop-color="#60a5fa" stop-opacity="0.35" />
-				<stop offset="100%" stop-color="#34d399" stop-opacity="0.4" />
-			</linearGradient>
-			<linearGradient id={`wave-grad-mid-${flip ? 'f' : 'n'}`} x1="0%" y1="0%" x2="100%" y2="0%">
-				<stop offset="0%" stop-color="#f472b6" stop-opacity="0.45" />
-				<stop offset="50%" stop-color="#a78bfa" stop-opacity="0.4" />
-				<stop offset="100%" stop-color="#38bdf8" stop-opacity="0.45" />
-			</linearGradient>
-			<linearGradient id={`wave-grad-front-${flip ? 'f' : 'n'}`} x1="0%" y1="0%" x2="100%" y2="0%">
-				<stop offset="0%" stop-color="#fbbf24" stop-opacity="0.35" />
-				<stop offset="50%" stop-color="#f472b6" stop-opacity="0.3" />
-				<stop offset="100%" stop-color="#a78bfa" stop-opacity="0.35" />
-			</linearGradient>
-		</defs>
-		<!-- Mask — same shape as back wave, sits behind everything -->
-		<path
-			d="M0,0 C360,50 720,0 1080,30 C1260,45 1380,5 1440,0 L1440,120 L0,120 Z"
-			fill={fromColor}
-		>
-			<animate attributeName="d" dur="8s" repeatCount="indefinite" values="
+<div
+  class={`section-divider relative w-full overflow-hidden leading-none ${flip ? 'rotate-180' : ''} ${sticky ? 'sticky top-14 md:top-15 z-20' : 'z-10'}`}
+  style="background: transparent;"
+>
+  <svg
+    viewBox="0 0 1440 120"
+    preserveAspectRatio="none"
+    class="w-full h-20 md:h-30 lg:h-40 block"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <linearGradient
+        id={`wave-grad-back-${flip ? 'f' : 'n'}`}
+        x1="0%"
+        y1="0%"
+        x2="100%"
+        y2="0%"
+      >
+        <stop offset="0%" stop-color="#a78bfa" stop-opacity="0.4"></stop>
+        <stop offset="50%" stop-color="#60a5fa" stop-opacity="0.35"></stop>
+        <stop offset="100%" stop-color="#34d399" stop-opacity="0.4"></stop>
+      </linearGradient>
+      <linearGradient
+        id={`wave-grad-mid-${flip ? 'f' : 'n'}`}
+        x1="0%"
+        y1="0%"
+        x2="100%"
+        y2="0%"
+      >
+        <stop offset="0%" stop-color="#f472b6" stop-opacity="0.45"></stop>
+        <stop offset="50%" stop-color="#a78bfa" stop-opacity="0.4"></stop>
+        <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.45"></stop>
+      </linearGradient>
+      <linearGradient
+        id={`wave-grad-front-${flip ? 'f' : 'n'}`}
+        x1="0%"
+        y1="0%"
+        x2="100%"
+        y2="0%"
+      >
+        <stop offset="0%" stop-color="#fbbf24" stop-opacity="0.35"></stop>
+        <stop offset="50%" stop-color="#f472b6" stop-opacity="0.3"></stop>
+        <stop offset="100%" stop-color="#a78bfa" stop-opacity="0.35"></stop>
+      </linearGradient>
+    </defs>
+    <!-- Mask — same shape as back wave, sits behind everything -->
+    <path
+      d="M0,0 C360,50 720,0 1080,30 C1260,45 1380,5 1440,0 L1440,120 L0,120 Z"
+      fill={fromColor}
+    >
+      <animate
+        attributeName="d"
+        dur="8s"
+        repeatCount="indefinite"
+        values="
 				M0,0 C360,50 720,0 1080,30 C1260,45 1380,5 1440,0 L1440,120 L0,120 Z;
 				M0,10 C300,0 600,45 900,12 C1200,0 1350,40 1440,5 L1440,120 L0,120 Z;
 				M0,0 C400,42 700,0 1000,35 C1280,50 1400,3 1440,0 L1440,120 L0,120 Z;
 				M0,0 C360,50 720,0 1080,30 C1260,45 1380,5 1440,0 L1440,120 L0,120 Z
-			" />
-		</path>
-		<!-- Back layer — colorful gradient wave -->
-		<path
-			d="M0,12 C360,42 720,5 1080,28 C1260,38 1380,8 1440,8 L1440,120 L0,120 Z"
-			fill={`url(#wave-grad-back-${flip ? 'f' : 'n'})`}
-		>
-			<animate attributeName="d" dur="8s" repeatCount="indefinite" values="
+			"
+      ></animate>
+    </path>
+    <!-- Back layer — colorful gradient wave -->
+    <path
+      d="M0,12 C360,42 720,5 1080,28 C1260,38 1380,8 1440,8 L1440,120 L0,120 Z"
+      fill={`url(#wave-grad-back-${flip ? 'f' : 'n'})`}
+    >
+      <animate
+        attributeName="d"
+        dur="8s"
+        repeatCount="indefinite"
+        values="
 				M0,12 C360,42 720,5 1080,28 C1260,38 1380,8 1440,8 L1440,120 L0,120 Z;
 				M0,18 C300,6 600,38 900,14 C1200,4 1350,32 1440,12 L1440,120 L0,120 Z;
 				M0,10 C400,34 700,4 1000,24 C1280,42 1400,6 1440,10 L1440,120 L0,120 Z;
 				M0,12 C360,42 720,5 1080,28 C1260,38 1380,8 1440,8 L1440,120 L0,120 Z
-			" />
-		</path>
-		<!-- Middle layer — pink-purple gradient wave -->
-		<path
-			d="M0,20 C200,4 400,50 720,22 C1040,2 1240,48 1440,16 L1440,120 L0,120 Z"
-			fill={`url(#wave-grad-mid-${flip ? 'f' : 'n'})`}
-		>
-			<animate attributeName="d" dur="10s" repeatCount="indefinite" values="
+			"
+      ></animate>
+    </path>
+    <!-- Middle layer — pink-purple gradient wave -->
+    <path
+      d="M0,20 C200,4 400,50 720,22 C1040,2 1240,48 1440,16 L1440,120 L0,120 Z"
+      fill={`url(#wave-grad-mid-${flip ? 'f' : 'n'})`}
+    >
+      <animate
+        attributeName="d"
+        dur="10s"
+        repeatCount="indefinite"
+        values="
 				M0,20 C200,4 400,50 720,22 C1040,2 1240,48 1440,16 L1440,120 L0,120 Z;
 				M0,12 C240,46 500,3 750,30 C1000,55 1280,6 1440,20 L1440,120 L0,120 Z;
 				M0,26 C180,2 450,48 700,14 C1050,0 1200,52 1440,12 L1440,120 L0,120 Z;
 				M0,20 C200,4 400,50 720,22 C1040,2 1240,48 1440,16 L1440,120 L0,120 Z
-			" />
-		</path>
-		<!-- Third layer — amber-pink-purple gradient wave -->
-		<path
-			d="M0,38 C320,18 640,58 960,32 C1120,20 1300,55 1440,36 L1440,120 L0,120 Z"
-			fill={`url(#wave-grad-front-${flip ? 'f' : 'n'})`}
-		>
-			<animate attributeName="d" dur="9s" repeatCount="indefinite" values="
+			"
+      ></animate>
+    </path>
+    <!-- Third layer — amber-pink-purple gradient wave -->
+    <path
+      d="M0,38 C320,18 640,58 960,32 C1120,20 1300,55 1440,36 L1440,120 L0,120 Z"
+      fill={`url(#wave-grad-front-${flip ? 'f' : 'n'})`}
+    >
+      <animate
+        attributeName="d"
+        dur="9s"
+        repeatCount="indefinite"
+        values="
 				M0,38 C320,18 640,58 960,32 C1120,20 1300,55 1440,36 L1440,120 L0,120 Z;
 				M0,28 C260,55 540,14 800,44 C1080,62 1260,20 1440,38 L1440,120 L0,120 Z;
 				M0,42 C340,12 580,52 880,26 C1100,48 1340,16 1440,34 L1440,120 L0,120 Z;
 				M0,38 C320,18 640,58 960,32 C1120,20 1300,55 1440,36 L1440,120 L0,120 Z
-			" />
-		</path>
-		<!-- Front layer — solid toColor for clean transition -->
-		<path
-			d="M0,50 C240,72 480,36 720,52 C960,72 1200,36 1440,48 L1440,120 L0,120 Z"
-			fill={toColor}
-		>
-			<animate attributeName="d" dur="12s" repeatCount="indefinite" values="
+			"
+      ></animate>
+    </path>
+    <!-- Front layer — solid toColor for clean transition -->
+    <path
+      d="M0,50 C240,72 480,36 720,52 C960,72 1200,36 1440,48 L1440,120 L0,120 Z"
+      fill={toColor}
+    >
+      <animate
+        attributeName="d"
+        dur="12s"
+        repeatCount="indefinite"
+        values="
 				M0,50 C240,72 480,36 720,52 C960,72 1200,36 1440,48 L1440,120 L0,120 Z;
 				M0,56 C300,34 520,70 740,48 C980,26 1180,66 1440,54 L1440,120 L0,120 Z;
 				M0,46 C280,68 500,30 730,56 C940,72 1220,28 1440,44 L1440,120 L0,120 Z;
 				M0,50 C240,72 480,36 720,52 C960,72 1200,36 1440,48 L1440,120 L0,120 Z
-			" />
-		</path>
-	</svg>
+			"
+      ></animate>
+    </path>
+  </svg>
 </div>
 
 <style>
-	.section-divider {
-		line-height: 0;
-		margin-top: -10px;
-		margin-bottom: -3px;
-		position: relative;
-		z-index: 1;
-	}
+  .section-divider {
+    line-height: 0;
+    margin-top: -10px;
+    margin-bottom: -3px;
+    position: relative;
+    z-index: 1;
+  }
 </style>

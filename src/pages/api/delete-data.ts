@@ -1,45 +1,17 @@
 export const prerender = false;
 
 import type { APIRoute } from 'astro';
-import { initializeApp, cert, getApps } from 'firebase-admin/app';
 import { getAuth } from 'firebase-admin/auth';
 import { getFirestore } from 'firebase-admin/firestore';
-import nodemailer from 'nodemailer';
+import { getFirebaseAdmin } from '../../utils/firebase-admin';
+import { createEmailTransport } from '../../utils/email';
+import { isRateLimited } from '../../utils/rate-limit';
 
-function getFirebaseAdmin() {
-  if (getApps().length > 0) return getApps()[0];
-  const serviceAccount = JSON.parse(
-    import.meta.env.FIREBASE_SERVICE_ACCOUNT || process.env.FIREBASE_SERVICE_ACCOUNT || '{}'
-  );
-  return initializeApp({ credential: cert(serviceAccount) });
-}
-
-// Rate limiting
-const requestLog = new Map<string, number[]>();
 const RATE_LIMIT_WINDOW = 60 * 60 * 1000; // 1 hour
 const RATE_LIMIT_MAX = 5;
 
-function isRateLimited(ip: string): boolean {
-  const now = Date.now();
-  const requests = requestLog.get(ip) || [];
-  const recent = requests.filter((t) => now - t < RATE_LIMIT_WINDOW);
-  if (recent.length >= RATE_LIMIT_MAX) {
-    requestLog.set(ip, recent);
-    return true;
-  }
-  recent.push(now);
-  requestLog.set(ip, recent);
-  return false;
-}
-
 async function sendConfirmationEmail(to: string) {
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: 'spreadthefund@gmail.com',
-      pass: import.meta.env.GMAIL_APP_PASSWORD || process.env.GMAIL_APP_PASSWORD,
-    },
-  });
+  const transporter = createEmailTransport();
 
   await transporter.sendMail({
     from: '"Spread the Funds" <spreadthefund@gmail.com>',
@@ -85,15 +57,17 @@ export const POST: APIRoute = async ({ request }) => {
       request.headers.get('x-real-ip') ||
       'unknown';
 
-    // if (isRateLimited(ip)) {
-    //   return new Response(
-    //     JSON.stringify({ error: 'Too many requests. Please try again later.' }),
-    //     { status: 429, headers }
-    //   );
-    // }
+    getFirebaseAdmin();
+    if (await isRateLimited(ip, { windowMs: RATE_LIMIT_WINDOW, maxRequests: RATE_LIMIT_MAX })) {
+      return new Response(
+        JSON.stringify({ error: 'Too many requests. Please try again later.' }),
+        { status: 429, headers }
+      );
+    }
 
     const body = await request.json();
-    const email = typeof body.email === 'string' ? body.email.trim().toLowerCase() : '';
+    const email =
+      typeof body.email === 'string' ? body.email.trim().toLowerCase() : '';
     const code = typeof body.code === 'string' ? body.code.trim() : '';
 
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -105,12 +79,13 @@ export const POST: APIRoute = async ({ request }) => {
 
     if (!code || !/^\d{6}$/.test(code)) {
       return new Response(
-        JSON.stringify({ error: 'A valid 6-digit verification code is required.' }),
+        JSON.stringify({
+          error: 'A valid 6-digit verification code is required.',
+        }),
         { status: 400, headers }
       );
     }
 
-    getFirebaseAdmin();
     const auth = getAuth();
     const db = getFirestore();
 
@@ -118,7 +93,9 @@ export const POST: APIRoute = async ({ request }) => {
     const codeDoc = await db.collection('deletion_codes').doc(email).get();
     if (!codeDoc.exists) {
       return new Response(
-        JSON.stringify({ error: 'No verification code found. Please request a new code.' }),
+        JSON.stringify({
+          error: 'No verification code found. Please request a new code.',
+        }),
         { status: 400, headers }
       );
     }
@@ -129,7 +106,9 @@ export const POST: APIRoute = async ({ request }) => {
     if (Date.now() > codeData.expiresAt) {
       await db.collection('deletion_codes').doc(email).delete();
       return new Response(
-        JSON.stringify({ error: 'Verification code has expired. Please request a new code.' }),
+        JSON.stringify({
+          error: 'Verification code has expired. Please request a new code.',
+        }),
         { status: 400, headers }
       );
     }
@@ -138,16 +117,21 @@ export const POST: APIRoute = async ({ request }) => {
     if (codeData.attempts >= 5) {
       await db.collection('deletion_codes').doc(email).delete();
       return new Response(
-        JSON.stringify({ error: 'Too many incorrect attempts. Please request a new code.' }),
+        JSON.stringify({
+          error: 'Too many incorrect attempts. Please request a new code.',
+        }),
         { status: 400, headers }
       );
     }
 
     // Verify code matches
     if (codeData.code !== code) {
-      await db.collection('deletion_codes').doc(email).update({
-        attempts: (codeData.attempts || 0) + 1,
-      });
+      await db
+        .collection('deletion_codes')
+        .doc(email)
+        .update({
+          attempts: (codeData.attempts || 0) + 1,
+        });
       return new Response(
         JSON.stringify({ error: 'Incorrect verification code.' }),
         { status: 400, headers }
@@ -167,7 +151,10 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     // Helper to delete all docs in a subcollection
-    async function deleteSubcollection(docRef: FirebaseFirestore.DocumentReference, subcollection: string) {
+    async function deleteSubcollection(
+      docRef: FirebaseFirestore.DocumentReference,
+      subcollection: string
+    ) {
       const snapshot = await docRef.collection(subcollection).get();
       const batch = db.batch();
       for (const doc of snapshot.docs) {
@@ -184,7 +171,10 @@ export const POST: APIRoute = async ({ request }) => {
         await userDoc.delete();
       }
     }
-    const usersByEmail = await db.collection('users').where('email', '==', email).get();
+    const usersByEmail = await db
+      .collection('users')
+      .where('email', '==', email)
+      .get();
     const usersBatch = db.batch();
     for (const doc of usersByEmail.docs) {
       usersBatch.delete(doc.ref);
@@ -193,16 +183,25 @@ export const POST: APIRoute = async ({ request }) => {
 
     // 2. Delete feedback by userId, userEmail, or email field
     const feedbackBatch = db.batch();
-    const feedbackByUserEmail = await db.collection('feedback').where('userEmail', '==', email).get();
+    const feedbackByUserEmail = await db
+      .collection('feedback')
+      .where('userEmail', '==', email)
+      .get();
     for (const doc of feedbackByUserEmail.docs) {
       feedbackBatch.delete(doc.ref);
     }
-    const feedbackByEmail = await db.collection('feedback').where('email', '==', email).get();
+    const feedbackByEmail = await db
+      .collection('feedback')
+      .where('email', '==', email)
+      .get();
     for (const doc of feedbackByEmail.docs) {
       feedbackBatch.delete(doc.ref);
     }
     if (uid) {
-      const feedbackByUid = await db.collection('feedback').where('userId', '==', uid).get();
+      const feedbackByUid = await db
+        .collection('feedback')
+        .where('userId', '==', uid)
+        .get();
       for (const doc of feedbackByUid.docs) {
         feedbackBatch.delete(doc.ref);
       }
@@ -211,12 +210,18 @@ export const POST: APIRoute = async ({ request }) => {
 
     // 3. Delete invites where user is inviter or invitee
     const invitesBatch = db.batch();
-    const invitesByEmail = await db.collection('invites').where('inviteeEmail', '==', email).get();
+    const invitesByEmail = await db
+      .collection('invites')
+      .where('inviteeEmail', '==', email)
+      .get();
     for (const doc of invitesByEmail.docs) {
       invitesBatch.delete(doc.ref);
     }
     if (uid) {
-      const invitesByUid = await db.collection('invites').where('inviterUid', '==', uid).get();
+      const invitesByUid = await db
+        .collection('invites')
+        .where('inviterUid', '==', uid)
+        .get();
       for (const doc of invitesByUid.docs) {
         invitesBatch.delete(doc.ref);
       }
@@ -247,7 +252,10 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     // Also check groups created by this email (in case they're not in members array)
-    const groupsByCreator = await db.collection('groups').where('createdBy', '==', email).get();
+    const groupsByCreator = await db
+      .collection('groups')
+      .where('createdBy', '==', email)
+      .get();
     for (const groupDoc of groupsByCreator.docs) {
       const groupData = groupDoc.data();
       const members: string[] = groupData.members || [];
@@ -281,13 +289,18 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     return new Response(
-      JSON.stringify({ success: true, message: 'Your data has been permanently deleted.' }),
+      JSON.stringify({
+        success: true,
+        message: 'Your data has been permanently deleted.',
+      }),
       { status: 200, headers }
     );
   } catch (error) {
     console.error('Delete data error:', error);
     return new Response(
-      JSON.stringify({ error: 'An unexpected error occurred. Please try again later.' }),
+      JSON.stringify({
+        error: 'An unexpected error occurred. Please try again later.',
+      }),
       { status: 500, headers }
     );
   }

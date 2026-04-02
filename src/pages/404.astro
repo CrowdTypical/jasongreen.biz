@@ -1,19 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Nav from '../components/Nav.astro';
-import HeroSection from '../components/HeroSection.astro';
-import SectionDivider from '../components/SectionDivider.astro';
-import HorizontalWorkSection from '../components/HorizontalWorkSection.astro';
-import ResumeSection from '../components/ResumeSection.astro';
-import ContactSection from '../components/ContactSection.astro';
 ---
 
-<Layout title="Jason Green — Product & Operations Leader">
-  <!-- Dynamic floating background blobs (hero area only) -->
+<Layout title="404 — Page Not Found">
+  <!-- Interactive floating blobs (full viewport) -->
   <div
     id="blob-bg"
-    class="absolute top-0 left-0 right-0 pointer-events-none overflow-hidden"
-    style="height: calc(100vh + 160px); z-index: 1;"
+    class="fixed inset-0 pointer-events-none overflow-hidden"
+    style="z-index: 1;"
     aria-hidden="true"
   >
     <div class="floating-blob blob-1"></div>
@@ -23,30 +17,24 @@ import ContactSection from '../components/ContactSection.astro';
     <div class="floating-blob blob-5"></div>
   </div>
 
-  <Nav />
-
-  <!-- Hero: vertical scroll -->
-  <HeroSection />
-
-  <!-- Divider + Work wrapper (divider stays sticky through work scroll runway) -->
-  <div class="relative">
-    <!-- Divider: white → dark -->
-    <SectionDivider fromColor="#ffffff" toColor="#0f172a" sticky />
-
-    <!-- Work: horizontal scroll triggered by vertical scrolling -->
-    <HorizontalWorkSection />
-  </div>
-
-  <!-- Divider: dark → white (visually connects to Work section above) -->
-  <div class="relative z-10 -mt-1 bg-slate-900">
-    <SectionDivider fromColor="#0f172a" toColor="#ffffff" />
-  </div>
-
-  <!-- Resume: back to vertical -->
-  <ResumeSection />
-
-  <!-- Contact + Footer -->
-  <ContactSection />
+  <!-- Centered 404 content -->
+  <main
+    class="relative min-h-screen flex flex-col items-center justify-center text-center px-6"
+    style="z-index: 2;"
+  >
+    <h1 class="font-serif text-8xl md:text-9xl font-bold text-slate-900 mb-4 select-none">
+      404
+    </h1>
+    <p class="font-sans text-lg md:text-xl text-slate-600 mb-8 max-w-md">
+      This page doesn't exist — but you can still push the colours around.
+    </p>
+    <a
+      href="/"
+      class="inline-block font-sans text-sm font-medium text-blue-900 border-2 border-blue-900 px-6 py-3 rounded-full hover:bg-blue-900 hover:text-white transition-colors"
+    >
+      Back to Home
+    </a>
+  </main>
 
   <style>
     .floating-blob {
@@ -112,7 +100,6 @@ import ContactSection from '../components/ContactSection.astro';
         morph-5 18s ease-in-out infinite;
     }
 
-    /* Lava-lamp organic shape morphing — extreme shapes */
     @keyframes morph-1 {
       0%,
       100% {
@@ -208,7 +195,6 @@ import ContactSection from '../components/ContactSection.astro';
       }
     }
 
-    /* Movement paths — wide sweeps for merging overlap */
     @keyframes drift-1 {
       0%,
       100% {
@@ -301,7 +287,6 @@ import ContactSection from '../components/ContactSection.astro';
       }
     }
 
-    /* Reduce motion for accessibility */
     @media (prefers-reduced-motion: reduce) {
       .floating-blob {
         animation: none !important;
@@ -320,8 +305,8 @@ import ContactSection from '../components/ContactSection.astro';
       if (blobs.length === 0) return;
 
       const REPEL_RADIUS = 500;
-      const REPEL_FORCE = 18; // push per frame (accumulates)
-      const RETURN_EASE = 0.02; // slow drift back when mouse is gone
+      const REPEL_FORCE = 18;
+      const RETURN_EASE = 0.02;
 
       let mouseX = -9999;
       let mouseY = -9999;
@@ -330,8 +315,8 @@ import ContactSection from '../components/ContactSection.astro';
 
       const state = Array.from(blobs, () => ({
         x: 0,
-        y: 0, // accumulated offset
-        paused: false, // whether drift animation is paused
+        y: 0,
+        paused: false,
       }));
 
       function tick() {
@@ -348,22 +333,18 @@ import ContactSection from '../components/ContactSection.astro';
           const inRange = active && dist < REPEL_RADIUS && dist > 1;
 
           if (inRange) {
-            // Pause drift so mouse has full control
             if (!s.paused) {
               blob.style.animationPlayState = 'paused, running';
               s.paused = true;
             }
-            // Push away — accumulate, don't ease toward target
             const t = 1 - dist / REPEL_RADIUS;
             const force = t * t * REPEL_FORCE;
             s.x += (dx / dist) * force;
             s.y += (dy / dist) * force;
           } else {
-            // Ease offset back toward 0
             s.x += (0 - s.x) * RETURN_EASE;
             s.y += (0 - s.y) * RETURN_EASE;
 
-            // Resume drift once nearly settled
             if (s.paused && Math.abs(s.x) < 2 && Math.abs(s.y) < 2) {
               blob.style.animationPlayState = '';
               s.paused = false;
@@ -373,7 +354,6 @@ import ContactSection from '../components/ContactSection.astro';
           blob.style.translate = `${s.x}px ${s.y}px`;
         });
 
-        // Stop loop when everything is settled and mouse gone
         if (
           !active &&
           state.every(

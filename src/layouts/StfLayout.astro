@@ -1,0 +1,101 @@
+---
+import Layout from './Layout.astro';
+
+interface Props {
+  title: string;
+  /** Use 'page' for the main STF index, 'legal' for legal subpages */
+  variant?: 'page' | 'legal';
+}
+
+const { title, variant = 'legal' } = Astro.props;
+const wrapperClass = variant === 'legal' ? 'stf-legal' : 'stf-page';
+---
+
+<Layout title={title}>
+  <style>
+    :root {
+      --stf-primary: #00e5cc;
+      --stf-bg: #0a0e14;
+      --stf-surface: #141a22;
+      --stf-surface-alt: #0f1419;
+      --stf-border: #1e2a35;
+      --stf-text: #e0e0e0;
+      --stf-text-secondary: #8899aa;
+      --stf-text-dim: #556677;
+      --stf-font: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+    }
+    .stf-legal,
+    .stf-page {
+      font-family: var(--stf-font);
+      background: var(--stf-bg);
+      color: var(--stf-text);
+    }
+    .stf-legal {
+      min-height: 100vh;
+    }
+    .prose h2 {
+      font-family: var(--stf-font);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: var(--stf-text);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-top: 2.5rem;
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--stf-border);
+    }
+    .prose h3 {
+      font-family: var(--stf-font);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--stf-text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .prose p {
+      font-family: var(--stf-font);
+      font-size: 0.875rem;
+      line-height: 1.85;
+      color: var(--stf-text-dim);
+      margin-bottom: 1rem;
+    }
+    .prose ul {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 1rem;
+    }
+    .prose li {
+      font-family: var(--stf-font);
+      font-size: 0.875rem;
+      line-height: 1.85;
+      color: var(--stf-text-dim);
+      margin-bottom: 0.25rem;
+      padding-left: 1.25rem;
+      position: relative;
+    }
+    .prose li::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      color: var(--stf-primary);
+      font-weight: bold;
+    }
+    .prose a {
+      color: var(--stf-primary);
+      text-decoration: none;
+    }
+    .prose a:hover {
+      text-decoration: underline;
+    }
+    .prose strong {
+      color: var(--stf-text-secondary);
+    }
+  </style>
+
+  <div class={wrapperClass}>
+    <slot />
+  </div>
+</Layout>

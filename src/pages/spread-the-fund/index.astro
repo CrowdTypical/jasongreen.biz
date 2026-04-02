@@ -1,590 +1,1115 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import StfLayout from '../../layouts/StfLayout.astro';
 ---
 
-<Layout title="SPREAD THE FUNDS — Split Bills in Real-Time">
-	<style>
-		@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
-		:root {
-			--stf-primary: #00E5CC;
-			--stf-bg: #0A0E14;
-			--stf-surface: #141A22;
-			--stf-surface-alt: #0F1419;
-			--stf-surface-deep: #0D1117;
-			--stf-border: #1E2A35;
-			--stf-text: #E0E0E0;
-			--stf-text-secondary: #8899AA;
-			--stf-text-dim: #556677;
-			--stf-text-hint: #455566;
-			--stf-negative: #FF4C5E;
-			--stf-success: #4CAF50;
-			--stf-amber: #FFA726;
-			--stf-danger: #EF5350;
-			--stf-font: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
-		}
-		.stf-page { font-family: var(--stf-font); background: var(--stf-bg); color: var(--stf-text); }
-		.stf-gradient-text { background: linear-gradient(90deg, #00E5CC, #42A5F5); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-		.stf-nav-link { color: #8899AA; }
-		.stf-nav-link:hover { color: #00E5CC; }
-		.stf-btn-primary { background: #00E5CC; color: #0A0E14; }
-		.stf-btn-primary:hover { opacity: 0.85; }
-		.stf-btn-outline { color: #8899AA; border-color: #1E2A35; }
-		.stf-btn-outline:hover { border-color: #00E5CC; color: #00E5CC; }
-		.stf-card { background: #141A22; border-color: #1E2A35; }
-		.stf-card:hover { border-color: #00E5CC; }
-		.stf-footer-link { color: #556677; }
-		.stf-footer-link:hover { color: #00E5CC; }
+<StfLayout title="SPREAD THE FUNDS — Split Bills in Real-Time" variant="page">
+  <style>
+    :root {
+      --stf-surface-deep: #0d1117;
+      --stf-text-hint: #455566;
+      --stf-negative: #ff4c5e;
+      --stf-success: #4caf50;
+      --stf-amber: #ffa726;
+      --stf-danger: #ef5350;
+    }
+    .stf-gradient-text {
+      background: linear-gradient(90deg, #00e5cc, #42a5f5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .stf-nav-link {
+      color: #8899aa;
+    }
+    .stf-nav-link:hover {
+      color: #00e5cc;
+    }
+    .stf-btn-primary {
+      background: #00e5cc;
+      color: #0a0e14;
+    }
+    .stf-btn-primary:hover {
+      opacity: 0.85;
+    }
+    .stf-btn-outline {
+      color: #8899aa;
+      border-color: #1e2a35;
+    }
+    .stf-btn-outline:hover {
+      border-color: #00e5cc;
+      color: #00e5cc;
+    }
+    .stf-card {
+      background: #141a22;
+      border-color: #1e2a35;
+    }
+    .stf-card:hover {
+      border-color: #00e5cc;
+    }
+    .stf-footer-link {
+      color: #556677;
+    }
+    .stf-footer-link:hover {
+      color: #00e5cc;
+    }
 
-		/* Screenshot fan gallery */
-		.screenshot-fan {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			position: relative;
-			height: 380px;
-			perspective: 1200px;
-			padding: 0 40px;
-		}
-		@media (min-width: 768px) {
-			.screenshot-fan { height: 460px; }
-		}
-		@media (min-width: 1024px) {
-			.screenshot-fan { height: 520px; }
-		}
-		.screenshot-fan-card {
-			position: absolute;
-			width: 150px;
-			height: 300px;
-			border: 1px solid var(--stf-border);
-			overflow: hidden;
-			background: var(--stf-surface);
-			transition: transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1), box-shadow 0.5s ease, border-color 0.4s ease;
-			will-change: transform;
-			box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-			cursor: pointer;
-		}
-		/* Water-like float: each card gets its own rhythm via nth-child */
-		.screenshot-fan-card:nth-child(1) { animation: waterFloat1 5.2s ease-in-out infinite; }
-		.screenshot-fan-card:nth-child(2) { animation: waterFloat2 6.0s ease-in-out infinite; }
-		.screenshot-fan-card:nth-child(3) { animation: waterFloat3 4.8s ease-in-out infinite; }
-		.screenshot-fan-card:nth-child(4) { animation: waterFloat1 5.5s ease-in-out infinite; }
-		.screenshot-fan-card:nth-child(5) { animation: waterFloat3 5.8s ease-in-out infinite; }
-		.screenshot-fan-card:nth-child(6) { animation: waterFloat2 4.6s ease-in-out infinite; }
-		.screenshot-fan-card:nth-child(7) { animation: waterFloat1 6.2s ease-in-out infinite; }
+    /* Screenshot fan gallery */
+    .screenshot-fan {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      height: 380px;
+      perspective: 1200px;
+      padding: 0 40px;
+    }
+    @media (min-width: 768px) {
+      .screenshot-fan {
+        height: 460px;
+      }
+    }
+    @media (min-width: 1024px) {
+      .screenshot-fan {
+        height: 520px;
+      }
+    }
+    .screenshot-fan-card {
+      position: absolute;
+      width: 150px;
+      height: 300px;
+      border: 1px solid var(--stf-border);
+      overflow: hidden;
+      background: var(--stf-surface);
+      transition:
+        transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1),
+        box-shadow 0.5s ease,
+        border-color 0.4s ease;
+      will-change: transform;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      cursor: pointer;
+    }
+    /* Water-like float: each card gets its own rhythm via nth-child */
+    .screenshot-fan-card:nth-child(1) {
+      animation: waterFloat1 5.2s ease-in-out infinite;
+    }
+    .screenshot-fan-card:nth-child(2) {
+      animation: waterFloat2 6s ease-in-out infinite;
+    }
+    .screenshot-fan-card:nth-child(3) {
+      animation: waterFloat3 4.8s ease-in-out infinite;
+    }
+    .screenshot-fan-card:nth-child(4) {
+      animation: waterFloat1 5.5s ease-in-out infinite;
+    }
+    .screenshot-fan-card:nth-child(5) {
+      animation: waterFloat3 5.8s ease-in-out infinite;
+    }
+    .screenshot-fan-card:nth-child(6) {
+      animation: waterFloat2 4.6s ease-in-out infinite;
+    }
+    .screenshot-fan-card:nth-child(7) {
+      animation: waterFloat1 6.2s ease-in-out infinite;
+    }
 
-		@keyframes waterFloat1 {
-			0%   { translate: 0 0;    rotate: 0deg; }
-			25%  { translate: 3px -8px;  rotate: 0.8deg; }
-			50%  { translate: -2px -4px; rotate: -0.5deg; }
-			75%  { translate: 4px -10px; rotate: 0.6deg; }
-			100% { translate: 0 0;    rotate: 0deg; }
-		}
-		@keyframes waterFloat2 {
-			0%   { translate: 0 0;     rotate: 0deg; }
-			30%  { translate: -4px -9px; rotate: -0.7deg; }
-			60%  { translate: 2px -5px;  rotate: 0.9deg; }
-			80%  { translate: -3px -11px; rotate: -0.4deg; }
-			100% { translate: 0 0;     rotate: 0deg; }
-		}
-		@keyframes waterFloat3 {
-			0%   { translate: 0 0;     rotate: 0deg; }
-			20%  { translate: 2px -7px;  rotate: 0.6deg; }
-			45%  { translate: -3px -11px; rotate: -0.8deg; }
-			70%  { translate: 4px -5px;  rotate: 0.4deg; }
-			100% { translate: 0 0;     rotate: 0deg; }
-		}
-		.screenshot-fan-card:hover {
-			box-shadow: 0 12px 48px rgba(0, 229, 204, 0.15), 0 8px 32px rgba(0, 0, 0, 0.5);
-			border-color: rgba(0, 229, 204, 0.3);
-		}
-		.screenshot-fan-card.expanded {
-			z-index: 100 !important;
-			box-shadow: 0 20px 60px rgba(0, 229, 204, 0.2), 0 12px 40px rgba(0, 0, 0, 0.6);
-			border-color: var(--stf-primary);
-		}
-		/* Lightbox overlay */
-		.screenshot-lightbox {
-			position: fixed;
-			inset: 0;
-			z-index: 9999;
-			background: rgba(10, 14, 20, 0);
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			cursor: pointer;
-			pointer-events: none;
-			transition: background 0.4s ease;
-		}
-		.screenshot-lightbox.open {
-			background: rgba(10, 14, 20, 0.92);
-			pointer-events: auto;
-			backdrop-filter: blur(8px);
-			-webkit-backdrop-filter: blur(8px);
-		}
-		.screenshot-lightbox img {
-			max-height: 90vh;
-			max-width: 90vw;
-			object-fit: contain;
-			border: 1px solid var(--stf-primary);
-			box-shadow: 0 20px 80px rgba(0, 229, 204, 0.15), 0 0 0 1px rgba(0, 229, 204, 0.3);
-			transition: transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
-			position: absolute;
-			visibility: hidden;
-		}
-		.screenshot-lightbox.open img {
-			visibility: visible;
-		}
-		@media (min-width: 768px) {
-			.screenshot-fan-card {
-				width: 190px;
-				height: 380px;
-			}
-		}
-		@media (min-width: 1024px) {
-			.screenshot-fan-card {
-				width: 220px;
-				height: 440px;
-			}
-		}
-		.screenshot-fan-card img {
-			width: 100%;
-			height: 100%;
-			object-fit: cover;
-			object-position: top;
-			display: block;
-			pointer-events: none;
-		}
-	</style>
+    @keyframes waterFloat1 {
+      0% {
+        translate: 0 0;
+        rotate: 0deg;
+      }
+      25% {
+        translate: 2.7px -7.2px;
+        rotate: 0.72deg;
+      }
+      50% {
+        translate: -1.8px -3.6px;
+        rotate: -0.45deg;
+      }
+      75% {
+        translate: 3.6px -9px;
+        rotate: 0.54deg;
+      }
+      100% {
+        translate: 0 0;
+        rotate: 0deg;
+      }
+    }
+    @keyframes waterFloat2 {
+      0% {
+        translate: 0 0;
+        rotate: 0deg;
+      }
+      30% {
+        translate: -3.6px -8.1px;
+        rotate: -0.63deg;
+      }
+      60% {
+        translate: 1.8px -4.5px;
+        rotate: 0.81deg;
+      }
+      80% {
+        translate: -2.7px -9.9px;
+        rotate: -0.36deg;
+      }
+      100% {
+        translate: 0 0;
+        rotate: 0deg;
+      }
+    }
+    @keyframes waterFloat3 {
+      0% {
+        translate: 0 0;
+        rotate: 0deg;
+      }
+      20% {
+        translate: 1.8px -6.3px;
+        rotate: 0.54deg;
+      }
+      45% {
+        translate: -2.7px -9.9px;
+        rotate: -0.72deg;
+      }
+      70% {
+        translate: 3.6px -4.5px;
+        rotate: 0.36deg;
+      }
+      100% {
+        translate: 0 0;
+        rotate: 0deg;
+      }
+    }
+    .screenshot-fan-card:hover {
+      box-shadow:
+        0 12px 48px rgba(0, 229, 204, 0.15),
+        0 8px 32px rgba(0, 0, 0, 0.5);
+      border-color: rgba(0, 229, 204, 0.3);
+    }
+    .screenshot-fan-card.expanded {
+      z-index: 100 !important;
+      box-shadow:
+        0 20px 60px rgba(0, 229, 204, 0.2),
+        0 12px 40px rgba(0, 0, 0, 0.6);
+      border-color: var(--stf-primary);
+    }
+    /* Lightbox overlay */
+    .screenshot-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(10, 14, 20, 0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      pointer-events: none;
+      transition: background 0.4s ease;
+    }
+    .screenshot-lightbox.open {
+      background: rgba(10, 14, 20, 0.92);
+      pointer-events: auto;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .screenshot-lightbox img {
+      max-height: 90vh;
+      max-width: 90vw;
+      object-fit: contain;
+      border: 1px solid var(--stf-primary);
+      box-shadow:
+        0 20px 80px rgba(0, 229, 204, 0.15),
+        0 0 0 1px rgba(0, 229, 204, 0.3);
+      transition: transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
+      position: absolute;
+      visibility: hidden;
+    }
+    .screenshot-lightbox.open img {
+      visibility: visible;
+    }
+    @media (min-width: 768px) {
+      .screenshot-fan-card {
+        width: 190px;
+        height: 380px;
+      }
+    }
+    @media (min-width: 1024px) {
+      .screenshot-fan-card {
+        width: 220px;
+        height: 440px;
+      }
+    }
+    .screenshot-fan-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+      pointer-events: none;
+    }
+  </style>
 
-	<div class="stf-page min-h-screen">
-	<!-- Nav -->
-	<nav class="fixed top-0 left-0 right-0 z-50 border-b" style="background: var(--stf-surface-alt); border-color: var(--stf-border);">
-		<div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
-			<a href="/spread-the-fund" class="flex items-center gap-3">
-				<img src="/spread-the-fund/spreadthefund.svg" alt="Spread the Funds" class="w-7 h-7" />
-				<span class="text-sm font-bold uppercase tracking-[4px]" style="color: var(--stf-text);">SPREAD THE FUNDS</span>
-			</a>
-			<div class="flex items-center gap-6">
-				<a href="#features" class="hidden sm:inline text-xs font-bold uppercase tracking-[2px] stf-nav-link transition-colors">FEATURES</a>
-				<a href="#how-it-works" class="hidden sm:inline text-xs font-bold uppercase tracking-[2px] stf-nav-link transition-colors">HOW IT WORKS</a>
-				<a href="#legal" class="hidden sm:inline text-xs font-bold uppercase tracking-[2px] stf-nav-link transition-colors">LEGAL</a>
-				<a href="/preview" class="page-transition-left text-xs font-bold uppercase tracking-[2px] transition-colors" style="color: var(--stf-text-dim);">
-					&larr; PORTFOLIO
-				</a>
-			</div>
-		</div>
-	</nav>
+  <div class="min-h-screen">
+    <!-- Nav -->
+    <nav
+      class="fixed top-0 left-0 right-0 z-50 border-b"
+      style="background: var(--stf-surface-alt); border-color: var(--stf-border);"
+    >
+      <div
+        class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between"
+      >
+        <a href="/spread-the-fund" class="flex items-center gap-3">
+          <img
+            src="/spread-the-fund/spreadthefund.svg"
+            alt="Spread the Funds"
+            class="w-7 h-7"
+          />
+          <span
+            class="text-sm font-bold uppercase tracking-[4px]"
+            style="color: var(--stf-text);">SPREAD THE FUNDS</span
+          >
+        </a>
+        <div class="flex items-center gap-6">
+          <a
+            href="#features"
+            class="hidden sm:inline text-xs font-bold uppercase tracking-[2px] stf-nav-link transition-colors"
+            >FEATURES</a
+          >
+          <a
+            href="#how-it-works"
+            class="hidden sm:inline text-xs font-bold uppercase tracking-[2px] stf-nav-link transition-colors"
+            >HOW IT WORKS</a
+          >
+          <a
+            href="#legal"
+            class="hidden sm:inline text-xs font-bold uppercase tracking-[2px] stf-nav-link transition-colors"
+            >LEGAL</a
+          >
+          <a
+            href="/preview"
+            class="page-transition-left text-xs font-bold uppercase tracking-[2px] transition-colors"
+            style="color: var(--stf-text-dim);"
+          >
+            &larr; PORTFOLIO
+          </a>
+        </div>
+      </div>
+    </nav>
 
-	<!-- Hero -->
-	<section class="relative min-h-[80vh] flex items-center justify-center pt-16" style="background: var(--stf-bg);">
-		<div class="relative z-10 text-center px-6 max-w-3xl mx-auto">
-			<div class="flex justify-center mb-8">
-				<img src="/spread-the-fund/app_icon_transparent.png" alt="Spread the Funds icon" class="w-20 h-20 md:w-24 md:h-24" />
-			</div>
-			<div class="inline-block px-4 py-1.5 text-xs font-bold uppercase tracking-[3px] border mb-8" style="color: var(--stf-primary); border-color: var(--stf-primary); background: rgba(0, 229, 204, 0.08);">
-				ANDROID APP
-			</div>
-			<h1 class="text-3xl md:text-5xl lg:text-6xl font-bold uppercase tracking-[4px] leading-tight mb-6">
-				<span class="stf-gradient-text">SPREAD THE FUNDS</span>
-			</h1>
-			<p class="text-base md:text-lg uppercase tracking-[3px] font-bold mb-4" style="color: var(--stf-text-secondary);">
-				SPLIT BILLS IN REAL-TIME
-			</p>
-			<p class="text-sm md:text-base leading-relaxed max-w-lg mx-auto mb-10" style="color: var(--stf-text-dim);">
-				A bill-splitting app with real-time updates between users. Create groups, add bills, adjust splits, and settle up — all synced instantly via Firebase.
-			</p>
-			<div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-				<a href="#features" class="px-8 py-3 font-bold text-xs uppercase tracking-[2px] stf-btn-primary transition-opacity">
-					SEE FEATURES
-				</a>
-				<a href="https://github.com/CrowdTypical/spreadthefund" target="_blank" rel="noopener noreferrer" class="px-8 py-3 font-bold text-xs uppercase tracking-[2px] border stf-btn-outline transition-colors">
-					VIEW ON GITHUB
-				</a>
-			</div>
-		</div>
-	</section>
+    <!-- Hero -->
+    <section
+      class="relative min-h-[80vh] flex items-center justify-center pt-16"
+      style="background: var(--stf-bg);"
+    >
+      <div class="relative z-10 text-center px-6 max-w-3xl mx-auto">
+        <div class="flex justify-center mb-8">
+          <img
+            src="/spread-the-fund/app_icon_transparent.png"
+            alt="Spread the Funds icon"
+            class="w-20 h-20 md:w-24 md:h-24"
+          />
+        </div>
+        <div
+          class="inline-block px-4 py-1.5 text-xs font-bold uppercase tracking-[3px] border mb-8"
+          style="color: var(--stf-primary); border-color: var(--stf-primary); background: rgba(0, 229, 204, 0.08);"
+        >
+          ANDROID APP
+        </div>
+        <h1
+          class="text-3xl md:text-5xl lg:text-6xl font-bold uppercase tracking-[4px] leading-tight mb-6"
+        >
+          <span class="stf-gradient-text">SPREAD THE FUNDS</span>
+        </h1>
+        <p
+          class="text-base md:text-lg uppercase tracking-[3px] font-bold mb-4"
+          style="color: var(--stf-text-secondary);"
+        >
+          SPLIT BILLS IN REAL-TIME
+        </p>
+        <p
+          class="text-sm md:text-base leading-relaxed max-w-lg mx-auto mb-10"
+          style="color: var(--stf-text-dim);"
+        >
+          A bill-splitting app with real-time updates between users. Create
+          groups, add bills, adjust splits, and settle up — all synced instantly
+          via Firebase.
+        </p>
+        <div
+          class="flex flex-col sm:flex-row items-center justify-center gap-4"
+        >
+          <a
+            href="#features"
+            class="px-8 py-3 font-bold text-xs uppercase tracking-[2px] stf-btn-primary transition-opacity"
+          >
+            SEE FEATURES
+          </a>
+          <a
+            href="https://github.com/CrowdTypical/spreadthefund"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-8 py-3 font-bold text-xs uppercase tracking-[2px] border stf-btn-outline transition-colors"
+          >
+            VIEW ON GITHUB
+          </a>
+        </div>
+      </div>
+    </section>
 
-	<!-- App Screenshots -->
-	<section class="py-10 md:py-14 overflow-hidden" style="background: var(--stf-surface-deep);">
-		<div class="max-w-6xl mx-auto">
-			<div class="text-center mb-6 md:mb-8 px-6">
-				<p class="text-xs font-bold uppercase tracking-[3px] mb-3" style="color: var(--stf-primary);">APP PREVIEW</p>
-				<h2 class="text-2xl md:text-3xl font-bold uppercase tracking-[4px]" style="color: var(--stf-text);">SEE IT IN ACTION</h2>
-			</div>
+    <!-- App Screenshots -->
+    <section
+      class="py-10 md:py-14 overflow-hidden"
+      style="background: var(--stf-surface-deep);"
+    >
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-6 md:mb-8 px-6">
+          <p
+            class="text-xs font-bold uppercase tracking-[3px] mb-3"
+            style="color: var(--stf-primary);"
+          >
+            APP PREVIEW
+          </p>
+          <h2
+            class="text-2xl md:text-3xl font-bold uppercase tracking-[4px]"
+            style="color: var(--stf-text);"
+          >
+            SEE IT IN ACTION
+          </h2>
+        </div>
 
-			<!-- Fan layout -->
-			<div class="screenshot-fan" id="screenshot-fan">
-				<div class="screenshot-fan-card" data-fan="0">
-					<img src="/spread-the-fund/screenshots/new-group.jpg" alt="New Group" loading="lazy" />
-				</div>
-				<div class="screenshot-fan-card" data-fan="1">
-					<img src="/spread-the-fund/screenshots/add-partner.jpg" alt="Add Partner" loading="lazy" />
-				</div>
-				<div class="screenshot-fan-card" data-fan="2">
-					<img src="/spread-the-fund/screenshots/groups.jpg" alt="Groups Dashboard" loading="lazy" />
-				</div>
-				<div class="screenshot-fan-card" data-fan="3">
-					<img src="/spread-the-fund/screenshots/login.jpg" alt="Login Screen" loading="lazy" />
-				</div>
-				<div class="screenshot-fan-card" data-fan="4">
-					<img src="/spread-the-fund/screenshots/group-activity.jpg" alt="Group Activity" loading="lazy" />
-				</div>
-				<div class="screenshot-fan-card" data-fan="5">
-					<img src="/spread-the-fund/screenshots/bill-edit.jpg" alt="Bill Edit" loading="lazy" />
-				</div>
-				<div class="screenshot-fan-card" data-fan="6">
-					<img src="/spread-the-fund/screenshots/group-details.jpg" alt="Group Details" loading="lazy" />
-				</div>
-			</div>
-		</div>
-	</section>
+        <!-- Fan layout -->
+        <div class="screenshot-fan" id="screenshot-fan">
+          <div class="screenshot-fan-card" data-fan="0">
+            <img
+              src="/spread-the-fund/screenshots/new-group.jpg"
+              alt="New Group"
+              loading="lazy"
+            />
+          </div>
+          <div class="screenshot-fan-card" data-fan="1">
+            <img
+              src="/spread-the-fund/screenshots/add-partner.jpg"
+              alt="Add Partner"
+              loading="lazy"
+            />
+          </div>
+          <div class="screenshot-fan-card" data-fan="2">
+            <img
+              src="/spread-the-fund/screenshots/groups.jpg"
+              alt="Groups Dashboard"
+              loading="lazy"
+            />
+          </div>
+          <div class="screenshot-fan-card" data-fan="3">
+            <img
+              src="/spread-the-fund/screenshots/login.jpg"
+              alt="Login Screen"
+              loading="lazy"
+            />
+          </div>
+          <div class="screenshot-fan-card" data-fan="4">
+            <img
+              src="/spread-the-fund/screenshots/group-activity.jpg"
+              alt="Group Activity"
+              loading="lazy"
+            />
+          </div>
+          <div class="screenshot-fan-card" data-fan="5">
+            <img
+              src="/spread-the-fund/screenshots/bill-edit.jpg"
+              alt="Bill Edit"
+              loading="lazy"
+            />
+          </div>
+          <div class="screenshot-fan-card" data-fan="6">
+            <img
+              src="/spread-the-fund/screenshots/group-details.jpg"
+              alt="Group Details"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
 
-	<!-- Lightbox -->
-	<div class="screenshot-lightbox" id="screenshot-lightbox">
-		<img src="" alt="Screenshot preview" id="lightbox-img" />
-	</div>
+    <!-- Lightbox -->
+    <div class="screenshot-lightbox" id="screenshot-lightbox">
+      <img src="" alt="Screenshot preview" id="lightbox-img" />
+    </div>
 
-		<!-- Features -->
-	<section id="features" class="py-16 md:py-20 px-6 md:px-16" style="background: var(--stf-bg);">
-		<div class="max-w-5xl mx-auto">
-			<div class="text-center mb-12">
-				<p class="text-xs font-bold uppercase tracking-[3px] mb-3" style="color: var(--stf-primary);">FEATURES</p>
-				<h2 class="text-2xl md:text-3xl font-bold uppercase tracking-[4px]" style="color: var(--stf-text);">EVERYTHING YOU NEED</h2>
-			</div>
+    <!-- Features -->
+    <section
+      id="features"
+      class="py-16 md:py-20 px-6 md:px-16"
+      style="background: var(--stf-bg);"
+    >
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-12">
+          <p
+            class="text-xs font-bold uppercase tracking-[3px] mb-3"
+            style="color: var(--stf-primary);"
+          >
+            FEATURES
+          </p>
+          <h2
+            class="text-2xl md:text-3xl font-bold uppercase tracking-[4px]"
+            style="color: var(--stf-text);"
+          >
+            EVERYTHING YOU NEED
+          </h2>
+        </div>
 
-			<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-				<div class="p-6 border stf-card">
-					<div class="w-10 h-10 flex items-center justify-center mb-4 border" style="border-color: var(--stf-primary); background: rgba(0, 229, 204, 0.08);">
-						<span class="text-lg">⚡</span>
-					</div>
-					<h3 class="text-xs font-bold uppercase tracking-[2px] mb-2" style="color: var(--stf-text);">REAL-TIME SYNC</h3>
-					<p class="text-[13px] leading-relaxed" style="color: var(--stf-text-dim);">Bills sync instantly between all group members via Firebase. Everyone sees updates the moment they happen.</p>
-				</div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="p-6 border stf-card">
+            <div
+              class="w-10 h-10 flex items-center justify-center mb-4 border"
+              style="border-color: var(--stf-primary); background: rgba(0, 229, 204, 0.08);"
+            >
+              <span class="text-lg">⚡</span>
+            </div>
+            <h3
+              class="text-xs font-bold uppercase tracking-[2px] mb-2"
+              style="color: var(--stf-text);"
+            >
+              REAL-TIME SYNC
+            </h3>
+            <p
+              class="text-[13px] leading-relaxed"
+              style="color: var(--stf-text-dim);"
+            >
+              Bills sync instantly between all group members via Firebase.
+              Everyone sees updates the moment they happen.
+            </p>
+          </div>
 
-				<div class="p-6 border stf-card">
-					<div class="w-10 h-10 flex items-center justify-center mb-4 border" style="border-color: var(--stf-primary); background: rgba(0, 229, 204, 0.08);">
-						<span class="text-lg">👥</span>
-					</div>
-					<h3 class="text-xs font-bold uppercase tracking-[2px] mb-2" style="color: var(--stf-text);">MULTIPLE GROUPS</h3>
-					<p class="text-[13px] leading-relaxed" style="color: var(--stf-text-dim);">Create separate groups for housemates, trips, couples, or any situation. Keep your bills organized.</p>
-				</div>
+          <div class="p-6 border stf-card">
+            <div
+              class="w-10 h-10 flex items-center justify-center mb-4 border"
+              style="border-color: var(--stf-primary); background: rgba(0, 229, 204, 0.08);"
+            >
+              <span class="text-lg">👥</span>
+            </div>
+            <h3
+              class="text-xs font-bold uppercase tracking-[2px] mb-2"
+              style="color: var(--stf-text);"
+            >
+              MULTIPLE GROUPS
+            </h3>
+            <p
+              class="text-[13px] leading-relaxed"
+              style="color: var(--stf-text-dim);"
+            >
+              Create separate groups for housemates, trips, couples, or any
+              situation. Keep your bills organized.
+            </p>
+          </div>
 
-				<div class="p-6 border stf-card">
-					<div class="w-10 h-10 flex items-center justify-center mb-4 border" style="border-color: var(--stf-primary); background: rgba(0, 229, 204, 0.08);">
-						<span class="text-lg">🎨</span>
-					</div>
-					<h3 class="text-xs font-bold uppercase tracking-[2px] mb-2" style="color: var(--stf-text);">CUSTOM COLOURS</h3>
-					<p class="text-[13px] leading-relaxed" style="color: var(--stf-text-dim);">12 accent colours to personalise each group. Make it yours.</p>
-				</div>
+          <div class="p-6 border stf-card">
+            <div
+              class="w-10 h-10 flex items-center justify-center mb-4 border"
+              style="border-color: var(--stf-primary); background: rgba(0, 229, 204, 0.08);"
+            >
+              <span class="text-lg">🎨</span>
+            </div>
+            <h3
+              class="text-xs font-bold uppercase tracking-[2px] mb-2"
+              style="color: var(--stf-text);"
+            >
+              CUSTOM COLOURS
+            </h3>
+            <p
+              class="text-[13px] leading-relaxed"
+              style="color: var(--stf-text-dim);"
+            >
+              12 accent colours to personalise each group. Make it yours.
+            </p>
+          </div>
 
-				<div class="p-6 border stf-card">
-					<div class="w-10 h-10 flex items-center justify-center mb-4 border" style="border-color: var(--stf-primary); background: rgba(0, 229, 204, 0.08);">
-						<span class="text-lg">🎚ï¸</span>
-					</div>
-					<h3 class="text-xs font-bold uppercase tracking-[2px] mb-2" style="color: var(--stf-text);">SMART SPLIT SLIDER</h3>
-					<p class="text-[13px] leading-relaxed" style="color: var(--stf-text-dim);">Adjust the split percentage with an intuitive slider. No more manual math.</p>
-				</div>
+          <div class="p-6 border stf-card">
+            <div
+              class="w-10 h-10 flex items-center justify-center mb-4 border"
+              style="border-color: var(--stf-primary); background: rgba(0, 229, 204, 0.08);"
+            >
+              <span class="text-lg">🎚ï¸</span>
+            </div>
+            <h3
+              class="text-xs font-bold uppercase tracking-[2px] mb-2"
+              style="color: var(--stf-text);"
+            >
+              SMART SPLIT SLIDER
+            </h3>
+            <p
+              class="text-[13px] leading-relaxed"
+              style="color: var(--stf-text-dim);"
+            >
+              Adjust the split percentage with an intuitive slider. No more
+              manual math.
+            </p>
+          </div>
 
-				<div class="p-6 border stf-card">
-					<div class="w-10 h-10 flex items-center justify-center mb-4 border" style="border-color: var(--stf-primary); background: rgba(0, 229, 204, 0.08);">
-						<span class="text-lg">✅</span>
-					</div>
-					<h3 class="text-xs font-bold uppercase tracking-[2px] mb-2" style="color: var(--stf-text);">SETTLEMENT TRACKING</h3>
-					<p class="text-[13px] leading-relaxed" style="color: var(--stf-text-dim);">Record payments and track who owes whom. Mark debts as settled and keep a clean ledger.</p>
-				</div>
+          <div class="p-6 border stf-card">
+            <div
+              class="w-10 h-10 flex items-center justify-center mb-4 border"
+              style="border-color: var(--stf-primary); background: rgba(0, 229, 204, 0.08);"
+            >
+              <span class="text-lg">✅</span>
+            </div>
+            <h3
+              class="text-xs font-bold uppercase tracking-[2px] mb-2"
+              style="color: var(--stf-text);"
+            >
+              SETTLEMENT TRACKING
+            </h3>
+            <p
+              class="text-[13px] leading-relaxed"
+              style="color: var(--stf-text-dim);"
+            >
+              Record payments and track who owes whom. Mark debts as settled and
+              keep a clean ledger.
+            </p>
+          </div>
 
-				<div class="p-6 border stf-card">
-					<div class="w-10 h-10 flex items-center justify-center mb-4 border" style="border-color: var(--stf-primary); background: rgba(0, 229, 204, 0.08);">
-						<span class="text-lg">🔒</span>
-					</div>
-					<h3 class="text-xs font-bold uppercase tracking-[2px] mb-2" style="color: var(--stf-text);">PRIVACY FIRST</h3>
-					<p class="text-[13px] leading-relaxed" style="color: var(--stf-text-dim);">No analytics, no ads, no tracking. Your data stays yours. Delete everything at any time.</p>
-				</div>
-			</div>
+          <div class="p-6 border stf-card">
+            <div
+              class="w-10 h-10 flex items-center justify-center mb-4 border"
+              style="border-color: var(--stf-primary); background: rgba(0, 229, 204, 0.08);"
+            >
+              <span class="text-lg">🔒</span>
+            </div>
+            <h3
+              class="text-xs font-bold uppercase tracking-[2px] mb-2"
+              style="color: var(--stf-text);"
+            >
+              PRIVACY FIRST
+            </h3>
+            <p
+              class="text-[13px] leading-relaxed"
+              style="color: var(--stf-text-dim);"
+            >
+              No analytics, no ads, no tracking. Your data stays yours. Delete
+              everything at any time.
+            </p>
+          </div>
+        </div>
 
-			<!-- Additional features -->
-			<div class="mt-12 grid sm:grid-cols-2 gap-3">
-				<div class="flex items-center gap-3 p-3 border" style="background: var(--stf-surface-deep); border-color: var(--stf-border);">
-					<span style="color: var(--stf-primary);">›</span>
-					<span class="text-xs font-bold uppercase tracking-[1px]" style="color: var(--stf-text-secondary);">GOOGLE SIGN-IN</span>
-				</div>
-				<div class="flex items-center gap-3 p-3 border" style="background: var(--stf-surface-deep); border-color: var(--stf-border);">
-					<span style="color: var(--stf-primary);">›</span>
-					<span class="text-xs font-bold uppercase tracking-[1px]" style="color: var(--stf-text-secondary);">CATEGORY ICONS</span>
-				</div>
-				<div class="flex items-center gap-3 p-3 border" style="background: var(--stf-surface-deep); border-color: var(--stf-border);">
-					<span style="color: var(--stf-primary);">›</span>
-					<span class="text-xs font-bold uppercase tracking-[1px]" style="color: var(--stf-text-secondary);">BILL NOTES</span>
-				</div>
-				<div class="flex items-center gap-3 p-3 border" style="background: var(--stf-surface-deep); border-color: var(--stf-border);">
-					<span style="color: var(--stf-primary);">›</span>
-					<span class="text-xs font-bold uppercase tracking-[1px]" style="color: var(--stf-text-secondary);">EMAIL INVITATIONS</span>
-				</div>
-				<div class="flex items-center gap-3 p-3 border" style="background: var(--stf-surface-deep); border-color: var(--stf-border);">
-					<span style="color: var(--stf-primary);">›</span>
-					<span class="text-xs font-bold uppercase tracking-[1px]" style="color: var(--stf-text-secondary);">DATA DELETION</span>
-				</div>
-				<div class="flex items-center gap-3 p-3 border" style="background: var(--stf-surface-deep); border-color: var(--stf-border);">
-					<span style="color: var(--stf-primary);">›</span>
-					<span class="text-xs font-bold uppercase tracking-[1px]" style="color: var(--stf-text-secondary);">OPEN SOURCE</span>
-				</div>
-			</div>
-		</div>
-	</section>
+        <!-- Additional features -->
+        <div class="mt-12 grid sm:grid-cols-2 gap-3">
+          <div
+            class="flex items-center gap-3 p-3 border"
+            style="background: var(--stf-surface-deep); border-color: var(--stf-border);"
+          >
+            <span style="color: var(--stf-primary);">›</span>
+            <span
+              class="text-xs font-bold uppercase tracking-[1px]"
+              style="color: var(--stf-text-secondary);">GOOGLE SIGN-IN</span
+            >
+          </div>
+          <div
+            class="flex items-center gap-3 p-3 border"
+            style="background: var(--stf-surface-deep); border-color: var(--stf-border);"
+          >
+            <span style="color: var(--stf-primary);">›</span>
+            <span
+              class="text-xs font-bold uppercase tracking-[1px]"
+              style="color: var(--stf-text-secondary);">CATEGORY ICONS</span
+            >
+          </div>
+          <div
+            class="flex items-center gap-3 p-3 border"
+            style="background: var(--stf-surface-deep); border-color: var(--stf-border);"
+          >
+            <span style="color: var(--stf-primary);">›</span>
+            <span
+              class="text-xs font-bold uppercase tracking-[1px]"
+              style="color: var(--stf-text-secondary);">BILL NOTES</span
+            >
+          </div>
+          <div
+            class="flex items-center gap-3 p-3 border"
+            style="background: var(--stf-surface-deep); border-color: var(--stf-border);"
+          >
+            <span style="color: var(--stf-primary);">›</span>
+            <span
+              class="text-xs font-bold uppercase tracking-[1px]"
+              style="color: var(--stf-text-secondary);">EMAIL INVITATIONS</span
+            >
+          </div>
+          <div
+            class="flex items-center gap-3 p-3 border"
+            style="background: var(--stf-surface-deep); border-color: var(--stf-border);"
+          >
+            <span style="color: var(--stf-primary);">›</span>
+            <span
+              class="text-xs font-bold uppercase tracking-[1px]"
+              style="color: var(--stf-text-secondary);">DATA DELETION</span
+            >
+          </div>
+          <div
+            class="flex items-center gap-3 p-3 border"
+            style="background: var(--stf-surface-deep); border-color: var(--stf-border);"
+          >
+            <span style="color: var(--stf-primary);">›</span>
+            <span
+              class="text-xs font-bold uppercase tracking-[1px]"
+              style="color: var(--stf-text-secondary);">OPEN SOURCE</span
+            >
+          </div>
+        </div>
+      </div>
+    </section>
 
-	<!-- How It Works -->
-	<section id="how-it-works" class="py-16 md:py-20 px-6 md:px-16" style="background: var(--stf-surface-deep);">
-		<div class="max-w-4xl mx-auto">
-			<div class="text-center mb-12">
-				<p class="text-xs font-bold uppercase tracking-[3px] mb-3" style="color: var(--stf-primary);">SIMPLE PROCESS</p>
-				<h2 class="text-2xl md:text-3xl font-bold uppercase tracking-[4px]" style="color: var(--stf-text);">HOW IT WORKS</h2>
-			</div>
+    <!-- How It Works -->
+    <section
+      id="how-it-works"
+      class="py-16 md:py-20 px-6 md:px-16"
+      style="background: var(--stf-surface-deep);"
+    >
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <p
+            class="text-xs font-bold uppercase tracking-[3px] mb-3"
+            style="color: var(--stf-primary);"
+          >
+            SIMPLE PROCESS
+          </p>
+          <h2
+            class="text-2xl md:text-3xl font-bold uppercase tracking-[4px]"
+            style="color: var(--stf-text);"
+          >
+            HOW IT WORKS
+          </h2>
+        </div>
 
-			<div class="grid md:grid-cols-3 gap-8">
-				<div class="text-center">
-					<div class="w-14 h-14 flex items-center justify-center text-xl font-bold mx-auto mb-5" style="background: var(--stf-primary); color: var(--stf-bg);">01</div>
-					<h3 class="text-xs font-bold uppercase tracking-[2px] mb-2" style="color: var(--stf-text);">CREATE A GROUP</h3>
-					<p class="text-[13px] leading-relaxed" style="color: var(--stf-text-dim);">Set up a group for your housemates, a trip, or any shared expense situation. Pick a colour and invite members by email.</p>
-				</div>
-				<div class="text-center">
-					<div class="w-14 h-14 flex items-center justify-center text-xl font-bold mx-auto mb-5" style="background: var(--stf-primary); color: var(--stf-bg);">02</div>
-					<h3 class="text-xs font-bold uppercase tracking-[2px] mb-2" style="color: var(--stf-text);">ADD BILLS</h3>
-					<p class="text-[13px] leading-relaxed" style="color: var(--stf-text-dim);">Log expenses as they happen. Choose a category, set the amount, and use the split slider to divide costs.</p>
-				</div>
-				<div class="text-center">
-					<div class="w-14 h-14 flex items-center justify-center text-xl font-bold mx-auto mb-5" style="background: var(--stf-primary); color: var(--stf-bg);">03</div>
-					<h3 class="text-xs font-bold uppercase tracking-[2px] mb-2" style="color: var(--stf-text);">SETTLE UP</h3>
-					<p class="text-[13px] leading-relaxed" style="color: var(--stf-text-dim);">See who owes what at a glance. Record payments, track settlements, and keep everyone's balance clean.</p>
-				</div>
-			</div>
-		</div>
-	</section>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="text-center">
+            <div
+              class="w-14 h-14 flex items-center justify-center text-xl font-bold mx-auto mb-5"
+              style="background: var(--stf-primary); color: var(--stf-bg);"
+            >
+              01
+            </div>
+            <h3
+              class="text-xs font-bold uppercase tracking-[2px] mb-2"
+              style="color: var(--stf-text);"
+            >
+              CREATE A GROUP
+            </h3>
+            <p
+              class="text-[13px] leading-relaxed"
+              style="color: var(--stf-text-dim);"
+            >
+              Set up a group for your housemates, a trip, or any shared expense
+              situation. Pick a colour and invite members by email.
+            </p>
+          </div>
+          <div class="text-center">
+            <div
+              class="w-14 h-14 flex items-center justify-center text-xl font-bold mx-auto mb-5"
+              style="background: var(--stf-primary); color: var(--stf-bg);"
+            >
+              02
+            </div>
+            <h3
+              class="text-xs font-bold uppercase tracking-[2px] mb-2"
+              style="color: var(--stf-text);"
+            >
+              ADD BILLS
+            </h3>
+            <p
+              class="text-[13px] leading-relaxed"
+              style="color: var(--stf-text-dim);"
+            >
+              Log expenses as they happen. Choose a category, set the amount,
+              and use the split slider to divide costs.
+            </p>
+          </div>
+          <div class="text-center">
+            <div
+              class="w-14 h-14 flex items-center justify-center text-xl font-bold mx-auto mb-5"
+              style="background: var(--stf-primary); color: var(--stf-bg);"
+            >
+              03
+            </div>
+            <h3
+              class="text-xs font-bold uppercase tracking-[2px] mb-2"
+              style="color: var(--stf-text);"
+            >
+              SETTLE UP
+            </h3>
+            <p
+              class="text-[13px] leading-relaxed"
+              style="color: var(--stf-text-dim);"
+            >
+              See who owes what at a glance. Record payments, track settlements,
+              and keep everyone's balance clean.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-	<!-- Info Bar -->
-	<section class="py-8 px-6 border-y" style="background: var(--stf-surface); border-color: var(--stf-border);">
-		<div class="max-w-5xl mx-auto flex flex-wrap items-center justify-center gap-8 md:gap-16">
-			<div class="text-center">
-				<p class="text-xs font-bold uppercase tracking-[2px]" style="color: var(--stf-text-dim);">PLATFORM</p>
-				<p class="text-sm font-bold mt-1" style="color: var(--stf-text);">ANDROID</p>
-			</div>
-			<div class="text-center">
-				<p class="text-xs font-bold uppercase tracking-[2px]" style="color: var(--stf-text-dim);">VERSION</p>
-				<p class="text-sm font-bold mt-1" style="color: var(--stf-primary);">v1.0.3</p>
-			</div>
-			<div class="text-center">
-				<p class="text-xs font-bold uppercase tracking-[2px]" style="color: var(--stf-text-dim);">LICENSE</p>
-				<p class="text-sm font-bold mt-1" style="color: var(--stf-text);">POLYFORM SHIELD</p>
-			</div>
-			<div class="text-center">
-				<p class="text-xs font-bold uppercase tracking-[2px]" style="color: var(--stf-text-dim);">DEVELOPER</p>
-				<p class="text-sm font-bold mt-1" style="color: var(--stf-text);">CROWDTYPICAL</p>
-			</div>
-		</div>
-	</section>
+    <!-- Info Bar -->
+    <section
+      class="py-8 px-6 border-y"
+      style="background: var(--stf-surface); border-color: var(--stf-border);"
+    >
+      <div
+        class="max-w-5xl mx-auto flex flex-wrap items-center justify-center gap-8 md:gap-16"
+      >
+        <div class="text-center">
+          <p
+            class="text-xs font-bold uppercase tracking-[2px]"
+            style="color: var(--stf-text-dim);"
+          >
+            PLATFORM
+          </p>
+          <p class="text-sm font-bold mt-1" style="color: var(--stf-text);">
+            ANDROID
+          </p>
+        </div>
+        <div class="text-center">
+          <p
+            class="text-xs font-bold uppercase tracking-[2px]"
+            style="color: var(--stf-text-dim);"
+          >
+            VERSION
+          </p>
+          <p class="text-sm font-bold mt-1" style="color: var(--stf-primary);">
+            v1.0.3
+          </p>
+        </div>
+        <div class="text-center">
+          <p
+            class="text-xs font-bold uppercase tracking-[2px]"
+            style="color: var(--stf-text-dim);"
+          >
+            LICENSE
+          </p>
+          <p class="text-sm font-bold mt-1" style="color: var(--stf-text);">
+            POLYFORM SHIELD
+          </p>
+        </div>
+        <div class="text-center">
+          <p
+            class="text-xs font-bold uppercase tracking-[2px]"
+            style="color: var(--stf-text-dim);"
+          >
+            DEVELOPER
+          </p>
+          <p class="text-sm font-bold mt-1" style="color: var(--stf-text);">
+            CROWDTYPICAL
+          </p>
+        </div>
+      </div>
+    </section>
 
-	<!-- Legal Section -->
-	<section id="legal" class="py-16 md:py-20 px-6 md:px-16" style="background: var(--stf-bg);">
-		<div class="max-w-3xl mx-auto text-center">
-			<p class="text-xs font-bold uppercase tracking-[3px] mb-3" style="color: var(--stf-text-dim);">LEGAL</p>
-			<h2 class="text-2xl md:text-3xl font-bold uppercase tracking-[4px] mb-4" style="color: var(--stf-text);">LEGAL INFORMATION</h2>
-			<p class="text-sm leading-relaxed mb-10 max-w-lg mx-auto" style="color: var(--stf-text-dim);">
-				Transparency matters. Review our policies to understand how we handle your data and define the terms of service.
-			</p>
+    <!-- Legal Section -->
+    <section
+      id="legal"
+      class="py-16 md:py-20 px-6 md:px-16"
+      style="background: var(--stf-bg);"
+    >
+      <div class="max-w-3xl mx-auto text-center">
+        <p
+          class="text-xs font-bold uppercase tracking-[3px] mb-3"
+          style="color: var(--stf-text-dim);"
+        >
+          LEGAL
+        </p>
+        <h2
+          class="text-2xl md:text-3xl font-bold uppercase tracking-[4px] mb-4"
+          style="color: var(--stf-text);"
+        >
+          LEGAL INFORMATION
+        </h2>
+        <p
+          class="text-sm leading-relaxed mb-10 max-w-lg mx-auto"
+          style="color: var(--stf-text-dim);"
+        >
+          Transparency matters. Review our policies to understand how we handle
+          your data and define the terms of service.
+        </p>
 
-			<div class="grid sm:grid-cols-3 gap-6">
-				<a href="/spread-the-fund/privacy" class="block p-6 border stf-card transition-all">
-					<div class="text-2xl mb-3">🛡ï¸</div>
-					<h3 class="text-xs font-bold uppercase tracking-[2px] mb-2" style="color: var(--stf-text);">PRIVACY POLICY</h3>
-					<p class="text-xs" style="color: var(--stf-text-dim);">How we collect, use, and protect your information.</p>
-				</a>
-				<a href="/spread-the-fund/terms" class="block p-6 border stf-card transition-all">
-					<div class="text-2xl mb-3">📄</div>
-					<h3 class="text-xs font-bold uppercase tracking-[2px] mb-2" style="color: var(--stf-text);">TERMS & CONDITIONS</h3>
-					<p class="text-xs" style="color: var(--stf-text-dim);">The rules and guidelines for using Spread the Funds.</p>
-				</a>
-				<a href="/spread-the-fund/copyright" class="block p-6 border stf-card transition-all">
-					<div class="text-2xl mb-3">©</div>
-					<h3 class="text-xs font-bold uppercase tracking-[2px] mb-2" style="color: var(--stf-text);">COPYRIGHT</h3>
-					<p class="text-xs" style="color: var(--stf-text-dim);">Intellectual property and usage rights information.</p>
-				</a>
-			</div>
-		</div>
-	</section>
+        <div class="grid sm:grid-cols-3 gap-6">
+          <a
+            href="/spread-the-fund/privacy"
+            class="block p-6 border stf-card transition-all"
+          >
+            <div class="text-2xl mb-3">🛡ï¸</div>
+            <h3
+              class="text-xs font-bold uppercase tracking-[2px] mb-2"
+              style="color: var(--stf-text);"
+            >
+              PRIVACY POLICY
+            </h3>
+            <p class="text-xs" style="color: var(--stf-text-dim);">
+              How we collect, use, and protect your information.
+            </p>
+          </a>
+          <a
+            href="/spread-the-fund/terms"
+            class="block p-6 border stf-card transition-all"
+          >
+            <div class="text-2xl mb-3">📄</div>
+            <h3
+              class="text-xs font-bold uppercase tracking-[2px] mb-2"
+              style="color: var(--stf-text);"
+            >
+              TERMS & CONDITIONS
+            </h3>
+            <p class="text-xs" style="color: var(--stf-text-dim);">
+              The rules and guidelines for using Spread the Funds.
+            </p>
+          </a>
+          <a
+            href="/spread-the-fund/copyright"
+            class="block p-6 border stf-card transition-all"
+          >
+            <div class="text-2xl mb-3">©</div>
+            <h3
+              class="text-xs font-bold uppercase tracking-[2px] mb-2"
+              style="color: var(--stf-text);"
+            >
+              COPYRIGHT
+            </h3>
+            <p class="text-xs" style="color: var(--stf-text-dim);">
+              Intellectual property and usage rights information.
+            </p>
+          </a>
+        </div>
+      </div>
+    </section>
 
-	<!-- Support / Donate -->
-	<section class="py-16 px-6 border-t" style="background: var(--stf-surface-deep); border-color: var(--stf-border);">
-		<div class="max-w-3xl mx-auto text-center">
-			<p class="text-xs font-bold uppercase tracking-[3px] mb-3" style="color: var(--stf-amber);">SUPPORT</p>
-			<h2 class="text-xl md:text-2xl font-bold uppercase tracking-[4px] mb-4" style="color: var(--stf-text);">BUY ME A COFFEE</h2>
-			<p class="text-sm leading-relaxed mb-8 max-w-md mx-auto" style="color: var(--stf-text-dim);">
-				Spread the Funds is free, open source, and ad-free. If you find it useful, consider supporting development.
-			</p>
-			<a href="https://buymeacoffee.com/crowdtypical" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3 font-bold text-xs uppercase tracking-[2px] transition-opacity" style="background: var(--stf-amber); color: var(--stf-bg);">
-				☕ DONATE
-			</a>
-		</div>
-	</section>
+    <!-- Support / Donate -->
+    <section
+      class="py-16 px-6 border-t"
+      style="background: var(--stf-surface-deep); border-color: var(--stf-border);"
+    >
+      <div class="max-w-3xl mx-auto text-center">
+        <p
+          class="text-xs font-bold uppercase tracking-[3px] mb-3"
+          style="color: var(--stf-amber);"
+        >
+          SUPPORT
+        </p>
+        <h2
+          class="text-xl md:text-2xl font-bold uppercase tracking-[4px] mb-4"
+          style="color: var(--stf-text);"
+        >
+          BUY ME A COFFEE
+        </h2>
+        <p
+          class="text-sm leading-relaxed mb-8 max-w-md mx-auto"
+          style="color: var(--stf-text-dim);"
+        >
+          Spread the Funds is free, open source, and ad-free. If you find it
+          useful, consider supporting development.
+        </p>
+        <a
+          href="https://buymeacoffee.com/crowdtypical"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-block px-8 py-3 font-bold text-xs uppercase tracking-[2px] transition-opacity"
+          style="background: var(--stf-amber); color: var(--stf-bg);"
+        >
+          ☕ DONATE
+        </a>
+      </div>
+    </section>
 
-	<!-- Footer -->
-	<footer class="border-t py-8 px-6" style="background: var(--stf-surface-alt); border-color: var(--stf-border);">
-		<div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-			<p class="text-xs" style="color: var(--stf-text-dim);">
-				&copy; {new Date().getFullYear()} JASON GREEN. ALL RIGHTS RESERVED.
-			</p>
-			<div class="flex items-center gap-6 text-xs">
-				<a href="/spread-the-fund/privacy" class="stf-footer-link transition-colors uppercase tracking-[1px]">PRIVACY</a>
-				<a href="/spread-the-fund/terms" class="stf-footer-link transition-colors uppercase tracking-[1px]">TERMS</a>
-				<a href="/spread-the-fund/copyright" class="stf-footer-link transition-colors uppercase tracking-[1px]">COPYRIGHT</a>
-				<a href="mailto:spreadthefund@gmail.com" class="stf-footer-link transition-colors uppercase tracking-[1px]">CONTACT</a>
-				<a href="/preview" class="page-transition-left stf-footer-link transition-colors uppercase tracking-[1px]">PORTFOLIO</a>
-			</div>
-		</div>
-	</footer>
-	</div>
+    <!-- Footer -->
+    <footer
+      class="border-t py-8 px-6"
+      style="background: var(--stf-surface-alt); border-color: var(--stf-border);"
+    >
+      <div
+        class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4"
+      >
+        <p class="text-xs" style="color: var(--stf-text-dim);">
+          &copy; {new Date().getFullYear()} JASON GREEN. ALL RIGHTS RESERVED.
+        </p>
+        <div class="flex items-center gap-6 text-xs">
+          <a
+            href="/spread-the-fund/privacy"
+            class="stf-footer-link transition-colors uppercase tracking-[1px]"
+            >PRIVACY</a
+          >
+          <a
+            href="/spread-the-fund/terms"
+            class="stf-footer-link transition-colors uppercase tracking-[1px]"
+            >TERMS</a
+          >
+          <a
+            href="/spread-the-fund/copyright"
+            class="stf-footer-link transition-colors uppercase tracking-[1px]"
+            >COPYRIGHT</a
+          >
+          <a
+            href="mailto:spreadthefund@gmail.com"
+            class="stf-footer-link transition-colors uppercase tracking-[1px]"
+            >CONTACT</a
+          >
+          <a
+            href="/preview"
+            class="page-transition-left stf-footer-link transition-colors uppercase tracking-[1px]"
+            >PORTFOLIO</a
+          >
+        </div>
+      </div>
+    </footer>
+  </div>
 
-	<script>
-		// Screenshot fan layout with hover/click interactivity
-		(function () {
-			const fan = document.getElementById('screenshot-fan');
-			const cards = document.querySelectorAll<HTMLElement>('.screenshot-fan-card');
-			const total = cards.length;
-			if (!fan || total === 0) return;
+  <script>
+    // Screenshot fan layout with hover/click interactivity
+    (function () {
+      const fan = document.getElementById('screenshot-fan');
+      const cards = document.querySelectorAll<HTMLElement>(
+        '.screenshot-fan-card'
+      );
+      const total = cards.length;
+      if (!fan || total === 0) return;
 
-			const mid = Math.floor(total / 2);
-			const rotations = [-12, -8, -4, 0, 4, 8, 12];
+      const mid = Math.floor(total / 2);
+      const rotations = [-12, -8, -4, 0, 4, 8, 12];
 
-			// Store each card's resting transform
-			type CardState = { tx: number; ty: number; rot: number; z: number };
-			const restStates: CardState[] = [];
+      // Store each card's resting transform
+      type CardState = { tx: number; ty: number; rot: number; z: number };
+      const restStates: CardState[] = [];
 
-			function layoutFan() {
-				const isMobile = window.innerWidth < 768;
-				const spacing = isMobile ? 0.42 : 0.52;
+      function layoutFan() {
+        const isMobile = window.innerWidth < 768;
+        const spacing = isMobile ? 0.42 : 0.52;
 
-				cards.forEach((card, i) => {
-					const pos = i - mid;
-					const rot = rotations[i] ?? pos * 4;
-					const cardW = card.offsetWidth;
-					const tx = pos * cardW * spacing;
-					const ty = Math.abs(pos) * (isMobile ? 8 : 12);
-					const z = total - Math.abs(pos);
+        cards.forEach((card, i) => {
+          const pos = i - mid;
+          const rot = rotations[i] ?? pos * 4;
+          const cardW = card.offsetWidth;
+          const tx = pos * cardW * spacing;
+          const ty = Math.abs(pos) * (isMobile ? 8 : 12);
+          const z = total - Math.abs(pos);
 
-					restStates[i] = { tx, ty, rot, z };
+          restStates[i] = { tx, ty, rot, z };
 
-					// Stagger the float animation so cards bob at different times
-					card.style.animationDelay = `${i * 0.4}s`;
+          // Stagger the float animation so cards bob at different times
+          card.style.animationDelay = `${i * 0.4}s`;
 
-					card.style.transform = `translateX(${tx}px) translateY(${ty}px) rotate(${rot}deg)`;
-					card.style.zIndex = String(z);
-				});
-			}
+          card.style.transform = `translateX(${tx}px) translateY(${ty}px) rotate(${rot}deg)`;
+          card.style.zIndex = String(z);
+        });
+      }
 
-			// Hover: lift card up & remove rotation
-			cards.forEach((card, i) => {
-				card.addEventListener('mouseenter', () => {
-					const s = restStates[i];
-					if (!s) return;
-					card.style.transform = `translateX(${s.tx}px) translateY(${s.ty - 20}px) rotate(${s.rot * 0.3}deg) scale(1.05)`;
-					card.style.zIndex = String(total + 1);
-				});
+      // Hover: lift card up & remove rotation
+      cards.forEach((card, i) => {
+        card.addEventListener('mouseenter', () => {
+          const s = restStates[i];
+          if (!s) return;
+          card.style.transform = `translateX(${s.tx}px) translateY(${s.ty - 20}px) rotate(${s.rot * 0.3}deg) scale(1.05)`;
+          card.style.zIndex = String(total + 1);
+        });
 
-				card.addEventListener('mouseleave', () => {
-					const s = restStates[i];
-					if (!s) return;
-					card.style.transform = `translateX(${s.tx}px) translateY(${s.ty}px) rotate(${s.rot}deg)`;
-					card.style.zIndex = String(s.z);
-				});
+        card.addEventListener('mouseleave', () => {
+          const s = restStates[i];
+          if (!s) return;
+          card.style.transform = `translateX(${s.tx}px) translateY(${s.ty}px) rotate(${s.rot}deg)`;
+          card.style.zIndex = String(s.z);
+        });
 
-				// Click: open lightbox with zoom-from-card effect
-				card.addEventListener('click', (e) => {
-					e.stopPropagation();
-					const img = card.querySelector('img');
-					if (!img) return;
-					const lightbox = document.getElementById('screenshot-lightbox');
-					const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement;
-					if (!lightbox || !lightboxImg) return;
+        // Click: open lightbox with zoom-from-card effect
+        card.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const img = card.querySelector('img');
+          if (!img) return;
+          const lightbox = document.getElementById('screenshot-lightbox');
+          const lightboxImg = document.getElementById(
+            'lightbox-img'
+          ) as HTMLImageElement;
+          if (!lightbox || !lightboxImg) return;
 
-					// Get card's position on screen
-					const rect = card.getBoundingClientRect();
+          // Get card's position on screen
+          const rect = card.getBoundingClientRect();
 
-					// Position image exactly where the card is
-					lightboxImg.src = img.src;
-					lightboxImg.alt = img.alt;
-					lightboxImg.style.transition = 'none';
-					lightboxImg.style.left = rect.left + 'px';
-					lightboxImg.style.top = rect.top + 'px';
-					lightboxImg.style.width = rect.width + 'px';
-					lightboxImg.style.height = rect.height + 'px';
-					lightboxImg.style.maxHeight = 'none';
-					lightboxImg.style.maxWidth = 'none';
-					lightboxImg.style.transform = 'none';
+          // Position image exactly where the card is
+          lightboxImg.src = img.src;
+          lightboxImg.alt = img.alt;
+          lightboxImg.style.transition = 'none';
+          lightboxImg.style.left = rect.left + 'px';
+          lightboxImg.style.top = rect.top + 'px';
+          lightboxImg.style.width = rect.width + 'px';
+          lightboxImg.style.height = rect.height + 'px';
+          lightboxImg.style.maxHeight = 'none';
+          lightboxImg.style.maxWidth = 'none';
+          lightboxImg.style.transform = 'none';
 
-					// Force reflow so browser paints the starting position
-					lightboxImg.offsetHeight;
+          // Force reflow so browser paints the starting position
+          lightboxImg.offsetHeight;
 
-					// Now animate to full size centered
-					const vw = window.innerWidth;
-					const vh = window.innerHeight;
-					const finalH = vh * 0.88;
-					const aspectRatio = rect.width / rect.height;
-					const finalW = finalH * aspectRatio;
-					const finalLeft = (vw - finalW) / 2;
-					const finalTop = (vh - finalH) / 2;
+          // Now animate to full size centered
+          const vw = window.innerWidth;
+          const vh = window.innerHeight;
+          const finalH = vh * 0.88;
+          const aspectRatio = rect.width / rect.height;
+          const finalW = finalH * aspectRatio;
+          const finalLeft = (vw - finalW) / 2;
+          const finalTop = (vh - finalH) / 2;
 
-					lightboxImg.style.transition = 'left 0.45s cubic-bezier(0.22, 0.61, 0.36, 1), top 0.45s cubic-bezier(0.22, 0.61, 0.36, 1), width 0.45s cubic-bezier(0.22, 0.61, 0.36, 1), height 0.45s cubic-bezier(0.22, 0.61, 0.36, 1)';
-					lightboxImg.style.left = finalLeft + 'px';
-					lightboxImg.style.top = finalTop + 'px';
-					lightboxImg.style.width = finalW + 'px';
-					lightboxImg.style.height = finalH + 'px';
-					lightbox.classList.add('open');
-				});
-			});
+          lightboxImg.style.transition =
+            'left 0.45s cubic-bezier(0.22, 0.61, 0.36, 1), top 0.45s cubic-bezier(0.22, 0.61, 0.36, 1), width 0.45s cubic-bezier(0.22, 0.61, 0.36, 1), height 0.45s cubic-bezier(0.22, 0.61, 0.36, 1)';
+          lightboxImg.style.left = finalLeft + 'px';
+          lightboxImg.style.top = finalTop + 'px';
+          lightboxImg.style.width = finalW + 'px';
+          lightboxImg.style.height = finalH + 'px';
+          lightbox.classList.add('open');
+        });
+      });
 
-			// Close lightbox — zoom back to nothing
-			const lightbox = document.getElementById('screenshot-lightbox');
-			if (lightbox) {
-				lightbox.addEventListener('click', () => {
-					const lbImg = document.getElementById('lightbox-img') as HTMLImageElement;
-					if (lbImg) {
-						lbImg.style.transition = 'left 0.35s ease-in, top 0.35s ease-in, width 0.35s ease-in, height 0.35s ease-in, opacity 0.3s ease';
-						lbImg.style.opacity = '0';
-						lbImg.style.width = '0';
-						lbImg.style.height = '0';
-						lbImg.style.left = window.innerWidth / 2 + 'px';
-						lbImg.style.top = window.innerHeight / 2 + 'px';
-					}
-					lightbox.classList.remove('open');
-					setTimeout(() => {
-						if (lbImg) lbImg.style.opacity = '1';
-					}, 400);
-				});
-			}
+      // Close lightbox — zoom back to nothing
+      const lightbox = document.getElementById('screenshot-lightbox');
+      if (lightbox) {
+        lightbox.addEventListener('click', () => {
+          const lbImg = document.getElementById(
+            'lightbox-img'
+          ) as HTMLImageElement;
+          if (lbImg) {
+            lbImg.style.transition =
+              'left 0.35s ease-in, top 0.35s ease-in, width 0.35s ease-in, height 0.35s ease-in, opacity 0.3s ease';
+            lbImg.style.opacity = '0';
+            lbImg.style.width = '0';
+            lbImg.style.height = '0';
+            lbImg.style.left = window.innerWidth / 2 + 'px';
+            lbImg.style.top = window.innerHeight / 2 + 'px';
+          }
+          lightbox.classList.remove('open');
+          setTimeout(() => {
+            if (lbImg) lbImg.style.opacity = '1';
+          }, 400);
+        });
+      }
 
-			layoutFan();
-			window.addEventListener('resize', () => {
-				layoutFan();
-			});
-		})();
+      layoutFan();
+      window.addEventListener('resize', () => {
+        layoutFan();
+      });
+    })();
 
-		// Page transition handling for STF page
-		document.querySelectorAll('.page-transition-left').forEach(link => {
-			link.addEventListener('click', (e) => {
-				e.preventDefault();
-				const href = (link as HTMLAnchorElement).href;
-				sessionStorage.setItem('page-transition-dir', 'left');
-				document.body.classList.add('page-exit-right');
-				setTimeout(() => { window.location.href = href; }, 200);
-			});
-		});
+    // Page transition handling for STF page
+    document.querySelectorAll('.page-transition-left').forEach((link) => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const href = (link as HTMLAnchorElement).href;
+        sessionStorage.setItem('page-transition-dir', 'left');
+        document.body.classList.add('page-exit-right');
+        setTimeout(() => {
+          window.location.href = href;
+        }, 200);
+      });
+    });
 
-		document.querySelectorAll('.page-transition-right').forEach(link => {
-			link.addEventListener('click', (e) => {
-				e.preventDefault();
-				const href = (link as HTMLAnchorElement).href;
-				sessionStorage.setItem('page-transition-dir', 'right');
-				document.body.classList.add('page-exit-left');
-				setTimeout(() => { window.location.href = href; }, 200);
-			});
-		});
-	</script>
-</Layout>
+    document.querySelectorAll('.page-transition-right').forEach((link) => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const href = (link as HTMLAnchorElement).href;
+        sessionStorage.setItem('page-transition-dir', 'right');
+        document.body.classList.add('page-exit-left');
+        setTimeout(() => {
+          window.location.href = href;
+        }, 200);
+      });
+    });
+  </script>
+</StfLayout>

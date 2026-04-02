@@ -1,4 +1,5 @@
 ---
+import WorkPanel from './WorkPanel.astro';
 ---
 
 <!--
@@ -7,483 +8,424 @@
   horizontally based on the user's vertical scroll progress through the outer container.
 -->
 <section id="work" class="relative z-10 bg-slate-900">
-	<!-- Scroll runway — height = (number of panels) * 100vh -->
-	<div id="horizontal-scroll-outer" class="relative" style="height: 500vh;">
-		<!-- Sticky viewport -->
-		<div class="sticky top-[60px] h-[calc(100vh-60px)] overflow-hidden flex flex-col">
-			<!-- Section header (inside sticky frame, clears nav) -->
-			<div class="sticky-header flex-shrink-0 z-20 pt-8 pb-4 px-8 md:px-16 pointer-events-none">
-				<p class="font-script text-sm md:text-base text-slate-400 mb-1">What I've been working on</p>
-				<h2 class="font-serif text-3xl md:text-4xl font-bold text-white">My Work</h2>
-			</div>
-			<!-- Horizontal track -->
-			<div id="horizontal-track" class="flex items-stretch flex-1 will-change-transform transition-none">
+  <!-- Scroll runway — height = (number of panels) * 100vh -->
+  <div id="horizontal-scroll-outer" class="relative" style="height: 500vh;">
+    <!-- Sticky viewport -->
+    <div
+      class="sticky top-15 h-[calc(100vh-60px)] overflow-hidden flex flex-col"
+    >
+      <!-- Section header (inside sticky frame, clears nav) -->
+      <div
+        class="sticky-header shrink-0 z-20 pt-8 pb-4 px-8 md:px-16 pointer-events-none"
+      >
+        <p class="font-script text-sm md:text-base text-slate-400 mb-1">
+          What I've been working on
+        </p>
+        <h2 class="font-serif text-3xl md:text-4xl font-bold text-white">
+          My Work
+        </h2>
+      </div>
+      <!-- Horizontal track -->
+      <div
+        id="horizontal-track"
+        class="flex items-stretch flex-1 will-change-transform transition-none"
+      >
+        <!-- Panel 1: App — Project Under Development -->
+        <WorkPanel
+          category="In Development"
+          categoryColor="emerald"
+          title="Building an App"
+          tags={['Full-Stack', 'In Progress', 'Product Design']}
+        >
+          <p
+            slot="description"
+            class="text-slate-300 text-base md:text-lg leading-relaxed mb-6"
+          >
+            Currently developing a full-stack application that solves a real
+            operational problem. More details coming soon as the project
+            takes shape.
+          </p>
+          <div
+            class="w-full aspect-4/3 rounded-2xl bg-slate-800 border border-slate-700 flex items-center justify-center"
+          >
+            <div class="text-center">
+              <svg
+                class="w-16 h-16 text-slate-600 mx-auto mb-3"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1"
+                viewBox="0 0 24 24"
+                ><path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5"
+                ></path></svg
+              >
+              <p class="text-slate-500 text-sm">Preview coming soon</p>
+            </div>
+          </div>
+        </WorkPanel>
 
-				<!-- Panel 1: App — Project Under Development -->
-				<div class="work-panel flex-shrink-0 w-screen h-full flex items-center justify-center px-8 md:px-20">
-					<div class="max-w-5xl w-full grid md:grid-cols-2 gap-8 items-center">
-						<div>
-							<span class="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wider text-emerald-400 bg-emerald-400/10 rounded-full mb-4">
-								In Development
-							</span>
-							<h3 class="font-serif text-3xl md:text-4xl font-bold text-white mb-4">
-								Building an App
-							</h3>
-							<p class="text-slate-300 text-base md:text-lg leading-relaxed mb-6">
-								Currently developing a full-stack application that solves a real operational
-								problem. More details coming soon as the project takes shape.
-							</p>
-							<div class="flex flex-wrap gap-2">
-								<span class="tag">Full-Stack</span>
-								<span class="tag">In Progress</span>
-								<span class="tag">Product Design</span>
-							</div>
-						</div>
-						<div class="hidden md:flex items-center justify-center">
-							<div class="w-full aspect-[4/3] rounded-2xl bg-slate-800 border border-slate-700 flex items-center justify-center">
-								<div class="text-center">
-									<svg class="w-16 h-16 text-slate-600 mx-auto mb-3" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" /></svg>
-									<p class="text-slate-500 text-sm">Preview coming soon</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+        <!-- Panel 2: Latest Role — Shopify Experimentation -->
+        <WorkPanel
+          category="Shopify · 2020–2025"
+          categoryColor="blue"
+          title="Experimentation & Product Operations"
+          tags={['SQL & BigQuery', 'Looker Studio', 'Experimentation', 'Cross-Functional Leadership']}
+        >
+          <Fragment slot="description">
+            <p
+              class="text-slate-300 text-base md:text-lg leading-relaxed mb-4"
+            >
+              Led end-to-end experimentation operations — from ideation and
+              design to data analysis and stakeholder enablement. Built
+              analytics dashboards, automated workflows, and established
+              data-driven processes across teams.
+            </p>
+            <p class="text-slate-400 text-sm leading-relaxed mb-6">
+              Progressed from Support Advisor to Sr. Experimentation Solutions
+              Manager, consistently moving from execution to strategy while
+              building systems that scaled.
+            </p>
+          </Fragment>
+          <div
+            class="w-full aspect-4/3 rounded-2xl bg-linear-to-br from-blue-900/50 to-slate-800 border border-slate-700 p-8 flex flex-col justify-center"
+          >
+            <div class="space-y-4">
+              <div class="flex items-center gap-3">
+                <div class="w-2 h-2 rounded-full bg-blue-400"></div>
+                <span class="text-slate-300 text-sm"
+                  >Managed experimentation pipelines</span
+                >
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-2 h-2 rounded-full bg-blue-400"></div>
+                <span class="text-slate-300 text-sm"
+                  >Built real-time analytics dashboards</span
+                >
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-2 h-2 rounded-full bg-blue-400"></div>
+                <span class="text-slate-300 text-sm"
+                  >Cross-team enablement & process design</span
+                >
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-2 h-2 rounded-full bg-blue-400"></div>
+                <span class="text-slate-300 text-sm"
+                  >Qualitative & quantitative data integration</span
+                >
+              </div>
+            </div>
+          </div>
+        </WorkPanel>
 
-				<!-- Panel 2: Latest Role — Shopify Experimentation -->
-				<div class="work-panel flex-shrink-0 w-screen h-full flex items-center justify-center px-8 md:px-20">
-					<div class="max-w-5xl w-full grid md:grid-cols-2 gap-8 items-center">
-						<div>
-							<span class="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-400 bg-blue-400/10 rounded-full mb-4">
-								Shopify · 2020–2025
-							</span>
-							<h3 class="font-serif text-3xl md:text-4xl font-bold text-white mb-4">
-								Experimentation & Product Operations
-							</h3>
-							<p class="text-slate-300 text-base md:text-lg leading-relaxed mb-4">
-								Led end-to-end experimentation operations — from ideation and design to
-								data analysis and stakeholder enablement. Built analytics dashboards,
-								automated workflows, and established data-driven processes across teams.
-							</p>
-							<p class="text-slate-400 text-sm leading-relaxed mb-6">
-								Progressed from Support Advisor to Sr. Experimentation Solutions Manager,
-								consistently moving from execution to strategy while building systems that
-								scaled.
-							</p>
-							<div class="flex flex-wrap gap-2">
-								<span class="tag">SQL & BigQuery</span>
-								<span class="tag">Looker Studio</span>
-								<span class="tag">Experimentation</span>
-								<span class="tag">Cross-Functional Leadership</span>
-							</div>
-						</div>
-						<div class="hidden md:flex items-center justify-center">
-							<div class="w-full aspect-[4/3] rounded-2xl bg-gradient-to-br from-blue-900/50 to-slate-800 border border-slate-700 p-8 flex flex-col justify-center">
-								<div class="space-y-4">
-									<div class="flex items-center gap-3">
-										<div class="w-2 h-2 rounded-full bg-blue-400"></div>
-										<span class="text-slate-300 text-sm">Managed experimentation pipelines</span>
-									</div>
-									<div class="flex items-center gap-3">
-										<div class="w-2 h-2 rounded-full bg-blue-400"></div>
-										<span class="text-slate-300 text-sm">Built real-time analytics dashboards</span>
-									</div>
-									<div class="flex items-center gap-3">
-										<div class="w-2 h-2 rounded-full bg-blue-400"></div>
-										<span class="text-slate-300 text-sm">Cross-team enablement & process design</span>
-									</div>
-									<div class="flex items-center gap-3">
-										<div class="w-2 h-2 rounded-full bg-blue-400"></div>
-										<span class="text-slate-300 text-sm">Qualitative & quantitative data integration</span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+        <!-- Panel 3: Second App -->
+        <WorkPanel
+          category="In Development"
+          categoryColor="purple"
+          title="Another App in the Works"
+          tags={['App Development', 'In Progress', 'Problem Solving']}
+        >
+          <p
+            slot="description"
+            class="text-slate-300 text-base md:text-lg leading-relaxed mb-6"
+          >
+            A second project currently under development — focused on
+            solving a different problem space. Details will be shared as the
+            project matures.
+          </p>
+          <div
+            class="w-full aspect-4/3 rounded-2xl bg-slate-800 border border-slate-700 flex items-center justify-center"
+          >
+            <div class="text-center">
+              <svg
+                class="w-16 h-16 text-slate-600 mx-auto mb-3"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1"
+                viewBox="0 0 24 24"
+                ><path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v16.5a2.25 2.25 0 0 0 2.25 2.25h7.5A2.25 2.25 0 0 0 18 20.25V3.75a2.25 2.25 0 0 0-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3"
+                ></path></svg
+              >
+              <p class="text-slate-500 text-sm">Preview coming soon</p>
+            </div>
+          </div>
+        </WorkPanel>
 
-				<!-- Panel 3: Second App -->
-				<div class="work-panel flex-shrink-0 w-screen h-full flex items-center justify-center px-8 md:px-20">
-					<div class="max-w-5xl w-full grid md:grid-cols-2 gap-8 items-center">
-						<div>
-							<span class="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wider text-purple-400 bg-purple-400/10 rounded-full mb-4">
-								In Development
-							</span>
-							<h3 class="font-serif text-3xl md:text-4xl font-bold text-white mb-4">
-								Another App in the Works
-							</h3>
-							<p class="text-slate-300 text-base md:text-lg leading-relaxed mb-6">
-								A second project currently under development — focused on solving
-								a different problem space. Details will be shared as the project matures.
-							</p>
-							<div class="flex flex-wrap gap-2">
-								<span class="tag">App Development</span>
-								<span class="tag">In Progress</span>
-								<span class="tag">Problem Solving</span>
-							</div>
-						</div>
-						<div class="hidden md:flex items-center justify-center">
-							<div class="w-full aspect-[4/3] rounded-2xl bg-slate-800 border border-slate-700 flex items-center justify-center">
-								<div class="text-center">
-									<svg class="w-16 h-16 text-slate-600 mx-auto mb-3" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v16.5a2.25 2.25 0 0 0 2.25 2.25h7.5A2.25 2.25 0 0 0 18 20.25V3.75a2.25 2.25 0 0 0-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" /></svg>
-									<p class="text-slate-500 text-sm">Preview coming soon</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+        <!-- Panel 4: Community & Digital Work -->
+        <WorkPanel
+          category="Community"
+          categoryColor="amber"
+          title="Digital Community Work"
+          tags={['GitHub Pages', 'Community Building', 'Web Development']}
+        >
+          <p
+            slot="description"
+            class="text-slate-300 text-base md:text-lg leading-relaxed mb-6"
+          >
+            Building and contributing to digital communities — including a
+            website hosted on GitHub Pages. Bringing together people around
+            shared interests through web technology and community
+            engagement.
+          </p>
+          <div
+            class="w-full aspect-4/3 rounded-2xl bg-linear-to-br from-amber-900/30 to-slate-800 border border-slate-700 flex items-center justify-center"
+          >
+            <div class="text-center">
+              <svg
+                class="w-16 h-16 text-amber-500/50 mx-auto mb-3"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1"
+                viewBox="0 0 24 24"
+                ><path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z"
+                ></path></svg
+              >
+              <p class="text-slate-500 text-sm">Community project</p>
+            </div>
+          </div>
+        </WorkPanel>
+      </div>
+    </div>
+  </div>
 
-				<!-- Panel 4: Community & Digital Work -->
-				<div class="work-panel flex-shrink-0 w-screen h-full flex items-center justify-center px-8 md:px-20">
-					<div class="max-w-5xl w-full grid md:grid-cols-2 gap-8 items-center">
-						<div>
-							<span class="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-wider text-amber-400 bg-amber-400/10 rounded-full mb-4">
-								Community
-							</span>
-							<h3 class="font-serif text-3xl md:text-4xl font-bold text-white mb-4">
-								Digital Community Work
-							</h3>
-							<p class="text-slate-300 text-base md:text-lg leading-relaxed mb-6">
-								Building and contributing to digital communities — including a website
-								hosted on GitHub Pages. Bringing together people around shared interests
-								through web technology and community engagement.
-							</p>
-							<div class="flex flex-wrap gap-2">
-								<span class="tag">GitHub Pages</span>
-								<span class="tag">Community Building</span>
-								<span class="tag">Web Development</span>
-							</div>
-						</div>
-						<div class="hidden md:flex items-center justify-center">
-							<div class="w-full aspect-[4/3] rounded-2xl bg-gradient-to-br from-amber-900/30 to-slate-800 border border-slate-700 flex items-center justify-center">
-								<div class="text-center">
-									<svg class="w-16 h-16 text-amber-500/50 mx-auto mb-3" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" /></svg>
-									<p class="text-slate-500 text-sm">Community project</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-			</div>
-		</div>
-	</div>
-
-	<!-- Horizontal scroll progress indicator (draggable) -->
-	<div class="sticky bottom-0 left-0 right-0 z-20 pb-6 px-4 select-none" style="position: sticky;">
-		<div id="scroll-progress-bar" class="relative cursor-pointer py-3" style="touch-action: none;">
-			<div class="flex gap-1.5 h-3">
-				<!-- Segment tracks -->
-				<div class="segment-track flex-1 bg-slate-800 rounded-full relative">
-					<div class="segment-fill relative h-full bg-gradient-to-r from-blue-500 to-blue-400 rounded-full overflow-hidden" data-segment="0"></div>
-				</div>
-				<div class="segment-track flex-1 bg-slate-800 rounded-full relative">
-					<div class="segment-fill relative h-full bg-gradient-to-r from-blue-400 to-purple-400 rounded-full overflow-hidden" data-segment="1"></div>
-				</div>
-				<div class="segment-track flex-1 bg-slate-800 rounded-full relative">
-					<div class="segment-fill relative h-full bg-gradient-to-r from-purple-400 to-purple-500 rounded-full overflow-hidden" data-segment="2"></div>
-				</div>
-				<div class="segment-track flex-1 bg-slate-800 rounded-full relative">
-					<div class="segment-fill relative h-full bg-gradient-to-r from-purple-500 to-fuchsia-500 rounded-full overflow-hidden" data-segment="3"></div>
-				</div>
-			</div>
-			<!-- Drag handle -->
-			<div id="scroll-handle" class="absolute top-1/2 -translate-y-1/2 w-5 h-5 rounded-full shadow-lg pointer-events-none transition-none scroll-handle" style="left: 0%;"></div>
-		</div>
-	</div>
+  <!-- Horizontal scroll progress indicator (draggable) -->
+  <div
+    id="scroll-progress-wrapper"
+    class="sticky bottom-0 left-0 right-0 z-20 pb-6 px-4 select-none opacity-0 translate-y-full transition-all duration-500 ease-out pointer-events-none"
+    style="position: sticky;"
+  >
+    <div
+      id="scroll-progress-bar"
+      class="relative cursor-pointer py-3"
+      style="touch-action: none;"
+    >
+      <div class="flex gap-1.5 h-3">
+        <!-- Segment tracks -->
+        <div class="segment-track flex-1 bg-slate-800 rounded-full relative">
+          <div
+            class="segment-fill relative h-full bg-linear-to-r from-blue-500 to-blue-400 rounded-full overflow-hidden"
+            data-segment="0"
+          >
+          </div>
+        </div>
+        <div class="segment-track flex-1 bg-slate-800 rounded-full relative">
+          <div
+            class="segment-fill relative h-full bg-linear-to-r from-blue-400 to-purple-400 rounded-full overflow-hidden"
+            data-segment="1"
+          >
+          </div>
+        </div>
+        <div class="segment-track flex-1 bg-slate-800 rounded-full relative">
+          <div
+            class="segment-fill relative h-full bg-linear-to-r from-purple-400 to-purple-500 rounded-full overflow-hidden"
+            data-segment="2"
+          >
+          </div>
+        </div>
+        <div class="segment-track flex-1 bg-slate-800 rounded-full relative">
+          <div
+            class="segment-fill relative h-full bg-linear-to-r from-purple-500 to-fuchsia-500 rounded-full overflow-hidden"
+            data-segment="3"
+          >
+          </div>
+        </div>
+      </div>
+      <!-- Drag handle -->
+      <div
+        id="scroll-handle"
+        class="absolute top-1/2 -translate-y-1/2 w-5 h-5 rounded-full shadow-lg pointer-events-none transition-none scroll-handle"
+        style="left: 0%;"
+      >
+      </div>
+    </div>
+  </div>
 </section>
 
 <style>
-	.segment-fill {
-		transition: background-image 400ms ease;
-	}
+  .segment-fill {
+    transition: background-image 400ms ease;
+  }
 
-	.segment-complete {
-		background-image: linear-gradient(to right, #065f46, #10b981, #6ee7b7) !important;
-	}
+  .segment-complete {
+    background-image: linear-gradient(
+      to right,
+      #065f46,
+      #10b981,
+      #6ee7b7
+    ) !important;
+  }
 
-	.segment-track-complete::after {
-		content: '✓';
-		position: absolute;
-		left: 50%;
-		top: 50%;
-		transform: translate(-50%, -50%) scale(0);
-		font-size: 32px;
-		font-weight: 300;
-		line-height: 1;
-		color: rgba(255, 255, 255, 0.9);
-		font-family: system-ui, sans-serif;
-		-webkit-text-stroke: 2px rgba(255, 255, 255, 0.9);
-		text-shadow: 0 0 6px rgba(52, 211, 153, 0.6);
-		z-index: 10;
-		pointer-events: none;
-		animation: check-drop 500ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
-	}
+  .segment-track-complete::after {
+    content: '✓';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    font-size: 32px;
+    font-weight: 300;
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.9);
+    font-family: system-ui, sans-serif;
+    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.9);
+    text-shadow: 0 0 6px rgba(52, 211, 153, 0.6);
+    z-index: 10;
+    pointer-events: none;
+    animation: check-drop 500ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
 
-	@keyframes check-drop {
-		0% { transform: translate(-50%, -50%) scale(3); opacity: 0; }
-		50% { opacity: 0.6; }
-		85% { transform: translate(-50%, -50%) scale(0.95); }
-		100% { transform: translate(-50%, -50%) scale(1); opacity: 0.9; }
-	}
+  @keyframes check-drop {
+    0% {
+      transform: translate(-50%, -50%) scale(3);
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.6;
+    }
+    85% {
+      transform: translate(-50%, -50%) scale(0.95);
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 0.9;
+    }
+  }
 
-	.segment-track-leaving::after {
-		content: '\2713';
-		position: absolute;
-		left: 50%;
-		top: 50%;
-		font-size: 32px;
-		font-weight: 300;
-		line-height: 1;
-		color: rgba(255, 255, 255, 0.9);
-		font-family: system-ui, sans-serif;
-		-webkit-text-stroke: 2px rgba(255, 255, 255, 0.9);
-		text-shadow: 0 0 6px rgba(52, 211, 153, 0.6);
-		z-index: 10;
-		pointer-events: none;
-		animation: check-shrink 300ms ease forwards;
-	}
+  .segment-track-leaving::after {
+    content: '\2713';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    font-size: 32px;
+    font-weight: 300;
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.9);
+    font-family: system-ui, sans-serif;
+    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.9);
+    text-shadow: 0 0 6px rgba(52, 211, 153, 0.6);
+    z-index: 10;
+    pointer-events: none;
+    animation: check-shrink 300ms ease forwards;
+  }
 
-	@keyframes check-shrink {
-		0% { transform: translate(-50%, -50%) scale(1); opacity: 0.9; }
-		100% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
-	}
+  @keyframes check-shrink {
+    0% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 0.9;
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 0;
+    }
+  }
 
-	@keyframes confetti-0 {
-		0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-		100% { transform: translate(-40px, -36px) scale(0); opacity: 0; }
-	}
-	@keyframes confetti-1 {
-		0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-		100% { transform: translate(35px, -32px) scale(0); opacity: 0; }
-	}
-	@keyframes confetti-2 {
-		0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-		100% { transform: translate(8px, 34px) scale(0); opacity: 0; }
-	}
-	@keyframes confetti-3 {
-		0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-		100% { transform: translate(-32px, 28px) scale(0); opacity: 0; }
-	}
-	@keyframes confetti-4 {
-		0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-		100% { transform: translate(42px, 8px) scale(0); opacity: 0; }
-	}
-	@keyframes confetti-5 {
-		0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-		100% { transform: translate(-18px, -40px) scale(0); opacity: 0; }
-	}
+  @keyframes confetti-0 {
+    0% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(-40px, -36px) scale(0);
+      opacity: 0;
+    }
+  }
+  @keyframes confetti-1 {
+    0% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(35px, -32px) scale(0);
+      opacity: 0;
+    }
+  }
+  @keyframes confetti-2 {
+    0% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(8px, 34px) scale(0);
+      opacity: 0;
+    }
+  }
+  @keyframes confetti-3 {
+    0% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(-32px, 28px) scale(0);
+      opacity: 0;
+    }
+  }
+  @keyframes confetti-4 {
+    0% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(42px, 8px) scale(0);
+      opacity: 0;
+    }
+  }
+  @keyframes confetti-5 {
+    0% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translate(-18px, -40px) scale(0);
+      opacity: 0;
+    }
+  }
 
-	.tag {
-		display: inline-block;
-		padding: 0.25rem 0.75rem;
-		border-radius: 9999px;
-		font-size: 0.75rem;
-		font-weight: 500;
-		color: #94a3b8;
-		background: rgba(148, 163, 184, 0.1);
-		border: 1px solid rgba(148, 163, 184, 0.2);
-		font-family: 'Inter', system-ui, sans-serif;
-	}
+  .sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+  }
 
-	.sticky-header {
-		position: sticky;
-		top: 0;
-		z-index: 20;
-	}
+  .scroll-handle {
+    background: conic-gradient(
+      from var(--handle-angle, 0deg),
+      #3b82f6,
+      #8b5cf6,
+      #a855f7,
+      #3b82f6
+    );
+    animation: handle-glow 2s ease-in-out infinite;
+  }
 
-	.scroll-handle {
-		background: conic-gradient(from var(--handle-angle, 0deg), #3b82f6, #8b5cf6, #a855f7, #3b82f6);
-		animation: handle-glow 2s ease-in-out infinite;
-	}
+  @keyframes handle-glow {
+    0%,
+    100% {
+      box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.4),
+        0 0 8px rgba(139, 92, 246, 0.5);
+    }
+    50% {
+      box-shadow:
+        0 3px 12px rgba(0, 0, 0, 0.5),
+        0 0 16px rgba(139, 92, 246, 0.8),
+        0 0 6px rgba(59, 130, 246, 0.4);
+    }
+  }
 
-	@keyframes handle-glow {
-		0%, 100% { box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4), 0 0 8px rgba(139, 92, 246, 0.5); }
-		50% { box-shadow: 0 3px 12px rgba(0, 0, 0, 0.5), 0 0 16px rgba(139, 92, 246, 0.8), 0 0 6px rgba(59, 130, 246, 0.4); }
-	}
-
-	@property --handle-angle {
-		syntax: '<angle>';
-		initial-value: 0deg;
-		inherits: false;
-	}
+  @property --handle-angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+  }
 </style>
 
 <script>
-	function initHorizontalScroll() {
-		const outer = document.getElementById('horizontal-scroll-outer');
-		const track = document.getElementById('horizontal-track');
-		const handle = document.getElementById('scroll-handle');
-		const progressBar = document.getElementById('scroll-progress-bar');
-		const segmentFills = Array.from(document.querySelectorAll<HTMLElement>('.segment-fill'));
-
-		if (!outer || !track || !progressBar) return;
-
-		const panels = track.querySelectorAll('.work-panel');
-		const panelCount = panels.length;
-
-		// Compute actual page-top offset (offsetTop only gives offset
-		// relative to the nearest positioned ancestor, not the document).
-		let outerPageTop = 0;
-		function computeLayout() {
-			outerPageTop = outer.getBoundingClientRect().top + window.scrollY;
-		}
-
-		function spawnConfetti(trackEl: HTMLElement) {
-			const colors = ['#10b981', '#6ee7b7', '#34d399', '#fbbf24', '#a78bfa', '#f472b6'];
-			for (let c = 0; c < 6; c++) {
-				const dot = document.createElement('div');
-				dot.style.cssText = `
-					position: absolute;
-					left: 50%;
-					top: 50%;
-					width: 8px;
-					height: 8px;
-					border-radius: 50%;
-					background: ${colors[c]};
-					z-index: 11;
-					pointer-events: none;
-					box-shadow: 0 0 6px ${colors[c]};
-					animation: confetti-${c} 800ms ease-out forwards;
-				`;
-				trackEl.appendChild(dot);
-				setTimeout(() => dot.remove(), 850);
-			}
-		}
-
-		function onScroll() {
-			// How far we've scrolled into the outer container
-			const scrolled = window.scrollY - outerPageTop;
-			// Total scrollable distance (outer height minus one viewport)
-			const maxScroll = outer.offsetHeight - window.innerHeight;
-
-			if (maxScroll <= 0) return;
-
-			// Progress from 0 to 1
-			const rawProgress = Math.max(0, Math.min(1, scrolled / maxScroll));
-
-			// Translate the track: move from 0 to -(panelCount - 1) * 100vw
-			const maxTranslate = (panelCount - 1) * window.innerWidth;
-			const translateX = rawProgress * maxTranslate;
-
-			track.style.transform = `translateX(-${translateX}px)`;
-
-			// Fill individual segments: each segment represents 1/segmentCount of progress
-			const segmentCount = segmentFills.length;
-			let latestComplete = -1;
-
-			// First pass: determine fill widths and which segments are complete
-			segmentFills.forEach((fill, i) => {
-				const segStart = i / segmentCount;
-				const segEnd = (i + 1) / segmentCount;
-				const isFull = rawProgress >= segEnd;
-
-				if (isFull) {
-					fill.style.width = '100%';
-					fill.classList.add('segment-complete');
-					latestComplete = i;
-				} else if (rawProgress <= segStart) {
-					fill.style.width = '0%';
-					if (fill.classList.contains('segment-complete')) {
-						fill.classList.remove('segment-complete');
-					}
-				} else {
-					fill.style.width = `${((rawProgress - segStart) / (segEnd - segStart)) * 100}%`;
-					if (fill.classList.contains('segment-complete')) {
-						fill.classList.remove('segment-complete');
-					}
-				}
-			});
-
-			// Second pass: only the latest completed segment gets the checkmark
-			segmentFills.forEach((fill, i) => {
-				const segTrack = fill.parentElement;
-				if (!segTrack) return;
-				const isLatest = i === latestComplete;
-				const hadCheck = segTrack.classList.contains('segment-track-complete');
-
-				if (isLatest && !hadCheck) {
-					// Newly earned checkmark — show it + confetti
-					segTrack.classList.remove('segment-track-leaving');
-					segTrack.classList.add('segment-track-complete');
-					spawnConfetti(segTrack);
-				} else if (isLatest && hadCheck) {
-					// Already showing, keep it
-				} else if (!isLatest && hadCheck) {
-					// No longer the latest — fade out
-					segTrack.classList.remove('segment-track-complete');
-					segTrack.classList.add('segment-track-leaving');
-					setTimeout(() => segTrack.classList.remove('segment-track-leaving'), 300);
-				}
-			});
-
-			if (handle) {
-				handle.style.left = `calc(${rawProgress * 100}% - 10px)`;
-				handle.style.setProperty('--handle-angle', `${rawProgress * 720}deg`);
-			}
-		}
-
-		// --- Drag-to-scrub on the progress bar ---
-		let isDragging = false;
-
-		function scrubToX(clientX, smooth = false) {
-			if (!progressBar) return;
-			const rect = progressBar.getBoundingClientRect();
-			const ratio = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
-			const maxScroll = outer.offsetHeight - window.innerHeight;
-			window.scrollTo({ top: outerPageTop + ratio * maxScroll, behavior: smooth ? 'smooth' : 'instant' });
-		}
-
-		if (progressBar) {
-			// Segment click — snap to that panel
-			segmentFills.forEach((fill) => {
-				const segmentTrack = fill.parentElement;
-				if (!segmentTrack) return;
-				segmentTrack.addEventListener('click', (e) => {
-					e.stopPropagation();
-					const panelIndex = Number(fill.dataset.segment);
-					const maxScroll = outer.offsetHeight - window.innerHeight;
-					const targetProgress = panelCount <= 1 ? 0 : panelIndex / (panelCount - 1);
-					window.scrollTo({ top: outerPageTop + targetProgress * maxScroll, behavior: 'smooth' });
-				});
-			});
-
-			progressBar.addEventListener('pointerdown', (e) => {
-				e.preventDefault();
-				isDragging = true;
-				progressBar.setPointerCapture(e.pointerId);
-				document.body.style.userSelect = 'none';
-				scrubToX(e.clientX, true);
-			});
-			progressBar.addEventListener('pointermove', (e) => {
-				if (!isDragging) return;
-				e.preventDefault();
-				// Only respond to horizontal movement — clamp to bar bounds
-				const barRect = progressBar.getBoundingClientRect();
-				const clampedX = Math.max(barRect.left, Math.min(barRect.right, e.clientX));
-				scrubToX(clampedX);
-			});
-			function stopDrag() {
-				if (isDragging) {
-					isDragging = false;
-					document.body.style.userSelect = '';
-				}
-			}
-			progressBar.addEventListener('pointerup', stopDrag);
-			progressBar.addEventListener('pointercancel', stopDrag);
-			document.addEventListener('pointerup', stopDrag);
-		}
-
-		computeLayout();
-		window.addEventListener('scroll', onScroll, { passive: true });
-		window.addEventListener('resize', () => { computeLayout(); onScroll(); }, { passive: true });
-		onScroll();
-	}
-
-	// Run on load
-	document.addEventListener('DOMContentLoaded', initHorizontalScroll);
-	// Also run immediately in case DOMContentLoaded already fired (Astro client nav)
-	if (document.readyState !== 'loading') {
-		initHorizontalScroll();
-	}
+  import '../scripts/horizontal-scroll';
 </script>

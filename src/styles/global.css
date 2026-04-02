@@ -1,1 +1,84 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+/* Font utility classes */
+.font-serif {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+.font-sans {
+  font-family: 'Inter', system-ui, sans-serif;
+}
+.font-script {
+  font-family: 'Dancing Script', cursive;
+}
+
+html {
+  font-family: 'Inter', system-ui, sans-serif;
+  scroll-behavior: auto;
+}
+
+/* Hide scrollbar for cleaner look but keep functionality */
+body {
+  scrollbar-width: thin;
+  scrollbar-color: #94a3b8 transparent;
+}
+
+/* Page transitions — entry direction set by inline script on <html> */
+html.enter-from-right body {
+  animation: page-enter-from-right 0.25s ease-out;
+}
+
+html.enter-from-left body {
+  animation: page-enter-from-left 0.25s ease-out;
+}
+
+body.page-exit-left {
+  animation: page-exit-left 0.2s ease-in forwards;
+}
+
+body.page-exit-right {
+  animation: page-exit-right 0.2s ease-in forwards;
+}
+
+@keyframes page-enter-from-right {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes page-enter-from-left {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes page-exit-left {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+}
+
+@keyframes page-exit-right {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+}

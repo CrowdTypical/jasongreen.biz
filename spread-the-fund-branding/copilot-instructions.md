@@ -2,20 +2,20 @@
 
 ## App Identity
 
-| Property | Value |
-|---|---|
-| **App Name** | Spread the Funds |
-| **Display Name (stylised)** | `SPREAD THE FUNDS` (uppercase, wide letter-spacing) |
-| **Tagline** | SPLIT BILLS IN REAL-TIME |
-| **One-liner** | A bill-splitting app with real-time updates between users. |
-| **Version** | v1.0.3 |
-| **Platform** | Android (Google Play Store) |
-| **Developer** | Jason Green / CrowdTypical |
-| **Contact Email** | spreadthefund@gmail.com |
-| **GitHub** | github.com/CrowdTypical/spreadthefund |
-| **Donate** | buymeacoffee.com/crowdtypical |
-| **License** | PolyForm Shield License 1.0.0 |
-| **Copyright** | Copyright (C) 2026 Jason Green |
+| Property                    | Value                                                      |
+| --------------------------- | ---------------------------------------------------------- |
+| **App Name**                | Spread the Funds                                           |
+| **Display Name (stylised)** | `SPREAD THE FUNDS` (uppercase, wide letter-spacing)        |
+| **Tagline**                 | SPLIT BILLS IN REAL-TIME                                   |
+| **One-liner**               | A bill-splitting app with real-time updates between users. |
+| **Version**                 | v1.0.3                                                     |
+| **Platform**                | Android (Google Play Store)                                |
+| **Developer**               | Jason Green / CrowdTypical                                 |
+| **Contact Email**           | spreadthefund@gmail.com                                    |
+| **GitHub**                  | github.com/CrowdTypical/spreadthefund                      |
+| **Donate**                  | buymeacoffee.com/crowdtypical                              |
+| **License**                 | PolyForm Shield License 1.0.0                              |
+| **Copyright**               | Copyright (C) 2026 Jason Green                             |
 
 ---
 
@@ -38,37 +38,37 @@ The overall feel is minimal, technical, and modern — like a developer tool or 
 
 ### Primary Colours
 
-| Swatch | Hex | RGB | Role |
-|---|---|---|---|
-| 🟦 | `#00E5CC` | rgb(0, 229, 204) | **Primary / Accent (Teal-Cyan)** — buttons, icons, active states, positive amounts ("you're owed"), FABs, links |
-| ⬛ | `#0A0E14` | rgb(10, 14, 20) | **Background** — main scaffold background used everywhere |
-| 🔲 | `#141A22` | rgb(20, 26, 34) | **Surface / Card** — cards, dialogs, drawers, input fields, snackbars |
-| ⬛ | `#0F1419` | rgb(15, 20, 25) | **AppBar** — top bar background |
-| ⬛ | `#0D1117` | rgb(13, 17, 23) | **Deep Surface** — expanded sections, code-like areas, metadata backgrounds |
+| Swatch | Hex       | RGB              | Role                                                                                                            |
+| ------ | --------- | ---------------- | --------------------------------------------------------------------------------------------------------------- |
+| 🟦     | `#00E5CC` | rgb(0, 229, 204) | **Primary / Accent (Teal-Cyan)** — buttons, icons, active states, positive amounts ("you're owed"), FABs, links |
+| ⬛     | `#0A0E14` | rgb(10, 14, 20)  | **Background** — main scaffold background used everywhere                                                       |
+| 🔲     | `#141A22` | rgb(20, 26, 34)  | **Surface / Card** — cards, dialogs, drawers, input fields, snackbars                                           |
+| ⬛     | `#0F1419` | rgb(15, 20, 25)  | **AppBar** — top bar background                                                                                 |
+| ⬛     | `#0D1117` | rgb(13, 17, 23)  | **Deep Surface** — expanded sections, code-like areas, metadata backgrounds                                     |
 
 ### Border & Divider
 
-| Swatch | Hex | RGB | Role |
-|---|---|---|---|
-| 🔳 | `#1E2A35` | rgb(30, 42, 53) | **Border / Divider** — card borders, input borders, separators |
+| Swatch | Hex       | RGB             | Role                                                           |
+| ------ | --------- | --------------- | -------------------------------------------------------------- |
+| 🔳     | `#1E2A35` | rgb(30, 42, 53) | **Border / Divider** — card borders, input borders, separators |
 
 ### Text Colours
 
-| Swatch | Hex | RGB | Role |
-|---|---|---|---|
-| ⬜ | `#E0E0E0` | rgb(224, 224, 224) | **Primary text** — headings, body text |
-| 🔘 | `#8899AA` | rgb(136, 153, 170) | **Secondary text** — labels, subtitles, muted info |
-| 🔘 | `#556677` | rgb(85, 102, 119) | **Dim text** — metadata, dates, hints |
-| 🔘 | `#455566` | rgb(69, 85, 102) | **Dimmest text** — placeholder/hint text in inputs |
+| Swatch | Hex       | RGB                | Role                                               |
+| ------ | --------- | ------------------ | -------------------------------------------------- |
+| ⬜     | `#E0E0E0` | rgb(224, 224, 224) | **Primary text** — headings, body text             |
+| 🔘     | `#8899AA` | rgb(136, 153, 170) | **Secondary text** — labels, subtitles, muted info |
+| 🔘     | `#556677` | rgb(85, 102, 119)  | **Dim text** — metadata, dates, hints              |
+| 🔘     | `#455566` | rgb(69, 85, 102)   | **Dimmest text** — placeholder/hint text in inputs |
 
 ### Semantic Colours
 
-| Swatch | Hex | RGB | Role |
-|---|---|---|---|
-| 🟥 | `#FF4C5E` | rgb(255, 76, 94) | **Negative / Error** — "you owe" amounts, error states, destructive actions |
-| 🟩 | `#4CAF50` | rgb(76, 175, 80) | **Settlement / Success** — settled amounts, "all settled" indicator |
-| 🟧 | `#FFA726` | rgb(255, 167, 38) | **Amber / Donate** — "Buy me a coffee" CTA |
-| 🟥 | `#EF5350` | rgb(239, 83, 80) | **Delete / Danger** — destructive button colour |
+| Swatch | Hex       | RGB               | Role                                                                        |
+| ------ | --------- | ----------------- | --------------------------------------------------------------------------- |
+| 🟥     | `#FF4C5E` | rgb(255, 76, 94)  | **Negative / Error** — "you owe" amounts, error states, destructive actions |
+| 🟩     | `#4CAF50` | rgb(76, 175, 80)  | **Settlement / Success** — settled amounts, "all settled" indicator         |
+| 🟧     | `#FFA726` | rgb(255, 167, 38) | **Amber / Donate** — "Buy me a coffee" CTA                                  |
+| 🟥     | `#EF5350` | rgb(239, 83, 80)  | **Delete / Danger** — destructive button colour                             |
 
 ### Brand Gradient
 
@@ -84,43 +84,43 @@ This gradient is used on the "SPREAD THE FUNDS" logo text in the about dialog.
 
 Users can assign these colours to their groups:
 
-| Name | Hex |
-|---|---|
+| Name           | Hex       |
+| -------------- | --------- |
 | Teal (default) | `#00E5CC` |
-| Pink | `#FF6B9D` |
-| Purple | `#7B68EE` |
-| Amber | `#FFA726` |
-| Blue | `#42A5F5` |
-| Red | `#EF5350` |
-| Green | `#66BB6A` |
-| Yellow | `#FFEE58` |
-| Violet | `#AB47BC` |
-| Deep Orange | `#FF7043` |
-| Cyan | `#26C6DA` |
-| Rose | `#EC407A` |
+| Pink           | `#FF6B9D` |
+| Purple         | `#7B68EE` |
+| Amber          | `#FFA726` |
+| Blue           | `#42A5F5` |
+| Red            | `#EF5350` |
+| Green          | `#66BB6A` |
+| Yellow         | `#FFEE58` |
+| Violet         | `#AB47BC` |
+| Deep Orange    | `#FF7043` |
+| Cyan           | `#26C6DA` |
+| Rose           | `#EC407A` |
 
 ---
 
 ## Typography
 
-| Property | Value |
-|---|---|
-| **Font Family** | System monospace (`'monospace'`) |
-| **Heading Style** | ALL CAPS, bold, letter-spacing 2–4px |
-| **Body Style** | Normal weight, monospace |
-| **Label Style** | ALL CAPS, bold, letter-spacing 1–3px, secondary colour |
+| Property          | Value                                                  |
+| ----------------- | ------------------------------------------------------ |
+| **Font Family**   | System monospace (`'monospace'`)                       |
+| **Heading Style** | ALL CAPS, bold, letter-spacing 2–4px                   |
+| **Body Style**    | Normal weight, monospace                               |
+| **Label Style**   | ALL CAPS, bold, letter-spacing 1–3px, secondary colour |
 
 ### Key Text Sizes
 
-| Element | Size | Weight | Spacing |
-|---|---|---|---|
-| App name / hero title | 28px | Bold | 4px |
-| Section title (e.g. "WELCOME") | 24px | Bold | 4px |
-| Screen titles | 18–20px | Bold | 1.2–2px |
-| Amounts (large display) | 28px | Bold | — |
-| Body / list items | 13–14px | Normal–Bold | 0–1px |
-| Section headers (e.g. "GROUPS") | 11–13px | Bold | 2–3px |
-| Meta / dates | 10–11px | Normal | — |
+| Element                         | Size    | Weight      | Spacing |
+| ------------------------------- | ------- | ----------- | ------- |
+| App name / hero title           | 28px    | Bold        | 4px     |
+| Section title (e.g. "WELCOME")  | 24px    | Bold        | 4px     |
+| Screen titles                   | 18–20px | Bold        | 1.2–2px |
+| Amounts (large display)         | 28px    | Bold        | —       |
+| Body / list items               | 13–14px | Normal–Bold | 0–1px   |
+| Section headers (e.g. "GROUPS") | 11–13px | Bold        | 2–3px   |
+| Meta / dates                    | 10–11px | Normal      | —       |
 
 ---
 
@@ -128,20 +128,21 @@ Users can assign these colours to their groups:
 
 All image assets are included in this folder under `images/`. Here's what each file is:
 
-| File | Description |
-|---|---|
-| `images/app_icon.png` | Opaque app icon (solid background) |
+| File                              | Description                                                          |
+| --------------------------------- | -------------------------------------------------------------------- |
+| `images/app_icon.png`             | Opaque app icon (solid background)                                   |
 | `images/app_icon_transparent.png` | Transparent app icon — used in AppBar, loading screens, about dialog |
-| `images/spreadthefund.svg` | **SVG vector logo** — ideal for scalable use |
-| `images/spreadthefunds.png` | Adaptive icon foreground |
-| `images/final_icon_preview.png` | Launcher icon source file |
-| `images/Icon-192.png` | Web icon 192×192 |
-| `images/Icon-512.png` | Web icon 512×512 |
-| `images/Icon-maskable-192.png` | Maskable web icon 192×192 |
-| `images/Icon-maskable-512.png` | Maskable web icon 512×512 |
-| `images/favicon.png` | Web favicon |
+| `images/spreadthefund.svg`        | **SVG vector logo** — ideal for scalable use                         |
+| `images/spreadthefunds.png`       | Adaptive icon foreground                                             |
+| `images/final_icon_preview.png`   | Launcher icon source file                                            |
+| `images/Icon-192.png`             | Web icon 192×192                                                     |
+| `images/Icon-512.png`             | Web icon 512×512                                                     |
+| `images/Icon-maskable-192.png`    | Maskable web icon 192×192                                            |
+| `images/Icon-maskable-512.png`    | Maskable web icon 512×512                                            |
+| `images/favicon.png`              | Web favicon                                                          |
 
 ### Recommended usage:
+
 - **`spreadthefund.svg`** as the primary logo (scalable vector)
 - **`app_icon_transparent.png`** for hero sections or app previews
 - **`Icon-512.png`** for high-res app icon display
@@ -160,6 +161,7 @@ All image assets are included in this folder under `images/`. Here's what each f
 6. **Onboarding/Partner Setup** — "WELCOME" screen and partner email entry
 
 ### Recommended Screenshot Dimensions
+
 - Phone mockup: 1080×1920 or 1284×2778 (standard Android/iOS marketing sizes)
 - Use a dark background to match the app's dark theme
 
@@ -195,32 +197,32 @@ All image assets are included in this folder under `images/`. Here's what each f
 ```css
 :root {
   /* Primary */
-  --color-primary: #00E5CC;
+  --color-primary: #00e5cc;
   --color-primary-rgb: 0, 229, 204;
 
   /* Backgrounds */
-  --color-bg: #0A0E14;
-  --color-surface: #141A22;
-  --color-surface-alt: #0F1419;
-  --color-surface-deep: #0D1117;
+  --color-bg: #0a0e14;
+  --color-surface: #141a22;
+  --color-surface-alt: #0f1419;
+  --color-surface-deep: #0d1117;
 
   /* Borders */
-  --color-border: #1E2A35;
+  --color-border: #1e2a35;
 
   /* Text */
-  --color-text-primary: #E0E0E0;
-  --color-text-secondary: #8899AA;
+  --color-text-primary: #e0e0e0;
+  --color-text-secondary: #8899aa;
   --color-text-dim: #556677;
   --color-text-hint: #455566;
 
   /* Semantic */
-  --color-negative: #FF4C5E;
-  --color-success: #4CAF50;
-  --color-amber: #FFA726;
-  --color-danger: #EF5350;
+  --color-negative: #ff4c5e;
+  --color-success: #4caf50;
+  --color-amber: #ffa726;
+  --color-danger: #ef5350;
 
   /* Gradient */
-  --gradient-brand: linear-gradient(90deg, #00E5CC, #42A5F5);
+  --gradient-brand: linear-gradient(90deg, #00e5cc, #42a5f5);
 
   /* Typography */
   --font-family: 'Courier New', 'Fira Code', 'JetBrains Mono', monospace;
@@ -234,10 +236,10 @@ All image assets are included in this folder under `images/`. Here's what each f
 
 ## Contact & Links
 
-| Resource | URL |
-|---|---|
-| **GitHub Repo** | https://github.com/CrowdTypical/spreadthefund |
-| **Releases** | https://github.com/CrowdTypical/spreadthefund/releases |
-| **Donate** | https://buymeacoffee.com/crowdtypical |
-| **Support Email** | spreadthefund@gmail.com |
-| **Privacy Policy** | (link to PRIVACY_POLICY.md or hosted page) |
+| Resource           | URL                                                    |
+| ------------------ | ------------------------------------------------------ |
+| **GitHub Repo**    | https://github.com/CrowdTypical/spreadthefund          |
+| **Releases**       | https://github.com/CrowdTypical/spreadthefund/releases |
+| **Donate**         | https://buymeacoffee.com/crowdtypical                  |
+| **Support Email**  | spreadthefund@gmail.com                                |
+| **Privacy Policy** | (link to PRIVACY_POLICY.md or hosted page)             |

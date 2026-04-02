@@ -1,6 +1,6 @@
 ---
 description: Frontend web development patterns for Astro, Tailwind CSS v4, and general web standards
-applyTo: "**/*.astro,**/*.ts,**/*.tsx,**/*.js,**/*.jsx,**/*.css,**/*.html,**/astro.config.*,**/tailwind.config.*"
+applyTo: '**/*.astro,**/*.ts,**/*.tsx,**/*.js,**/*.jsx,**/*.css,**/*.html,**/astro.config.*,**/tailwind.config.*'
 ---
 
 # Frontend Web Development Standards
@@ -43,6 +43,7 @@ public/
 ```
 
 **Rules:**
+
 - **Pages are thin** — they compose layouts and components, minimal logic
 - **Layouts handle structure** — `<html>`, `<head>`, `<body>`, shared nav/footer
 - **Components handle features** — reusable, self-contained
@@ -85,10 +86,9 @@ const { title, description, image, url } = Astro.props;
 const projects = await getCollection('projects');
 ---
 
-<!-- ✅ This becomes pure HTML — no JavaScript shipped -->
-{projects.map((project) => (
-  <ProjectCard {...project.data} />
-))}
+<!-- ✅ This becomes pure HTML — no JavaScript shipped -->{
+  projects.map((project) => <ProjectCard {...project.data} />)
+}
 ```
 
 - **Default to static** — Astro's strength is zero-JS output
@@ -113,6 +113,7 @@ const projects = await getCollection('projects');
 ```
 
 **Rules:**
+
 - **Utility classes in templates** — that's how Tailwind is designed to work
 - **Extract components, not CSS classes** — if you're repeating a set of utilities, make a component
 - **`@apply` sparingly** — only for base element styles (e.g., `h1`, `a` defaults in `global.css`)
@@ -124,12 +125,12 @@ const projects = await getCollection('projects');
 
 ```css
 /* global.css — Tailwind v4 uses CSS-based config */
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
   --color-primary: #your-brand-color;
   --color-accent: #your-accent-color;
-  --font-sans: "Inter", system-ui, sans-serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
 }
 ```
 
@@ -148,7 +149,7 @@ export interface Project {
   url: string;
   repo?: string;
   image?: string;
-  status: "active" | "completed" | "planned";
+  status: 'active' | 'completed' | 'planned';
 }
 ```
 
@@ -173,13 +174,13 @@ export interface Project {
 
 ### Common Mistakes
 
-| ❌ Avoid | ✅ Prefer |
-|----------|-----------|
-| `<div onclick>` | `<button>` or `<a href>` |
-| Missing `alt` on `<img>` | Descriptive `alt` text |
-| Color-only indicators | Color + icon + text |
+| ❌ Avoid                   | ✅ Prefer                   |
+| -------------------------- | --------------------------- |
+| `<div onclick>`            | `<button>` or `<a href>`    |
+| Missing `alt` on `<img>`   | Descriptive `alt` text      |
+| Color-only indicators      | Color + icon + text         |
 | Removing `:focus` outlines | Custom visible focus styles |
-| Auto-playing media | User-initiated playback |
+| Auto-playing media         | User-initiated playback     |
 
 ---
 
@@ -208,11 +209,11 @@ import projectScreenshot from '../assets/project.png';
 
 ### Core Web Vitals (Portfolio Site Matters)
 
-| Metric | Target | Why |
-|--------|--------|-----|
-| LCP | < 2.5s | Employers will notice a slow site |
-| INP | < 200ms | Interactions should feel instant |
-| CLS | < 0.1 | No jumping layout |
+| Metric | Target  | Why                               |
+| ------ | ------- | --------------------------------- |
+| LCP    | < 2.5s  | Employers will notice a slow site |
+| INP    | < 200ms | Interactions should feel instant  |
+| CLS    | < 0.1   | No jumping layout                 |
 
 ---
 
@@ -301,13 +302,13 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 
 ## Common Anti-Patterns
 
-| ❌ Avoid | ✅ Prefer |
-|----------|-----------|
-| `client:load` on everything | Static Astro components by default |
-| `@apply` for component styles | Extract to Astro components |
-| Inline styles for static values | Tailwind utility classes |
-| Missing alt text | Descriptive alt on every image |
-| `any` in TypeScript | Proper types, `unknown` as last resort |
-| Giant page files | Extract to layouts + components |
-| Hardcoded content in templates | Content collections for structured data |
-| Ignoring Prettier output | Run `prettier --check .` before commits |
+| ❌ Avoid                        | ✅ Prefer                               |
+| ------------------------------- | --------------------------------------- |
+| `client:load` on everything     | Static Astro components by default      |
+| `@apply` for component styles   | Extract to Astro components             |
+| Inline styles for static values | Tailwind utility classes                |
+| Missing alt text                | Descriptive alt on every image          |
+| `any` in TypeScript             | Proper types, `unknown` as last resort  |
+| Giant page files                | Extract to layouts + components         |
+| Hardcoded content in templates  | Content collections for structured data |
+| Ignoring Prettier output        | Run `prettier --check .` before commits |

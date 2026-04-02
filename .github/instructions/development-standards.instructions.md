@@ -1,6 +1,6 @@
 ---
 description: Git workflow, commits, versioning, CI/CD, and documentation standards
-applyTo: "**/*.md,**/.github/**,**/CHANGELOG*,**/README*,**/.gitignore"
+applyTo: '**/*.md,**/.github/**,**/CHANGELOG*,**/README*,**/.gitignore'
 ---
 
 # Development Standards
@@ -17,12 +17,12 @@ This is fine for now. **Transition to branching when any project hits 1.0 or "st
 
 ### Target Strategy (When Ready)
 
-| Branch | Purpose |
-|--------|---------|
-| `main` | Production-ready code, tagged releases |
-| `develop` | Integration branch — your working branch |
-| `feature/<desc>` | New features |
-| `bugfix/<desc>` | Bug fixes |
+| Branch           | Purpose                                  |
+| ---------------- | ---------------------------------------- |
+| `main`           | Production-ready code, tagged releases   |
+| `develop`        | Integration branch — your working branch |
+| `feature/<desc>` | New features                             |
+| `bugfix/<desc>`  | Bug fixes                                |
 
 **Flow:** `feature/add-dark-mode` → merge to `develop` → when stable, merge to `main` + tag
 
@@ -85,17 +85,17 @@ chore(deps): update firebase_core to 2.25.0
 
 ### Types
 
-| Type | Purpose | Example |
-|------|---------|---------|
-| `feat` | New feature | `feat(debt): add shared list editing` |
-| `fix` | Bug fix | `fix(nav): resolve back navigation crash` |
-| `docs` | Documentation | `docs: add API usage guide` |
-| `style` | Formatting only | `style: apply prettier formatting` |
-| `refactor` | Code restructure | `refactor(data): extract repository pattern` |
-| `test` | Adding/updating tests | `test(auth): add login validation tests` |
-| `build` | Build system | `build: update flutter SDK constraint` |
-| `ci` | CI/CD changes | `ci: add lint check to workflow` |
-| `chore` | Maintenance | `chore(deps): update dependencies` |
+| Type       | Purpose               | Example                                      |
+| ---------- | --------------------- | -------------------------------------------- |
+| `feat`     | New feature           | `feat(debt): add shared list editing`        |
+| `fix`      | Bug fix               | `fix(nav): resolve back navigation crash`    |
+| `docs`     | Documentation         | `docs: add API usage guide`                  |
+| `style`    | Formatting only       | `style: apply prettier formatting`           |
+| `refactor` | Code restructure      | `refactor(data): extract repository pattern` |
+| `test`     | Adding/updating tests | `test(auth): add login validation tests`     |
+| `build`    | Build system          | `build: update flutter SDK constraint`       |
+| `ci`       | CI/CD changes         | `ci: add lint check to workflow`             |
+| `chore`    | Maintenance           | `chore(deps): update dependencies`           |
 
 ### Rules
 
@@ -108,6 +108,7 @@ chore(deps): update firebase_core to 2.25.0
 ### Why This Matters
 
 Good commit messages:
+
 - Let you find when a bug was introduced
 - Enable automatic changelog generation
 - Make your GitHub profile look professional to employers
@@ -119,11 +120,11 @@ Good commit messages:
 
 **Format:** `MAJOR.MINOR.PATCH` (e.g., `1.2.3`)
 
-| Bump | Trigger | Example |
-|------|---------|---------|
-| **PATCH** | Bug fix | `1.2.3 → 1.2.4` |
+| Bump      | Trigger                          | Example         |
+| --------- | -------------------------------- | --------------- |
+| **PATCH** | Bug fix                          | `1.2.3 → 1.2.4` |
 | **MINOR** | New feature, backward-compatible | `1.2.3 → 1.3.0` |
-| **MAJOR** | Breaking change | `1.2.3 → 2.0.0` |
+| **MAJOR** | Breaking change                  | `1.2.3 → 2.0.0` |
 
 ### Pre-1.0 (Where Your Projects Are Now)
 
@@ -155,31 +156,35 @@ Every project should have a `CHANGELOG.md`:
 ## [Unreleased]
 
 ### Added
+
 - Feature currently being developed
 
 ## [0.5.0] - 2026-03-28
 
 ### Added
+
 - Shared list editing between two users (#15)
 - Push notification for list updates (#22)
 
 ### Fixed
+
 - Crash when opening empty debt list (#18)
 
 ### Changed
+
 - Minimum Android SDK raised to 26
 ```
 
 ### Categories
 
-| Category | Version Bump |
-|----------|--------------|
-| **Added** | MINOR |
-| **Changed** | MINOR or MAJOR |
-| **Deprecated** | MINOR |
-| **Removed** | MAJOR |
-| **Fixed** | PATCH |
-| **Security** | PATCH (urgent) |
+| Category       | Version Bump   |
+| -------------- | -------------- |
+| **Added**      | MINOR          |
+| **Changed**    | MINOR or MAJOR |
+| **Deprecated** | MINOR          |
+| **Removed**    | MAJOR          |
+| **Fixed**      | PATCH          |
+| **Security**   | PATCH (urgent) |
 
 ---
 
@@ -211,13 +216,13 @@ npm run build
 
 ### What Each Check Does
 
-| Check | Purpose |
-|-------|---------|
-| `dart analyze` | Catches bugs, enforces Dart best practices |
-| `dart format` | Ensures consistent formatting |
-| `prettier --check` | Checks web code formatting |
-| `flutter test` | Runs unit tests |
-| `npm run build` | Confirms the site builds successfully |
+| Check              | Purpose                                    |
+| ------------------ | ------------------------------------------ |
+| `dart analyze`     | Catches bugs, enforces Dart best practices |
+| `dart format`      | Ensures consistent formatting              |
+| `prettier --check` | Checks web code formatting                 |
+| `flutter test`     | Runs unit tests                            |
+| `npm run build`    | Confirms the site builds successfully      |
 
 **Never commit code that fails analysis/linting.** Fix the issue first.
 
@@ -284,17 +289,18 @@ jobs:
 
 ### Every Project Must Have
 
-| File | Purpose |
-|------|---------|
-| `README.md` | What it is, how to set up, how to run |
-| `CHANGELOG.md` | What changed between versions |
-| `PROGRESS.md` | Session-by-session development journal |
-| `.gitignore` | Files to exclude from git |
-| `LICENSE` | How others can use your code |
+| File           | Purpose                                |
+| -------------- | -------------------------------------- |
+| `README.md`    | What it is, how to set up, how to run  |
+| `CHANGELOG.md` | What changed between versions          |
+| `PROGRESS.md`  | Session-by-session development journal |
+| `.gitignore`   | Files to exclude from git              |
+| `LICENSE`      | How others can use your code           |
 
 ### PROGRESS.md — Your Development Journal
 
 **This is critical for your goals.** It serves as:
+
 - Context for the next AI session (paste the last entry to pick up where you left off)
 - A development journal that shows your process to employers
 - Proof of iterative, thoughtful engineering
@@ -307,18 +313,22 @@ jobs:
 ## 2026-03-31 — Session Title
 
 ### Accomplished
+
 - Implemented shared list editing
 - Fixed crash on empty debt list
 
 ### Current State
+
 - App builds and runs
 - Shared editing works for 2 users
 - Push notifications not yet connected
 
 ### Open Questions
+
 - Should we use FCM or local notifications for MVP?
 
 ### Next Steps
+
 1. Connect Firebase Cloud Messaging
 2. Add notification preferences screen
 3. Update README with new features
@@ -332,8 +342,8 @@ jobs:
 
 When you spot a problem while working on something else:
 
-| Complexity | Action |
-|-----------|--------|
+| Complexity          | Action                                        |
+| ------------------- | --------------------------------------------- |
 | Quick fix (< 5 min) | Fix in same commit, mention in commit message |
-| Medium (5-15 min) | Fix in a separate commit on same branch |
-| Complex (> 15 min) | Create a GitHub issue, fix later |
+| Medium (5-15 min)   | Fix in a separate commit on same branch       |
+| Complex (> 15 min)  | Create a GitHub issue, fix later              |

@@ -1,36 +1,14 @@
 export const prerender = false;
 
 import type { APIRoute } from 'astro';
-import { initializeApp, cert, getApps } from 'firebase-admin/app';
 import { getAuth } from 'firebase-admin/auth';
 import { getFirestore } from 'firebase-admin/firestore';
-import nodemailer from 'nodemailer';
+import { getFirebaseAdmin } from '../../utils/firebase-admin';
+import { createEmailTransport } from '../../utils/email';
+import { isRateLimited } from '../../utils/rate-limit';
 
-function getFirebaseAdmin() {
-  if (getApps().length > 0) return getApps()[0];
-  const serviceAccount = JSON.parse(
-    import.meta.env.FIREBASE_SERVICE_ACCOUNT || process.env.FIREBASE_SERVICE_ACCOUNT || '{}'
-  );
-  return initializeApp({ credential: cert(serviceAccount) });
-}
-
-// Rate limiting
-const requestLog = new Map<string, number[]>();
 const RATE_LIMIT_WINDOW = 15 * 60 * 1000; // 15 minutes
 const RATE_LIMIT_MAX = 5; // max 5 code requests per 15 min per IP
-
-function isRateLimited(ip: string): boolean {
-  const now = Date.now();
-  const requests = requestLog.get(ip) || [];
-  const recent = requests.filter((t) => now - t < RATE_LIMIT_WINDOW);
-  if (recent.length >= RATE_LIMIT_MAX) {
-    requestLog.set(ip, recent);
-    return true;
-  }
-  recent.push(now);
-  requestLog.set(ip, recent);
-  return false;
-}
 
 function generateCode(): string {
   const array = new Uint32Array(1);
@@ -39,13 +17,7 @@ function generateCode(): string {
 }
 
 async function sendVerificationEmail(to: string, code: string) {
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: 'spreadthefund@gmail.com',
-      pass: import.meta.env.GMAIL_APP_PASSWORD || process.env.GMAIL_APP_PASSWORD,
-    },
-  });
+  const transporter = createEmailTransport();
 
   await transporter.sendMail({
     from: '"Spread the Funds" <spreadthefund@gmail.com>',
@@ -82,15 +54,17 @@ export const POST: APIRoute = async ({ request }) => {
       request.headers.get('x-real-ip') ||
       'unknown';
 
-    // if (isRateLimited(ip)) {
-    //   return new Response(
-    //     JSON.stringify({ error: 'Too many requests. Please try again later.' }),
-    //     { status: 429, headers }
-    //   );
-    // }
+    getFirebaseAdmin();
+    if (await isRateLimited(ip, { windowMs: RATE_LIMIT_WINDOW, maxRequests: RATE_LIMIT_MAX })) {
+      return new Response(
+        JSON.stringify({ error: 'Too many requests. Please try again later.' }),
+        { status: 429, headers }
+      );
+    }
 
     const body = await request.json();
-    const email = typeof body.email === 'string' ? body.email.trim().toLowerCase() : '';
+    const email =
+      typeof body.email === 'string' ? body.email.trim().toLowerCase() : '';
 
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return new Response(
@@ -99,7 +73,6 @@ export const POST: APIRoute = async ({ request }) => {
       );
     }
 
-    getFirebaseAdmin();
     const auth = getAuth();
     const db = getFirestore();
 
@@ -131,24 +104,30 @@ export const POST: APIRoute = async ({ request }) => {
     return new Response(
       JSON.stringify({
         success: true,
-        message: 'If an account exists with this email, a verification code has been sent.',
+        message:
+          'If an account exists with this email, a verification code has been sent.',
       }),
       { status: 200, headers }
     );
   } catch (error) {
     console.error('Send code error:', error);
     return new Response(
-      JSON.stringify({ error: 'An unexpected error occurred. Please try again later.' }),
+      JSON.stringify({
+        error: 'An unexpected error occurred. Please try again later.',
+      }),
       { status: 500, headers }
     );
   }
 };
 
+const ALLOWED_ORIGIN =
+  import.meta.env.CORS_ORIGIN || process.env.CORS_ORIGIN || 'https://jasongreen.biz';
+
 export const OPTIONS: APIRoute = async () => {
   return new Response(null, {
     status: 204,
     headers: {
-      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Origin': ALLOWED_ORIGIN,
       'Access-Control-Allow-Methods': 'POST, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type',
     },
