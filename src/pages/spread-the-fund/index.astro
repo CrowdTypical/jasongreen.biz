@@ -257,7 +257,7 @@ import StfLayout from '../../layouts/StfLayout.astro';
       >
         <a href="/spread-the-fund" class="flex items-center gap-3">
           <img
-            src="/spread-the-fund/spreadthefund.svg"
+            src="/spread-the-fund/glitch_dollar_icon.png"
             alt="Spread the Funds"
             class="w-7 h-7"
           />
@@ -301,7 +301,7 @@ import StfLayout from '../../layouts/StfLayout.astro';
       <div class="relative z-10 text-center px-6 max-w-3xl mx-auto">
         <div class="flex justify-center mb-8">
           <img
-            src="/spread-the-fund/app_icon_transparent.png"
+            src="/spread-the-fund/glitch_dollar_icon.png"
             alt="Spread the Funds icon"
             class="w-20 h-20 md:w-24 md:h-24"
           />
@@ -341,12 +341,13 @@ import StfLayout from '../../layouts/StfLayout.astro';
             SEE FEATURES
           </a>
           <a
-            href="https://github.com/CrowdTypical/spreadthefund"
+            href="https://play.google.com/store/apps/details?id=biz.jasongreen.spreadthefund"
             target="_blank"
             rel="noopener noreferrer"
-            class="px-8 py-3 font-bold text-xs uppercase tracking-[2px] border stf-btn-outline transition-colors"
+            class="px-8 py-3 font-bold text-xs uppercase tracking-[2px] border stf-btn-outline transition-colors hidden"
+            id="play-store-btn"
           >
-            VIEW ON GITHUB
+            GET ON GOOGLE PLAY
           </a>
         </div>
       </div>
@@ -1111,5 +1112,16 @@ import StfLayout from '../../layouts/StfLayout.astro';
         }, 200);
       });
     });
+  </script>
+
+  <script>
+    // Show Google Play button only on Android devices
+    (function () {
+      const btn = document.getElementById('play-store-btn');
+      if (!btn) return;
+      if (/Android/i.test(navigator.userAgent)) {
+        btn.classList.remove('hidden');
+      }
+    })();
   </script>
 </StfLayout>
