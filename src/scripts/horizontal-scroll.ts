@@ -120,6 +120,12 @@ function initHorizontalScroll() {
     if (handle) {
       handle.style.left = `calc(${rawProgress * 100}% - 10px)`;
       handle.style.setProperty('--handle-angle', `${rawProgress * 720}deg`);
+
+      if (rawProgress >= 1) {
+        handle.classList.add('handle-complete');
+      } else {
+        handle.classList.remove('handle-complete');
+      }
     }
 
     // Show/hide progress bar — only visible once scrolling has begun

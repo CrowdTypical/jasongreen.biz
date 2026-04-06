@@ -404,6 +404,10 @@ import WorkPanel from './WorkPanel.astro';
     animation: handle-glow 2s ease-in-out infinite;
   }
 
+  .scroll-handle:global(.handle-complete) {
+    background: #10b981;
+  }
+
   @keyframes handle-glow {
     0%,
     100% {
@@ -423,6 +427,38 @@ import WorkPanel from './WorkPanel.astro';
     syntax: '<angle>';
     initial-value: 0deg;
     inherits: false;
+  }
+
+  /* No-JS fallback: stack cards vertically so all content is visible */
+  :global(html:not(.js)) #horizontal-scroll-outer {
+    height: auto !important;
+  }
+
+  :global(html:not(.js)) #horizontal-scroll-outer > div {
+    position: relative;
+    height: auto;
+    overflow: visible;
+  }
+
+  :global(html:not(.js)) #horizontal-track {
+    flex-direction: column;
+    gap: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  :global(html:not(.js)) :global(.work-panel) {
+    width: 100%;
+    height: auto;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  :global(html:not(.js)) #scroll-progress-wrapper {
+    display: none;
+  }
+
+  :global(html:not(.js)) .sticky-header {
+    position: static;
   }
 </style>
 

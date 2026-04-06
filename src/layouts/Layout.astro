@@ -33,6 +33,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://jasongre
 
     <title>{title}</title>
     <script is:inline>
+      // Mark that JS is available (enables JS-dependent layouts)
+      document.documentElement.classList.add('js');
       // Apply entry animation direction before first paint
       (function () {
         var dir = sessionStorage.getItem('page-transition-dir');

@@ -65,7 +65,7 @@
             class="page-transition-right flex items-center gap-3 px-4 py-3 text-sm font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors"
           >
             <img
-              src="/spread-the-fund/spreadthefund.svg"
+              src="/spread-the-fund/glitch_dollar_icon.png"
               alt=""
               class="w-5 h-5"
             />
@@ -127,7 +127,7 @@
         href="/spread-the-fund"
         class="page-transition-right mobile-nav-link flex items-center gap-3 font-serif text-xl text-slate-600 hover:text-slate-900 transition-colors"
       >
-        <img src="/spread-the-fund/spreadthefund.svg" alt="" class="w-6 h-6" />
+        <img src="/spread-the-fund/glitch_dollar_icon.png" alt="" class="w-6 h-6" />
         Spread the Funds
       </a>
     </div>
@@ -318,3 +318,48 @@
     });
   });
 </script>
+
+<style>
+  /* No-JS fallback: make nav usable without JavaScript */
+
+  /* Show nav brand and give nav a solid background */
+  :global(html:not(.js)) #nav-brand {
+    opacity: 1 !important;
+    transform: none !important;
+    pointer-events: auto !important;
+  }
+
+  :global(html:not(.js)) #main-nav {
+    background: white;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Desktop dropdown opens on hover */
+  :global(html:not(.js)) #app-support-dropdown:hover #dropdown-menu,
+  :global(html:not(.js)) #app-support-dropdown:focus-within #dropdown-menu {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateY(0) !important;
+  }
+
+  /* Mobile: hide hamburger, show links inline */
+  :global(html:not(.js)) #menu-toggle {
+    display: none !important;
+  }
+
+  :global(html:not(.js)) #mobile-menu {
+    position: static;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    flex-direction: row;
+    gap: 1.5rem;
+    padding: 0.5rem 1.5rem;
+    justify-content: center;
+    background: white;
+    border-top: 1px solid #e2e8f0;
+  }
+
+  :global(html:not(.js)) .mobile-nav-link {
+    font-size: 0.875rem !important;
+  }
+</style>
