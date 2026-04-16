@@ -79,21 +79,54 @@ import WorkPanel from './WorkPanel.astro';
                 >
               </div>
             </div>
-            <div class="flex items-center justify-center flex-1">
-              <div class="text-center">
-                <svg
-                  class="w-16 h-16 text-blue-500/50 mx-auto mb-3"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1"
-                  viewBox="0 0 24 24"
-                  ><path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z"
-                  ></path></svg
-                >
-                <p class="text-slate-500 text-sm">Screenshots coming soon</p>
+            <!-- Interactive chart -->
+            <div class="kpi-chart-wrapper flex-1 flex flex-col min-h-[160px]">
+              <div class="relative flex-1">
+                <svg class="kpi-chart w-full h-full" viewBox="0 0 400 190" preserveAspectRatio="xMidYMid meet">
+                  <defs></defs>
+
+                  <!-- Grid lines -->
+                  <line x1="10" y1="170" x2="390" y2="170" stroke="rgba(148,163,184,0.12)" stroke-width="1"/>
+                  <line x1="10" y1="130" x2="390" y2="130" stroke="rgba(148,163,184,0.05)" stroke-width="1" stroke-dasharray="4,4"/>
+                  <line x1="10" y1="90" x2="390" y2="90" stroke="rgba(148,163,184,0.05)" stroke-width="1" stroke-dasharray="4,4"/>
+                  <line x1="10" y1="50" x2="390" y2="50" stroke="rgba(148,163,184,0.05)" stroke-width="1" stroke-dasharray="4,4"/>
+                  <line x1="10" y1="10" x2="390" y2="10" stroke="rgba(148,163,184,0.05)" stroke-width="1" stroke-dasharray="4,4"/>
+
+                  <!-- Y-axis ticks -->
+                  <line x1="8" y1="170" x2="14" y2="170" stroke="rgba(148,163,184,0.2)" stroke-width="1"/>
+                  <line x1="8" y1="130" x2="14" y2="130" stroke="rgba(148,163,184,0.15)" stroke-width="1"/>
+                  <line x1="8" y1="90" x2="14" y2="90" stroke="rgba(148,163,184,0.15)" stroke-width="1"/>
+                  <line x1="8" y1="50" x2="14" y2="50" stroke="rgba(148,163,184,0.15)" stroke-width="1"/>
+                  <line x1="8" y1="10" x2="14" y2="10" stroke="rgba(148,163,184,0.15)" stroke-width="1"/>
+
+                  <!-- X-axis ticks -->
+                  <line x1="10" y1="170" x2="10" y2="175" stroke="rgba(148,163,184,0.2)" stroke-width="1"/>
+                  <line x1="86" y1="170" x2="86" y2="175" stroke="rgba(148,163,184,0.15)" stroke-width="1"/>
+                  <line x1="162" y1="170" x2="162" y2="175" stroke="rgba(148,163,184,0.15)" stroke-width="1"/>
+                  <line x1="238" y1="170" x2="238" y2="175" stroke="rgba(148,163,184,0.15)" stroke-width="1"/>
+                  <line x1="314" y1="170" x2="314" y2="175" stroke="rgba(148,163,184,0.15)" stroke-width="1"/>
+                  <line x1="390" y1="170" x2="390" y2="175" stroke="rgba(148,163,184,0.2)" stroke-width="1"/>
+
+                  <!-- Line 2 area + stroke (behind) -->
+                  <path class="kpi-area-2" d="" fill="rgba(52,211,153,0.1)" opacity="0"/>
+                  <path class="kpi-line-2" d="" fill="none" stroke="rgb(52,211,153)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+
+                  <!-- Line 1 area + stroke (front) -->
+                  <path class="kpi-area" d="" fill="rgba(96,165,250,0.1)" opacity="0"/>
+                  <path class="kpi-line" d="" fill="none" stroke="rgb(96,165,250)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+                  <!-- Hover dots -->
+                  <circle class="kpi-hover-dot" cx="0" cy="0" r="5" fill="rgb(96,165,250)" stroke="rgb(15,23,42)" stroke-width="2.5" opacity="0"/>
+                  <circle class="kpi-hover-dot-2" cx="0" cy="0" r="5" fill="rgb(52,211,153)" stroke="rgb(15,23,42)" stroke-width="2.5" opacity="0"/>
+
+                  <!-- Vertical scrub line -->
+                  <line class="kpi-scrub-line" x1="0" y1="10" x2="0" y2="170" stroke="rgba(96,165,250,0.25)" stroke-width="1" opacity="0"/>
+                </svg>
+                <!-- Tooltip -->
+                <div class="kpi-tooltip absolute hidden pointer-events-none bg-slate-800/95 border border-blue-400/30 rounded-lg px-3 py-2 text-xs shadow-lg backdrop-blur-sm z-10" style="transform: translate(-50%, -100%); margin-top: -12px;">
+                  <div class="flex items-center gap-1.5"><span class="inline-block w-2 h-2 rounded-full" style="background:rgb(96,165,250)"></span><span class="kpi-tooltip-val1 text-blue-400 font-bold"></span></div>
+                  <div class="flex items-center gap-1.5 mt-0.5"><span class="inline-block w-2 h-2 rounded-full" style="background:rgb(52,211,153)"></span><span class="kpi-tooltip-val2 text-emerald-400 font-bold"></span></div>
+                </div>
               </div>
             </div>
           </div>
@@ -195,7 +228,7 @@ import WorkPanel from './WorkPanel.astro';
             </p>
           </Fragment>
           <div
-            class="w-full h-full rounded-2xl bg-linear-to-br from-purple-900/40 to-slate-800/80 border border-slate-700/50 p-8 flex flex-col justify-between"
+            class="w-full h-full rounded-2xl bg-linear-to-br from-purple-900/40 to-slate-800/80 border border-slate-700/50 p-4 md:p-6 flex flex-col justify-between"
           >
             <div class="space-y-4 mb-6">
               <div class="flex items-center gap-3">
@@ -223,23 +256,33 @@ import WorkPanel from './WorkPanel.astro';
                 >
               </div>
             </div>
-            <div class="flex items-center justify-center flex-1">
-              <div class="text-center">
-                <svg
-                  class="w-16 h-16 text-purple-500/50 mx-auto mb-3"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1"
-                  viewBox="0 0 24 24"
-                  ><path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v16.5a2.25 2.25 0 0 0 2.25 2.25h7.5A2.25 2.25 0 0 0 18 20.25V3.75a2.25 2.25 0 0 0-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3"
-                  ></path></svg
-                >
-                <p class="text-slate-500 text-sm">
-                  <a href="/spread-the-fund" class="text-purple-400 hover:text-purple-300 underline underline-offset-2">View Spread The Funds</a>
-                </p>
+
+            <!-- App showcase cards -->
+            <div class="grid grid-cols-2 gap-4">
+              <!-- Spread The Funds -->
+              <a
+                href="/spread-the-fund"
+                class="group flex flex-col rounded-xl overflow-hidden border border-purple-400/20 hover:border-purple-400/50 transition-colors bg-purple-400/10"
+              >
+                <span class="block px-3 py-2 text-purple-300 text-xs font-semibold uppercase tracking-wider text-center">Spread The Funds</span>
+                <img
+                  src="/spread-the-funds.png"
+                  alt="Spread The Funds — group financial management app"
+                  class="w-full h-40 object-cover object-top group-hover:opacity-90 transition-opacity"
+                  loading="lazy"
+                />
+              </a>
+              <!-- Flowing (WIP) -->
+              <div
+                class="group flex flex-col rounded-xl overflow-hidden border border-purple-400/20 bg-purple-400/10"
+              >
+                <span class="block px-3 py-2 text-purple-300 text-xs font-semibold uppercase tracking-wider text-center">Flowing (WIP)</span>
+                <img
+                  src="/flowing-app.png"
+                  alt="Flowing — upcoming project, work in progress"
+                  class="w-full h-40 object-cover object-top"
+                  loading="lazy"
+                />
               </div>
             </div>
           </div>
@@ -261,14 +304,16 @@ import WorkPanel from './WorkPanel.astro';
               a space where people came together around shared interests.
             </p>
             <p class="text-slate-400 text-sm leading-relaxed mb-6">
-              Supported by a companion website built on GitHub Pages, giving
-              the community a public presence and resource hub.
+              Originally supported by a companion website built on GitHub
+              Pages, giving the community a public presence and resource hub.
+              This has since been superseded by an official community website
+              and wiki.
             </p>
           </Fragment>
           <div
-            class="w-full h-full rounded-2xl bg-linear-to-br from-amber-900/30 to-slate-800/80 border border-slate-700/50 p-8 flex flex-col justify-between"
+            class="w-full h-full rounded-2xl bg-linear-to-br from-amber-900/30 to-slate-800/80 border border-slate-700/50 p-4 md:p-6 flex flex-col justify-between"
           >
-            <div class="space-y-4 mb-6">
+            <div class="space-y-3 mb-6">
               <div class="flex items-center gap-3">
                 <div class="w-2 h-2 rounded-full bg-amber-400"></div>
                 <span class="text-slate-300 text-sm"
@@ -284,7 +329,7 @@ import WorkPanel from './WorkPanel.astro';
               <div class="flex items-center gap-3">
                 <div class="w-2 h-2 rounded-full bg-amber-400"></div>
                 <span class="text-slate-300 text-sm"
-                  >Companion website on GitHub Pages</span
+                  >Live community dashboard and data tracking</span
                 >
               </div>
               <div class="flex items-center gap-3">
@@ -295,57 +340,67 @@ import WorkPanel from './WorkPanel.astro';
               </div>
             </div>
 
-            <!-- Live Discord indicator -->
-            <div class="flex items-center justify-center flex-1">
-              <div
-                id="discord-live"
-                class="flex flex-col items-center gap-3 rounded-xl bg-slate-800/60 border border-slate-700/50 px-8 py-6"
+            <!-- Community showcase cards -->
+            <div class="grid grid-cols-3 gap-4 mb-4">
+              <!-- Marathon ARG -->
+              <a
+                href="https://crowdtypical.github.io/Marathon-arg/dashboard.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group flex flex-col rounded-xl overflow-hidden border border-amber-400/20 hover:border-amber-400/50 transition-colors bg-amber-400/10"
               >
-                <!-- Discord icon -->
-                <svg class="w-10 h-10 text-amber-400/70" fill="currentColor" viewBox="0 0 24 24"
-                  ><path
-                    d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03ZM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.42 0 1.333-.956 2.418-2.157 2.418Zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.42 0 1.333-.946 2.418-2.157 2.418Z"
-                  ></path></svg
-                >
-                <div class="flex items-center gap-2">
-                  <span class="relative flex h-2.5 w-2.5">
-                    <span
-                      class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"
-                      id="discord-ping"
-                    ></span>
-                    <span
-                      class="relative inline-flex h-2.5 w-2.5 rounded-full bg-green-500"
-                      id="discord-dot"
-                    ></span>
-                  </span>
-                  <span class="text-slate-300 text-sm font-medium" id="discord-count"
-                    >Loading...</span
-                  >
-                </div>
-                <p class="text-slate-500 text-xs">Live on Discord</p>
-              </div>
-            </div>
-
-            <!-- Community links -->
-            <div class="flex flex-wrap items-center justify-center gap-3 mt-4">
+                <span class="block px-3 py-2 text-amber-300 text-xs font-semibold uppercase tracking-wider text-center">Marathon ARG</span>
+                <img
+                  src="/marathon-arg-dashboard.png"
+                  alt="CryoArchive Dashboard — live tracking for the Marathon ARG community project"
+                  class="w-full h-32 object-cover object-top group-hover:opacity-90 transition-opacity"
+                  loading="lazy"
+                />
+              </a>
+              <!-- Breacher.net -->
               <a
                 href="https://breacher.net"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-400/10 text-amber-300 text-sm font-medium hover:bg-amber-400/20 transition-colors"
+                class="group flex flex-col rounded-xl overflow-hidden border border-amber-400/20 hover:border-amber-400/50 transition-colors bg-amber-400/10"
               >
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5a17.92 17.92 0 0 1-8.716-2.247m0 0A8.966 8.966 0 0 1 3 12c0-1.264.26-2.467.73-3.56"></path></svg>
-                breacher.net
+                <span class="block px-3 py-2 text-amber-300 text-xs font-semibold uppercase tracking-wider text-center">Breacher.net</span>
+                <img
+                  src="/breacher-net.png"
+                  alt="Breacher.net — official community website"
+                  class="w-full h-32 object-cover object-top group-hover:opacity-90 transition-opacity"
+                  loading="lazy"
+                />
               </a>
+              <!-- Community Wiki -->
               <a
                 href="https://wiki.breacher.net"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-400/10 text-amber-300 text-sm font-medium hover:bg-amber-400/20 transition-colors"
+                class="group flex flex-col rounded-xl overflow-hidden border border-amber-400/20 hover:border-amber-400/50 transition-colors bg-amber-400/10"
               >
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"></path></svg>
-                Community Wiki
+                <span class="block px-3 py-2 text-amber-300 text-xs font-semibold uppercase tracking-wider text-center">Breacher Wiki</span>
+                <img
+                  src="/community-wiki.png"
+                  alt="Community Wiki — collaborative knowledge base"
+                  class="w-full h-32 object-cover object-top group-hover:opacity-90 transition-opacity"
+                  loading="lazy"
+                />
               </a>
+            </div>
+
+            <!-- Discord live indicator -->
+            <div class="flex items-center justify-center">
+              <div
+                class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-400/10 text-amber-300 text-sm font-medium"
+              >
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03ZM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.42 0 1.333-.956 2.418-2.157 2.418Zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.42 0 1.333-.946 2.418-2.157 2.418Z"></path></svg>
+                <span class="relative flex h-2.5 w-2.5">
+                  <span class="discord-ping absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
+                  <span class="discord-dot relative inline-flex h-2.5 w-2.5 rounded-full bg-green-500"></span>
+                </span>
+                <span class="discord-count text-sm">Loading...</span>
+              </div>
             </div>
           </div>
         </WorkPanel>
@@ -610,6 +665,46 @@ import WorkPanel from './WorkPanel.astro';
   :global(html:not(.js)) .sticky-header {
     position: static;
   }
+
+  /* KPI slider styling */
+  .kpi-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(148, 163, 184, 0.15);
+    outline: none;
+    cursor: pointer;
+  }
+  .kpi-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: rgb(96, 165, 250);
+    border: 2px solid rgb(15, 23, 42);
+    box-shadow: 0 0 6px rgba(96, 165, 250, 0.4);
+    cursor: pointer;
+    transition: box-shadow 0.15s ease;
+  }
+  .kpi-slider::-webkit-slider-thumb:hover {
+    box-shadow: 0 0 10px rgba(96, 165, 250, 0.6);
+  }
+  .kpi-slider::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: rgb(96, 165, 250);
+    border: 2px solid rgb(15, 23, 42);
+    box-shadow: 0 0 6px rgba(96, 165, 250, 0.4);
+    cursor: pointer;
+  }
+  .kpi-slider::-moz-range-track {
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(148, 163, 184, 0.15);
+  }
 </style>
 
 <script>
@@ -618,10 +713,10 @@ import WorkPanel from './WorkPanel.astro';
 
 <script is:inline>
   (function () {
-    var countEl = document.getElementById('discord-count');
-    var dotEl = document.getElementById('discord-dot');
-    var pingEl = document.getElementById('discord-ping');
-    if (!countEl) return;
+    var countEls = document.querySelectorAll('.discord-count');
+    var dotEls = document.querySelectorAll('.discord-dot');
+    var pingEls = document.querySelectorAll('.discord-ping');
+    if (!countEls.length) return;
 
     fetch('https://discord.com/api/guilds/1480378420343869534/widget.json')
       .then(function (res) {
@@ -630,16 +725,211 @@ import WorkPanel from './WorkPanel.astro';
       })
       .then(function (data) {
         var online = data.presence_count || 0;
-        countEl.textContent = online.toLocaleString() + ' online';
+        countEls.forEach(function (el) {
+          el.textContent = online.toLocaleString() + ' online';
+        });
       })
       .catch(function () {
-        countEl.textContent = 'Offline';
-        if (dotEl) {
-          dotEl.className = dotEl.className.replace('bg-green-500', 'bg-slate-500');
-        }
-        if (pingEl) {
-          pingEl.className = pingEl.className.replace('bg-green-400', 'bg-slate-400');
-        }
+        countEls.forEach(function (el) { el.textContent = 'Offline'; });
+        dotEls.forEach(function (el) {
+          el.className = el.className.replace('bg-green-500', 'bg-slate-500');
+        });
+        pingEls.forEach(function (el) {
+          el.className = el.className.replace('bg-green-400', 'bg-slate-400');
+        });
       });
+  })();
+</script>
+
+<script is:inline>
+  (function () {
+    // Two independent datasets, both starting low and trending up
+    var RAW1 = [0, 12, 20, 18, 35, 42, 55, 50, 68, 80];
+    var RAW2 = [0, 8, 15, 0, 10, 15, 36, 67, 22, 0];
+
+    function buildPoints(data) {
+      var min = Math.min.apply(null, data);
+      var max = Math.max.apply(null, data);
+      var range = max - min || 1;
+      var pts = [];
+      for (var i = 0; i < data.length; i++) {
+        var x = 10 + (380 / (data.length - 1)) * i;
+        var y = 170 - ((data[i] - min) / range) * 155;
+        pts.push({ x: x, y: y, val: data[i] });
+      }
+      return pts;
+    }
+
+    function smoothPath(pts) {
+      if (pts.length < 2) return '';
+      // Monotone cubic spline — prevents overshooting between points
+      var n = pts.length;
+      var dx = [], dy = [], m = [], a = [];
+      for (var i = 0; i < n - 1; i++) {
+        dx[i] = pts[i + 1].x - pts[i].x;
+        dy[i] = (pts[i + 1].y - pts[i].y) / dx[i];
+      }
+      m[0] = dy[0];
+      m[n - 1] = dy[n - 2];
+      for (var i = 1; i < n - 1; i++) {
+        if (dy[i - 1] * dy[i] <= 0) {
+          m[i] = 0;
+        } else {
+          m[i] = (dy[i - 1] + dy[i]) / 2;
+        }
+      }
+      // Fritsch-Carlson: clamp tangents to prevent overshoot
+      for (var i = 0; i < n - 1; i++) {
+        if (Math.abs(dy[i]) < 1e-6) {
+          m[i] = 0;
+          m[i + 1] = 0;
+        } else {
+          a = m[i] / dy[i];
+          var b = m[i + 1] / dy[i];
+          var s = a * a + b * b;
+          if (s > 9) {
+            var t = 3 / Math.sqrt(s);
+            m[i] = t * a * dy[i];
+            m[i + 1] = t * b * dy[i];
+          }
+        }
+      }
+      var d = 'M' + pts[0].x + ',' + pts[0].y;
+      for (var i = 0; i < n - 1; i++) {
+        var third = dx[i] / 3;
+        var cp1x = pts[i].x + third;
+        var cp1y = pts[i].y + m[i] * third;
+        var cp2x = pts[i + 1].x - third;
+        var cp2y = pts[i + 1].y - m[i + 1] * third;
+        d += ' C' + cp1x + ',' + cp1y + ' ' + cp2x + ',' + cp2y + ' ' + pts[i + 1].x + ',' + pts[i + 1].y;
+      }
+      return d;
+    }
+
+    function renderLine(lineEl, areaEl, pts) {
+      var lineD = smoothPath(pts);
+      lineEl.setAttribute('d', lineD);
+      areaEl.setAttribute('d', lineD + ' L' + pts[pts.length - 1].x + ',170 L' + pts[0].x + ',170 Z');
+    }
+
+    document.querySelectorAll('.kpi-chart').forEach(function (svg) {
+      var wrapper = svg.closest('.kpi-chart-wrapper');
+      if (!wrapper) return;
+
+      var line1 = svg.querySelector('.kpi-line');
+      var area1 = svg.querySelector('.kpi-area');
+      var line2 = svg.querySelector('.kpi-line-2');
+      var area2 = svg.querySelector('.kpi-area-2');
+      var dot = svg.querySelector('.kpi-hover-dot');
+      var scrubLine = svg.querySelector('.kpi-scrub-line');
+      var dot2 = svg.querySelector('.kpi-hover-dot-2');
+      var tooltip = wrapper.querySelector('.kpi-tooltip');
+      var tooltipVal1 = tooltip.querySelector('.kpi-tooltip-val1');
+      var tooltipVal2 = tooltip.querySelector('.kpi-tooltip-val2');
+
+      var pts1 = buildPoints(RAW1);
+      var pts2 = buildPoints(RAW2);
+      renderLine(line1, area1, pts1);
+      renderLine(line2, area2, pts2);
+
+      // Create unique gradient IDs for this SVG instance
+      var uid = Math.random().toString(36).substr(2, 6);
+      var defs = svg.querySelector('defs');
+      var NS = 'http://www.w3.org/2000/svg';
+
+      function makeGradient(id, color, topOpacity) {
+        var g = document.createElementNS(NS, 'linearGradient');
+        g.setAttribute('id', id);
+        g.setAttribute('x1', '0'); g.setAttribute('y1', '0');
+        g.setAttribute('x2', '0'); g.setAttribute('y2', '1');
+        var s1 = document.createElementNS(NS, 'stop');
+        s1.setAttribute('offset', '0%');
+        s1.setAttribute('stop-color', color);
+        s1.setAttribute('stop-opacity', topOpacity);
+        var s2 = document.createElementNS(NS, 'stop');
+        s2.setAttribute('offset', '100%');
+        s2.setAttribute('stop-color', color);
+        s2.setAttribute('stop-opacity', '0.02');
+        g.appendChild(s1); g.appendChild(s2);
+        defs.appendChild(g);
+        return id;
+      }
+
+      var gid1 = makeGradient('kpi-g1-' + uid, 'rgb(96,165,250)', '0.35');
+      var gid2 = makeGradient('kpi-g2-' + uid, 'rgb(52,211,153)', '0.25');
+      area1.setAttribute('fill', 'url(#' + gid1 + ')');
+      area2.setAttribute('fill', 'url(#' + gid2 + ')');
+
+      // Animate both lines on scroll
+      [line1, line2].forEach(function (ln) {
+        var len = ln.getTotalLength();
+        ln.style.strokeDasharray = len;
+        ln.style.strokeDashoffset = len;
+        ln.style.transition = 'none';
+      });
+
+      var animated = false;
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting && !animated) {
+            animated = true;
+            [line1, line2].forEach(function (ln) {
+              ln.style.transition = 'stroke-dashoffset 1.8s cubic-bezier(0.4, 0, 0.2, 1)';
+              ln.style.strokeDashoffset = '0';
+            });
+            [area1, area2].forEach(function (a) {
+              a.style.transition = 'opacity 1s ease 0.8s';
+              a.style.opacity = '1';
+            });
+            observer.disconnect();
+          }
+        });
+      }, { threshold: 0.3 });
+      observer.observe(svg);
+
+      // Hover — snap to nearest point on both lines
+      var chartContainer = svg.parentElement;
+      chartContainer.addEventListener('mousemove', function (e) {
+        var rect = svg.getBoundingClientRect();
+        var svgX = ((e.clientX - rect.left) / rect.width) * 400;
+
+        // Find nearest index by x position
+        var idx = 0;
+        var minDist = Math.abs(svgX - pts1[0].x);
+        for (var i = 1; i < pts1.length; i++) {
+          var dist = Math.abs(svgX - pts1[i].x);
+          if (dist < minDist) { minDist = dist; idx = i; }
+        }
+
+        var c1 = pts1[idx];
+        var c2 = pts2[idx];
+
+        dot.setAttribute('cx', c1.x);
+        dot.setAttribute('cy', c1.y);
+        dot.style.opacity = '1';
+        dot2.setAttribute('cx', c2.x);
+        dot2.setAttribute('cy', c2.y);
+        dot2.style.opacity = '1';
+        scrubLine.setAttribute('x1', c1.x);
+        scrubLine.setAttribute('x2', c1.x);
+        scrubLine.style.opacity = '1';
+
+        var topPt = c1.y < c2.y ? c1 : c2;
+        var tipX = (topPt.x / 400) * 100;
+        var tipY = (topPt.y / 190) * 100;
+        tooltip.style.left = tipX + '%';
+        tooltip.style.top = tipY + '%';
+        tooltip.classList.remove('hidden');
+        tooltipVal1.textContent = c1.val.toLocaleString();
+        tooltipVal2.textContent = c2.val.toLocaleString();
+      });
+
+      chartContainer.addEventListener('mouseleave', function () {
+        dot.style.opacity = '0';
+        dot2.style.opacity = '0';
+        scrubLine.style.opacity = '0';
+        tooltip.classList.add('hidden');
+      });
+    });
   })();
 </script>
