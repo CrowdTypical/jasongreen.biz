@@ -30,62 +30,24 @@ import WorkPanel from './WorkPanel.astro';
         id="horizontal-track"
         class="flex items-stretch flex-1 will-change-transform transition-none"
       >
-        <!-- Panel 1: App — Project Under Development -->
+        <!-- Panel 1: Data — Dashboards, KPIs, Analytics -->
         <WorkPanel
-          category="In Development"
-          categoryColor="emerald"
-          title="Building an App"
-          tags={['Full-Stack', 'In Progress', 'Product Design']}
-        >
-          <p
-            slot="description"
-            class="text-slate-300 text-base md:text-lg leading-relaxed mb-6"
-          >
-            Currently developing a full-stack application that solves a real
-            operational problem. More details coming soon as the project
-            takes shape.
-          </p>
-          <div
-            class="w-full h-full rounded-2xl bg-slate-800/80 border border-slate-700/50 flex items-center justify-center"
-          >
-            <div class="text-center">
-              <svg
-                class="w-16 h-16 text-slate-600 mx-auto mb-3"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1"
-                viewBox="0 0 24 24"
-                ><path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5"
-                ></path></svg
-              >
-              <p class="text-slate-500 text-sm">Preview coming soon</p>
-            </div>
-          </div>
-        </WorkPanel>
-
-        <!-- Panel 2: Latest Role — Shopify Experimentation -->
-        <WorkPanel
-          category="Shopify · 2020–2025"
+          category="Data &amp; Analytics"
           categoryColor="blue"
-          title="Experimentation & Product Operations"
-          tags={['SQL & BigQuery', 'Looker Studio', 'Experimentation', 'Cross-Functional Leadership']}
+          title="Dashboards &amp; KPI Reporting"
+          tags={['SQL & BigQuery', 'Google Looker Studio', 'Data Visualization', 'KPI Development']}
         >
           <Fragment slot="description">
             <p
               class="text-slate-300 text-base md:text-lg leading-relaxed mb-4"
             >
-              Led end-to-end experimentation operations — from ideation and
-              design to data analysis and stakeholder enablement. Built
-              analytics dashboards, automated workflows, and established
-              data-driven processes across teams.
+              Built 20+ dashboards used by over 1,000 people — from support
+              leads to VPs — to track live experiments, surface KPIs, and turn
+              complex data into clear, actionable views.
             </p>
             <p class="text-slate-400 text-sm leading-relaxed mb-6">
-              Progressed from Support Advisor to Sr. Experimentation Solutions
-              Manager, consistently moving from execution to strategy while
-              building systems that scaled.
+              The goal is always the same: make data accessible to people who
+              need it, without requiring them to write a single query.
             </p>
           </Fragment>
           <div
@@ -95,25 +57,25 @@ import WorkPanel from './WorkPanel.astro';
               <div class="flex items-center gap-3">
                 <div class="w-2 h-2 rounded-full bg-blue-400"></div>
                 <span class="text-slate-300 text-sm"
-                  >Managed experimentation pipelines</span
+                  >Real-time experiment tracking dashboards</span
                 >
               </div>
               <div class="flex items-center gap-3">
                 <div class="w-2 h-2 rounded-full bg-blue-400"></div>
                 <span class="text-slate-300 text-sm"
-                  >Built real-time analytics dashboards</span
+                  >Cross-team KPI visibility for leadership</span
                 >
               </div>
               <div class="flex items-center gap-3">
                 <div class="w-2 h-2 rounded-full bg-blue-400"></div>
                 <span class="text-slate-300 text-sm"
-                  >Cross-team enablement & process design</span
+                  >Ad hoc SQL &amp; BigQuery analysis</span
                 >
               </div>
               <div class="flex items-center gap-3">
                 <div class="w-2 h-2 rounded-full bg-blue-400"></div>
                 <span class="text-slate-300 text-sm"
-                  >Qualitative & quantitative data integration</span
+                  >Data simplified for non-technical stakeholders</span
                 >
               </div>
             </div>
@@ -131,81 +93,259 @@ import WorkPanel from './WorkPanel.astro';
                     d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z"
                   ></path></svg
                 >
-                <p class="text-slate-500 text-sm">Preview coming soon</p>
+                <p class="text-slate-500 text-sm">Screenshots coming soon</p>
               </div>
             </div>
           </div>
         </WorkPanel>
 
-        <!-- Panel 3: Second App -->
+        <!-- Panel 2: Automation — Tools, Workflows, Process -->
         <WorkPanel
-          category="In Development"
-          categoryColor="purple"
-          title="Another App in the Works"
-          tags={['App Development', 'In Progress', 'Problem Solving']}
+          category="Automation &amp; Tooling"
+          categoryColor="emerald"
+          title="Workflow Automation &amp; Internal Tools"
+          tags={['Google App Script', 'AppSheet', 'Process Optimization', 'Workflow Automation']}
         >
-          <p
-            slot="description"
-            class="text-slate-300 text-base md:text-lg leading-relaxed mb-6"
-          >
-            A second project currently under development — focused on
-            solving a different problem space. Details will be shared as the
-            project matures.
-          </p>
+          <Fragment slot="description">
+            <p
+              class="text-slate-300 text-base md:text-lg leading-relaxed mb-4"
+            >
+              Built internal tools and automated workflows that removed
+              bottlenecks and gave time back to teams. From one-click approval
+              systems to scripts that turned 15-minute tasks into 20-second
+              ones.
+            </p>
+            <p class="text-slate-400 text-sm leading-relaxed mb-6">
+              Good automation starts with good process design — understand
+              the workflow first, then build the tool that makes it effortless.
+            </p>
+          </Fragment>
           <div
-            class="w-full h-full rounded-2xl bg-slate-800/80 border border-slate-700/50 flex items-center justify-center"
+            class="w-full h-full rounded-2xl bg-linear-to-br from-emerald-900/40 to-slate-800/80 border border-slate-700/50 p-8 flex flex-col justify-between"
           >
-            <div class="text-center">
-              <svg
-                class="w-16 h-16 text-slate-600 mx-auto mb-3"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1"
-                viewBox="0 0 24 24"
-                ><path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v16.5a2.25 2.25 0 0 0 2.25 2.25h7.5A2.25 2.25 0 0 0 18 20.25V3.75a2.25 2.25 0 0 0-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3"
-                ></path></svg
-              >
-              <p class="text-slate-500 text-sm">Preview coming soon</p>
+            <div class="space-y-4 mb-6">
+              <div class="flex items-center gap-3">
+                <div class="w-2 h-2 rounded-full bg-emerald-400"></div>
+                <span class="text-slate-300 text-sm"
+                  >One-click approval workflows saving 5+ hours/day</span
+                >
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-2 h-2 rounded-full bg-emerald-400"></div>
+                <span class="text-slate-300 text-sm"
+                  >Internal tools cutting per-case time by 98%</span
+                >
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-2 h-2 rounded-full bg-emerald-400"></div>
+                <span class="text-slate-300 text-sm"
+                  >Process mapping and documentation for scale</span
+                >
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-2 h-2 rounded-full bg-emerald-400"></div>
+                <span class="text-slate-300 text-sm"
+                  >Support resources used by 1,500+ agents</span
+                >
+              </div>
+            </div>
+            <div class="flex items-center justify-center flex-1">
+              <div class="text-center">
+                <svg
+                  class="w-16 h-16 text-emerald-500/50 mx-auto mb-3"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1"
+                  viewBox="0 0 24 24"
+                  ><path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z"
+                  ></path><path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                  ></path></svg
+                >
+                <p class="text-slate-500 text-sm">Examples coming soon</p>
+              </div>
             </div>
           </div>
         </WorkPanel>
 
-        <!-- Panel 4: Community & Digital Work -->
+        <!-- Panel 3: Development — Spread The Funds + upcoming projects -->
+        <WorkPanel
+          category="App Development"
+          categoryColor="purple"
+          title="Building Real Products"
+          tags={['Flutter', 'Firebase', 'Dart', 'Full-Stack', 'In Progress']}
+        >
+          <Fragment slot="description">
+            <p
+              class="text-slate-300 text-base md:text-lg leading-relaxed mb-4"
+            >
+              Spread The Funds is a mobile app currently in closed testing on
+              the Google Play Store — built with Flutter and Firebase from the
+              ground up. Designed to solve a real problem around group financial
+              management.
+            </p>
+            <p class="text-slate-400 text-sm leading-relaxed mb-6">
+              A second project is underway, focused on a different problem
+              space. More details as it takes shape.
+            </p>
+          </Fragment>
+          <div
+            class="w-full h-full rounded-2xl bg-linear-to-br from-purple-900/40 to-slate-800/80 border border-slate-700/50 p-8 flex flex-col justify-between"
+          >
+            <div class="space-y-4 mb-6">
+              <div class="flex items-center gap-3">
+                <div class="w-2 h-2 rounded-full bg-purple-400"></div>
+                <span class="text-slate-300 text-sm"
+                  >Spread The Funds — closed testing on Play Store</span
+                >
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-2 h-2 rounded-full bg-purple-400"></div>
+                <span class="text-slate-300 text-sm"
+                  >Flutter + Firebase full-stack architecture</span
+                >
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-2 h-2 rounded-full bg-purple-400"></div>
+                <span class="text-slate-300 text-sm"
+                  >Product design, development, and testing</span
+                >
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-2 h-2 rounded-full bg-purple-400"></div>
+                <span class="text-slate-300 text-sm"
+                  >Next project in early development</span
+                >
+              </div>
+            </div>
+            <div class="flex items-center justify-center flex-1">
+              <div class="text-center">
+                <svg
+                  class="w-16 h-16 text-purple-500/50 mx-auto mb-3"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1"
+                  viewBox="0 0 24 24"
+                  ><path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v16.5a2.25 2.25 0 0 0 2.25 2.25h7.5A2.25 2.25 0 0 0 18 20.25V3.75a2.25 2.25 0 0 0-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3"
+                  ></path></svg
+                >
+                <p class="text-slate-500 text-sm">
+                  <a href="/spread-the-fund" class="text-purple-400 hover:text-purple-300 underline underline-offset-2">View Spread The Funds</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </WorkPanel>
+
+        <!-- Panel 4: Digital Community — Discord, Marathon ARG -->
         <WorkPanel
           category="Community"
           categoryColor="amber"
-          title="Digital Community Work"
-          tags={['GitHub Pages', 'Community Building', 'Web Development']}
+          title="Digital Community Building"
+          tags={['Discord', 'Community Management', '1,500+ Members', 'Web Development']}
         >
-          <p
-            slot="description"
-            class="text-slate-300 text-base md:text-lg leading-relaxed mb-6"
-          >
-            Building and contributing to digital communities — including a
-            website hosted on GitHub Pages. Bringing together people around
-            shared interests through web technology and community
-            engagement.
-          </p>
+          <Fragment slot="description">
+            <p
+              class="text-slate-300 text-base md:text-lg leading-relaxed mb-4"
+            >
+              Created and managed a 1,500+ member Discord community from
+              scratch — building engagement, moderating content, and fostering
+              a space where people came together around shared interests.
+            </p>
+            <p class="text-slate-400 text-sm leading-relaxed mb-6">
+              Supported by a companion website built on GitHub Pages, giving
+              the community a public presence and resource hub.
+            </p>
+          </Fragment>
           <div
-            class="w-full h-full rounded-2xl bg-linear-to-br from-amber-900/30 to-slate-800/80 border border-slate-700/50 flex items-center justify-center"
+            class="w-full h-full rounded-2xl bg-linear-to-br from-amber-900/30 to-slate-800/80 border border-slate-700/50 p-8 flex flex-col justify-between"
           >
-            <div class="text-center">
-              <svg
-                class="w-16 h-16 text-amber-500/50 mx-auto mb-3"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1"
-                viewBox="0 0 24 24"
-                ><path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z"
-                ></path></svg
+            <div class="space-y-4 mb-6">
+              <div class="flex items-center gap-3">
+                <div class="w-2 h-2 rounded-full bg-amber-400"></div>
+                <span class="text-slate-300 text-sm"
+                  >Built a 1,500+ member Discord server</span
+                >
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-2 h-2 rounded-full bg-amber-400"></div>
+                <span class="text-slate-300 text-sm"
+                  >Community engagement and moderation</span
+                >
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-2 h-2 rounded-full bg-amber-400"></div>
+                <span class="text-slate-300 text-sm"
+                  >Companion website on GitHub Pages</span
+                >
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="w-2 h-2 rounded-full bg-amber-400"></div>
+                <span class="text-slate-300 text-sm"
+                  >Organic growth through shared interests</span
+                >
+              </div>
+            </div>
+
+            <!-- Live Discord indicator -->
+            <div class="flex items-center justify-center flex-1">
+              <div
+                id="discord-live"
+                class="flex flex-col items-center gap-3 rounded-xl bg-slate-800/60 border border-slate-700/50 px-8 py-6"
               >
-              <p class="text-slate-500 text-sm">Community project</p>
+                <!-- Discord icon -->
+                <svg class="w-10 h-10 text-amber-400/70" fill="currentColor" viewBox="0 0 24 24"
+                  ><path
+                    d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03ZM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.42 0 1.333-.956 2.418-2.157 2.418Zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.42 0 1.333-.946 2.418-2.157 2.418Z"
+                  ></path></svg
+                >
+                <div class="flex items-center gap-2">
+                  <span class="relative flex h-2.5 w-2.5">
+                    <span
+                      class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"
+                      id="discord-ping"
+                    ></span>
+                    <span
+                      class="relative inline-flex h-2.5 w-2.5 rounded-full bg-green-500"
+                      id="discord-dot"
+                    ></span>
+                  </span>
+                  <span class="text-slate-300 text-sm font-medium" id="discord-count"
+                    >Loading...</span
+                  >
+                </div>
+                <p class="text-slate-500 text-xs">Live on Discord</p>
+              </div>
+            </div>
+
+            <!-- Community links -->
+            <div class="flex flex-wrap items-center justify-center gap-3 mt-4">
+              <a
+                href="https://breacher.net"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-400/10 text-amber-300 text-sm font-medium hover:bg-amber-400/20 transition-colors"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5a17.92 17.92 0 0 1-8.716-2.247m0 0A8.966 8.966 0 0 1 3 12c0-1.264.26-2.467.73-3.56"></path></svg>
+                breacher.net
+              </a>
+              <a
+                href="https://wiki.breacher.net"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-400/10 text-amber-300 text-sm font-medium hover:bg-amber-400/20 transition-colors"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25"></path></svg>
+                Community Wiki
+              </a>
             </div>
           </div>
         </WorkPanel>
@@ -474,4 +614,32 @@ import WorkPanel from './WorkPanel.astro';
 
 <script>
   import '../scripts/horizontal-scroll';
+</script>
+
+<script is:inline>
+  (function () {
+    var countEl = document.getElementById('discord-count');
+    var dotEl = document.getElementById('discord-dot');
+    var pingEl = document.getElementById('discord-ping');
+    if (!countEl) return;
+
+    fetch('https://discord.com/api/guilds/1480378420343869534/widget.json')
+      .then(function (res) {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return res.json();
+      })
+      .then(function (data) {
+        var online = data.presence_count || 0;
+        countEl.textContent = online.toLocaleString() + ' online';
+      })
+      .catch(function () {
+        countEl.textContent = 'Offline';
+        if (dotEl) {
+          dotEl.className = dotEl.className.replace('bg-green-500', 'bg-slate-500');
+        }
+        if (pingEl) {
+          pingEl.className = pingEl.className.replace('bg-green-400', 'bg-slate-400');
+        }
+      });
+  })();
 </script>
