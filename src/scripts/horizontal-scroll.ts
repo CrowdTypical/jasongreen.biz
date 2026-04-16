@@ -56,20 +56,19 @@ function initHorizontalScroll() {
 
     if (maxScroll <= 0) return;
 
-    // Progress from 0 to 1
+    // Progress from 0 to 1 across all transitions
     const rawProgress = Math.max(0, Math.min(1, scrolled / maxScroll));
 
-    // Translate the track: move from 0 to -(panelCount - 1) * 100vw
+    // Translate the track linearly: 0 → -(panelCount-1) widths
     const maxTranslate = (panelCount - 1) * window.innerWidth;
     const translateX = rawProgress * maxTranslate;
 
     track!.style.transform = `translateX(-${translateX}px)`;
 
-    // Fill individual segments: each segment represents 1/segmentCount of progress
+    // Progress bar: each segment = one panel transition
     const segmentCount = segmentFills.length;
     let latestComplete = -1;
 
-    // First pass: determine fill widths and which segments are complete
     segmentFills.forEach((fill, i) => {
       const segStart = i / segmentCount;
       const segEnd = (i + 1) / segmentCount;
@@ -212,6 +211,115 @@ function initHorizontalScroll() {
     progressBar.addEventListener('pointercancel', stopDrag);
     document.addEventListener('pointerup', stopDrag);
   }
+
+  // --- Mobile swipe-to-scroll (horizontal swipe → vertical scroll) ---
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let touchStartScroll = 0;
+  let startPanel = 0;
+  let isSwiping = false;
+
+  const stickyWrapper = outer.querySelector('.sticky');
+
+  if (stickyWrapper) {
+    stickyWrapper.addEventListener(
+      'touchstart',
+      (e) => {
+        const touch = (e as TouchEvent).touches[0];
+        touchStartX = touch.clientX;
+        touchStartY = touch.clientY;
+        touchStartScroll = window.scrollY;
+        isSwiping = false;
+
+        // Record which panel we started on
+        const maxScroll = outer!.offsetHeight - window.innerHeight;
+        const scrolled = window.scrollY - outerPageTop;
+        const progress = Math.max(0, Math.min(1, scrolled / maxScroll));
+        startPanel = Math.round(progress * (panelCount - 1));
+      },
+      { passive: true }
+    );
+
+    stickyWrapper.addEventListener(
+      'touchmove',
+      (e) => {
+        const touch = (e as TouchEvent).touches[0];
+        const dx = touch.clientX - touchStartX;
+        const dy = touch.clientY - touchStartY;
+
+        const maxScroll = outer!.offsetHeight - window.innerHeight;
+
+        // Determine swipe direction on first significant movement
+        if (!isSwiping && Math.abs(dx) > 10 && Math.abs(dx) > Math.abs(dy)) {
+          // Only engage if we started inside the scroll runway
+          const startScrolled = touchStartScroll - outerPageTop;
+          if (startScrolled >= -10 && startScrolled <= maxScroll + 10) {
+            isSwiping = true;
+          }
+        }
+
+        if (isSwiping) {
+          e.preventDefault();
+          // Map horizontal swipe to scroll, but clamp to ±1 panel from start
+          const prevPanel = Math.max(0, startPanel - 1);
+          const nextPanel = Math.min(panelCount - 1, startPanel + 1);
+          const minScroll = outerPageTop + (prevPanel / (panelCount - 1)) * maxScroll;
+          const maxScrollTarget = outerPageTop + (nextPanel / (panelCount - 1)) * maxScroll;
+
+          const swipeRatio = -dx / window.innerWidth;
+          const scrollDelta = swipeRatio * (maxScroll / (panelCount - 1));
+          const targetScroll = Math.max(
+            minScroll,
+            Math.min(maxScrollTarget, touchStartScroll + scrollDelta)
+          );
+          window.scrollTo({
+            top: targetScroll,
+            behavior: 'instant',
+          });
+        }
+      },
+      { passive: false }
+    );
+
+    stickyWrapper.addEventListener(
+      'touchend',
+      (e) => {
+        if (isSwiping) {
+          const touch = (e as TouchEvent).changedTouches[0];
+          const dx = touch.clientX - touchStartX;
+          const maxScroll = outer!.offsetHeight - window.innerHeight;
+
+          // Move exactly ±1 panel from where we started, based on swipe direction
+          let targetPanel = startPanel;
+          if (dx < -30) targetPanel = Math.min(startPanel + 1, panelCount - 1);
+          if (dx > 30) targetPanel = Math.max(startPanel - 1, 0);
+
+          const snapProgress = targetPanel / (panelCount - 1);
+          window.scrollTo({
+            top: outerPageTop + snapProgress * maxScroll,
+            behavior: 'smooth',
+          });
+        }
+        isSwiping = false;
+      },
+      { passive: true }
+    );
+  }
+
+  // --- Click/tap on a panel to focus it ---
+  panels.forEach((panel, i) => {
+    panel.addEventListener('click', () => {
+      // Don't snap if the user was swiping
+      if (isSwiping) return;
+
+      const maxScroll = outer!.offsetHeight - window.innerHeight;
+      const targetProgress = panelCount <= 1 ? 0 : i / (panelCount - 1);
+      window.scrollTo({
+        top: outerPageTop + targetProgress * maxScroll,
+        behavior: 'smooth',
+      });
+    });
+  });
 
   computeLayout();
   window.addEventListener('scroll', onScroll, { passive: true });
