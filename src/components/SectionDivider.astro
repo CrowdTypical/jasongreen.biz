@@ -1,13 +1,11 @@
 ---
 interface Props {
-  flip?: boolean;
   fromColor?: string;
   toColor?: string;
   sticky?: boolean;
 }
 
 const {
-  flip = false,
   fromColor = '#ffffff',
   toColor = '#0f172a',
   sticky = false,
@@ -15,7 +13,7 @@ const {
 ---
 
 <div
-  class={`section-divider relative w-full overflow-hidden leading-none ${flip ? 'rotate-180' : ''} ${sticky ? 'sticky top-14 md:top-15 z-20' : 'z-10'}`}
+  class={`section-divider relative w-full overflow-hidden leading-none ${sticky ? 'sticky top-14 md:top-15 z-20' : 'z-10'}`}
   style="background: transparent;"
 >
   <svg
@@ -26,7 +24,7 @@ const {
   >
     <defs>
       <linearGradient
-        id={`wave-grad-back-${flip ? 'f' : 'n'}`}
+        id="wave-grad-back"
         x1="0%"
         y1="0%"
         x2="100%"
@@ -37,7 +35,7 @@ const {
         <stop offset="100%" stop-color="#34d399" stop-opacity="0.4"></stop>
       </linearGradient>
       <linearGradient
-        id={`wave-grad-mid-${flip ? 'f' : 'n'}`}
+        id="wave-grad-mid"
         x1="0%"
         y1="0%"
         x2="100%"
@@ -48,7 +46,7 @@ const {
         <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.45"></stop>
       </linearGradient>
       <linearGradient
-        id={`wave-grad-front-${flip ? 'f' : 'n'}`}
+        id="wave-grad-front"
         x1="0%"
         y1="0%"
         x2="100%"
@@ -79,7 +77,7 @@ const {
     <!-- Back layer — colorful gradient wave -->
     <path
       d="M0,12 C360,42 720,5 1080,28 C1260,38 1380,8 1440,8 L1440,120 L0,120 Z"
-      fill={`url(#wave-grad-back-${flip ? 'f' : 'n'})`}
+      fill="url(#wave-grad-back)"
     >
       <animate
         attributeName="d"
@@ -96,7 +94,7 @@ const {
     <!-- Middle layer — pink-purple gradient wave -->
     <path
       d="M0,20 C200,4 400,50 720,22 C1040,2 1240,48 1440,16 L1440,120 L0,120 Z"
-      fill={`url(#wave-grad-mid-${flip ? 'f' : 'n'})`}
+      fill="url(#wave-grad-mid)"
     >
       <animate
         attributeName="d"
@@ -113,7 +111,7 @@ const {
     <!-- Third layer — amber-pink-purple gradient wave -->
     <path
       d="M0,38 C320,18 640,58 960,32 C1120,20 1300,55 1440,36 L1440,120 L0,120 Z"
-      fill={`url(#wave-grad-front-${flip ? 'f' : 'n'})`}
+      fill="url(#wave-grad-front)"
     >
       <animate
         attributeName="d"

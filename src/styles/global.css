@@ -2,17 +2,20 @@
 
 /* Font utility classes */
 .font-serif {
-  font-family: 'Playfair Display', Georgia, serif;
+  font-family: 'Outfit', system-ui, sans-serif;
+}
+.font-heading {
+  font-family: 'Outfit', system-ui, sans-serif;
 }
 .font-sans {
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: 'Outfit', system-ui, sans-serif;
 }
 .font-script {
-  font-family: 'Dancing Script', cursive;
+  font-family: 'Outfit', system-ui, sans-serif;
 }
 
 html {
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: 'Outfit', system-ui, sans-serif;
   scroll-behavior: auto;
 }
 
