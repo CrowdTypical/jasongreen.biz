@@ -1,5 +1,12 @@
 ---
 import '../styles/global.css';
+import '@fontsource/outfit/300.css';
+import '@fontsource/outfit/400.css';
+import '@fontsource/outfit/500.css';
+import '@fontsource/outfit/600.css';
+import '@fontsource/outfit/700.css';
+import '@fontsource/jetbrains-mono/400.css';
+import '@fontsource/jetbrains-mono/700.css';
 
 interface Props {
   title?: string;
@@ -13,7 +20,7 @@ const {
   ogImage = '/og-image.png',
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://jasongreen.biz');
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <html lang="en">
@@ -23,6 +30,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://jasongre
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL.href} />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -45,14 +53,14 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://jasongre
           document.documentElement.classList.add('enter-from-right');
       })();
     </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
   </head>
   <body class="relative bg-white text-slate-900 font-sans overflow-x-hidden">
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:px-4 focus:py-2 focus:bg-slate-900 focus:text-white focus:rounded-md focus:outline-2 focus:outline-offset-2 focus:outline-blue-500"
+    >
+      Skip to main content
+    </a>
     <slot />
   </body>
 </html>

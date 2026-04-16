@@ -12,7 +12,10 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.2",
     "@astrojs/vercel": "^10.0.4",
+    "@fontsource/jetbrains-mono": "^5.2.8",
+    "@fontsource/outfit": "^5.2.8",
     "@tailwindcss/vite": "^4.2.2",
     "astro": "^6.1.7",
     "firebase-admin": "^13.7.0",

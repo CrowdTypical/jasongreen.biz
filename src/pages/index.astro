@@ -25,8 +25,9 @@ import ContactSection from '../components/ContactSection.astro';
 
   <Nav />
 
-  <!-- Hero: vertical scroll -->
-  <HeroSection />
+  <main id="main-content">
+    <!-- Hero: vertical scroll -->
+    <HeroSection />
 
   <!-- Divider + Work wrapper (divider stays sticky through work scroll runway) -->
   <div class="relative">
@@ -47,6 +48,7 @@ import ContactSection from '../components/ContactSection.astro';
 
   <!-- Contact + Footer -->
   <ContactSection />
+  </main>
 
   <style>
     .floating-blob {

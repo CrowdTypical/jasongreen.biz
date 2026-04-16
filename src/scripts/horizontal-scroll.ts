@@ -321,6 +321,33 @@ function initHorizontalScroll() {
     });
   });
 
+  // --- Keyboard navigation (Left/Right arrows) ---
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+
+    const maxScroll = outer!.offsetHeight - window.innerHeight;
+    const scrolled = window.scrollY - outerPageTop;
+
+    // Only handle keys when the section is in view
+    if (scrolled < -10 || scrolled > maxScroll + 10) return;
+
+    e.preventDefault();
+    const progress = Math.max(0, Math.min(1, scrolled / maxScroll));
+    const currentPanel = Math.round(progress * (panelCount - 1));
+
+    let targetPanel = currentPanel;
+    if (e.key === 'ArrowRight') targetPanel = Math.min(currentPanel + 1, panelCount - 1);
+    if (e.key === 'ArrowLeft') targetPanel = Math.max(currentPanel - 1, 0);
+
+    if (targetPanel !== currentPanel) {
+      const snapProgress = targetPanel / (panelCount - 1);
+      window.scrollTo({
+        top: outerPageTop + snapProgress * maxScroll,
+        behavior: 'smooth',
+      });
+    }
+  });
+
   computeLayout();
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener(
