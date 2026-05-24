@@ -41,6 +41,47 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:url" content={canonicalURL.href} />
     <meta property="og:image" content={new URL(ogImage, canonicalURL.origin).href} />
 
+    <!-- Structured Data for AI/Search -->
+    <meta name="author" content="Jason Green" />
+    <meta name="keywords" content="Jason Green, Product Manager, Operations Leader, Program Manager, Shopify, Flutter, Firebase, Data Analytics, KPI Reporting, Workflow Automation, Technical Leadership, Cross-functional Leadership" />
+
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Jason Green",
+      "url": "https://jasongreen.biz",
+      "email": "theJasonKGreen@gmail.com",
+      "jobTitle": "Product & Operations Leader",
+      "description": "Strategic product and operations leader with 10+ years of cross-functional experience. Skilled in program management, data-driven decision making, workflow automation, stakeholder communication, and building products from zero to one. Former Senior Operations Analyst at Shopify. Builds production-quality software (Flutter, Firebase, Astro) and manages digital communities.",
+      "knowsAbout": [
+        "Product Management",
+        "Program Management",
+        "Operations Management",
+        "Data Analytics & KPI Reporting",
+        "Workflow Automation",
+        "Cross-functional Leadership",
+        "Stakeholder Communication",
+        "Flutter & Dart",
+        "Firebase",
+        "Astro & Web Development",
+        "Community Building",
+        "Process Improvement",
+        "Technical Project Management"
+      ],
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Available for opportunities"
+      },
+      "alumniOf": {
+        "@type": "Organization",
+        "name": "Shopify"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/in/jasonkirbygreen",
+        "https://github.com/CrowdTypical"
+      ]
+    })} />
+
     <title>{title}</title>
     <script is:inline>
       // Mark that JS is available (enables JS-dependent layouts)
