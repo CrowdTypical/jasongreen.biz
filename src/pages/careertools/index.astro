@@ -1,0 +1,852 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const APP_URL = 'https://tools.jasongreen.biz';
+---
+
+<Layout
+  title="Career Tools — AI-Powered Job Search Suite"
+  description="Tailored resumes, cover letters, keyword gap analysis, application tracking, and an AI career coach. Everything you need to run a focused, intentional job search."
+>
+  <div class="landing">
+
+    <!-- ── Nav ── -->
+    <nav class="landing-nav">
+      <span class="landing-nav__brand">Career Tools</span>
+      <div class="landing-nav__links">
+        <a href="#features" class="landing-nav__link">Features</a>
+        <a href="#how-it-works" class="landing-nav__link">How It Works</a>
+        <a href="#coming-soon" class="landing-nav__link">Coming Soon</a>
+        <a href={`${APP_URL}/privacy`} class="landing-nav__link">Privacy</a>
+      </div>
+      <a href={APP_URL} class="landing-nav__login">
+        <svg width="16" height="16" viewBox="0 0 18 18" aria-hidden="true" style="flex-shrink:0">
+          <path d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844a4.14 4.14 0 0 1-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615z" fill="#4285F4"/>
+          <path d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 0 0 9 18z" fill="#34A853"/>
+          <path d="M3.964 10.71A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.042l3.007-2.332z" fill="#FBBC05"/>
+          <path d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.958L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58z" fill="#EA4335"/>
+        </svg>
+        Login
+      </a>
+    </nav>
+
+    <!-- ── Hero ── -->
+    <section class="landing-hero">
+      <div class="landing-hero__glow landing-hero__glow--blue"></div>
+      <div class="landing-hero__glow landing-hero__glow--purple"></div>
+
+      <p class="landing-hero__eyebrow">AI-Powered Job Search Suite</p>
+      <h1 class="landing-hero__title">Career<br />Tools</h1>
+      <p class="landing-hero__sub">
+        From tailored resumes to LinkedIn posts, application tracking to a personal
+        career coach — everything you need to run a focused, intentional job search.
+      </p>
+
+      <div class="landing-hero__cta-row">
+        <a href={APP_URL} class="landing-cta-primary">
+          <svg width="16" height="16" viewBox="0 0 18 18" aria-hidden="true" style="flex-shrink:0">
+            <path d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844a4.14 4.14 0 0 1-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615z" fill="#4285F4"/>
+            <path d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 0 0 9 18z" fill="#34A853"/>
+            <path d="M3.964 10.71A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.042l3.007-2.332z" fill="#FBBC05"/>
+            <path d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.958L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58z" fill="#EA4335"/>
+          </svg>
+          Sign in with Google
+        </a>
+      </div>
+
+      <p class="landing-hero__note">
+        Bring your own Claude API key. Private tool — authorized accounts only.
+      </p>
+    </section>
+
+    <!-- ── BYOK callout ── -->
+    <div class="landing-byok-bar">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/>
+      </svg>
+      <span>
+        <strong>Bring your own Claude API key.</strong>{' '}
+        Your key, your usage, your cost. No markup, no subscription — just the raw Anthropic rate.
+      </span>
+    </div>
+
+    <!-- ── Features ── -->
+    <section class="landing-features" id="features">
+      <p class="landing-section-label">What it does</p>
+      <h2 class="landing-section-title">Every part of the job search, covered</h2>
+
+      <div class="landing-features__grid">
+
+        <div class="landing-feature-card">
+          <div class="landing-feature-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="8" r="4"/>
+              <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+              <path d="M17 11l1.5 1.5L21 10"/>
+            </svg>
+          </div>
+          <h3 class="landing-feature-card__title">AI Context</h3>
+          <p class="landing-feature-card__desc">
+            Load your resume, career history, and voice rules once. Every generation
+            draws from them — the AI knows your background and sounds like you.
+          </p>
+        </div>
+
+        <div class="landing-feature-card">
+          <div class="landing-feature-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+              <polyline points="10 9 9 9 8 9"/>
+            </svg>
+          </div>
+          <h3 class="landing-feature-card__title">Tailored Resume</h3>
+          <p class="landing-feature-card__desc">
+            Reorders bullets, mirrors keywords, and reframes your experience
+            to match the job description — without fabricating a thing.
+          </p>
+        </div>
+
+        <div class="landing-feature-card">
+          <div class="landing-feature-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </div>
+          <h3 class="landing-feature-card__title">Cover Letter</h3>
+          <p class="landing-feature-card__desc">
+            Written in your voice. Grounded in your real history. No filler
+            phrases, no generic openers — just a sharp, specific pitch.
+          </p>
+        </div>
+
+        <div class="landing-feature-card">
+          <div class="landing-feature-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"/>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              <line x1="11" y1="8" x2="11" y2="14"/>
+              <line x1="8" y1="11" x2="14" y2="11"/>
+            </svg>
+          </div>
+          <h3 class="landing-feature-card__title">Keyword Gap Analysis</h3>
+          <p class="landing-feature-card__desc">
+            Surfaces terms in the JD you haven't addressed yet, so you can
+            decide what to close and what to let go.
+          </p>
+        </div>
+
+        <div class="landing-feature-card">
+          <div class="landing-feature-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M9 11l3 3L22 4"/>
+              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+            </svg>
+          </div>
+          <h3 class="landing-feature-card__title">Application Tracker</h3>
+          <p class="landing-feature-card__desc">
+            Log every application, track status, and keep your search organized
+            in one place — no spreadsheets needed.
+          </p>
+        </div>
+
+        <div class="landing-feature-card">
+          <div class="landing-feature-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+              <rect x="2" y="9" width="4" height="12"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+          </div>
+          <h3 class="landing-feature-card__title">LinkedIn Post Generator</h3>
+          <p class="landing-feature-card__desc">
+            Draft and schedule LinkedIn posts that keep you visible while you search.
+            Generate in your voice, preview before posting.
+          </p>
+        </div>
+
+        <div class="landing-feature-card">
+          <div class="landing-feature-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+          </div>
+          <h3 class="landing-feature-card__title">Daily Activity Log</h3>
+          <p class="landing-feature-card__desc">
+            Automatically tracks every generation, recheck, and application log.
+            See your momentum at a glance — day by day.
+          </p>
+        </div>
+
+        <div class="landing-feature-card">
+          <div class="landing-feature-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+              <line x1="9" y1="10" x2="9" y2="10" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="12" y1="10" x2="12" y2="10" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="15" y1="10" x2="15" y2="10" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="landing-feature-card__title">Career Coach</h3>
+          <p class="landing-feature-card__desc">
+            An AI coach with full context on your background, search history, and
+            applications. Ask anything — prep for interviews, refine your story,
+            think through offers.
+          </p>
+        </div>
+
+        <div class="landing-feature-card">
+          <div class="landing-feature-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+              <line x1="16" y1="2" x2="16" y2="6"/>
+              <line x1="8" y1="2" x2="8" y2="6"/>
+              <line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+          </div>
+          <h3 class="landing-feature-card__title">Calendar &amp; Pipeline View</h3>
+          <p class="landing-feature-card__desc">
+            See your applications, follow-ups, and LinkedIn posts on a unified
+            calendar. Stay on top of where every role stands.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── How It Works ── -->
+    <section class="landing-how" id="how-it-works">
+      <p class="landing-section-label">How it works</p>
+      <h2 class="landing-section-title">Set up once, use every application</h2>
+
+      <div class="landing-how__steps">
+        <div class="landing-how__step">
+          <span class="landing-how__step-num">01</span>
+          <h3 class="landing-how__step-title">Add your profile</h3>
+          <p class="landing-how__step-desc">
+            Upload your resume, career history, and voice rules. Plug in your
+            Claude API key. Done once — reused every time.
+          </p>
+        </div>
+        <div class="landing-how__connector"></div>
+        <div class="landing-how__step">
+          <span class="landing-how__step-num">02</span>
+          <h3 class="landing-how__step-title">Paste the job description</h3>
+          <p class="landing-how__step-desc">
+            Drop in the full JD and any company context. Hit generate — Claude
+            builds your tailored resume, cover letter, and gap analysis.
+          </p>
+        </div>
+        <div class="landing-how__connector"></div>
+        <div class="landing-how__step">
+          <span class="landing-how__step-num">03</span>
+          <h3 class="landing-how__step-title">Apply, track, repeat</h3>
+          <p class="landing-how__step-desc">
+            Export a clean PDF, log the application, and move on. The tracker
+            and activity log keep your search visible and accountable.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Coming Soon ── -->
+    <section class="landing-coming-soon" id="coming-soon">
+      <p class="landing-section-label">Coming soon</p>
+      <h2 class="landing-section-title">What's next</h2>
+
+      <div class="landing-coming-soon__grid">
+        <div class="landing-coming-card">
+          <div class="landing-coming-card__badge">In progress</div>
+          <div class="landing-coming-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+            </svg>
+          </div>
+          <h3 class="landing-coming-card__title">GitHub Integration</h3>
+          <p class="landing-coming-card__desc">
+            Pull your pinned repos, commit activity, and project descriptions
+            directly into your resume and cover letter context.
+          </p>
+        </div>
+
+        <div class="landing-coming-card">
+          <div class="landing-coming-card__badge">Planned</div>
+          <div class="landing-coming-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </div>
+          <h3 class="landing-coming-card__title">Follow-Up Automation</h3>
+          <p class="landing-coming-card__desc">
+            Draft tailored follow-up emails for any application, timed
+            to the right moment in your pipeline.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Bottom CTA ── -->
+    <section class="landing-bottom-cta">
+      <div class="landing-hero__glow landing-hero__glow--blue landing-hero__glow--bottom"></div>
+      <h2 class="landing-bottom-cta__title">Ready to run your search?</h2>
+      <p class="landing-bottom-cta__sub">
+        Sign in with your authorized Google account to get started.
+      </p>
+      <a href={APP_URL} class="landing-cta-primary">
+        <svg width="16" height="16" viewBox="0 0 18 18" aria-hidden="true" style="flex-shrink:0">
+          <path d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844a4.14 4.14 0 0 1-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615z" fill="#4285F4"/>
+          <path d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 0 0 9 18z" fill="#34A853"/>
+          <path d="M3.964 10.71A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.042l3.007-2.332z" fill="#FBBC05"/>
+          <path d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.958L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58z" fill="#EA4335"/>
+        </svg>
+        Sign in with Google
+      </a>
+      <p class="landing-hero__note" style="margin-top:16px">
+        By signing in you agree to our{' '}
+        <a href={`${APP_URL}/privacy`} class="landing-privacy-link">Privacy Policy</a>.
+      </p>
+    </section>
+
+    <!-- ── Footer ── -->
+    <footer class="landing-footer">
+      <span class="landing-footer__brand">Career Tools</span>
+      <a href={`${APP_URL}/privacy`} class="landing-footer__link">Privacy Policy</a>
+    </footer>
+
+  </div>
+</Layout>
+
+<style>
+  /* ── Reset: override any global body background for this page ── */
+  :global(body) {
+    background: #060810;
+  }
+
+  .landing {
+    min-height: 100vh;
+    background: #060810;
+    color: #f1f5f9;
+    font-family: inherit;
+    overflow-x: hidden;
+  }
+
+  /* ── Nav ── */
+  .landing-nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    padding: 0 48px;
+    height: 64px;
+    background: rgba(6, 8, 16, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .landing-nav__brand {
+    font-size: 15px;
+    font-weight: 700;
+    color: #f8fafc;
+    letter-spacing: -0.01em;
+    margin-right: auto;
+  }
+
+  .landing-nav__links {
+    display: flex;
+    gap: 28px;
+  }
+
+  .landing-nav__link {
+    font-size: 13px;
+    color: #94a3b8;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    transition: color 0.15s;
+  }
+
+  .landing-nav__link:hover {
+    color: #f1f5f9;
+  }
+
+  .landing-nav__login {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 20px;
+    background: #1e2535;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    color: #f1f5f9;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    transition: background 0.15s, border-color 0.15s;
+    white-space: nowrap;
+  }
+
+  .landing-nav__login:hover {
+    background: #263348;
+    border-color: #3b82f6;
+  }
+
+  /* ── Hero ── */
+  .landing-hero {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 120px 24px 100px;
+    overflow: hidden;
+    min-height: 88vh;
+  }
+
+  .landing-hero__glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    pointer-events: none;
+  }
+
+  .landing-hero__glow--blue {
+    width: 560px;
+    height: 560px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.18) 0%, transparent 70%);
+    top: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .landing-hero__glow--purple {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, transparent 70%);
+    bottom: 0;
+    right: 10%;
+  }
+
+  .landing-hero__glow--bottom {
+    top: auto;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .landing-hero__eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #3b82f6;
+    margin: 0 0 24px;
+    position: relative;
+  }
+
+  .landing-hero__title {
+    font-size: clamp(72px, 13vw, 140px);
+    font-weight: 800;
+    line-height: 0.92;
+    letter-spacing: -0.04em;
+    margin: 0 0 32px;
+    position: relative;
+    background: linear-gradient(
+      110deg,
+      #c4b5fd 0%,
+      #a8c8ff 10%,
+      rgba(255, 255, 255, 0.92) 18%,
+      #f9a8d4 26%,
+      #fcd34d 38%,
+      #6ee7b7 50%,
+      rgba(255, 255, 255, 0.85) 58%,
+      #7dd3fc 66%,
+      #a8c8ff 78%,
+      rgba(255, 255, 255, 0.7) 86%,
+      #c4b5fd 94%,
+      #f9a8d4 100%
+    );
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: glass-shift 14s ease-in-out infinite;
+  }
+
+  @keyframes glass-shift {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .landing-hero__sub {
+    font-size: clamp(15px, 2vw, 18px);
+    color: #94a3b8;
+    max-width: 520px;
+    line-height: 1.65;
+    margin: 0 0 40px;
+    position: relative;
+  }
+
+  .landing-hero__cta-row {
+    display: flex;
+    gap: 16px;
+    position: relative;
+  }
+
+  .landing-cta-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 28px;
+    background: #3b82f6;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    transition: background 0.15s, transform 0.1s;
+  }
+
+  .landing-cta-primary:hover {
+    background: #2563eb;
+    transform: translateY(-1px);
+  }
+
+  .landing-hero__note {
+    font-size: 11px;
+    color: #475569;
+    margin: 20px 0 0;
+    position: relative;
+  }
+
+  .landing-privacy-link {
+    color: #60a5fa;
+    text-decoration: none;
+  }
+
+  .landing-privacy-link:hover {
+    text-decoration: underline;
+  }
+
+  /* ── Section chrome ── */
+  .landing-section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #3b82f6;
+    margin: 0 0 12px;
+    text-align: center;
+  }
+
+  .landing-section-title {
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: #f8fafc;
+    margin: 0 0 56px;
+    text-align: center;
+  }
+
+  /* ── Features ── */
+  .landing-features {
+    padding: 96px 48px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .landing-features__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+  }
+
+  .landing-feature-card {
+    background: #0d111d;
+    border: 1px solid #1e2535;
+    border-radius: 12px;
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: border-color 0.2s;
+  }
+
+  .landing-feature-card:hover {
+    border-color: #334155;
+  }
+
+  .landing-feature-card__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(59, 130, 246, 0.1);
+    border-radius: 8px;
+    color: #3b82f6;
+    flex-shrink: 0;
+  }
+
+  .landing-feature-card__title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #f1f5f9;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  .landing-feature-card__desc {
+    font-size: 13px;
+    color: #64748b;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ── How It Works ── */
+  .landing-how {
+    padding: 96px 48px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .landing-how__steps {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+  }
+
+  .landing-how__step {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .landing-how__step-num {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #3b82f6;
+    display: block;
+  }
+
+  .landing-how__step-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #f1f5f9;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  .landing-how__step-desc {
+    font-size: 13px;
+    color: #64748b;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .landing-how__connector {
+    width: 80px;
+    flex-shrink: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #1e2535, transparent);
+    margin-top: 28px;
+    align-self: flex-start;
+  }
+
+  /* ── Coming Soon ── */
+  .landing-coming-soon {
+    padding: 96px 48px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .landing-coming-soon__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+  }
+
+  .landing-coming-card {
+    background: #0d111d;
+    border: 1px solid #1e2535;
+    border-radius: 12px;
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: relative;
+  }
+
+  .landing-coming-card__badge {
+    display: inline-flex;
+    align-self: flex-start;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: rgba(99, 102, 241, 0.12);
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    color: #a5b4fc;
+  }
+
+  .landing-coming-card__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(99, 102, 241, 0.1);
+    border-radius: 8px;
+    color: #818cf8;
+    flex-shrink: 0;
+  }
+
+  .landing-coming-card__title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #f1f5f9;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  .landing-coming-card__desc {
+    font-size: 13px;
+    color: #64748b;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ── Bottom CTA ── */
+  .landing-bottom-cta {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 96px 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .landing-bottom-cta__title {
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: #f8fafc;
+    margin: 0 0 16px;
+    position: relative;
+  }
+
+  .landing-bottom-cta__sub {
+    font-size: 15px;
+    color: #94a3b8;
+    margin: 0 0 32px;
+    max-width: 400px;
+    position: relative;
+  }
+
+  /* ── BYOK bar ── */
+  .landing-byok-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 14px 32px;
+    background: rgba(59, 130, 246, 0.07);
+    border-top: 1px solid rgba(59, 130, 246, 0.18);
+    border-bottom: 1px solid rgba(59, 130, 246, 0.18);
+    color: #94a3b8;
+    font-size: 13px;
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  .landing-byok-bar svg {
+    color: #3b82f6;
+    flex-shrink: 0;
+  }
+
+  .landing-byok-bar strong {
+    color: #cbd5e1;
+  }
+
+  /* ── Footer ── */
+  .landing-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 48px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .landing-footer__brand {
+    font-size: 13px;
+    font-weight: 700;
+    color: #475569;
+  }
+
+  .landing-footer__link {
+    font-size: 12px;
+    color: #475569;
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .landing-footer__link:hover {
+    color: #94a3b8;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 640px) {
+    .landing-nav {
+      padding: 0 20px;
+      gap: 16px;
+    }
+
+    .landing-nav__links {
+      display: none;
+    }
+
+    .landing-features {
+      padding: 64px 20px;
+    }
+
+    .landing-how {
+      padding: 64px 20px;
+    }
+
+    .landing-how__steps {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .landing-how__connector {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(180deg, transparent, #1e2535, transparent);
+      margin: 0;
+      align-self: center;
+    }
+
+    .landing-footer {
+      padding: 20px 20px;
+    }
+  }
+</style>
