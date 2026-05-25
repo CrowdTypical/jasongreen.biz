@@ -17,8 +17,7 @@ const APP_URL = 'https://tools.jasongreen.biz';
         <a href="#features" class="landing-nav__link">Features</a>
         <a href="#how-it-works" class="landing-nav__link">How It Works</a>
         <a href="#coming-soon" class="landing-nav__link">Coming Soon</a>
-        <a href={`${APP_URL}/privacy`} class="landing-nav__link">Privacy</a>
-      </div>
+        <a href={`${APP_URL}/privacy`} class="landing-nav__link">Privacy</a>          <a href="/careertools/terms" class="landing-nav__link">Terms</a>      </div>
       <a href={APP_URL} class="landing-nav__login">
         <svg width="16" height="16" viewBox="0 0 18 18" aria-hidden="true" style="flex-shrink:0">
           <path d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844a4.14 4.14 0 0 1-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615z" fill="#4285F4"/>
@@ -307,14 +306,18 @@ const APP_URL = 'https://tools.jasongreen.biz';
       </a>
       <p class="landing-hero__note" style="margin-top:16px">
         By signing in you agree to our{' '}
-        <a href={`${APP_URL}/privacy`} class="landing-privacy-link">Privacy Policy</a>.
+        <a href={`${APP_URL}/privacy`} class="landing-privacy-link">Privacy Policy</a>
+        {' '}and <a href="/careertools/terms" class="landing-privacy-link">Terms of Service</a>.
       </p>
     </section>
 
     <!-- ── Footer ── -->
     <footer class="landing-footer">
       <span class="landing-footer__brand">Career Tools</span>
-      <a href={`${APP_URL}/privacy`} class="landing-footer__link">Privacy Policy</a>
+      <div class="landing-footer__links">
+        <a href={`${APP_URL}/privacy`} class="landing-footer__link">Privacy Policy</a>
+        <a href="/careertools/terms" class="landing-footer__link">Terms of Service</a>
+      </div>
     </footer>
 
   </div>
@@ -800,6 +803,11 @@ const APP_URL = 'https://tools.jasongreen.biz';
     font-size: 13px;
     font-weight: 700;
     color: #475569;
+  }
+
+  .landing-footer__links {
+    display: flex;
+    gap: 24px;
   }
 
   .landing-footer__link {

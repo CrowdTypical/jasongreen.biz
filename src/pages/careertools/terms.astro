@@ -1,0 +1,281 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const APP_URL = 'https://tools.jasongreen.biz';
+const EFFECTIVE_DATE = 'May 25, 2026';
+---
+
+<Layout
+  title="Terms of Service — Career Tools"
+  description="Terms of Service for Career Tools, an AI-powered job search suite."
+>
+  <div class="policy-page">
+    <nav class="policy-nav">
+      <a href="/careertools" class="policy-nav__back">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Career Tools
+      </a>
+    </nav>
+
+    <div class="policy-card">
+      <h1 class="policy-title">Terms of Service</h1>
+      <p class="policy-meta">Effective date: {EFFECTIVE_DATE}</p>
+
+      <section class="policy-section">
+        <h2>1. Acceptance</h2>
+        <p>
+          By signing in to Career Tools ("the app"), you agree to these Terms of Service.
+          If you do not agree, do not use the app.
+        </p>
+      </section>
+
+      <section class="policy-section">
+        <h2>2. What Career Tools Is</h2>
+        <p>
+          Career Tools is a personal productivity application for job seekers. It helps you
+          generate tailored resumes and cover letters, track applications, draft LinkedIn posts,
+          and manage your job search using AI. The app is operated by Jason Green
+          (<a href="mailto:jason@jasongreen.biz">jason@jasongreen.biz</a>).
+        </p>
+      </section>
+
+      <section class="policy-section">
+        <h2>3. Bring Your Own API Key</h2>
+        <p>
+          Career Tools uses the Anthropic Claude API for AI generation. You must provide your own
+          Anthropic API key. By providing your key, you agree that:
+        </p>
+        <ul>
+          <li>You are responsible for all usage and charges incurred under your key</li>
+          <li>Your key is stored encrypted and used solely to make requests on your behalf</li>
+          <li>You will not use your key in ways that violate <a href="https://www.anthropic.com/legal/aup" target="_blank" rel="noopener noreferrer">Anthropic's usage policies</a></li>
+        </ul>
+      </section>
+
+      <section class="policy-section">
+        <h2>4. Your Data</h2>
+        <p>
+          You retain ownership of all content you create — resumes, cover letters, application
+          records, LinkedIn posts, and any other data you enter into the app. We do not sell,
+          share, or use your data for any purpose other than operating the service.
+          See our <a href={`${APP_URL}/privacy`}>Privacy Policy</a> for full details.
+        </p>
+      </section>
+
+      <section class="policy-section">
+        <h2>5. Acceptable Use</h2>
+        <p>You agree not to:</p>
+        <ul>
+          <li>Use the app to generate fraudulent, deceptive, or misleading job application materials</li>
+          <li>Attempt to reverse-engineer, scrape, or abuse the service</li>
+          <li>Share your account access with others</li>
+          <li>Use the app in violation of any applicable law</li>
+        </ul>
+      </section>
+
+      <section class="policy-section">
+        <h2>6. Third-Party Services</h2>
+        <p>
+          The app integrates with Google (sign-in and Calendar), Anthropic (AI generation), and
+          LinkedIn (post publishing). Your use of those services is governed by their respective
+          terms. Career Tools is not responsible for any third-party service's actions or policies.
+        </p>
+      </section>
+
+      <section class="policy-section">
+        <h2>7. No Warranty</h2>
+        <p>
+          Career Tools is provided "as is" without warranty of any kind. AI-generated content may
+          be inaccurate, incomplete, or unsuitable for your needs — always review outputs before
+          using them. We make no guarantees about uptime, accuracy, or fitness for any particular
+          purpose.
+        </p>
+      </section>
+
+      <section class="policy-section">
+        <h2>8. Limitation of Liability</h2>
+        <p>
+          To the maximum extent permitted by law, Jason Green shall not be liable for any
+          indirect, incidental, special, or consequential damages arising from your use of
+          Career Tools, including but not limited to lost opportunities, missed applications,
+          or API charges.
+        </p>
+      </section>
+
+      <section class="policy-section">
+        <h2>9. Changes to These Terms</h2>
+        <p>
+          These terms may be updated from time to time. The effective date at the top of this
+          page will reflect the most recent revision. Continued use of the app after changes
+          constitutes acceptance of the updated terms.
+        </p>
+      </section>
+
+      <section class="policy-section">
+        <h2>10. Contact</h2>
+        <p>
+          Questions about these terms? Email <a href="mailto:jason@jasongreen.biz">jason@jasongreen.biz</a>.
+        </p>
+      </section>
+    </div>
+
+    <footer class="policy-footer">
+      <span class="policy-footer__brand">Career Tools</span>
+      <div class="policy-footer__links">
+        <a href={`${APP_URL}/privacy`} class="policy-footer__link">Privacy Policy</a>
+        <a href="/careertools/terms" class="policy-footer__link">Terms of Service</a>
+      </div>
+    </footer>
+  </div>
+</Layout>
+
+<style>
+  :global(body) {
+    background: #060810;
+  }
+
+  .policy-page {
+    min-height: 100vh;
+    background: #060810;
+    color: #f1f5f9;
+    font-family: 'Outfit', sans-serif;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ── Nav ── */
+  .policy-nav {
+    padding: 20px 48px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .policy-nav__back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #64748b;
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .policy-nav__back:hover {
+    color: #94a3b8;
+  }
+
+  /* ── Card ── */
+  .policy-card {
+    max-width: 720px;
+    width: 100%;
+    margin: 48px auto;
+    padding: 48px;
+    background: #0d111d;
+    border: 1px solid #1e2535;
+    border-radius: 16px;
+  }
+
+  .policy-title {
+    font-size: 32px;
+    font-weight: 800;
+    color: #f1f5f9;
+    margin: 0 0 8px;
+  }
+
+  .policy-meta {
+    font-size: 13px;
+    color: #64748b;
+    margin: 0 0 40px;
+  }
+
+  /* ── Sections ── */
+  .policy-section {
+    margin-bottom: 32px;
+  }
+
+  .policy-section h2 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #cbd5e1;
+    margin: 0 0 12px;
+  }
+
+  .policy-section p,
+  .policy-section li {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #94a3b8;
+    margin: 0 0 8px;
+  }
+
+  .policy-section ul {
+    padding-left: 20px;
+    margin: 8px 0 0;
+  }
+
+  .policy-section a {
+    color: #3b82f6;
+    text-decoration: none;
+  }
+
+  .policy-section a:hover {
+    text-decoration: underline;
+  }
+
+  /* ── Footer ── */
+  .policy-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 48px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    margin-top: auto;
+  }
+
+  .policy-footer__brand {
+    font-size: 13px;
+    font-weight: 700;
+    color: #475569;
+  }
+
+  .policy-footer__links {
+    display: flex;
+    gap: 24px;
+  }
+
+  .policy-footer__link {
+    font-size: 12px;
+    color: #475569;
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .policy-footer__link:hover {
+    color: #94a3b8;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .policy-nav {
+      padding: 16px 20px;
+    }
+
+    .policy-card {
+      margin: 24px 16px;
+      padding: 28px 24px;
+    }
+
+    .policy-title {
+      font-size: 26px;
+    }
+
+    .policy-footer {
+      padding: 20px 24px;
+      flex-direction: column;
+      gap: 12px;
+      text-align: center;
+    }
+  }
+</style>
